@@ -1,3 +1,5 @@
+package server.utils;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 
@@ -24,5 +26,14 @@ public class OpenDb {
 	    System.exit(0);
 	}
 	System.out.println("OK!");
+    }
+
+    Connection getConnection() {
+	if (c != null) {
+	    return c;
+	}
+	else {
+	    return null;
+	}
     }
 }

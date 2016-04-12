@@ -1,18 +1,20 @@
 package server.booking.model;
 
+import java.util.*;
+
 public class FishingSafariCatalog{
-    private List<FishingSafari> = new ArrayList<>();
+    private List<FishingSafari> safariList = new ArrayList<>();
 
 
 
 
 
 
-    public cancelFishingSafari(int id, boolean active){
+    public void cancelFishingSafari(int id, boolean active){
 
     }
 
-    public changeDate(int id, Date newStartDate, Date newEndDate){
+    public void changeDate(int id, Date newStartDate, Date newEndDate){
 
     }
 

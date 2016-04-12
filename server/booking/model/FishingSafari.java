@@ -1,5 +1,7 @@
 package server.booking.model;
 
+import java.util.Date;
+
 public class FishingSafari{
 
     private int id; // TO be fixed by db

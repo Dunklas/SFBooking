@@ -1,27 +1,35 @@
 package server.booking.model;
 
+import java.util.*;
+import server.utils.Insert;
+
 public class SafariDestinationCatalog{
     private List<SafariDestination> safariDestinationList = new ArrayList<>();
     
 
-    public newSafariDestination(String location, String equipmentReq, int maxParticipants, String guide){
-	SafariDestination newSd = new SafariDestination(location, equipmentReq, maxParticipants, guide);
-	//Save in list or in db or in both?
+    public void newSafariDestination(String location, String equipmentReq, int maxParticipants, String guide, String terrain){
+	try {
+	    Insert dbEntry = new Insert();
+	    dbEntry.insertSafariDestination(location, equipmentReq, maxParticipants, guide, terrain);
+	}
+	catch (Exception ex) {
+	    System.out.println("Nu blev det problem");
+	}
     } 
 
-    public changeGuide(String location, String guide){
+    public void changeGuide(String location, String guide){
 	
     }
 
-    public changeMaxParticipants(String location, int nr){
+    public void changeMaxParticipants(String location, int nr){
 	
     }
 
-    public changeEquipmentReq(String location, String text){
+    public void changeEquipmentReq(String location, String text){
 
     }
 
-    public changeActive(Strng location, boolean active){
+    public void changeActive(String location, boolean active){
 
     }
 
