@@ -9,7 +9,7 @@ public class SafariDestinationCatalog{
 	//Save in list or in db or in both?
     } 
 
-    public changeGuide(int id){
+    public changeGuide(int id, String guide){
 	
     }
 
@@ -17,7 +17,13 @@ public class SafariDestinationCatalog{
 	
     }
 
+    public changeEquipmentReq(int id, String text){
 
+    }
+
+    public changeActive(int id, boolean active){
+
+    }
 
 
 }//End of class
