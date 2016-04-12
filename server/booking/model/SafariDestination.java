@@ -1,7 +1,8 @@
 package server.booking.model;
 
+import server.utils.Update;
+
 public class SafariDestination{
-    private int id; //To be decided by db
     private String location;
     private String equipmentReq;
     private int maxParticipants;
@@ -23,12 +24,12 @@ public class SafariDestination{
 
     }
 
-    // private regChange(){
-    // }
+    public void setGuide(String newGuide) {
+	this.guide = newGuide;
 
-
-
-
+	Update dbUpdate = new Update();
+	dbUpdate.updateGuide(this.location, this.guide);
+    }
 
 
 
