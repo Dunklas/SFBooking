@@ -4,7 +4,7 @@ import java.sql.DriverManager;
 public class OpenDb {
 
     Connection c;
-    private String ip = "172.20.10.3";
+    private String ip = "127.0.0.1";
     private String PATH;
     private String USERNAME = "postgres";
     private String PASSWORD = "tig059";

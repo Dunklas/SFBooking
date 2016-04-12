@@ -9,19 +9,19 @@ public class SafariDestinationCatalog{
 	//Save in list or in db or in both?
     } 
 
-    public changeGuide(int id, String guide){
+    public changeGuide(String location, String guide){
 	
     }
 
-    public changeMaxParticipants(int id, int nr){
+    public changeMaxParticipants(String location, int nr){
 	
     }
 
-    public changeEquipmentReq(int id, String text){
+    public changeEquipmentReq(String location, String text){
 
     }
 
-    public changeActive(int id, boolean active){
+    public changeActive(Strng location, boolean active){
 
     }
 
