@@ -1,6 +1,7 @@
 package server.booking.model;
 
 public class SafariDestination{
+    private int id; //To be decided by db
     private String location;
     private String equipmentReq;
     private int maxParticipants;

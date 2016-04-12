@@ -2,10 +2,11 @@ package server.booking.model;
 
 public class FishingSafari{
 
+    private int id; // TO be fixed by db
     private SafariDestination safariDestination;
     private Date startDate;
     private Date endDate;
-
+    
     private boolean minParticipantsMet;
     private boolean maxParticipantsMet;
     private Date announcementDate;
