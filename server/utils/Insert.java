@@ -24,10 +24,10 @@ public class Insert {
     public void insertFishingSafari(String safariDestination, Date startDate, Date endDate) throws SQLException {
 	Connection c = new OpenDb().getConnection();
 	if (c != null) {
-	    PreparedStatement stmt = c.prepareStatement("INSERT INTO fishingsafari (safaridestination, endDate, startDate) VALUES (?, ?, ?);");
+	    PreparedStatement stmt = c.prepareStatement("INSERT INTO fishingsafari (safaridestination, end_date, start_date) VALUES (?, ?, ?);");
 	    stmt.setString(1, safariDestination);
-	    stmt.setDate(2, startDate);
-	    stmt.setDate(3, endDate);
+	    stmt.setDate(2, endDate);
+	    stmt.setDate(3, startDate);
 	    stmt.executeUpdate();
 
 	    stmt.close();
