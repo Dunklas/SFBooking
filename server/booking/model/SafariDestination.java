@@ -18,7 +18,10 @@ public class SafariDestination{
 	this.active = true;
     }
 
+    public String getLocation(){
+	return location;
 
+    }
 
     // private regChange(){
     // }

@@ -23,6 +23,10 @@ public class FishingSafari{
 	this.startDate = startDate;
 	this.endDate = endDate;
     }
+    
+    public SafariDestination getSafariDestination(){
+	return safariDestination;
+    }
 
     public void setAnnouncementDate(Date date) {
 	this.announcementDate = date;
