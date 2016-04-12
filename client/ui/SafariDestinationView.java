@@ -1,8 +1,7 @@
+//package client.ui;
+
 import javax.swing.JPanel;
-import com.jgoodies.forms.layout.FormLayout;
-import com.jgoodies.forms.layout.ColumnSpec;
-import com.jgoodies.forms.layout.RowSpec;
-import com.jgoodies.forms.layout.FormSpecs;
+import java.util.*;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JCheckBox;
@@ -25,42 +24,45 @@ import javax.swing.JRadioButton;
 import javax.swing.ButtonGroup;
 import javax.swing.JToggleButton;
 import javax.swing.SwingConstants;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.*;
+import java.util.HashMap;
 
 public class SafariDestinationView extends JPanel {
-	private JTextField textFieldNamn;
-	private JTextField textFieldPlats;
+	private JTextField textFieldLocation;
+	private JTextField textFieldParticipants;
+	private JList availableGearList;
+	private JList<String> addedGearList;
+	private JComboBox<String> guideBox;
+	private JCheckBox terrain1;
+	private JCheckBox terrain2;
+	private JCheckBox terrain3;
+	private JRadioButton activeButton;
+	private JRadioButton inactiveButton;
+	private ButtonGroup statusGroup = new ButtonGroup();
+	private JButton saveNewSafariButton;
+	
+	private DefaultListModel<String> listModel = new DefaultListModel<String>();
+	private ArrayList<JCheckBox> terrains = new ArrayList<JCheckBox>();
+	
+    private HashMap<String,Component> compMap = new HashMap<String,Component>();
+	
+	
 
 	/**
 	 * Create the panel.
 	 */
 	public SafariDestinationView() {
+		
+		
 		setBackground(new Color(204, 204, 204));
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{443, 0};
-		gridBagLayout.rowHeights = new int[]{16, 22, 16, 22, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+		gridBagLayout.rowHeights = new int[]{6, -5, 2, 22, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 		gridBagLayout.columnWeights = new double[]{1.0, Double.MIN_VALUE};
-		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		setLayout(gridBagLayout);
-		
-		JLabel lblNamn = new JLabel("Namn");
-		GridBagConstraints gbc_lblNamn = new GridBagConstraints();
-		gbc_lblNamn.anchor = GridBagConstraints.NORTH;
-		gbc_lblNamn.fill = GridBagConstraints.HORIZONTAL;
-		gbc_lblNamn.insets = new Insets(0, 0, 5, 0);
-		gbc_lblNamn.gridx = 0;
-		gbc_lblNamn.gridy = 0;
-		add(lblNamn, gbc_lblNamn);
-		
-		textFieldNamn = new JTextField();
-		textFieldNamn.setMinimumSize(new Dimension(100,20));
-		GridBagConstraints gbc_textFieldNamn = new GridBagConstraints();
-		gbc_textFieldNamn.ipadx = 99;
-		gbc_textFieldNamn.anchor = GridBagConstraints.NORTHWEST;
-		gbc_textFieldNamn.insets = new Insets(0, 0, 5, 0);
-		gbc_textFieldNamn.gridx = 0;
-		gbc_textFieldNamn.gridy = 1;
-		add(textFieldNamn, gbc_textFieldNamn);
-		textFieldNamn.setColumns(10);
 		
 		JLabel lblPlats = new JLabel("Plats");
 		GridBagConstraints gbc_lblPlats = new GridBagConstraints();
@@ -68,26 +70,47 @@ public class SafariDestinationView extends JPanel {
 		gbc_lblPlats.fill = GridBagConstraints.HORIZONTAL;
 		gbc_lblPlats.insets = new Insets(0, 0, 5, 0);
 		gbc_lblPlats.gridx = 0;
-		gbc_lblPlats.gridy = 2;
+		gbc_lblPlats.gridy = 1;
 		add(lblPlats, gbc_lblPlats);
 		
-		textFieldPlats = new JTextField();
-		textFieldPlats.setMinimumSize(new Dimension(100,20));
-		GridBagConstraints gbc_textFieldPlats = new GridBagConstraints();
-		gbc_textFieldPlats.ipadx = 99;
-		gbc_textFieldPlats.insets = new Insets(0, 0, 5, 0);
-		gbc_textFieldPlats.anchor = GridBagConstraints.NORTHWEST;
-		gbc_textFieldPlats.gridx = 0;
-		gbc_textFieldPlats.gridy = 3;
-		add(textFieldPlats, gbc_textFieldPlats);
-		textFieldPlats.setColumns(10);
+		textFieldLocation = new JTextField();
+		textFieldLocation.setName("location");
+		textFieldLocation.setMinimumSize(new Dimension(100,20));
+		GridBagConstraints gbc_textFieldLocation = new GridBagConstraints();
+		gbc_textFieldLocation.ipadx = 99;
+		gbc_textFieldLocation.insets = new Insets(0, 0, 5, 0);
+		gbc_textFieldLocation.anchor = GridBagConstraints.NORTHWEST;
+		gbc_textFieldLocation.gridx = 0;
+		gbc_textFieldLocation.gridy = 2;
+		add(textFieldLocation, gbc_textFieldLocation);
+		textFieldLocation.setColumns(10);
+		
+		JLabel lblMaxAntalDeltagare = new JLabel("Max antal deltagare");
+		GridBagConstraints gbc_lblMaxAntalDeltagare = new GridBagConstraints();
+		gbc_lblMaxAntalDeltagare.anchor = GridBagConstraints.WEST;
+		gbc_lblMaxAntalDeltagare.insets = new Insets(0, 0, 5, 0);
+		gbc_lblMaxAntalDeltagare.gridx = 0;
+		gbc_lblMaxAntalDeltagare.gridy = 3;
+		add(lblMaxAntalDeltagare, gbc_lblMaxAntalDeltagare);
+		
+		textFieldParticipants = new JTextField();
+		textFieldParticipants.setName("participants");
+		textFieldParticipants.setMinimumSize(new Dimension(100, 20));
+		textFieldParticipants.setColumns(10);
+		GridBagConstraints gbc_textFieldParticipants = new GridBagConstraints();
+		gbc_textFieldParticipants.anchor = GridBagConstraints.WEST;
+		gbc_textFieldParticipants.ipadx = 99;
+		gbc_textFieldParticipants.insets = new Insets(0, 0, 5, 0);
+		gbc_textFieldParticipants.gridx = 0;
+		gbc_textFieldParticipants.gridy = 4;
+		add(textFieldParticipants, gbc_textFieldParticipants);
 		
 		JLabel lblTerrngtyp = new JLabel("Terr\u00E4ngtyp");
 		GridBagConstraints gbc_lblTerrngtyp = new GridBagConstraints();
 		gbc_lblTerrngtyp.anchor = GridBagConstraints.WEST;
 		gbc_lblTerrngtyp.insets = new Insets(0, 0, 5, 0);
 		gbc_lblTerrngtyp.gridx = 0;
-		gbc_lblTerrngtyp.gridy = 4;
+		gbc_lblTerrngtyp.gridy = 5;
 		add(lblTerrngtyp, gbc_lblTerrngtyp);
 		
 		JPanel terrainPanel = new JPanel();
@@ -97,26 +120,44 @@ public class SafariDestinationView extends JPanel {
 		gbc_terrainPanel.ipady = 15;
 		gbc_terrainPanel.fill = GridBagConstraints.HORIZONTAL;
 		gbc_terrainPanel.gridx = 0;
-		gbc_terrainPanel.gridy = 5;
+		gbc_terrainPanel.gridy = 6;
 		add(terrainPanel, gbc_terrainPanel);
 		terrainPanel.setLayout(new BoxLayout(terrainPanel, BoxLayout.X_AXIS));
 		
-		JCheckBox chckbxTerrng = new JCheckBox("Terr\u00E4ng 1");
-		terrainPanel.add(chckbxTerrng);
+		terrain1 = new JCheckBox("Terr\u00E4ng 1");
+		terrain1.setName("terrain1");
+		terrainPanel.add(terrain1);
+		terrains.add(terrain1);
 		
-		JCheckBox chckbxTerrng_1 = new JCheckBox("Terr\u00E4ng 2");
-		terrainPanel.add(chckbxTerrng_1);
+		terrain2 = new JCheckBox("Terr\u00E4ng 2");
+		terrain2.setName("terrain2");
+		terrainPanel.add(terrain2);
+		terrains.add(terrain2);
 		
-		JCheckBox chckbxTerrng_2 = new JCheckBox("Terr\u00E4ng 3");
-		terrainPanel.add(chckbxTerrng_2);
+		terrain3 = new JCheckBox("Terr\u00E4ng 3");
+		terrain3.setName("terrain3");
+		terrainPanel.add(terrain3);
+		terrains.add(terrain3);
 		
 		JLabel lblAnsvarigGuide = new JLabel("Ansvarig guide");
 		GridBagConstraints gbc_lblAnsvarigGuide = new GridBagConstraints();
 		gbc_lblAnsvarigGuide.anchor = GridBagConstraints.WEST;
 		gbc_lblAnsvarigGuide.insets = new Insets(0, 0, 5, 0);
 		gbc_lblAnsvarigGuide.gridx = 0;
-		gbc_lblAnsvarigGuide.gridy = 6;
+		gbc_lblAnsvarigGuide.gridy = 7;
 		add(lblAnsvarigGuide, gbc_lblAnsvarigGuide);
+		
+		guideBox = new JComboBox<String>();
+		guideBox.setName("guideBox");
+		guideBox.setPreferredSize(new Dimension(200, 26));
+		GridBagConstraints gbc_guideBox = new GridBagConstraints();
+		gbc_guideBox.ipadx = 99;
+		gbc_guideBox.anchor = GridBagConstraints.WEST;
+		gbc_guideBox.insets = new Insets(0, 0, 5, 0);
+		gbc_guideBox.gridx = 0;
+		gbc_guideBox.gridy = 8;
+		add(guideBox, gbc_guideBox);
+		guideBox.setMaximumSize(new Dimension(200, 25));
 		
 		JPanel guidePanel = new JPanel();
 		guidePanel.setBackground(new Color(204, 204, 204));
@@ -126,20 +167,16 @@ public class SafariDestinationView extends JPanel {
 		gbc_guidePanel.anchor = GridBagConstraints.NORTH;
 		gbc_guidePanel.fill = GridBagConstraints.HORIZONTAL;
 		gbc_guidePanel.gridx = 0;
-		gbc_guidePanel.gridy = 7;
+		gbc_guidePanel.gridy = 9;
 		add(guidePanel, gbc_guidePanel);
 		guidePanel.setLayout(new BoxLayout(guidePanel, BoxLayout.X_AXIS));
-		
-		JComboBox guideBox = new JComboBox();
-		guideBox.setMaximumSize(new Dimension(200, 25));
-		guidePanel.add(guideBox);
 		
 		JLabel lblUtrustning = new JLabel("Utrustning");
 		GridBagConstraints gbc_lblUtrustning = new GridBagConstraints();
 		gbc_lblUtrustning.anchor = GridBagConstraints.WEST;
 		gbc_lblUtrustning.insets = new Insets(0, 0, 5, 0);
 		gbc_lblUtrustning.gridx = 0;
-		gbc_lblUtrustning.gridy = 8;
+		gbc_lblUtrustning.gridy = 10;
 		add(lblUtrustning, gbc_lblUtrustning);
 		
 		JPanel gearPanel = new JPanel();
@@ -149,7 +186,7 @@ public class SafariDestinationView extends JPanel {
 		gbc_gearPanel.ipady = 99;
 		gbc_gearPanel.fill = GridBagConstraints.HORIZONTAL;
 		gbc_gearPanel.gridx = 0;
-		gbc_gearPanel.gridy = 9;
+		gbc_gearPanel.gridy = 11;
 		add(gearPanel, gbc_gearPanel);
 		gearPanel.setLayout(new BoxLayout(gearPanel, BoxLayout.X_AXIS));
 		
@@ -157,7 +194,8 @@ public class SafariDestinationView extends JPanel {
 		availableGearScrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		gearPanel.add(availableGearScrollPane);
 		
-		JList availableGearList = new JList();
+		availableGearList = new JList();
+		availableGearList.setName("availableGearList");
 		availableGearScrollPane.setViewportView(availableGearList);
 		
 		JPanel gearButtonPanel = new JPanel();
@@ -165,9 +203,11 @@ public class SafariDestinationView extends JPanel {
 		gearButtonPanel.setLayout(new BoxLayout(gearButtonPanel, BoxLayout.Y_AXIS));
 		
 		JButton addGearButton = new JButton("L\u00E4gg till >>");
+		addGearButton.setName("addGearButton");
 		gearButtonPanel.add(addGearButton);
 		
 		JButton removeGearButton = new JButton("<< Ta bort");
+		removeGearButton.setName("removeGearButton");
 		removeGearButton.setMaximumSize(new Dimension(105, 25));
 		gearButtonPanel.add(removeGearButton);
 		
@@ -175,12 +215,13 @@ public class SafariDestinationView extends JPanel {
 		addedGearScrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		gearPanel.add(addedGearScrollPane);
 		
-		JList addedGearList = new JList();
+		addedGearList = new JList(listModel);
+		addedGearList.setName("addedGearList");
 		addedGearScrollPane.setViewportView(addedGearList);
 		
 		JPanel statusPanel = new JPanel();
 		statusPanel.setBackground(new Color(204, 204, 204));
-		ButtonGroup statusGroup = new ButtonGroup();
+		
 		
 		
 		GridBagConstraints gbc_statusPanel = new GridBagConstraints();
@@ -188,27 +229,77 @@ public class SafariDestinationView extends JPanel {
 		gbc_statusPanel.anchor = GridBagConstraints.NORTHWEST;
 		gbc_statusPanel.insets = new Insets(0, 0, 5, 0);
 		gbc_statusPanel.gridx = 0;
-		gbc_statusPanel.gridy = 10;
+		gbc_statusPanel.gridy = 12;
 		add(statusPanel, gbc_statusPanel);
 		
-		JRadioButton activeButton = new JRadioButton("Bokningsbar");
+		activeButton = new JRadioButton("Bokningsbar");
+		activeButton.setName("activeButton");
 		activeButton.setVisible(false);
 		statusPanel.add(activeButton);
 		
-		JRadioButton inactiveButton = new JRadioButton("Ej bokningsbar");
+		inactiveButton = new JRadioButton("Ej bokningsbar");
+		inactiveButton.setName("inactiveButton");
 		inactiveButton.setVisible(false);
 		statusPanel.add(inactiveButton);
 		
 		statusGroup.add(activeButton); statusGroup.add(inactiveButton);
 		
-		JButton saveNewSafariButton = new JButton("Save");
+		saveNewSafariButton = new JButton("Save");
+		saveNewSafariButton.setName("saveNewSafariButton");
+		
 		saveNewSafariButton.setMinimumSize(new Dimension(100, 25));
 		GridBagConstraints gbc_saveNewSafariButton = new GridBagConstraints();
 		gbc_saveNewSafariButton.anchor = GridBagConstraints.WEST;
 		gbc_saveNewSafariButton.gridx = 0;
-		gbc_saveNewSafariButton.gridy = 11;
+		gbc_saveNewSafariButton.gridy = 13;
 		add(saveNewSafariButton, gbc_saveNewSafariButton);
+		
+		
+		initCompMap();
 
 	}
+	
+	
+	
+	public boolean checkStatus(){
+		if(activeButton.isSelected()){
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
+	public String checkTerrain(ArrayList<JCheckBox> array){
+		String result = "";
+		
+		for(JCheckBox c : array){
+			if(c.isSelected()){
+				result = result+c.getText()+";";	
+			}
+		}
+		return result;
+	}
+	public ArrayList<JCheckBox> getTerrain(){
+		return terrains;
+	}
+	public String checkEquipment(JList list){
+		String result = "";
+		List<String> equipmentList = list.getSelectedValuesList();
+		for(String s : equipmentList){
+			result = result+s+";";
+		}
+		return result;
+	}
+	
+	public void initCompMap(){
+		Component[] compArray = this.getComponents();
+		for(int i=0; i<compArray.length; i++){
+			compMap.put(compArray[i].getName(), compArray[i]);
+		}
+	}
 
+	public HashMap<String,Component> getCompMap(){
+	return compMap;
+	
+	}
 }

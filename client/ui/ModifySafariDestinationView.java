@@ -1,3 +1,5 @@
+//package client.ui;
+
 import javax.swing.JPanel;
 import java.awt.Dimension;
 import javax.swing.BoxLayout;
@@ -24,30 +26,30 @@ public class ModifySafariDestinationView extends JPanel {
 		gridBagLayout.rowWeights = new double[]{0.0, 1.0, Double.MIN_VALUE};
 		setLayout(gridBagLayout);
 		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
-		gbc_scrollPane.insets = new Insets(0, 0, 5, 0);
-		gbc_scrollPane.fill = GridBagConstraints.BOTH;
-		gbc_scrollPane.gridx = 1;
-		gbc_scrollPane.gridy = 0;
-		add(scrollPane, gbc_scrollPane);
+		JScrollPane modifyListScrollPane = new JScrollPane();
+		modifyListScrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		GridBagConstraints gbc_modifyListScrollPane = new GridBagConstraints();
+		gbc_modifyListScrollPane.insets = new Insets(0, 0, 5, 0);
+		gbc_modifyListScrollPane.fill = GridBagConstraints.BOTH;
+		gbc_modifyListScrollPane.gridx = 1;
+		gbc_modifyListScrollPane.gridy = 0;
+		add(modifyListScrollPane, gbc_modifyListScrollPane);
 		
-		JList list = new JList();
-		scrollPane.setViewportView(list);
+		JList modifyList = new JList();
+		modifyListScrollPane.setViewportView(modifyList);
 		
-		JPanel panel = new JPanel();
-		GridBagConstraints gbc_panel = new GridBagConstraints();
-		gbc_panel.fill = GridBagConstraints.BOTH;
-		gbc_panel.gridx = 1;
-		gbc_panel.gridy = 1;
-		add(panel, gbc_panel);
-		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+		JPanel modifyButtonPanel = new JPanel();
+		GridBagConstraints gbc_modifyButtonPanel = new GridBagConstraints();
+		gbc_modifyButtonPanel.fill = GridBagConstraints.BOTH;
+		gbc_modifyButtonPanel.gridx = 1;
+		gbc_modifyButtonPanel.gridy = 1;
+		add(modifyButtonPanel, gbc_modifyButtonPanel);
+		modifyButtonPanel.setLayout(new BoxLayout(modifyButtonPanel, BoxLayout.Y_AXIS));
 		
-		JButton btnVlj = new JButton("V\u00E4lj");
-		btnVlj.setMaximumSize(new Dimension(125, 25));
-		btnVlj.setAlignmentX(Component.CENTER_ALIGNMENT);
-		panel.add(btnVlj);
+		JButton selectButton = new JButton("V\u00E4lj");
+		selectButton.setMaximumSize(new Dimension(125, 25));
+		selectButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+		modifyButtonPanel.add(selectButton);
 
 	}
 

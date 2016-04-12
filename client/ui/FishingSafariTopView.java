@@ -20,17 +20,17 @@ public class FishingSafariTopView extends JPanel {
 		prop.put("text.month", "Month");
 		prop.put("text.year", "Year");
 		
-		JPanel panel = new JPanel();
-		add(panel);
+		JPanel leftDatePickerPanel = new JPanel();
+		add(leftDatePickerPanel);
 		JDatePanelImpl startDatePanel = new JDatePanelImpl(model,prop);
 		JDatePickerImpl startDatePicker = new JDatePickerImpl(startDatePanel,new DateComponentFormatter());
-		panel.add(startDatePicker);
+		leftDatePickerPanel.add(startDatePicker);
 		
-		JPanel panel_1 = new JPanel();
-		add(panel_1);
+		JPanel rightDatePickerPanel = new JPanel();
+		add(rightDatePickerPanel);
 		JDatePanelImpl endDatePanel = new JDatePanelImpl(model,prop);
 		JDatePickerImpl endDatePicker = new JDatePickerImpl(endDatePanel,new DateComponentFormatter());
-		panel_1.add(endDatePicker);
+		rightDatePickerPanel.add(endDatePicker);
 
 	}
 

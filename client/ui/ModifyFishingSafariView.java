@@ -1,3 +1,5 @@
+//package client.ui;
+
 import javax.swing.JPanel;
 import javax.swing.BoxLayout;
 import javax.swing.JList;
@@ -30,48 +32,48 @@ public class ModifyFishingSafariView extends JPanel {
 		gbl_panel.rowWeights = new double[]{0.0, 0.0, 1.0, Double.MIN_VALUE};
 		panel.setLayout(gbl_panel);
 		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
-		gbc_scrollPane.insets = new Insets(0, 0, 5, 0);
-		gbc_scrollPane.fill = GridBagConstraints.BOTH;
-		gbc_scrollPane.gridx = 1;
-		gbc_scrollPane.gridy = 1;
-		panel.add(scrollPane, gbc_scrollPane);
+		JScrollPane modifyListScrollPane = new JScrollPane();
+		modifyListScrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		GridBagConstraints gbc_modifyListScrollPane = new GridBagConstraints();
+		gbc_modifyListScrollPane.insets = new Insets(0, 0, 5, 0);
+		gbc_modifyListScrollPane.fill = GridBagConstraints.BOTH;
+		gbc_modifyListScrollPane.gridx = 1;
+		gbc_modifyListScrollPane.gridy = 1;
+		panel.add(modifyListScrollPane, gbc_modifyListScrollPane);
 		
-		JList list = new JList();
-		scrollPane.setViewportView(list);
+		JList modifyList = new JList();
+		modifyListScrollPane.setViewportView(modifyList);
 		
-		JPanel radioButtonPanel = new JPanel();
-		GridBagConstraints gbc_radioButtonPanel = new GridBagConstraints();
-		gbc_radioButtonPanel.fill = GridBagConstraints.BOTH;
-		gbc_radioButtonPanel.gridx = 1;
-		gbc_radioButtonPanel.gridy = 2;
-		panel.add(radioButtonPanel, gbc_radioButtonPanel);
-		radioButtonPanel.setLayout(new BoxLayout(radioButtonPanel, BoxLayout.Y_AXIS));
+		JPanel modifyButtonPanel = new JPanel();
+		GridBagConstraints gbc_modifyButtonPanel = new GridBagConstraints();
+		gbc_modifyButtonPanel.fill = GridBagConstraints.BOTH;
+		gbc_modifyButtonPanel.gridx = 1;
+		gbc_modifyButtonPanel.gridy = 2;
+		panel.add(modifyButtonPanel, gbc_modifyButtonPanel);
+		modifyButtonPanel.setLayout(new BoxLayout(modifyButtonPanel, BoxLayout.Y_AXIS));
 		
 		JRadioButton rdbtnDennaVecka = new JRadioButton("Denna vecka");
-		radioButtonPanel.add(rdbtnDennaVecka);
+		modifyButtonPanel.add(rdbtnDennaVecka);
 		
 		Component verticalStrut = Box.createVerticalStrut(5);
-		radioButtonPanel.add(verticalStrut);
+		modifyButtonPanel.add(verticalStrut);
 		
 		JRadioButton rdbtnDennaMnad = new JRadioButton("Denna m\u00E5nad");
-		radioButtonPanel.add(rdbtnDennaMnad);
+		modifyButtonPanel.add(rdbtnDennaMnad);
 		
 		Component verticalStrut_1 = Box.createVerticalStrut(5);
-		radioButtonPanel.add(verticalStrut_1);
+		modifyButtonPanel.add(verticalStrut_1);
 		
 		JRadioButton rdbtnDettar = new JRadioButton("Detta \u00E5r");
-		radioButtonPanel.add(rdbtnDettar);
+		modifyButtonPanel.add(rdbtnDettar);
 		
 		Component verticalStrut_2 = Box.createVerticalStrut(5);
-		radioButtonPanel.add(verticalStrut_2);
+		modifyButtonPanel.add(verticalStrut_2);
 		
 		JComboBox comboBox = new JComboBox();
 		comboBox.setAlignmentX(Component.LEFT_ALIGNMENT);
 		comboBox.setMaximumSize(new Dimension(150, 25));
-		radioButtonPanel.add(comboBox);
+		modifyButtonPanel.add(comboBox);
 		
 		
 
