@@ -32,7 +32,7 @@ import java.util.HashMap;
 public class SafariDestinationView extends JPanel {
 	private JTextField textFieldLocation;
 	private JTextField textFieldParticipants;
-	private JList availableGearList;
+	private JList<String> availableGearList;
 	private JList<String> addedGearList;
 	private JComboBox<String> guideBox;
 	private JCheckBox terrain1;
@@ -44,6 +44,7 @@ public class SafariDestinationView extends JPanel {
 	private JButton saveNewSafariButton;
 	
 	private DefaultListModel<String> listModel = new DefaultListModel<String>();
+	private ArrayList<String> dummyGear = new ArrayList<String>();
 	private ArrayList<JCheckBox> terrains = new ArrayList<JCheckBox>();
 	
     private HashMap<String,Component> compMap = new HashMap<String,Component>();
@@ -194,7 +195,7 @@ public class SafariDestinationView extends JPanel {
 		availableGearScrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		gearPanel.add(availableGearScrollPane);
 		
-		availableGearList = new JList();
+		availableGearList = new JList<String>();
 		availableGearList.setName("availableGearList");
 		availableGearScrollPane.setViewportView(availableGearList);
 		
@@ -215,7 +216,7 @@ public class SafariDestinationView extends JPanel {
 		addedGearScrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		gearPanel.add(addedGearScrollPane);
 		
-		addedGearList = new JList(listModel);
+		addedGearList = new JList<String>(listModel);
 		addedGearList.setName("addedGearList");
 		addedGearScrollPane.setViewportView(addedGearList);
 		
@@ -301,5 +302,10 @@ public class SafariDestinationView extends JPanel {
 	public HashMap<String,Component> getCompMap(){
 	return compMap;
 	
+	}
+	public void fillUpList(){ // testlista
+		dummyGear.add("Stilton_1");
+		dummyGear.add("Stilton200");
+		dummyGear.add("Stilton_Stainless_Steel_Pro");
 	}
 }
