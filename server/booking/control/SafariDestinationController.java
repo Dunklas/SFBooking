@@ -29,7 +29,7 @@ public class SafariDestinationController {
 			JTextField locationText = (JTextField) map.get("location");
 			String location = locationText.getText();
 			
-			JList equipmentList = (JList) map.get("addedGearList");
+			JList<String> equipmentList = (JList<String>) map.get("addedGearList");
 			String equipment = view.checkEquipment(equipmentList);
 			
 			JTextField participantsText = (JTextField) map.get("participants");

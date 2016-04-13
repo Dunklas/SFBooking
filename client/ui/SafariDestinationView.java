@@ -284,7 +284,7 @@ public class SafariDestinationView extends JPanel {
 	public ArrayList<JCheckBox> getTerrain(){
 		return terrains;
 	}
-	public String checkEquipment(JList list){
+	public String checkEquipment(JList<String> list){
 		String result = "";
 		List<String> equipmentList = list.getSelectedValuesList();
 		for(String s : equipmentList){
