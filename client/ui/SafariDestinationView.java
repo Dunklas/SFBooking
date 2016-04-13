@@ -286,9 +286,10 @@ public class SafariDestinationView extends JPanel {
 	}
 	public String checkEquipment(DefaultListModel<String> list){
 		String result = "";
-		List<String> equipmentList = list.getElements();
-		for(String s : eguipmentList){
-			result = result+s+";";
+		String [] equipmentList = list.toArray();
+		for(int i=0; i<equipmentList.length; i++){
+			
+			result = result+equipmentList[i]+";";
 		}
 		return result;
 	}
