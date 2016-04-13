@@ -1,16 +1,19 @@
+//package client.ui;
+
 import javax.swing.JPanel;
 import java.awt.GridLayout;
 
 import org.jdatepicker.*;
 import org.jdatepicker.impl.*;
 import java.util.Properties;
+import java.util.HashMap;
+import java.awt.*;
 
 
 public class FishingSafariTopView extends JPanel {
 
-	/**
-	 * Create the panel.
-	 */
+	HashMap<String,Component> compMap = new HashMap<String,Component>();
+	
 	public FishingSafariTopView() {
 		setLayout(new GridLayout(0, 2, 0, 0));
 		
@@ -24,14 +27,25 @@ public class FishingSafariTopView extends JPanel {
 		add(leftDatePickerPanel);
 		JDatePanelImpl startDatePanel = new JDatePanelImpl(model,prop);
 		JDatePickerImpl startDatePicker = new JDatePickerImpl(startDatePanel,new DateComponentFormatter());
+		startDatePicker.setName("startDate");
 		leftDatePickerPanel.add(startDatePicker);
 		
 		JPanel rightDatePickerPanel = new JPanel();
 		add(rightDatePickerPanel);
-		JDatePanelImpl endDatePanel = new JDatePanelImpl(model,prop);
+		JDatePanelImpl endDatePanel = new JDatePanelImpl(model,prop); 
 		JDatePickerImpl endDatePicker = new JDatePickerImpl(endDatePanel,new DateComponentFormatter());
+		endDatePicker.setName("endDate");
 		rightDatePickerPanel.add(endDatePicker);
 
+	}
+	public void initCompMap(){
+		Component[] compArray = this.getComponents();
+		for(int i=0; i<compArray.length; i++){
+			compMap.put(compArray[i].getName(), compArray[i]);
+		}
+	}
+	public HashMap<String,Component> getCompMap(){
+		return compMap;
 	}
 
 }

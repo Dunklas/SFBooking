@@ -1,3 +1,5 @@
+//package client.ui;
+
 import javax.swing.JPanel;
 import java.awt.GridLayout;
 import javax.swing.BoxLayout;
@@ -14,14 +16,14 @@ import javax.swing.JScrollPane;
 import javax.swing.JList;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.JButton;
+import java.util.*;
 
 public class FishingSafariBottomView extends JPanel {
 	private JTextField startTimeTextfield;
 	private JTextField endTimeTextfield;
 
-	/**
-	 * Create the panel.
-	 */
+	private HashMap<String,Component> compMap = new HashMap<String,Component>();
+	
 	public FishingSafariBottomView() {
 		setMaximumSize(new Dimension(1000, 860));
 		setLayout(new GridLayout(0, 2, 0, 0));
@@ -43,6 +45,7 @@ public class FishingSafariBottomView extends JPanel {
 		startTimePanel.add(horizontalStrut_1);
 		
 		startTimeTextfield = new JTextField();
+		startTimeTextfield.setName("startTime");
 		startTimePanel.add(startTimeTextfield);
 		startTimeTextfield.setMaximumSize(new Dimension(250, 25));
 		startTimeTextfield.setColumns(10);
@@ -63,6 +66,8 @@ public class FishingSafariBottomView extends JPanel {
 		endTimePanel.add(horizontalStrut);
 		
 		endTimeTextfield = new JTextField();
+		endTimeTextfield.setName("endTime");
+	
 		endTimeTextfield.setMaximumSize(new Dimension(250, 25));
 		endTimePanel.add(endTimeTextfield);
 		endTimeTextfield.setColumns(10);
@@ -83,6 +88,7 @@ public class FishingSafariBottomView extends JPanel {
 		pickLocationPanel.add(horizontalStrut_2);
 		
 		JComboBox locationPicker = new JComboBox();
+		locationPicker.setName("locationPicker");
 		locationPicker.setMaximumSize(new Dimension(150, 25));
 		pickLocationPanel.add(locationPicker);
 		
@@ -102,6 +108,7 @@ public class FishingSafariBottomView extends JPanel {
 		pickStatusPanel.add(horizontalStrut_3);
 		
 		JComboBox statusPicker = new JComboBox();
+		statusPicker.setName("statusPicker");
 		statusPicker.setMaximumSize(new Dimension(150, 25));
 		pickStatusPanel.add(statusPicker);
 		
@@ -117,9 +124,14 @@ public class FishingSafariBottomView extends JPanel {
 		commentPanel.add(commentLabel);
 		
 		JTextArea commentTextArea = new JTextArea();
+		commentTextArea.setName("commentArea");
 		commentTextArea.setMaximumSize(new Dimension(400, 100));
 		commentTextArea.setAlignmentX(Component.LEFT_ALIGNMENT);
 		commentPanel.add(commentTextArea);
+		
+		JButton saveFishingSafariButton = new JButton("Spara");
+		saveFishingSafariButton.setName("saveFishingSafari");
+		leftFormPanel.add(saveFishingSafariButton);
 		
 		JPanel rightFormPanel = new JPanel();
 		add(rightFormPanel);
@@ -134,6 +146,7 @@ public class FishingSafariBottomView extends JPanel {
 		gearReqPanel.add(gearReqLabel);
 		
 		JTextArea textArea = new JTextArea();
+		textArea.setName("equipmentReq");
 		textArea.setMaximumSize(new Dimension(400, 100));
 		textArea.setAlignmentX(0.0f);
 		gearReqPanel.add(textArea);
@@ -160,6 +173,7 @@ public class FishingSafariBottomView extends JPanel {
 		gearToRentPanel.add(gearAvailableScrollPane);
 		
 		JList gearAvailableList = new JList();
+		gearAvailableList.setName("availableGear");
 		gearAvailableList.setAlignmentX(Component.LEFT_ALIGNMENT);
 		gearAvailableScrollPane.setViewportView(gearAvailableList);
 		
@@ -168,9 +182,11 @@ public class FishingSafariBottomView extends JPanel {
 		gearToRentButtonPanel.setLayout(new BoxLayout(gearToRentButtonPanel, BoxLayout.Y_AXIS));
 		
 		JButton addGearToRentButton = new JButton("L\u00E4gg till >>");
+		addGearToRentButton.setName("addGear");
 		gearToRentButtonPanel.add(addGearToRentButton);
 		
 		JButton removeGearToRentButton = new JButton("<< Ta bort");
+		removeGearToRentButton.setName("removeGear");
 		removeGearToRentButton.setMaximumSize(new Dimension(88, 28));
 		gearToRentButtonPanel.add(removeGearToRentButton);
 		
@@ -181,8 +197,18 @@ public class FishingSafariBottomView extends JPanel {
 		gearToRentPanel.add(addedGearToRentScrollPane);
 		
 		JList addedGearToRentList = new JList();
+		addedGearToRentList.setName("addedGear");
 		addedGearToRentScrollPane.setViewportView(addedGearToRentList);
 
+	}
+	public void initCompMap(){
+		Component[] compArray = this.getComponents();
+		for(int i=0; i<compArray.length; i++){
+			compMap.put(compArray[i].getName(), compArray[i]);
+		}
+	}
+	public HashMap<String,Component> getCompMap(){
+		return compMap;
 	}
 
 }

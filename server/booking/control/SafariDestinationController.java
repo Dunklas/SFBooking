@@ -1,15 +1,22 @@
+//package server.booking.control;
+
+
 import javax.swing.*;
 import javax.swing.event.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
+/*import server.booking.model.SafariDestinationCatalog;
+import client.ui.SafariDestinationView;*/ // kommentera ut dessa vid testning med databas och paketstruktur
 
 public class SafariDestinationController {
 
+	//SafariDestinationCatalog model; // lägg till modellen till konstruktorn
 	SafariDestinationView view;
 	HashMap<String,Component> map;
 	
 	public SafariDestinationController(SafariDestinationView v){
+		//model=m;
 		view=v;
 		map=view.getCompMap();
 		addListeners(map);
