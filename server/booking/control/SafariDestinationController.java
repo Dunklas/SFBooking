@@ -12,13 +12,15 @@ import client.ui.SafariDestinationView; // kommentera ut dessa vid testning med 
 public class SafariDestinationController {
 
 	SafariDestinationCatalog model;
-	SafariDestinationView view;
-	HashMap<String,Component> map;
+	SafariDestinationView safariDestinationView;
+	ModifySafariDestinationView modifyDestinationView;
+	HashMap<String,Component> safariDestinationMap;
 	
-    public SafariDestinationController(SafariDestinationView v, SafariDestinationCatalog m){
+    public SafariDestinationController(SafariDestinationView sdv, SafariDestinationCatalog m, ModifySafariDestinationView msdv){
 		model=m;
-		view=v;
-		map=view.getCompMap();
+		safariDestinationView=sdv;
+		modifySafariDestinationView=msdv
+		safariDestinationMap=view.getCompMap();
 		addListeners(map);
 	}
 	
@@ -26,35 +28,44 @@ public class SafariDestinationController {
 		public void actionPerformed(ActionEvent e){
 		Component comp = (Component) e.getSource();
 		if(comp.getName()=="saveNewSafariButton"){
-			JTextField locationText = (JTextField) map.get("location");
+			JTextField locationText = (JTextField) safariDestinationMap.get("location");
 			String location = locationText.getText();
 			
 			//JList<String> equipmentList = (JList<String>) map.get("addedGearList");
 			String equipment = view.checkEquipment(view.getListModel());
 			
-			JTextField participantsText = (JTextField) map.get("participants");
+			JTextField participantsText = (JTextField) safariDestinationMap.get("participants");
 			int participants = Integer.parseInt(participantsText.getText()); // Vart ska vi hantera verifiering av input
 			
-			JComboBox<String> guideBox = (JComboBox<String>) map.get("guideBox");
+			JComboBox<String> guideBox = (JComboBox<String>) safariDestinationMap.get("guideBox");
 			String guide = guideBox.getSelectedItem().toString();
 			
 			
 			String terrain = view.checkTerrain(view.getTerrain());
 			
 			newSafariDestination(location,equipment,participants,guide,terrain);
-		}
-		
-		       
-		}
-		
-	
+		}   
+		}	
 	};
 	
-	public void addListeners(HashMap<String,Component> map){
-		for(int i=0; i<map.size(); i++){
-			JButton saveButton = (JButton) map.get("saveNewSafariButton");
-			saveButton.addActionListener(saveListener);
+	ActionListener selectListener = new ActionListener(){
+		public void actionPerformed(ActionEvent e){
+			Component comp = (Component) e.getSource();
+			if(comp.getName()=="selectButton"){
+				// Välj vald Safarimål, skicka vidare till model->databas..
+			}
 		}
+	}
+	
+	public void addListeners(HashMap<String,Component> safariMap, HashMap<String,Component> modifyMap){
+		
+			JButton saveButton = (JButton) safariMap.get("saveNewSafariButton");
+			saveButton.addActionListener(saveListener);
+		
+		
+			JButton selectButton = (JButton) modifyMap("selectButton");
+			selectButton.addActionListener(selectListener);
+		
 	}
 	
 	
