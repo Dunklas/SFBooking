@@ -10,13 +10,13 @@ public class SafariDestination{
     private String terrain;
     private boolean active;
 
-    public SafariDestination(String location, String equipmentReq, int maxParticipants, String guide, String terrain) {
+    public SafariDestination(String location, String equipmentReq, int maxParticipants, String guide, String terrain, boolean active) {
 	this.location = location;
 	this.equipmentReq = equipmentReq;
 	this.maxParticipants = maxParticipants;
 	this.guide = guide;
 	this.terrain = terrain;
-	this.active = true;
+	this.active = active;
     }
 
     public String getLocation(){
@@ -26,9 +26,13 @@ public class SafariDestination{
 
     public void setGuide(String newGuide) {
 	this.guide = newGuide;
-
+	try{
 	Update dbUpdate = new Update();
 	dbUpdate.updateGuide(this.location, this.guide);
+	} catch (Exception ex){
+	    ex.printStackTrace();
+
+	}
     }
 
 

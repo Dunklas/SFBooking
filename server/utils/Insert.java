@@ -5,15 +5,16 @@ import java.time.*;
 
 public class Insert {
 
-    public void insertSafariDestination(String location, String equipmentReq, int maxParticipants, String guide, String terrain) throws SQLException {
+    public void insertSafariDestination(String location, String equipmentReq, int maxParticipants, String guide, String terrain, boolean active) throws SQLException {
 	Connection c = new OpenDb().getConnection();
 	if (c != null) {
-	    PreparedStatement stmt = c.prepareStatement("INSERT INTO safaridestination VALUES (?, ?, ?, ?, ?);");
+	    PreparedStatement stmt = c.prepareStatement("INSERT INTO safaridestination VALUES (?, ?, ?, ?, ?, ?);");
 	    stmt.setInt(1, maxParticipants);
 	    stmt.setString(2, terrain);
 	    stmt.setString(3, equipmentReq);
 	    stmt.setString(4, guide);
 	    stmt.setString(5, location);
+	    stmt.setBoolean(6, active);
 	    stmt.executeUpdate();
 
 	    stmt.close();
