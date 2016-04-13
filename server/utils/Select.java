@@ -2,12 +2,21 @@ package server.utils;
 
 import java.util.*;
 import java.sql.*;
-
+/**
+ *@author Grupp 11
+ *@version 1.1
+ *@since 2016-04-12
+ */
 
 public class Select {
 
 
-
+    /**
+     *Populate an arraylist with either active or inactive Safari Destinations
+     *<p>
+     *@param boolean Selects either active or inactive Safari Destinations from the database
+     *@return returns the Safari Destinations as an arraylist
+     */
     public List selectSafariDestination(boolean active){
 	ArrayList<SafariDestination> sdList = new ArrayList<>();
 	try{
