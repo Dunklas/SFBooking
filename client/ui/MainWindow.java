@@ -5,7 +5,7 @@ import server.booking.control.*;
 import server.booking.model.*;
 
 
-public MainWindow {
+public class MainWindow {
 
 
     public static void main (String [] args){
@@ -17,7 +17,7 @@ public MainWindow {
 	JFrame jf = new JFrame();
 	jf.add(view);
 	jf.setVisible(true);
-	jf.setDefaultCloseOperation(EXIT_ON_CLOSE);
+	jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	
 
 
