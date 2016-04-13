@@ -44,7 +44,6 @@ public class SafariDestinationView extends JPanel {
 	private JButton saveNewSafariButton;
 	
 	private DefaultListModel<String> listModel = new DefaultListModel<String>();
-	private ArrayList<String> dummyGear = new ArrayList<String>();
 	private ArrayList<JCheckBox> terrains = new ArrayList<JCheckBox>();
 	
     private HashMap<String,Component> compMap = new HashMap<String,Component>();
@@ -149,6 +148,7 @@ public class SafariDestinationView extends JPanel {
 		add(lblAnsvarigGuide, gbc_lblAnsvarigGuide);
 		
 		guideBox = new JComboBox<String>();
+		guideBox.addItem("Pelle");
 		guideBox.setName("guideBox");
 		guideBox.setPreferredSize(new Dimension(200, 26));
 		GridBagConstraints gbc_guideBox = new GridBagConstraints();
@@ -216,6 +216,7 @@ public class SafariDestinationView extends JPanel {
 		addedGearScrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		gearPanel.add(addedGearScrollPane);
 		
+		fillUpList(); // testaLista
 		addedGearList = new JList<String>(listModel);
 		addedGearList.setName("addedGearList");
 		addedGearScrollPane.setViewportView(addedGearList);
@@ -304,8 +305,10 @@ public class SafariDestinationView extends JPanel {
 	
 	}
 	public void fillUpList(){ // testlista
-		dummyGear.add("Stilton_1");
-		dummyGear.add("Stilton200");
-		dummyGear.add("Stilton_Stainless_Steel_Pro");
+		
+		
+		listModel.addElement("Stilton1");
+		listModel.addElement("Stilton2");
+		listModel.addElement("Stilton3");
 	}
 }
