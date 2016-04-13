@@ -35,7 +35,23 @@ public class SafariDestination{
 	}
     }
 
-
-
-
+    public void setEquipmentReq(String newEquipment){
+	this.equipmentReq = newEquipment;
+	try{
+	    Update dbUpdate = new Update();
+	    dbUpdate.updateGuide(this.location, this.equipmentReq);
+	} catch (Exception ex){
+	    ex.printStackTrace();
+	}
+    }
+   
+    public void setMaxParticipants(int newMaxParticipants){
+	this.maxParticipants = newMaxParticipants;
+	try{
+	    Update dbUpdate = new Update();
+	    dbUpdate.updateMaxParticipants(this.location, this.maxParticipants);
+	} catch (Exception ex){
+	    ex.printStackTrace();
+	}
+    }
 }//End of class
