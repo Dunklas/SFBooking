@@ -10,28 +10,13 @@ public class SafariDestinationCatalog{
     public void newSafariDestination(String location, String equipmentReq, int maxParticipants, String guide, String terrain){
 	try {
 	    Insert dbEntry = new Insert();
-	    dbEntry.insertSafariDestination(location, equipmentReq, maxParticipants, guide, terrain);
+	    dbEntry.insertSafariDestination(location, equipmentReq, maxParticipants, guide, terrain, true);//New Safaridestinations are always active
 	}
 	catch (Exception ex) {
 	    System.out.println("Nu blev det problem");
 	}
     } 
 
-    public void changeGuide(String location, String guide){
-	
-    }
-
-    public void changeMaxParticipants(String location, int nr){
-	
-    }
-
-    public void changeEquipmentReq(String location, String text){
-
-    }
-
-    public void changeActive(String location, boolean active){
-
-    }
 
 
 }//End of class
