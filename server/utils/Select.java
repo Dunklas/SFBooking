@@ -16,9 +16,9 @@ public class Select {
      *@param active boolean wich specifies what to Select. Either active or inactive Safari Destinations from the database
      *@return returns the Safari Destinations as an arraylist
      */
-    public List selectSafariDestination(boolean active){
+    public List selectSafariDestination(boolean active) throws SQLException{
 	ArrayList<SafariDestination> sdList = new ArrayList<>();
-	try{
+       
 	Connection c = new OpenDb().getConnection();
 	PreparedStatement stmt = c.prepareStatement("SELECT * FROM safaridestination WHERE active = ?");
 	stmt.setBoolean(1, active);
@@ -35,14 +35,26 @@ public class Select {
 							     )
 		sdList.add(tempSd);
 	}//End of while
-	} catch (Exception ex){
-	    
-	}
+
 	return sdList;
     }//End of selectSafariDestination
 
 
+    public DefaultListModel<String> selectAllSafariDestination() throws SQLException{
+	DefaultListModel<String> sdList = new DefaultListModel<>();
+	String location = "";
+	    Connection c = new OpenDb().getConnection();
+	    PreparedStatement stmt = c.prepareStatement("SELECT * FROM safaridestination");
+	    ResultSet rs = stmt.executeQuery();
+	    
+	    while (rs.next()){
+		location = rs.getString("location");
+		sdList.add(location);
 
+	    }
+	return sdList;
+
+    }
 
 
 

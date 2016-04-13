@@ -29,6 +29,16 @@ public class SafariDestinationCatalog{
 	}
     } 
 
+    public DefaultListModel<String> selectAllSafariDestination(){
+	DefaultListModel<String> sdList = new DefaultListModel<>();
+	try{
+	    Select dbEntry = new Select();
+	   sdList =  dbEntry.selectAllSafariDestination()
+	       } catch (Exception ex){
+	    System.out.println(ex.getMessage());
+	}
+	return sdList;
 
+    }
 
 }//End of class
