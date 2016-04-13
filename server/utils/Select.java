@@ -14,7 +14,7 @@ public class Select {
     /**
      *Populate an arraylist with either active or inactive Safari Destinations
      *<p>
-     *@param boolean Selects either active or inactive Safari Destinations from the database
+     *@param active boolean wich specifies what to Select. Either active or inactive Safari Destinations from the database
      *@return returns the Safari Destinations as an arraylist
      */
     public List selectSafariDestination(boolean active){
