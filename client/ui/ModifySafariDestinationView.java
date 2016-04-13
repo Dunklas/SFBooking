@@ -14,9 +14,10 @@ import java.awt.Component;
 
 public class ModifySafariDestinationView extends JPanel {
 
-	/**
-	 * Create the panel.
-	 */
+	private DefaultListModel<String> listModel = new DefaultListModel<String>();
+	private HashMap<String,Component> compMap = new HashMap<String,Component>();
+	JList<String> modifyList;
+	
 	public ModifySafariDestinationView() {
 		setPreferredSize(new Dimension(452, 641));
 		GridBagLayout gridBagLayout = new GridBagLayout();
@@ -35,7 +36,10 @@ public class ModifySafariDestinationView extends JPanel {
 		gbc_modifyListScrollPane.gridy = 0;
 		add(modifyListScrollPane, gbc_modifyListScrollPane);
 		
-		JList modifyList = new JList();
+		
+		modifyList = new JList(listModel);
+		modifyList.setName("modifyList");
+		
 		modifyListScrollPane.setViewportView(modifyList);
 		
 		JPanel modifyButtonPanel = new JPanel();
@@ -47,10 +51,23 @@ public class ModifySafariDestinationView extends JPanel {
 		modifyButtonPanel.setLayout(new BoxLayout(modifyButtonPanel, BoxLayout.Y_AXIS));
 		
 		JButton selectButton = new JButton("V\u00E4lj");
+		selectButton.setName("selectButton");
 		selectButton.setMaximumSize(new Dimension(125, 25));
 		selectButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 		modifyButtonPanel.add(selectButton);
 
+	}
+	public void fillList(DefaultListModel<String> model){
+		modifyList.setModel(model);
+	}
+	public void initCompMap(){
+		Component[] compArray = this.getComponents();
+		for(int i=0; i<compArray.length; i++){
+			compMap.put(compArray[i].getName(),compArray[i]);
+		}
+	}
+	public HashMap<String,Component> getCompMap(){
+		return compMap;
 	}
 
 }
