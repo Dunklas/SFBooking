@@ -29,8 +29,8 @@ public class SafariDestinationController {
 			JTextField locationText = (JTextField) map.get("location");
 			String location = locationText.getText();
 			
-			JList<String> equipmentList = (JList<String>) map.get("addedGearList");
-			String equipment = view.checkEquipment(equipmentList);
+			//JList<String> equipmentList = (JList<String>) map.get("addedGearList");
+			String equipment = view.checkEquipment(view.getListModel());
 			
 			JTextField participantsText = (JTextField) map.get("participants");
 			int participants = Integer.parseInt(participantsText.getText()); // Vart ska vi hantera verifiering av input

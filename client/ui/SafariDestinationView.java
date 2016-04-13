@@ -284,13 +284,16 @@ public class SafariDestinationView extends JPanel {
 	public ArrayList<JCheckBox> getTerrain(){
 		return terrains;
 	}
-	public String checkEquipment(JList<String> list){
+	public String checkEquipment(DefaultListModel<String> list){
 		String result = "";
-		List<String> equipmentList = list.getSelectedValuesList();
-		for(String s : equipmentList){
+		//List<String> equipmentList = list.getElements();
+		for(String s : list){
 			result = result+s+";";
 		}
 		return result;
+	}
+	public DefaultListModel<String> getListModel(){
+		return listModel;
 	}
 	
 	public void initCompMap(){
