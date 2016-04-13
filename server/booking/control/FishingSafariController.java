@@ -13,7 +13,7 @@ import org.jdatepicker.impl.*;
 public class FishingSafariController {
 
 	FishingSafariTopView topView;
-	HashMap<String,Component> topMap;
+	HashMap<Integer,Component> topMap;
 	FishingSafariBottomView bottomView;
 	HashMap<String,Component> bottomMap;
 	
@@ -38,7 +38,7 @@ public class FishingSafariController {
 	
 	public void addDatePickerListener(HashMap<String,Component> map){
 			JDatePickerImpl startDate = (JDatePickerImpl) map.get("startDate");
-			JDatePickerImpl endDate = (JDatePickerImpl) map.get("endDate");
+			JDatePickerImpl endDate = (JDatePickerImpl) map.get(1);
 			
 			startDate.addActionListener(datePickerListener);
 			endDate.addActionListener(datePickerListener);
