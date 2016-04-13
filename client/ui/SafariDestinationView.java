@@ -286,7 +286,7 @@ public class SafariDestinationView extends JPanel {
 	}
 	public String checkEquipment(DefaultListModel<String> list){
 		String result = "";
-		String [] equipmentList = list.toArray();
+		String [] equipmentList = (String[]) list.toArray();
 		for(int i=0; i<equipmentList.length; i++){
 			
 			result = result+equipmentList[i]+";";
