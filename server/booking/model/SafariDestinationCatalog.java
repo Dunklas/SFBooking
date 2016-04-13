@@ -24,6 +24,7 @@ public class SafariDestinationCatalog{
 	    dbEntry.insertSafariDestination(location, equipmentReq, maxParticipants, guide, terrain, true);//New Safaridestinations are always active
 	}
 	catch (Exception ex) {
+	    System.out.println(ex.getMessage());
 	    System.out.println("Nu blev det problem");
 	}
     } 

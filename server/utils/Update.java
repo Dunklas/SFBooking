@@ -48,8 +48,22 @@ public class Update{
 	    c.close();
 
 	}
-
     }
+
+     public void updateDate(Int id, Date newStartDate, Date newEndDate) throws SQLException {
+    	Connection c = new OpenDb().getConnection();
+    	if (c != null) {
+   	    PreparedStatement stmt = c.prepareStatement("UPDATE fishingsafari SET start_date = ?, end_date = ? WHERE safari_id = ?");
+    	    stmt.setDate(1, newStartDate);
+    	    stmt.setDate(2, newEndDate);
+	    stmt.setInt(3, id); 
+    	    stmt.executeUpdate();
+
+    	    stmt.close();
+    	    c.close();
+    	}
+     }
+
 
 
 

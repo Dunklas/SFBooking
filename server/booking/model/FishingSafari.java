@@ -30,6 +30,10 @@ public class FishingSafari{
 
     public void setAnnouncementDate(Date date) {
 	this.announcementDate = date;
+	try{
+	    OpenDb dbc = new OpenDb();
+
+	}
     }
 
 

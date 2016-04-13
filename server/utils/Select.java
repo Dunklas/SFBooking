@@ -10,7 +10,6 @@ import java.sql.*;
 
 public class Select {
 
-
     /**
      *Populate an arraylist with either active or inactive Safari Destinations
      *<p>
@@ -21,7 +20,7 @@ public class Select {
 	ArrayList<SafariDestination> sdList = new ArrayList<>();
 	try{
 	Connection c = new OpenDb().getConnection();
-	PreparedStatement stmt = c.prepareStatement("SELECT * FROM safaridestination where active = ?");
+	PreparedStatement stmt = c.prepareStatement("SELECT * FROM safaridestination WHERE active = ?");
 	stmt.setBoolean(1, active);
 	ResultSet rs = stmt.executeQuery();
 
