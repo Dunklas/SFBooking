@@ -62,7 +62,9 @@ public class SafariDestinationController {
 		public void actionPerformed(ActionEvent e){
 			Component comp = (Component) e.getSource();
 			if(comp.getName()=="selectButton"){
-				String selected = safariDestinationMap.get("modifyList").getSelectedValue();
+				
+				JList<String> modifyList = (JList<String>) safariDestinationMap.get("modifyList");
+				String selected = modifyList.getSelectedValue();
 				SafariDestination newSafari = model.selectSafariDestination(selected);
 				
 				JTextField locationText = (JTextField) safariDestinationMap.get("location");
