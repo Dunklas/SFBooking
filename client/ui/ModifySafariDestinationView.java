@@ -58,9 +58,11 @@ public class ModifySafariDestinationView extends JPanel {
 		modifyList.setModel(model);
 	}
 	public void initCompMap(){
-		Component[] compArray = this.getComponents()+modifyListScrollPane.getComponents();
+		Component[] compArray = this.getComponents();
+		Component[] compArray1 = modifyListScrollPane.getComponents();
 		for(int i=0; i<compArray.length; i++){
 			compMap.put(compArray[i].getName(),compArray[i]);
+			compMap.put(compArray1[i].getName(),compArray1[i]);
 		}
 	}
 	public HashMap<String,Component> getCompMap(){
