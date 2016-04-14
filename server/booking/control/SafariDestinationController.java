@@ -64,12 +64,19 @@ public class SafariDestinationController {
 			if(comp.getName()=="selectButton"){
 				
 				JList<String> modifyList = (JList<String>) safariDestinationMap.get("modifyList");
+				
 				String selected = modifySafariDestinationView.getValues();
 				try{
 				SafariDestination newSafari = model.selectSafariDestination(selected);
 				
 				JTextField locationText = (JTextField) safariDestinationMap.get("location");
 				locationText.setText(newSafari.getLocation());
+				
+				JTextField maxParticipantsText = (JTextField) safariDestinationMap.get("participants");
+				maxParticipantsText.setText(newSafari.getMaxParticipants());
+				
+				JComboBox<String> guideBox = (JComboBox<String>) safariDestinationMap("guideBox");
+				guideBox.setSelectedItem(newSafari.getGuide());
 				} catch (SQLException se){
 				    System.out.println("HÄR BLEV DET FEL I BAIAN");
 				}
