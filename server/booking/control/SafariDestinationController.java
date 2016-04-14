@@ -15,13 +15,15 @@ public class SafariDestinationController {
 	SafariDestinationView safariDestinationView;
 	ModifySafariDestinationView modifyDestinationView;
 	HashMap<String,Component> safariDestinationMap;
+	HashMap<String,Component> modifySafariDestinationMap;
 	
     public SafariDestinationController(SafariDestinationView sdv, SafariDestinationCatalog m, ModifySafariDestinationView msdv){
 		model=m;
 		safariDestinationView=sdv;
 		modifySafariDestinationView=msdv
-		safariDestinationMap=view.getCompMap();
-		addListeners(map);
+		safariDestinationMap=sdv.getCompMap();
+		modifySafariDestinationMap=msdv.getCompMap();
+		addListeners(safariDestinationMap,modifySafariDestinationMap());
 	}
 	
 	ActionListener saveListener = new ActionListener(){
@@ -41,7 +43,7 @@ public class SafariDestinationController {
 			String guide = guideBox.getSelectedItem().toString();
 			
 			
-			String terrain = view.checkTerrain(view.getTerrain());
+			String terrain = safariDestinationView.checkTerrain();
 			
 			newSafariDestination(location,equipment,participants,guide,terrain);
 		}   
