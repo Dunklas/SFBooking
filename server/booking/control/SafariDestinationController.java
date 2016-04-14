@@ -7,28 +7,36 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
 import server.booking.model.SafariDestinationCatalog;
-import client.ui.SafariDestinationView; // kommentera ut dessa vid testning med databas och paketstruktur
+import client.ui.SafariDestinationView; 
 import client.ui.ModifySafariDestinationView;
 import server.booking.model.SafariDestination;
 import java.sql.*;
 
 public class SafariDestinationController {
 
-	SafariDestinationCatalog model;
+	
+	/**
+	 * Declare objects to be used by created objects of this class
+	 */
+	SafariDestinationCatalog model; 
 	SafariDestinationView safariDestinationView;
 	ModifySafariDestinationView modifySafariDestinationView;
 	HashMap<String,Component> safariDestinationMap;
 	HashMap<String,Component> modifySafariDestinationMap;
 	
     public SafariDestinationController(SafariDestinationView sdv, SafariDestinationCatalog m, ModifySafariDestinationView msdv){
-		model=m;
-		safariDestinationView=sdv;
-		modifySafariDestinationView=msdv;
-		safariDestinationMap=safariDestinationView.getCompMap();
-		modifySafariDestinationMap=modifySafariDestinationView.getCompMap();
-	     	addListeners(safariDestinationMap,modifySafariDestinationMap);
-		try{
-	     	modifySafariDestinationView.fillList(model.selectAllSafariDestination());
+		/**
+		 * Initiates objects and maps to be used by this controller
+		 */
+    	model=m;
+		safariDestinationView = sdv;
+		modifySafariDestinationView = msdv;
+		safariDestinationMap = safariDestinationView.getCompMap();
+		modifySafariDestinationMap = modifySafariDestinationView.getCompMap();
+	    addListeners(safariDestinationMap,modifySafariDestinationMap);
+		
+	    try{
+	     	modifySafariDestinationView.fillList(model.selectAllSafariDestination()); // move this when main menu is available
 	     	safariDestinationView.fillGuideBox(model.selectAllGuides()); 
 		}catch (SQLException se){
 
@@ -67,6 +75,7 @@ public class SafariDestinationController {
 				JList<String> modifyList = (JList<String>) safariDestinationMap.get("modifyList");
 				
 				String selected = modifySafariDestinationView.getValues();
+				
 				try{
 				SafariDestination newSafari = model.selectSafariDestination(selected);
 				

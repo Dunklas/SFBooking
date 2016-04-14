@@ -9,27 +9,23 @@ import java.util.*;
 
 public class MainWindow {
 
+	/**
+	 * Initiate Model,View and Controllers
+	 */
+	SafariDestinationView sdv = new SafariDestinationView();
+	SafariDestinationCatalog sdc = new SafariDestinationCatalog();
+    ModifySafariDestinationView msdv = new ModifySafariDestinationView();
+	SafariDestinationController sdcontroller = new SafariDestinationController(sdv, sdc,msdv);
+	
+	FishingSafariTopView fstv = new FishingSafariTopView();
+	FishingSafariBottomView fsbv = new FishinSafariBottomView();
+	FishingSafariCatalog fsc = new FishingSafariCatalog();
+	FishingSafariController fsc = new FishingSafariController(fstv,fsbv,fsc,sdc); //ok att använda samma sdc-objekt?
 
     public static void main (String [] args){
-    	SafariDestinationView sdv = new SafariDestinationView();
-    	SafariDestinationCatalog sdc = new SafariDestinationCatalog();
-        ModifySafariDestinationView msdv = new ModifySafariDestinationView();
-		SafariDestinationController sdcontroller = new SafariDestinationController(sdv, sdc,msdv);
+    	
+    	
 
-        /*try{
-        msdv.fillList(sdc.selectAllSafariDestination());
-        }
-        catch(SQLException e){
-        	//
-        }*/
-        MainSplitView split = new MainSplitView(msdv,sdv);
-	
-
-	JFrame jf = new JFrame();
-	jf.add(split);
-	jf.setVisible(true);
-	jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	
 
 
     }

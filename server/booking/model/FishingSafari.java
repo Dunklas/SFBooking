@@ -19,13 +19,14 @@ public class FishingSafari{
     private boolean assignmentPlanSent;
 
     public FishingSafari(SafariDestination destination, Date startDate, Date endDate) {
-	this.safariDestination = destination;
-	this.startDate = startDate;
-	this.endDate = endDate;
+	
+    	this.safariDestination = destination;
+	    this.startDate = startDate;
+	    this.endDate = endDate;
     }
     
     public SafariDestination getSafariDestination(){
-	return safariDestination;
+	    return safariDestination;
     }
 
     public void setAnnouncementDate(Date date) {

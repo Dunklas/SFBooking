@@ -260,8 +260,17 @@ public class SafariDestinationView extends JPanel {
 		initCompMap();
 
 	}
+	public void initCompMap(){
+		Component[] compArray = this.getComponents();
+		for(int i=0; i<compArray.length; i++){
+			compMap.put(compArray[i].getName(), compArray[i]);
+		}
+	}
+
+	public HashMap<String,Component> getCompMap(){
+	return compMap;
 	
-	//test
+	}
 	
 	
 	
@@ -284,9 +293,7 @@ public class SafariDestinationView extends JPanel {
 		}
 		return result;
 	}
-	public ArrayList<JCheckBox> getTerrain(){
-		return terrains;
-	}
+	
 	public String checkEquipment(DefaultListModel<String> list){
 		String result = "";
 		Object [] objList = list.toArray();
@@ -304,17 +311,7 @@ public class SafariDestinationView extends JPanel {
 		return listModel;
 	}
 	
-	public void initCompMap(){
-		Component[] compArray = this.getComponents();
-		for(int i=0; i<compArray.length; i++){
-			compMap.put(compArray[i].getName(), compArray[i]);
-		}
-	}
-
-	public HashMap<String,Component> getCompMap(){
-	return compMap;
 	
-	}
 	public void fillUpList(){ // testlista
 		
 		
