@@ -58,6 +58,7 @@ public class ModifySafariDestinationView extends JPanel {
 		selectButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 		modifyButtonPanel.add(selectButton);
 
+		intiCompMap();
 	}
 	public void fillList(DefaultListModel<String> model){
 		modifyList.setModel(model);

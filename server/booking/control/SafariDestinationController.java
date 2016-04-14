@@ -35,7 +35,7 @@ public class SafariDestinationController {
 			JTextField locationText = (JTextField) safariDestinationMap.get("location");
 			String location = locationText.getText();
 			
-			//JList<String> equipmentList = (JList<String>) map.get("addedGearList");
+			
 			String equipment = safariDestinationView.checkEquipment(safariDestinationView.getListModel());
 			
 			JTextField participantsText = (JTextField) safariDestinationMap.get("participants");
@@ -56,7 +56,7 @@ public class SafariDestinationController {
 		public void actionPerformed(ActionEvent e){
 			Component comp = (Component) e.getSource();
 			if(comp.getName()=="selectButton"){
-				// V'a'lj vald Safarimal, skicka vidare till model->databas..
+				
 			}
 		}
 	    };
