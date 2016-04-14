@@ -261,6 +261,9 @@ public class SafariDestinationView extends JPanel {
 
 	}
 	
+	//test
+	
+	
 	
 	
 	public boolean checkStatus(){
