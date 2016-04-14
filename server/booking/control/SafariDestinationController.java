@@ -73,9 +73,9 @@ public class SafariDestinationController {
 				locationText.setText(newSafari.getLocation());
 				
 				JTextField maxParticipantsText = (JTextField) safariDestinationMap.get("participants");
-				maxParticipantsText.setText(newSafari.getMaxParticipants());
+				maxParticipantsText.setText(""+newSafari.getMaxParticipants());
 				
-				JComboBox<String> guideBox = (JComboBox<String>) safariDestinationMap("guideBox");
+				JComboBox<String> guideBox = (JComboBox<String>) safariDestinationMap.get("guideBox");
 				guideBox.setSelectedItem(newSafari.getGuide());
 				} catch (SQLException se){
 				    System.out.println("HÄR BLEV DET FEL I BAIAN");
