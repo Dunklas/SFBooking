@@ -1,7 +1,9 @@
 package server.booking.model;
 
+import javax.swing.DefaultListModel;
 import java.util.*;
-import server.utils.Insert;
+import server.utils.*;
+import java.sql.*;
 
 public class SafariDestinationCatalog{
     private List<SafariDestination> safariDestinationList = new ArrayList<>();
@@ -29,15 +31,18 @@ public class SafariDestinationCatalog{
 	}
     } 
 
-    public DefaultListModel<String> selectAllSafariDestination(){
+    public DefaultListModel<String> selectAllSafariDestination() throws SQLException{
 	DefaultListModel<String> sdList = new DefaultListModel<>();
-	try{
-	    Select dbEntry = new Select();
-	   sdList =  dbEntry.selectAllSafariDestination()
-	       } catch (Exception ex){
-	    System.out.println(ex.getMessage());
-	}
+	Select dbEntry = new Select();
+	sdList =  dbEntry.selectAllSafariDestination();
 	return sdList;
+
+    }
+
+    public SafariDestination selectSafariDestination(String location) throws SQLException {
+	Select dbEntry = new Select();
+	SafariDestination tempSd = dbEntry.selectSafariDestination(location);
+	return tempSd;
 
     }
 
