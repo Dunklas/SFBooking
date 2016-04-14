@@ -31,7 +31,7 @@ public class ModifySafariDestinationView extends JPanel {
 		gridBagLayout.rowWeights = new double[]{0.0, 1.0, Double.MIN_VALUE};
 		setLayout(gridBagLayout);
 		
-		JScrollPane modifyListScrollPane = new JScrollPane();
+		modifyListScrollPane = new JScrollPane();
 		modifyListScrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		GridBagConstraints gbc_modifyListScrollPane = new GridBagConstraints();
 		gbc_modifyListScrollPane.insets = new Insets(0, 0, 5, 0);
@@ -41,7 +41,7 @@ public class ModifySafariDestinationView extends JPanel {
 		add(modifyListScrollPane, gbc_modifyListScrollPane);
 		
 		
-		modifyList = new JList(listModel);
+		modifyList = new JList<String>(listModel);
 		modifyList.setName("modifyList");
 		
 		modifyListScrollPane.setViewportView(modifyList);
@@ -54,6 +54,10 @@ public class ModifySafariDestinationView extends JPanel {
 
 		initCompMap();
 	}
+    public String getValues(){
+	return modifyList.getSelectedValue();
+    }    
+
 	public void fillList(DefaultListModel<String> model){
 		modifyList.setModel(model);
 	}
