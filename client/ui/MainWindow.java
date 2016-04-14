@@ -16,12 +16,12 @@ public class MainWindow {
         ModifySafariDestinationView msdv = new ModifySafariDestinationView();
 		SafariDestinationController sdcontroller = new SafariDestinationController(sdv, sdc,msdv);
 
-        try{
+        /*try{
         msdv.fillList(sdc.selectAllSafariDestination());
         }
         catch(SQLException e){
         	//
-        }
+        }*/
         MainSplitView split = new MainSplitView(msdv,sdv);
 	
 

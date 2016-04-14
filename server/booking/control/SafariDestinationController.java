@@ -26,6 +26,8 @@ public class SafariDestinationController {
 		safariDestinationMap=safariDestinationView.getCompMap();
 		modifySafariDestinationMap=modifySafariDestinationView.getCompMap();
 	     	addListeners(safariDestinationMap,modifySafariDestinationMap);
+	     	
+	     	modifySafariDestinationView.fillList(model.selectAllSafariDestination());
 	}
 	
 	ActionListener saveListener = new ActionListener(){
