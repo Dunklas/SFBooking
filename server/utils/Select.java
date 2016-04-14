@@ -58,6 +58,19 @@ public class Select {
 
     }
 
+    public ArrayList<String> selectAllGuides() throws SQLException{
+	ArrayList<String> sdList = new ArrayList<>();
+	String guide = "";
+	Connection c = new OpenDb().getConnection();
+	PreparedStatement stmt = c.prepareStatement("SELECT DISTINCT guide FROM safaridestination");
+	ResultSet rs = stmt.executeQuery();
+
+	while (rs.next()){
+	    guide = rs.getString("guide");
+	    sdList.add(guide);
+    }
+	return sdList;
+    }
     public SafariDestination selectSafariDestination(String location) throws SQLException{
 	Connection c = new OpenDb().getConnection();
 	

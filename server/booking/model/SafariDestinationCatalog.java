@@ -46,4 +46,12 @@ public class SafariDestinationCatalog{
 
     }
 
+    public ArrayList<String> selectAllGuides() throws SQLException {
+	ArrayList<String> sgList = new ArrayList<String>();
+	Select dbEntry = new Select();
+	sgList = dbEntry.selectAllGuides();
+	return sgList;
+
+    }
+
 }//End of class
