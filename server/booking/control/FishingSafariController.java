@@ -38,7 +38,7 @@ public class FishingSafariController {
 	
 	public void addDatePickerListener(HashMap<String,Component> map){
 			JDatePickerImpl startDate = (JDatePickerImpl) map.get("startDate");
-			JDatePickerImpl endDate = (JDatePickerImpl) map.get(1);
+			JDatePickerImpl endDate = (JDatePickerImpl) map.get("endDate");
 			
 			startDate.addActionListener(datePickerListener);
 			endDate.addActionListener(datePickerListener);
