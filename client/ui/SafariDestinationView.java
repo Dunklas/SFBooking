@@ -271,10 +271,10 @@ public class SafariDestinationView extends JPanel {
 			return false;
 		}
 	}
-	public String checkTerrain(ArrayList<JCheckBox> array){
+	public String checkTerrain(){
 		String result = "";
 		
-		for(JCheckBox c : array){
+		for(JCheckBox c : terrains){
 			if(c.isSelected()){
 				result = result+c.getText()+";";	
 			}
