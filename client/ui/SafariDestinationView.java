@@ -320,8 +320,8 @@ public class SafariDestinationView extends JPanel {
 		listModel.addElement("Stilton3");
 	}
 	public void fillGuideBox(ArrayList<String> array){
-		for(String s : array){
-			guideBox.addItem(array(s));
+	    for(int i = 0; i<array.size(); i++){
+		guideBox.addItem(array.get(i));
 		}
 	}
 }
