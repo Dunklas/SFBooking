@@ -23,6 +23,26 @@ public class SafariDestination{
 	return location;
 
     }
+    
+    public String getEquipmentReq(){
+	return equipmentReq;
+    }
+    
+    public int getMaxParticipants(){
+	return maxParticipants;
+    }
+    
+    public String getGuide(){
+	return guide;
+    }
+
+    public String getTerrain(){
+	return terrain;
+    }
+
+    public Boolean getActive(){
+	return active;
+    }
 
     public void setGuide(String newGuide) {
 	this.guide = newGuide;
