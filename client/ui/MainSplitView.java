@@ -1,4 +1,4 @@
-//package client.ui;
+package client.ui;
 
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;

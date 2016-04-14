@@ -8,22 +8,24 @@ import java.awt.event.*;
 import java.util.*;
 import server.booking.model.SafariDestinationCatalog;
 import client.ui.SafariDestinationView; // kommentera ut dessa vid testning med databas och paketstruktur
+import client.ui.ModifySafariDestinationView;
+
 
 public class SafariDestinationController {
 
 	SafariDestinationCatalog model;
 	SafariDestinationView safariDestinationView;
-	ModifySafariDestinationView modifyDestinationView;
+	ModifySafariDestinationView modifySafariDestinationView;
 	HashMap<String,Component> safariDestinationMap;
 	HashMap<String,Component> modifySafariDestinationMap;
 	
     public SafariDestinationController(SafariDestinationView sdv, SafariDestinationCatalog m, ModifySafariDestinationView msdv){
 		model=m;
 		safariDestinationView=sdv;
-		modifySafariDestinationView=msdv
-		safariDestinationMap=sdv.getCompMap();
-		modifySafariDestinationMap=msdv.getCompMap();
-		addListeners(safariDestinationMap,modifySafariDestinationMap());
+		modifySafariDestinationView=msdv;
+		safariDestinationMap=safariDestinationView.getCompMap();
+		modifySafariDestinationMap=modifySafariDestinationView.getCompMap();
+		addListeners(safariDestinationMap,modifySafariDestinationMap);
 	}
 	
 	ActionListener saveListener = new ActionListener(){
@@ -34,7 +36,7 @@ public class SafariDestinationController {
 			String location = locationText.getText();
 			
 			//JList<String> equipmentList = (JList<String>) map.get("addedGearList");
-			String equipment = view.checkEquipment(view.getListModel());
+			String equipment = safariDestinationView.checkEquipment(safariDestinationView.getListModel());
 			
 			JTextField participantsText = (JTextField) safariDestinationMap.get("participants");
 			int participants = Integer.parseInt(participantsText.getText()); // Vart ska vi hantera verifiering av input
@@ -54,10 +56,10 @@ public class SafariDestinationController {
 		public void actionPerformed(ActionEvent e){
 			Component comp = (Component) e.getSource();
 			if(comp.getName()=="selectButton"){
-				// Välj vald Safarimål, skicka vidare till model->databas..
+				// V'a'lj vald Safarimal, skicka vidare till model->databas..
 			}
 		}
-	}
+	    };
 	
 	public void addListeners(HashMap<String,Component> safariMap, HashMap<String,Component> modifyMap){
 		
@@ -65,7 +67,7 @@ public class SafariDestinationController {
 			saveButton.addActionListener(saveListener);
 		
 		
-			JButton selectButton = (JButton) modifyMap("selectButton");
+			JButton selectButton = (JButton) modifyMap.get("selectButton");
 			selectButton.addActionListener(selectListener);
 		
 	}

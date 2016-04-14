@@ -1,5 +1,6 @@
-//package client.ui;
+package client.ui;
 
+import java.util.*;
 import javax.swing.JPanel;
 import java.awt.Dimension;
 import javax.swing.BoxLayout;
