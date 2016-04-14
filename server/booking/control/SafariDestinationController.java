@@ -25,7 +25,7 @@ public class SafariDestinationController {
 		modifySafariDestinationView=msdv;
 		safariDestinationMap=safariDestinationView.getCompMap();
 		modifySafariDestinationMap=modifySafariDestinationView.getCompMap();
-		addListeners(safariDestinationMap,modifySafariDestinationMap);
+	     	addListeners(safariDestinationMap,modifySafariDestinationMap);
 	}
 	
 	ActionListener saveListener = new ActionListener(){
@@ -67,8 +67,8 @@ public class SafariDestinationController {
 			saveButton.addActionListener(saveListener);
 		
 		
-			JButton selectButton = (JButton) modifyMap.get("selectButton");
-			selectButton.addActionListener(selectListener);
+			//	JButton selectButton = (JButton) modifyMap.get("selectButton");
+			//	selectButton.addActionListener(selectListener);
 		
 	}
 	

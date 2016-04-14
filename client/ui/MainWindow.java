@@ -14,6 +14,8 @@ public class MainWindow {
     	SafariDestinationView sdv = new SafariDestinationView();
     	SafariDestinationCatalog sdc = new SafariDestinationCatalog();
         ModifySafariDestinationView msdv = new ModifySafariDestinationView();
+		SafariDestinationController sdcontroller = new SafariDestinationController(sdv, sdc,msdv);
+
         try{
         msdv.fillList(sdc.selectAllSafariDestination());
         }
@@ -22,7 +24,6 @@ public class MainWindow {
         }
         MainSplitView split = new MainSplitView(msdv,sdv);
 	
-	SafariDestinationController sdcontroller = new SafariDestinationController(sdv, sdc,msdv);
 
 	JFrame jf = new JFrame();
 	jf.add(split);
