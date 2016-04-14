@@ -44,20 +44,20 @@ public class ModifySafariDestinationView extends JPanel {
 		modifyList.setName("modifyList");
 		
 		modifyListScrollPane.setViewportView(modifyList);
-		
-		JPanel modifyButtonPanel = new JPanel();
+		/*
+	       	JPanel modifyButtonPanel = new JPanel();
 		GridBagConstraints gbc_modifyButtonPanel = new GridBagConstraints();
 		gbc_modifyButtonPanel.fill = GridBagConstraints.BOTH;
 		gbc_modifyButtonPanel.gridx = 1;
 		gbc_modifyButtonPanel.gridy = 1;
 		add(modifyButtonPanel, gbc_modifyButtonPanel);
 		modifyButtonPanel.setLayout(new BoxLayout(modifyButtonPanel, BoxLayout.Y_AXIS));
-		
+		**/
 		selectButton = new JButton("V\u00E4lj");
 		selectButton.setName("selectButton");
 		selectButton.setMaximumSize(new Dimension(125, 25));
 		selectButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-		modifyButtonPanel.add(selectButton);
+		add(selectButton);
 
 		initCompMap();
 	}

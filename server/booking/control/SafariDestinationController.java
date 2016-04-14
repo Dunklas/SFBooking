@@ -9,7 +9,7 @@ import java.util.*;
 import server.booking.model.SafariDestinationCatalog;
 import client.ui.SafariDestinationView; // kommentera ut dessa vid testning med databas och paketstruktur
 import client.ui.ModifySafariDestinationView;
-
+import java.sql.*;
 
 public class SafariDestinationController {
 
@@ -26,9 +26,12 @@ public class SafariDestinationController {
 		safariDestinationMap=safariDestinationView.getCompMap();
 		modifySafariDestinationMap=modifySafariDestinationView.getCompMap();
 	     	addListeners(safariDestinationMap,modifySafariDestinationMap);
-	     	
+		try{
 	     	modifySafariDestinationView.fillList(model.selectAllSafariDestination());
-	}
+		}catch (SQLException se){
+
+		}
+		}
 	
 	ActionListener saveListener = new ActionListener(){
 		public void actionPerformed(ActionEvent e){
@@ -69,8 +72,8 @@ public class SafariDestinationController {
 			saveButton.addActionListener(saveListener);
 		
 		
-			//JList<String> selectDestinationButton = (JList<String>) modifyMap.get("modifyList");
-				//		       	selectDestinationButton.addActionListener(selectListener);
+			JButton selectDestinationButton = (JButton) modifyMap.get("selectButton");
+			selectDestinationButton.addActionListener(selectListener);
 		
 	}
 	
