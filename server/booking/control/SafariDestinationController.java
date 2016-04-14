@@ -55,20 +55,20 @@ public class SafariDestinationController {
 	ActionListener selectListener = new ActionListener(){
 		public void actionPerformed(ActionEvent e){
 			Component comp = (Component) e.getSource();
-			if(comp.getName()=="selectButton"){
+			if(comp.getName()=="selectDestinationButton"){
 				
 			}
 		}
 	    };
 	
-	public void addListeners(HashMap<String,Component> safariMap, HashMap<String,Component> modifyMap){
+    public void addListeners(HashMap<String,Component> safariMap, HashMap<String,Component> modifyMap){
 		
 			JButton saveButton = (JButton) safariMap.get("saveNewSafariButton");
 			saveButton.addActionListener(saveListener);
 		
 		
-			//	JButton selectButton = (JButton) modifyMap.get("selectButton");
-			//	selectButton.addActionListener(selectListener);
+			//JList<String> selectDestinationButton = (JList<String>) modifyMap.get("modifyList");
+				//		       	selectDestinationButton.addActionListener(selectListener);
 		
 	}
 	

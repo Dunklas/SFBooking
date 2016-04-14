@@ -53,7 +53,7 @@ public class ModifySafariDestinationView extends JPanel {
 		add(modifyButtonPanel, gbc_modifyButtonPanel);
 		modifyButtonPanel.setLayout(new BoxLayout(modifyButtonPanel, BoxLayout.Y_AXIS));
 		
-		JButton selectButton = new JButton("V\u00E4lj");
+		selectButton = new JButton("V\u00E4lj");
 		selectButton.setName("selectButton");
 		selectButton.setMaximumSize(new Dimension(125, 25));
 		selectButton.setAlignmentX(Component.CENTER_ALIGNMENT);
