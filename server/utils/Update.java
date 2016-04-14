@@ -55,6 +55,19 @@ public class Update{
 	}
 
     }
+    public void updateStatus(String location, Boolean active) throws SQLException{
+	Connection c = new OpenDb().getConnection();
+	if (c != null){
+	    PreparedStatement stmt = c.prepareStatement("UPDATE safaridestination SET active = ? WHERE location = ?");
+	    stmt.setBoolean(1, active);
+	    stmt.setString(2, location);
+	    stmt.executeUpdate();
+	    stmt.close();
+	    c.close();
+
+	}
+    }
+
 
     public void updateMaxParticipants(String location, int newMaxParticipants) throws SQLException{
 	Connection c = new OpenDb().getConnection();
@@ -69,7 +82,7 @@ public class Update{
 
 	}
     }
-    /*
+    
      public void updateDate(int id, Date newStartDate, Date newEndDate) throws SQLException {
     	Connection c = new OpenDb().getConnection();
     	if (c != null) {
@@ -82,7 +95,7 @@ public class Update{
     	    c.close();
     	}
      }
-    **/
+    
 
 
 
