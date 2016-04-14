@@ -19,6 +19,7 @@ public class ModifySafariDestinationView extends JPanel {
 	private DefaultListModel<String> listModel = new DefaultListModel<String>();
 	private HashMap<String,Component> compMap = new HashMap<String,Component>();
 	JList<String> modifyList;
+	JButton selectButton;
 	
 	public ModifySafariDestinationView() {
 		setPreferredSize(new Dimension(452, 641));
