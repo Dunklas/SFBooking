@@ -60,6 +60,7 @@ public class Select {
 
     public SafariDestination selectSafariDestination(String location) throws SQLException{
 	Connection c = new OpenDb().getConnection();
+	
 	PreparedStatement stmt = c.prepareStatement("SELECT * FROM safaridestination WHERE location = ?");
 	stmt.setString(1, location);
 	ResultSet rs = stmt.executeQuery();
@@ -76,8 +77,11 @@ public class Select {
 	  
 	}
 	SafariDestination tempSd = new SafariDestination(tempLocation, equipment_req, max_participants, guide, terrain, active);
+	stmt.close();
+	c.close();
 	return tempSd;
-    }
+	
+	}
 
 
 }//End of class

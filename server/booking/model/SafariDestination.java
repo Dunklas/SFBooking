@@ -54,4 +54,14 @@ public class SafariDestination{
 	    ex.printStackTrace();
 	}
     }
+
+    public void setStatus(Boolean active){
+	this.active = active;
+	try{
+	    Update dbUpdate = new Update();
+	    dbUpdate.updateStatus(this.location, this.active);
+	} catch (Exception ex){
+	    ex.printStackTrace();
+	}
+    }
 }//End of class
