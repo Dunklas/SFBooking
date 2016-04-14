@@ -322,4 +322,9 @@ public class SafariDestinationView extends JPanel {
 		listModel.addElement("Stilton2");
 		listModel.addElement("Stilton3");
 	}
+	public void fillGuideBox(ArrayList<String> array){
+		for(String s : array){
+			guideBox.addItem(array(s));
+		}
+	}
 }

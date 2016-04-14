@@ -29,6 +29,7 @@ public class SafariDestinationController {
 	     	addListeners(safariDestinationMap,modifySafariDestinationMap);
 		try{
 	     	modifySafariDestinationView.fillList(model.selectAllSafariDestination());
+	     	safariDestinationView.fillGuideBox(model.selectAllGuides()); 
 		}catch (SQLException se){
 
 		}
