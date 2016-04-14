@@ -11,6 +11,7 @@ import javax.swing.JList;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.JButton;
 import java.awt.Component;
+import javax.swing.*;
 
 public class ModifySafariDestinationView extends JPanel {
 
