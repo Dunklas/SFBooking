@@ -55,6 +55,19 @@ public class Update{
 	}
 
     }
+    public void updateTerrain(String, location, String terrain) throws SQLException{
+	Connection c = new OpenDb().getConnection();
+	if (c != null){
+	    PreparedStatement stmt = c.prepareStatement("UPDATE safaridestination SET terrain = ? WHERE location = ?");
+	    stmt.setString(1, terrain);
+	    stmt.setString(2, location);
+	    stmt.executeUpdate();
+	    stmt.close();
+	    c.close();
+
+	}
+    }
+
     public void updateStatus(String location, Boolean active) throws SQLException{
 	Connection c = new OpenDb().getConnection();
 	if (c != null){
@@ -95,7 +108,7 @@ public class Update{
     	    c.close();
     	}
      }
-    
+    /*   
     public void updateSafariDestination(String location, String equipmentReq, int maxParticipants, String guide, String terrain, boolean active) throws SQLException {
 	Connection c = new OpenDb().getConnection();
 	if (c != null){
@@ -113,6 +126,7 @@ public class Update{
 	}
 
     }
+**/
 
 
 

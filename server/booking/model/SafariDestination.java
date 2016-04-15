@@ -44,6 +44,17 @@ public class SafariDestination{
     public Boolean getActive(){
 	return active;
     }
+    
+
+    public void setTerrain(String newTerrain){
+	this.terrain = newTerrain;
+	try{
+	    Update dbUpdate = new Update();
+	    dbUpdate.updateTerrain(this.location, this.terrain);
+	} catch (Exception ex){
+	    ex.printStackTrace();
+	}
+    }
 
     public void setGuide(String newGuide) {
 	this.guide = newGuide;
@@ -52,7 +63,6 @@ public class SafariDestination{
 	dbUpdate.updateGuide(this.location, this.guide);
 	} catch (Exception ex){
 	    ex.printStackTrace();
-
 	}
     }
 
@@ -60,7 +70,7 @@ public class SafariDestination{
 	this.equipmentReq = newEquipment;
 	try{
 	    Update dbUpdate = new Update();
-	    dbUpdate.updateGuide(this.location, this.equipmentReq);
+	    dbUpdate.updateEquipmentReq(this.location, this.equipmentReq);
 	} catch (Exception ex){
 	    ex.printStackTrace();
 	}
@@ -90,6 +100,14 @@ public class SafariDestination{
 	Update dbUpdate = new Update();
 	dbUpdate.updateSafariDestination(location, equipmentReq, maxParticipants, guide, terrain, active);
 	System.out.println("Kom in i metodanrop i safari destination modellen");
+    }
+
+
+    public String getSafariDestinationElement(String location, String column) throws SQLException{
+	Select dbSelect = new Select();
+	String element = dbSelect.selectSafariDestinationElement(location, column);
+	return element;
+
     }
 
 }//End of class

@@ -97,4 +97,22 @@ public class Select {
 	}
 
 
+    public String selectSafariDestinationElement(String location, String column) throws SQLException{
+	String element = "";
+	Connection c = OpenDb().getConnection();
+	PreparedStatement stmt = c.prepareStatement("SELECT ? FROM safaridestination WHERE location = ?");
+	stmt.setString(1, column);
+	stmt.setString(2, location);
+	ResultSet rs = stmt.executeQuery();
+
+	while (rs.next()){
+	    element = rs.getString(column);
+	   
+	}
+	
+	return element;
+    }
+
+
+
 }//End of class
