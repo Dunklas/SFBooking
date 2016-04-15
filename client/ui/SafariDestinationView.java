@@ -273,7 +273,7 @@ public class SafariDestinationView extends JPanel {
 	}
 	
 	
-	public void enableStatus(boolean status){
+	public void enableStatus(boolean status){ // kalla på denna när det ska modifieras
 		activeButton.setVisible(status);
 		inactiveButton(status)
 	}

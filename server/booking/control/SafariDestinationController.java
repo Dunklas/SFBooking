@@ -24,6 +24,8 @@ public class SafariDestinationController {
 	HashMap<String,Component> safariDestinationMap;
 	HashMap<String,Component> modifySafariDestinationMap;
 	
+	SafariDestination newSafari;
+	
 	boolean modSelected = false;
 	
     public SafariDestinationController(SafariDestinationView sdv, SafariDestinationCatalog m, ModifySafariDestinationView msdv){
@@ -44,6 +46,10 @@ public class SafariDestinationController {
 
 		}
 		}
+    
+    /**
+     * Listeners
+     */
 	
 	ActionListener saveListener = new ActionListener(){
 		public void actionPerformed(ActionEvent e){
@@ -72,8 +78,8 @@ public class SafariDestinationController {
 		} 
 			else if(modSelected==true){
 				
-			    //active
-				model.updateSafariDestination(location,equipment,participants,guide,terrain,active);
+			    setUpdatedFields(equipment,participants,guide,terrain,active,newSafari); // see method below
+				
 				modSelected(false);
 			}
 		}	
@@ -90,7 +96,7 @@ public class SafariDestinationController {
 				String selected = modifySafariDestinationView.getValues();
 				
 				try{
-				SafariDestination newSafari = model.selectSafariDestination(selected);
+				newSafari = model.selectSafariDestination(selected);
 				
 				JTextField locationText = (JTextField) safariDestinationMap.get("location");
 				locationText.setText(newSafari.getLocation());
@@ -98,9 +104,10 @@ public class SafariDestinationController {
 				JTextField maxParticipantsText = (JTextField) safariDestinationMap.get("participants");
 				maxParticipantsText.setText(""+newSafari.getMaxParticipants());
 				
-				JComboBox<String> guideBox = (JComboBox<String>) safariDestinationMap.get("guideBox");
+				JComboBox<String> guideBox = (JComboBox<String>) safariDestinationMap.get("guideBox"); 
 				guideBox.setSelectedItem(newSafari.getGuide());
 				
+				// get terrain from db
 				
 				
 				} catch (SQLException se){
@@ -110,6 +117,9 @@ public class SafariDestinationController {
 		}
 	    };
 	
+	    /**
+	     * Adds listeners
+	     */
     public void addListeners(HashMap<String,Component> safariMap, HashMap<String,Component> modifyMap){
 		
 			JButton saveButton = (JButton) safariMap.get("saveNewSafariButton");
@@ -120,6 +130,25 @@ public class SafariDestinationController {
 			selectButton.addActionListener(selectListener);
 		
 	}
+    
+    /**
+     *Methods for converting data etc 
+     *
+     */
+    public ArrayList<String> convertTerrainFromDb(HashMap<String,Component> safariMap,SafariDestination destination){
+    	destination.selectSafariDestinationElement();
+    }
+    public void setUpdatedFields(String equipment,int participants,String guide,String terrain,
+    		boolean active,SafariDestination destination){
+    	destination.setEquipmentReq(equipment);
+    	destination.setMaxParticipants(participants);
+    	destination.setGuide(guide);
+    	destination.setTerrain(terrain);
+    	destination.setStatus(active);
+    	
+    }
+    
+    
 	
 	
 	
