@@ -5,13 +5,13 @@ import server.booking.control.*;
 import server.booking.model.*;
 import java.sql.*;
 import java.util.*;
-
+import java.awt.*;
 
 public class MainWindow extends JFrame{
 
-	/**
+	/*
 	 * Initiate Model,View and Controllers
-	 */
+	 **/
 	SafariDestinationView sdv = new SafariDestinationView();
 	SafariDestinationCatalog sdc = new SafariDestinationCatalog();
     ModifySafariDestinationView msdv = new ModifySafariDestinationView();

@@ -96,7 +96,27 @@ public class Update{
     	}
      }
     
+    public void updateSariDestination(String location, String equipmentReq, int maxParticipants, String guide, String terrain, boolean active) throws SQLException {
+	Connection c = new OpenDb().getConnection();
+	if (c != null){
+	    PreparedStatement stmt = c.prepareStatement("UPDATE safaridestination SET equipment_req = ?, max_participants = ?, guide = ?, terrain = ?, active = ? WHERE location = ?"); 
+	    stmt.setString(1, equipmentReq);
+	    stmt.setInt(2, maxParticipants);
+	    stmt.setString(3, guide);
+	    stmt.setString(4, terrain);
+	    stmt.setBoolean(5, active);
+	    stmt.setString(6, location);
+	    stmt.executeUpdate();
+	    
+	    stmt.close();
+	    c.close();
+	}
 
+    }
+
+
+
+    
 
 
 }

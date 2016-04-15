@@ -84,4 +84,10 @@ public class SafariDestination{
 	    ex.printStackTrace();
 	}
     }
+
+    public void updateSafariDestination(String location, String equipmentReq, int maxParticipants, String guide, String terrain, boolean active) throws SQLException{
+	Update dbUpdate = new Update();
+	dbUpdate.updateSafariDestination(location, equipmentReq, maxParticipants, guide, terrain, active);
+    }
+
 }//End of class
