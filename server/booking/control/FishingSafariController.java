@@ -14,7 +14,7 @@ import org.jdatepicker.impl.*;
 public class FishingSafariController {
 
 	FishingSafariTopView topView;
-	HashMap<Integer,Component> topMap;
+	HashMap<String,Component> topMap;
 	FishingSafariBottomView bottomView;
 	HashMap<String,Component> bottomMap;
 	
@@ -31,7 +31,7 @@ public class FishingSafariController {
 		topMap = topView.getCompMap();
 		bottomView = fsbv;
 		bottomMap = bottomView.getCompMap();
-		addListeners(topMap);
+		addListeners(topMap, bottomMap);
 		
 		
 	}

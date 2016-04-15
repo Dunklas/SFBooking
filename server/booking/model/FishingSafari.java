@@ -28,15 +28,15 @@ public class FishingSafari{
     public SafariDestination getSafariDestination(){
 	    return safariDestination;
     }
-
+    /*
     public void setAnnouncementDate(Date date) {
 	this.announcementDate = date;
 	try{
 	    OpenDb dbc = new OpenDb();
 
-	}
+	} catch
     }
-
+    **/
     public void setId(int newId){
 	this.id = newId;
 
