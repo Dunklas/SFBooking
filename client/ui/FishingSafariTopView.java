@@ -40,6 +40,8 @@ public class FishingSafariTopView extends JPanel {
 		compArray.add(endDatePicker);
 		endDatePicker.setName("endDate");
 		rightDatePickerPanel.add(endDatePicker);
+		
+		initCompMap();
 
 	}
 	public void initCompMap(){

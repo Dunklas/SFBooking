@@ -25,7 +25,7 @@ public class MainWindow {
 	FishingSafariCatalog fsc = new FishingSafariCatalog();
 	FishingSafariController fscd = new FishingSafariController(fstv,fsbv,mfsv,fsc,sdc); //ok att anv'a'nda samma sdc-objekt?
     	
-	MainSplitView mv = new MainSplitView(sdv,msdv);
+	MainSplitView mv = new MainSplitView(msdv,sdv);
 
 
 

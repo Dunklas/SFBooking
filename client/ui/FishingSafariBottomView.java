@@ -212,6 +212,7 @@ public class FishingSafariBottomView extends JPanel {
 		addedGearToRentList.setName("addedGear");
 		addedGearToRentScrollPane.setViewportView(addedGearToRentList);
 
+		initCompMap();
 	}
 	public void initCompMap(){
 		
