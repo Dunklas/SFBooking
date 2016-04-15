@@ -20,7 +20,7 @@ public class MainWindow {
 	FishingSafariTopView fstv = new FishingSafariTopView();
 	FishingSafariBottomView fsbv = new FishinSafariBottomView();
 	FishingSafariCatalog fsc = new FishingSafariCatalog();
-	FishingSafariController fsc = new FishingSafariController(fstv,fsbv,fsc,sdc); //ok att använda samma sdc-objekt?
+	FishingSafariController fsc = new FishingSafariController(fstv,fsbv,fsc,sdc); //ok att anv'a'nda samma sdc-objekt?
 
     public static void main (String [] args){
     	
