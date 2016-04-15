@@ -96,7 +96,7 @@ public class Update{
     	}
      }
     
-    public void updateSariDestination(String location, String equipmentReq, int maxParticipants, String guide, String terrain, boolean active) throws SQLException {
+    public void updateSafariDestination(String location, String equipmentReq, int maxParticipants, String guide, String terrain, boolean active) throws SQLException {
 	Connection c = new OpenDb().getConnection();
 	if (c != null){
 	    PreparedStatement stmt = c.prepareStatement("UPDATE safaridestination SET equipment_req = ?, max_participants = ?, guide = ?, terrain = ?, active = ? WHERE location = ?"); 

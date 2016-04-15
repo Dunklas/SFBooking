@@ -1,5 +1,6 @@
 package server.booking.model;
 
+import java.sql.*;
 import server.utils.Update;
 
 public class SafariDestination{
@@ -88,6 +89,7 @@ public class SafariDestination{
     public void updateSafariDestination(String location, String equipmentReq, int maxParticipants, String guide, String terrain, boolean active) throws SQLException{
 	Update dbUpdate = new Update();
 	dbUpdate.updateSafariDestination(location, equipmentReq, maxParticipants, guide, terrain, active);
+	System.out.println("Kom in i metodanrop i safari destination modellen");
     }
 
 }//End of class
