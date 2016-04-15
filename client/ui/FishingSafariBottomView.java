@@ -46,7 +46,7 @@ public class FishingSafariBottomView extends JPanel {
 		startTimePanel.add(horizontalStrut_1);
 		
 		startTimeTextfield = new JTextField();
-		compArray.add(startTimeTextField);
+		compArray.add(startTimeTextfield);
 		startTimeTextfield.setName("startTime");
 		startTimePanel.add(startTimeTextfield);
 		startTimeTextfield.setMaximumSize(new Dimension(250, 25));
@@ -68,7 +68,7 @@ public class FishingSafariBottomView extends JPanel {
 		endTimePanel.add(horizontalStrut);
 		
 		endTimeTextfield = new JTextField();
-		compArray.add(endTimeTextField);
+		compArray.add(endTimeTextfield);
 		endTimeTextfield.setName("endTime");
 	
 		endTimeTextfield.setMaximumSize(new Dimension(250, 25));

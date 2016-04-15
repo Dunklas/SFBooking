@@ -1,4 +1,4 @@
-//package client.ui;
+package client.ui;
 
 import javax.swing.JPanel;
 import javax.swing.BoxLayout;
@@ -14,6 +14,8 @@ import java.awt.Insets;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.JComboBox;
 import javax.swing.Box;
+import java.util.HashMap;
+import java.util.ArrayList;
 
 public class ModifyFishingSafariView extends JPanel {
 

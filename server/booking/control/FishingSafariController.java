@@ -4,6 +4,7 @@ import server.booking.model.FishingSafariCatalog;
 import server.booking.model.SafariDestinationCatalog;
 import client.ui.FishingSafariTopView;
 import client.ui.FishingSafariBottomView;
+import client.ui.ModifyFishingSafariView;
 import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
