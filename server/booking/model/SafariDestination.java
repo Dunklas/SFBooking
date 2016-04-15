@@ -92,4 +92,12 @@ public class SafariDestination{
 	System.out.println("Kom in i metodanrop i safari destination modellen");
     }
 
+
+    public String selectSafariDestinationElement(String location, String column) throws SQLException{
+	Select dbSelect = new Select();
+	String element = dbSelect.selectSafariDestinationElement(location, column);
+	return element;
+
+    }
+
 }//End of class
