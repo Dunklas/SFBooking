@@ -24,6 +24,8 @@ public class SafariDestinationController {
 	HashMap<String,Component> safariDestinationMap;
 	HashMap<String,Component> modifySafariDestinationMap;
 	
+	boolean modSelected = false;
+	
     public SafariDestinationController(SafariDestinationView sdv, SafariDestinationCatalog m, ModifySafariDestinationView msdv){
 		/**
 		 * Initiates objects and maps to be used by this controller
@@ -47,6 +49,7 @@ public class SafariDestinationController {
 		public void actionPerformed(ActionEvent e){
 		Component comp = (Component) e.getSource();
 		if(comp.getName()=="saveNewSafariButton"){
+			
 			JTextField locationText = (JTextField) safariDestinationMap.get("location");
 			String location = locationText.getText();
 			
@@ -62,8 +65,17 @@ public class SafariDestinationController {
 			
 			String terrain = safariDestinationView.checkTerrain();
 			
-			newSafariDestination(location,equipment,participants,guide,terrain);
-		}   
+			boolean active = safariDestinationView.checkStatus();
+			
+			if(modSelected==false){
+				model.newSafariDestination(location, equipmentReq, maxParticipants, guide, terrain);
+		} 
+			else if(modSelected==true){
+				
+			    //active
+				model.updateSafariDestination(location,equipment,participants,guide,terrain,active);
+				modSelected(false);
+			}
 		}	
 	};
 	
@@ -72,6 +84,7 @@ public class SafariDestinationController {
 			Component comp = (Component) e.getSource();
 			if(comp.getName()=="selectButton"){
 				
+				modSelected = true;
 				JList<String> modifyList = (JList<String>) safariDestinationMap.get("modifyList");
 				
 				String selected = modifySafariDestinationView.getValues();
@@ -87,6 +100,9 @@ public class SafariDestinationController {
 				
 				JComboBox<String> guideBox = (JComboBox<String>) safariDestinationMap.get("guideBox");
 				guideBox.setSelectedItem(newSafari.getGuide());
+				
+				
+				
 				} catch (SQLException se){
 				    System.out.println("HÄR BLEV DET FEL I BAIAN");
 				}
@@ -106,8 +122,7 @@ public class SafariDestinationController {
 	}
 	
 	
-	public void newSafariDestination(String location,String equipmentReq,int maxParticipants,String guide,String terrain){
-	    model.newSafariDestination(location, equipmentReq, maxParticipants, guide, terrain);
-	}
+	
+	
 	
 }
