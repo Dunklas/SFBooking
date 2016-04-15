@@ -17,9 +17,9 @@ import javax.swing.Box;
 
 public class ModifyFishingSafariView extends JPanel {
 
-	/**
-	 * Create the panel.
-	 */
+	HashMap<String,Component> compMap = new HashMap<String,Component>();
+	ArrayList<Component> compArray = new ArrayList<Component>();
+	
 	public ModifyFishingSafariView() {
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		
@@ -41,7 +41,9 @@ public class ModifyFishingSafariView extends JPanel {
 		gbc_modifyListScrollPane.gridy = 1;
 		panel.add(modifyListScrollPane, gbc_modifyListScrollPane);
 		
-		JList modifyList = new JList();
+		JList<String> modifyList = new JList<String>();
+		compArray.add(modifyList);
+		modifyList.setName("modifyList");
 		modifyListScrollPane.setViewportView(modifyList);
 		
 		JPanel modifyButtonPanel = new JPanel();
@@ -53,30 +55,46 @@ public class ModifyFishingSafariView extends JPanel {
 		modifyButtonPanel.setLayout(new BoxLayout(modifyButtonPanel, BoxLayout.Y_AXIS));
 		
 		JRadioButton rdbtnDennaVecka = new JRadioButton("Denna vecka");
+		compArray.add(rdbtnDennaVecka);
+		rdbtnDennaVecka.setName("thisWeek");
 		modifyButtonPanel.add(rdbtnDennaVecka);
 		
 		Component verticalStrut = Box.createVerticalStrut(5);
 		modifyButtonPanel.add(verticalStrut);
 		
 		JRadioButton rdbtnDennaMnad = new JRadioButton("Denna m\u00E5nad");
+		compArray.add(rdbtnDennaMnad);
+		rdbtnDennaMnad.setName("thisMonth");
 		modifyButtonPanel.add(rdbtnDennaMnad);
 		
 		Component verticalStrut_1 = Box.createVerticalStrut(5);
 		modifyButtonPanel.add(verticalStrut_1);
 		
 		JRadioButton rdbtnDettar = new JRadioButton("Detta \u00E5r");
+		compArray.add(rdbtnDettar);
+		rdbtnDettar.setName("thisYear");
 		modifyButtonPanel.add(rdbtnDettar);
 		
 		Component verticalStrut_2 = Box.createVerticalStrut(5);
 		modifyButtonPanel.add(verticalStrut_2);
 		
-		JComboBox comboBox = new JComboBox();
+		JComboBox<String> comboBox = new JComboBox<String>();
+		compArray.add(comboBox);
+		comboBox.setName("comboBox");
 		comboBox.setAlignmentX(Component.LEFT_ALIGNMENT);
 		comboBox.setMaximumSize(new Dimension(150, 25));
 		modifyButtonPanel.add(comboBox);
 		
-		
+		initCompMap();
 
+	}
+	public void initCompMap(){
+		for(int i=0; i<compArray.size(); i++){
+			compMap.put(compArray.get(i).getName(),compArray.get(i));
+		}
+	}
+	public HashMap<String,Component> getCompMap(){
+		return compMap;
 	}
 
 }

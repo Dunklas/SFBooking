@@ -17,12 +17,14 @@ public class FishingSafariController {
 	HashMap<String,Component> topMap;
 	FishingSafariBottomView bottomView;
 	HashMap<String,Component> bottomMap;
+	ModifyFishingSafariView modifyView;
+	HashMap<String,Component> modifyMap;
 	
 	SafariDestinationCatalog destinationModel; // needed when creating new FishingSafari
 	FishingSafariCatalog fishingModel;
 	
 	
-	public FishingSafariController(FishingSafariTopView fstv,FishingSafariBottomView fsbv,
+	public FishingSafariController(FishingSafariTopView fstv,FishingSafariBottomView fsbv,ModifyFishingSafariView mfsv,
 			FishingSafariCatalog fsc,SafariDestinationCatalog sdc){
 		destinationModel = sdc; 
 		fishingModel = fsc;
@@ -31,6 +33,8 @@ public class FishingSafariController {
 		topMap = topView.getCompMap();
 		bottomView = fsbv;
 		bottomMap = bottomView.getCompMap();
+		modifyView = mfsv;
+		modifyMap = modifyView.getCompMap();
 		addListeners(topMap, bottomMap);
 		
 		

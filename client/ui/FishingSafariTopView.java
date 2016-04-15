@@ -13,6 +13,7 @@ import java.awt.*;
 public class FishingSafariTopView extends JPanel {
 
 	HashMap<String,Component> compMap = new HashMap<String,Component>();
+	ArrayList<Component> compArray = new ArrayList<Component>();
 	
 	public FishingSafariTopView() {
 		setLayout(new GridLayout(0, 2, 0, 0));
@@ -27,6 +28,7 @@ public class FishingSafariTopView extends JPanel {
 		add(leftDatePickerPanel);
 		JDatePanelImpl startDatePanel = new JDatePanelImpl(model,prop);
 		JDatePickerImpl startDatePicker = new JDatePickerImpl(startDatePanel,new DateComponentFormatter());
+		compArray.add(startDatePicker);
 		startDatePicker.setName("startDate");
 		leftDatePickerPanel.add(startDatePicker);
 		
@@ -34,14 +36,15 @@ public class FishingSafariTopView extends JPanel {
 		add(rightDatePickerPanel);
 		JDatePanelImpl endDatePanel = new JDatePanelImpl(model,prop); 
 		JDatePickerImpl endDatePicker = new JDatePickerImpl(endDatePanel,new DateComponentFormatter());
+		compArray.add(endDatePicker);
 		endDatePicker.setName("endDate");
 		rightDatePickerPanel.add(endDatePicker);
 
 	}
 	public void initCompMap(){
-		Component[] compArray = this.getComponents();
-		for(int i=0; i<compArray.length; i++){
-			compMap.put(compArray[i].getName(), compArray[i]);
+		
+		for(int i=0; i<compArray.size(); i++){
+			compMap.put(compArray.get(i).getName(), compArray.get(i));
 		}
 	}
 	public HashMap<String,Component> getCompMap(){
