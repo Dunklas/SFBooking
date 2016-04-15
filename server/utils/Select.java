@@ -98,7 +98,6 @@ public class Select {
 
 
     public String selectSafariDestinationElement(String location, String column) throws SQLException{
-	ArrayList<String> eList = new ArrayList<String>();
 	String element = "";
 	Connection c = OpenDb().getConnection();
 	PreparedStatement stmt = c.prepareStatement("SELECT ? FROM safaridestination WHERE location = ?");
