@@ -107,8 +107,10 @@ public class SafariDestinationController {
 				JComboBox<String> guideBox = (JComboBox<String>) safariDestinationMap.get("guideBox"); 
 				guideBox.setSelectedItem(newSafari.getGuide());
 				
-				safariDestinationView.fillTerrain(convertTerrainFromDb(newSafari));
-				
+				//safariDestinationView.fillTerrain(convertTerrainFromDb(newSafari));
+				for (int i = 0; i<convertTerrainFromDb(newSafari).size(); i++){
+				    System.out.println(convertTerrainFromDb(newSafari).get(i));
+				}
 				
 				} catch (SQLException se){
 				    System.out.println("HÄR BLEV DET FEL I BAIAN");
@@ -148,8 +150,8 @@ int index = 0; // testing
 	while(parser.hasNext()){
 		resList.add(parser.next());
 
-    System.out.println(resList.get(index));
-    index++;
+		//    System.out.println(resList.get(index));
+		// index++;
 	}
 
 
