@@ -60,7 +60,7 @@ public class SafariDestinationController {
 			String location = locationText.getText();
 			
 			
-			String equipment = safariDestinationView.checkEquipment(safariDestinationView.getListModel());
+			String equipment = safariDestinationView.checkEquipment(safariDestinationView.getListModelAdded());
 			
 			JTextField participantsText = (JTextField) safariDestinationMap.get("participants");
 			int participants = Integer.parseInt(participantsText.getText()); // Vart ska vi hantera verifiering av input
@@ -125,12 +125,16 @@ public class SafariDestinationController {
          DefaultListModel<String> availableList = safariDestinationView.getListModelAvailable();
 
          if(comp.getName()=="addGearButton"){
-           addedList.addElement(availableList.getSelectedValue());
-           availableList.removeElement(availableList.getSelectedValue());
+         	for(String s : availableList.getSelectedValuesList())
+           addedList.addElement(s);
+           availableList.removeElement(s);
          }
+       }
          else if(comp.getName()=="removeGearButton"){
-           availableList.addElement(addedList.getSelectedValue());
-           addedList.removeElement(addedList.getSelectedValue());
+         	for(String s : addedList.getSelectedValuesList()){
+           availableList.addElement(s);
+           addedList.removeElement(s);
+         }
          }
 	    	}
 	    };
