@@ -44,7 +44,8 @@ public class SafariDestinationView extends JPanel {
 	private ButtonGroup statusGroup = new ButtonGroup();
 	private JButton saveNewSafariButton;
 	
-	private DefaultListModel<String> listModel = new DefaultListModel<String>();
+	private DefaultListModel<String> listModelAdded = new DefaultListModel<String>();
+	private DefaultListModel<String> listModelAvailable = new DefaultListModel<String>();
 	private ArrayList<JCheckBox> terrains = new ArrayList<JCheckBox>();
 	
     private HashMap<String,Component> compMap = new HashMap<String,Component>();
@@ -197,7 +198,7 @@ public class SafariDestinationView extends JPanel {
 		availableGearScrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		gearPanel.add(availableGearScrollPane);
 		
-		availableGearList = new JList<String>();
+		availableGearList = new JList<String>(listModelAvailable);
 		availableGearList.setName("availableGearList");
 		availableGearScrollPane.setViewportView(availableGearList);
 		
@@ -219,7 +220,7 @@ public class SafariDestinationView extends JPanel {
 		gearPanel.add(addedGearScrollPane);
 		
 		fillUpList(); // testaLista
-		addedGearList = new JList<String>(listModel);
+		addedGearList = new JList<String>(listModelAdded);
 		addedGearList.setName("addedGearList");
 		addedGearScrollPane.setViewportView(addedGearList);
 		
@@ -317,12 +318,13 @@ public class SafariDestinationView extends JPanel {
 	}
 	
 	
-	public void fillUpList(){ // testlista
+	public void fillUpList(){ // Dummylist representing list of available gear
+		for(int i=0; i<10; i++){
+			listModelAvailable.addElement("Stilton"+i);
+		}
+
 		
 		
-		listModel.addElement("Stilton1");
-		listModel.addElement("Stilton2");
-		listModel.addElement("Stilton3");
 	}
 	public void fillGuideBox(ArrayList<String> array){
 	    for(int i = 0; i<array.size(); i++){
