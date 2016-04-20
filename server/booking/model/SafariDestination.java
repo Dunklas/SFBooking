@@ -42,7 +42,7 @@ public class SafariDestination{
 	return terrain;
     }
 
-    public Boolean getActive(){
+    public boolean getActive(){
 	return active;
     }
     

@@ -78,9 +78,10 @@ public class SafariDestinationController {
 				safariDestinationView.clearSelection();
 		} 
 			else if(modSelected==true){
-				
+				  
 			    setUpdatedFields(equipment,participants,guide,terrain,active,newSafari); // see method below
 				  safariDestinationView.clearSelection();
+				  safariDestinationView.enableStatus(false);
 				modSelected = false;
 			}
 		}	
@@ -91,16 +92,19 @@ public class SafariDestinationController {
 			Component comp = (Component) e.getSource();
 			if(comp.getName()=="selectButton"){
 				safariDestinationView.clearTerrain();
+
 				modSelected = true;
 				JList<String> modifyList = (JList<String>) safariDestinationMap.get("modifyList");
 				
 				String selected = modifySafariDestinationView.getValues();
+				safariDestinationView.enableStatus(true);
 				
 				try{
 				newSafari = model.selectSafariDestination(selected);
 				
 				JTextField locationText = (JTextField) safariDestinationMap.get("location");
 				locationText.setText(newSafari.getLocation());
+				locationText.setEnabled(false); // sets textfield disabled while modifying existing destination
 				
 				JTextField maxParticipantsText = (JTextField) safariDestinationMap.get("participants");
 				maxParticipantsText.setText(""+newSafari.getMaxParticipants());

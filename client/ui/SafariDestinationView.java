@@ -228,7 +228,7 @@ public class SafariDestinationView extends JPanel {
 		addedGearScrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		gearPanel.add(addedGearScrollPane);
 		
-		fillUpList(); // testaLista
+		fillUpAvailableList(); // testaLista
 		addedGearList = new JList<String>(listModelAdded);
 		addedGearList.setName("addedGearList");
 		compArray.add(addedGearList);
@@ -334,7 +334,7 @@ public class SafariDestinationView extends JPanel {
 	}
 	
 	
-	public void fillUpList(){ // Dummylist representing list of available gear
+	public void fillUpAvailableList(){ // Dummylist representing list of available gear
 		for(int i=0; i<10; i++){
 			listModelAvailable.addElement("Stilton"+i);
 		}
@@ -349,18 +349,27 @@ public class SafariDestinationView extends JPanel {
 	}
 	public void fillTerrain(ArrayList<String> array){
 		for(int i = 0; i<array.size(); i++){
-		    System.out.println(array.get(i));
-		    if(array.get(i).equals("Terräng 1")){
+		    System.out.println(array.get(i)); // testutskrift
+		    if(array.get(i).equals("Terr\u00E4ng 1")){
          terrain1.setSelected(true);
 			}
-		    else if(array.get(i).equals("Terräng 2")){
+		    else if(array.get(i).equals("Terr\u00E4ng 2")){
 				terrain2.setSelected(true);
 			}
-		    else if(array.get(i).equals("Terräng 3")){
+		    else if(array.get(i).equals("Terr\u00E4ng 3")){
 				terrain3.setSelected(true);
 			} else {
 			    System.out.println("FAtTAR NADAccZz");
 			}
+		}
+	}
+
+	public void setActive(boolean status){
+		if(status==true){
+			activeButton.setSelected(true);
+		}
+		else{
+			inactiveButton.setSelected(true);
 		}
 	}
 
@@ -373,10 +382,14 @@ public class SafariDestinationView extends JPanel {
 
 	public void clearSelection(){
 		textFieldLocation.setText("");
+		textFieldLocation.setEnabled(true);
 		textFieldParticipants.setText("");
 		clearTerrain();
 		listModelAdded.removeAllElements();
-		fillUpList();
+		listModelAvailable.removeAllElements();
+		fillUpAvailableList();
+		//clear statusselection too
+
 
 
 
