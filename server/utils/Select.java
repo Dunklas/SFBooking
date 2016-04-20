@@ -109,7 +109,8 @@ public class Select {
 	    element = rs.getString(column);
 	   
 	}
-	System.out.println("Lyckades med databasen");
+	stmt.close();
+	c.close();
 	return element;
     }
 

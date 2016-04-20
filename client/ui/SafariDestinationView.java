@@ -38,7 +38,7 @@ public class SafariDestinationView extends JPanel {
 	private JCheckBox terrain1;
 	private JCheckBox terrain2;
 	private JCheckBox terrain3;
-        private ButtonGroup terrainGroup = new ButtonGroup();
+        
 	private JRadioButton activeButton;
 	private JRadioButton inactiveButton;
 	private ButtonGroup statusGroup = new ButtonGroup();
@@ -140,7 +140,6 @@ public class SafariDestinationView extends JPanel {
 		terrainPanel.add(terrain3);
 		terrains.add(terrain3);
 		
-		terrainGroup.add(terrain1); terrainGroup.add(terrain2); terrainGroup.add(terrain3);
 
 		JLabel lblAnsvarigGuide = new JLabel("Ansvarig guide");
 		GridBagConstraints gbc_lblAnsvarigGuide = new GridBagConstraints();
@@ -332,14 +331,17 @@ public class SafariDestinationView extends JPanel {
 	}
 	public void fillTerrain(ArrayList<String> array){
 		for(int i = 0; i<array.size(); i++){
-			if(array.get(i)=="Terräng 1"){
+		    System.out.println(array.get(i));
+		    if(array.get(i).equals("Terräng 1")){
          terrain1.setSelected(true);
 			}
-			else if(array.get(i)=="Terräng 2"){
+		    else if(array.get(i).equals("Terräng 2")){
 				terrain2.setSelected(true);
 			}
-			else if(array.get(i)=="Terräng 3"){
+		    else if(array.get(i).equals("Terräng 3")){
 				terrain3.setSelected(true);
+			} else {
+			    System.out.println("FAtTAR NADAccZz");
 			}
 		}
 	}

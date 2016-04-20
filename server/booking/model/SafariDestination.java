@@ -107,7 +107,6 @@ public class SafariDestination{
     public String getSafariDestinationElement(String location, String column) throws SQLException{
 	Select dbSelect = new Select();
 	String element = dbSelect.selectSafariDestinationElement(location, column);
-	System.out.println("Safaridestination modellen");
 	return element;
 
     }
