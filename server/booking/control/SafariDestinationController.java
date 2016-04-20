@@ -117,6 +117,23 @@ public class SafariDestinationController {
 			}
 		}
 	    };
+
+	    ActionListener equipmentListener = new ActionListener(){
+	    	public void actionPerformed(ActionEvent e){
+         Component comp = (Component) e.getSource();
+         DefaultListModel<String> addedList = safariDestinationView.getListModelAdded();
+         DefaultListModel<String> availableList = safariDestinationView.getListModelAvailable();
+
+         if(comp.getName()=="addGearButton"){
+           addedList.addElement(availableList.getSelectedValue());
+           availableList.removeElement(availableList.getSelectedValue());
+         }
+         else if(comp.getName()=="removeGearButton"){
+           availableList.addElement(addedList.getSelectedValue());
+           addedList.removeElement(addedList.getSelectedValue());
+         }
+	    	}
+	    };
 	
 	    /**
 	     * Adds listeners
@@ -129,6 +146,12 @@ public class SafariDestinationController {
 		
 			JButton selectButton = (JButton) modifyMap.get("selectButton");
 			selectButton.addActionListener(selectListener);
+
+      JButton addButton = (JButton) safariMap.get("addGearButton");
+      addGearButton.addActionListener(equipmentListener);
+
+      JButton removeButton = (JButton) safariMap.get("removeGearButton");
+      removeButton.addActionListener(equipmentListener);
 		
 	}
     
