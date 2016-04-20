@@ -375,7 +375,7 @@ public class SafariDestinationView extends JPanel {
 		textFieldLocation.setText("");
 		textFieldParticipants.setText("");
 		clearTerrain();
-		addedGearList.removeAllElements();
+		listModelAdded.removeAllElements();
 		fillUpList();
 
 
