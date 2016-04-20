@@ -125,11 +125,11 @@ public class SafariDestinationController {
          DefaultListModel<String> availableList = safariDestinationView.getListModelAvailable();
 
          if(comp.getName()=="addGearButton"){
-         	for(String s : availableList.getSelectedValuesList())
+	     for(String s : availableList.getSelectedValuesList()){
            addedList.addElement(s);
            availableList.removeElement(s);
          }
-       }
+	 }
          else if(comp.getName()=="removeGearButton"){
          	for(String s : addedList.getSelectedValuesList()){
            availableList.addElement(s);
@@ -152,7 +152,7 @@ public class SafariDestinationController {
 			selectButton.addActionListener(selectListener);
 
       JButton addButton = (JButton) safariMap.get("addGearButton");
-      addGearButton.addActionListener(equipmentListener);
+      addButton.addActionListener(equipmentListener);
 
       JButton removeButton = (JButton) safariMap.get("removeGearButton");
       removeButton.addActionListener(equipmentListener);
