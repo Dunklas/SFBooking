@@ -49,6 +49,7 @@ public class SafariDestinationView extends JPanel {
 	private ArrayList<JCheckBox> terrains = new ArrayList<JCheckBox>();
 	
     private HashMap<String,Component> compMap = new HashMap<String,Component>();
+    private ArrayList<Component> compArray = new ArrayList<Component>();
 	
 	
 
@@ -77,6 +78,7 @@ public class SafariDestinationView extends JPanel {
 		
 		textFieldLocation = new JTextField();
 		textFieldLocation.setName("location");
+		compArray.add(textFieldLocation);
 		textFieldLocation.setMinimumSize(new Dimension(100,20));
 		GridBagConstraints gbc_textFieldLocation = new GridBagConstraints();
 		gbc_textFieldLocation.ipadx = 99;
@@ -97,6 +99,7 @@ public class SafariDestinationView extends JPanel {
 		
 		textFieldParticipants = new JTextField();
 		textFieldParticipants.setName("participants");
+		compArray.add(textFieldParticipants);
 		textFieldParticipants.setMinimumSize(new Dimension(100, 20));
 		textFieldParticipants.setColumns(10);
 		GridBagConstraints gbc_textFieldParticipants = new GridBagConstraints();
@@ -128,16 +131,19 @@ public class SafariDestinationView extends JPanel {
 		
 		terrain1 = new JCheckBox("Terr\u00E4ng 1");
 		terrain1.setName("terrain1");
+		compArray.add(terrain1);
 		terrainPanel.add(terrain1);
 		terrains.add(terrain1);
 		
 		terrain2 = new JCheckBox("Terr\u00E4ng 2");
 		terrain2.setName("terrain2");
+		compArray.add(terrain2);
 		terrainPanel.add(terrain2);
 		terrains.add(terrain2);
 		
 		terrain3 = new JCheckBox("Terr\u00E4ng 3");
 		terrain3.setName("terrain3");
+		compArray.add(terrain3);
 		terrainPanel.add(terrain3);
 		terrains.add(terrain3);
 		
@@ -151,8 +157,8 @@ public class SafariDestinationView extends JPanel {
 		add(lblAnsvarigGuide, gbc_lblAnsvarigGuide);
 		
 		guideBox = new JComboBox<String>();
-		guideBox.addItem("Pelle");
 		guideBox.setName("guideBox");
+		compArray.add(guideBox);
 		guideBox.setPreferredSize(new Dimension(200, 26));
 		GridBagConstraints gbc_guideBox = new GridBagConstraints();
 		gbc_guideBox.ipadx = 99;
@@ -200,6 +206,7 @@ public class SafariDestinationView extends JPanel {
 		
 		availableGearList = new JList<String>(listModelAvailable);
 		availableGearList.setName("availableGearList");
+		compArray.add(availableGearList);
 		availableGearScrollPane.setViewportView(availableGearList);
 		
 		JPanel gearButtonPanel = new JPanel();
@@ -208,10 +215,12 @@ public class SafariDestinationView extends JPanel {
 		
 		JButton addGearButton = new JButton("L\u00E4gg till >>");
 		addGearButton.setName("addGearButton");
+		compArray.add(addGearButton);
 		gearButtonPanel.add(addGearButton);
 		
 		JButton removeGearButton = new JButton("<< Ta bort");
 		removeGearButton.setName("removeGearButton");
+		compArray.add(removeGearButton);
 		removeGearButton.setMaximumSize(new Dimension(105, 25));
 		gearButtonPanel.add(removeGearButton);
 		
@@ -222,6 +231,7 @@ public class SafariDestinationView extends JPanel {
 		fillUpList(); // testaLista
 		addedGearList = new JList<String>(listModelAdded);
 		addedGearList.setName("addedGearList");
+		compArray.add(addedGearList);
 		addedGearScrollPane.setViewportView(addedGearList);
 		
 		JPanel statusPanel = new JPanel();
@@ -239,11 +249,13 @@ public class SafariDestinationView extends JPanel {
 		
 		activeButton = new JRadioButton("Bokningsbar");
 		activeButton.setName("activeButton");
+		compArray.add(activeButton);
 		activeButton.setVisible(false);
 		statusPanel.add(activeButton);
 		
 		inactiveButton = new JRadioButton("Ej bokningsbar");
 		inactiveButton.setName("inactiveButton");
+		compArray.add(inactiveButton);
 		inactiveButton.setVisible(false);
 		statusPanel.add(inactiveButton);
 		
@@ -251,6 +263,7 @@ public class SafariDestinationView extends JPanel {
 		
 		saveNewSafariButton = new JButton("Save");
 		saveNewSafariButton.setName("saveNewSafariButton");
+		compArray.add(saveNewSafariButton);
 		
 		saveNewSafariButton.setMinimumSize(new Dimension(100, 25));
 		GridBagConstraints gbc_saveNewSafariButton = new GridBagConstraints();
@@ -264,9 +277,9 @@ public class SafariDestinationView extends JPanel {
 
 	}
 	public void initCompMap(){
-		Component[] compArray = this.getComponents();
-		for(int i=0; i<compArray.length; i++){
-			compMap.put(compArray[i].getName(), compArray[i]);
+		
+		for(int i=0; i<compArray.size(); i++){
+			compMap.put(compArray.get(i).getName(), compArray.get(i));
 		}
 	}
 
