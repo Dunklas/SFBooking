@@ -75,11 +75,12 @@ public class SafariDestinationController {
 			
 			if(modSelected==false){
 				model.newSafariDestination(location, equipment, participants, guide, terrain);
+				safariDestinationView.clearSelection();
 		} 
 			else if(modSelected==true){
 				
 			    setUpdatedFields(equipment,participants,guide,terrain,active,newSafari); // see method below
-				
+				  safariDestinationView.clearSelection();
 				modSelected = false;
 			}
 		}	
@@ -89,7 +90,7 @@ public class SafariDestinationController {
 		public void actionPerformed(ActionEvent e){
 			Component comp = (Component) e.getSource();
 			if(comp.getName()=="selectButton"){
-				
+				safariDestinationView.clearTerrain();
 				modSelected = true;
 				JList<String> modifyList = (JList<String>) safariDestinationMap.get("modifyList");
 				

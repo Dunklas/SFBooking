@@ -345,4 +345,18 @@ public class SafariDestinationView extends JPanel {
 			}
 		}
 	}
+
+	public void clearTerrain(){
+		for(JCheckBox c : terrains){
+       c.setSelected(false);
+		}
+	}
+
+	public void clearSelection(){
+		textFieldLocation.setText("");
+		textFieldParticipants("");
+		clearTerrain();
+
+
+	}
 }
