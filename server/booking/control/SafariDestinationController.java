@@ -121,19 +121,22 @@ public class SafariDestinationController {
 	    ActionListener equipmentListener = new ActionListener(){
 	    	public void actionPerformed(ActionEvent e){
          Component comp = (Component) e.getSource();
-         DefaultListModel<String> addedList = safariDestinationView.getListModelAdded();
-         DefaultListModel<String> availableList = safariDestinationView.getListModelAvailable();
+         DefaultListModel<String> addedListModel = safariDestinationView.getListModelAdded();
+         DefaultListModel<String> availableListModel = safariDestinationView.getListModelAvailable();
+
+         JList<String> addedList = (JList<String>) safariDestinationMap.get("addedGearList");
+         JList<String> availableList = (JList<String>) safariDestinationMap.get("availableGearList");
 
          if(comp.getName()=="addGearButton"){
 	     for(String s : availableList.getSelectedValuesList()){
-           addedList.addElement(s);
-           availableList.removeElement(s);
+           addedListModel.addElement(s);
+           availableListModel.removeElement(s);
          }
 	 }
          else if(comp.getName()=="removeGearButton"){
          	for(String s : addedList.getSelectedValuesList()){
-           availableList.addElement(s);
-           addedList.removeElement(s);
+           availableListModel.addElement(s);
+           addedListModel.removeElement(s);
          }
          }
 	    	}
