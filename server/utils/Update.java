@@ -55,7 +55,7 @@ public class Update{
 	}
 
     }
-    public void updateTerrain(String, location, String terrain) throws SQLException{
+    public void updateTerrain(String location, String terrain) throws SQLException{
 	Connection c = new OpenDb().getConnection();
 	if (c != null){
 	    PreparedStatement stmt = c.prepareStatement("UPDATE safaridestination SET terrain = ? WHERE location = ?");

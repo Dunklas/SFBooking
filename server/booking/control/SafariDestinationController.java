@@ -74,17 +74,17 @@ public class SafariDestinationController {
 			boolean active = safariDestinationView.checkStatus();
 			
 			if(modSelected==false){
-				model.newSafariDestination(location, equipmentReq, maxParticipants, guide, terrain);
+				model.newSafariDestination(location, equipment, participants, guide, terrain);
 		} 
 			else if(modSelected==true){
 				
 			    setUpdatedFields(equipment,participants,guide,terrain,active,newSafari); // see method below
 				
-				modSelected(false);
+				modSelected = false;
 			}
 		}	
-	};
-	
+	}
+	    };	
 	ActionListener selectListener = new ActionListener(){
 		public void actionPerformed(ActionEvent e){
 			Component comp = (Component) e.getSource();
@@ -136,7 +136,16 @@ public class SafariDestinationController {
      *
      */
     public ArrayList<String> convertTerrainFromDb(HashMap<String,Component> safariMap,SafariDestination destination){
-    	destination.selectSafariDestinationElement();
+	ArrayList<String> resList = new ArrayList<String>();
+    	String tempDest = destination.getLocation();
+	try{
+	String result = destination.getSafariDestinationElement(tempDest, "terrain");
+	
+
+	} catch (SQLException se){
+	    System.out.println("fel i safaridestinationcontroller");
+	}
+	return resList;
     }
     public void setUpdatedFields(String equipment,int participants,String guide,String terrain,
     		boolean active,SafariDestination destination){
@@ -149,9 +158,9 @@ public class SafariDestinationController {
     }
     
     
-	
-	
-	
-	
-	
 }
+	
+	
+	
+      	    
+
