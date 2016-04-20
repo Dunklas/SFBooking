@@ -327,4 +327,17 @@ public class SafariDestinationView extends JPanel {
 		guideBox.addItem(array.get(i));
 		}
 	}
+	public void fillTerrain(ArrayList<String> array){
+		for(int i = 0; i<array.size(); i++){
+			if(array.get(i)=="Terr\u00E4ng 1"){
+         terrain1.setSelected(true);
+			}
+			else if(array.get(i)=="Terr\u00E4ng 2"){
+				terrain2.setSelected(true);
+			}
+			else if(array.get(i)=="Terr\u00E4ng 3"){
+				terrain3.setSelected(true);
+			}
+		}
+	}
 }

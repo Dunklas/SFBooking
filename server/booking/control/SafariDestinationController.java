@@ -107,7 +107,7 @@ public class SafariDestinationController {
 				JComboBox<String> guideBox = (JComboBox<String>) safariDestinationMap.get("guideBox"); 
 				guideBox.setSelectedItem(newSafari.getGuide());
 				
-				// get terrain from db
+				safariDestinationView.fillTerrain(convertTerrainFromDb(newSafari));
 				
 				
 				} catch (SQLException se){
@@ -135,18 +135,24 @@ public class SafariDestinationController {
      *Methods for converting data etc 
      *
      */
-    public ArrayList<String> convertTerrainFromDb(HashMap<String,Component> safariMap,SafariDestination destination){
+    public ArrayList<String> convertTerrainFromDb(SafariDestination destination){
 	ArrayList<String> resList = new ArrayList<String>();
+    	
     	String tempDest = destination.getLocation();
 	try{
 	String result = destination.getSafariDestinationElement(tempDest, "terrain");
-	
+	Scanner parser = new Scanner(result).useDelimiter(";");
+
+	while(parser.next()){
+		resList.add(parser.next());
+	}
 
 	} catch (SQLException se){
 	    System.out.println("fel i safaridestinationcontroller");
 	}
 	return resList;
     }
+
     public void setUpdatedFields(String equipment,int participants,String guide,String terrain,
     		boolean active,SafariDestination destination){
     	destination.setEquipmentReq(equipment);
