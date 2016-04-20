@@ -314,7 +314,7 @@ public class SafariDestinationView extends JPanel {
 		return result;
 	}
 	public DefaultListModel<String> getListModel(){
-		return listModel;
+		return listModelAdded;
 	}
 	
 	

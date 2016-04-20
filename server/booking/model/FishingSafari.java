@@ -37,13 +37,29 @@ public class FishingSafari{
 	} catch
     }
     **/
+    public void setEndDate(Date date){
+	this.endDate = date;
+    }
+
+    public void setMinParticipantsMet(Boolean status){
+	this.minParticipantsMet = status;
+    }
+
+    public void setMaxParticipantsMet(Boolean status){
+	this.maxParticipantsMet = status;
+    }
+
     public void setId(int newId){
 	this.id = newId;
 
     }
+    
+    public int getId(){
+	return id;
+    }
 
-
-
-
+    public int getNrParticipants(){
+	return nrParticipants;
+    }
 
 }//End of class
