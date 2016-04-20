@@ -143,11 +143,12 @@ public class SafariDestinationController {
 	String result = destination.getSafariDestinationElement(tempDest, "terrain");
 	Scanner parser = new Scanner(result).useDelimiter(";");
 
-	while(parser.next()){
+	while(parser.hasNext()){
 		resList.add(parser.next());
 	}
 
 	} catch (SQLException se){
+	    System.out.println(se.getMessage());
 	    System.out.println("fel i safaridestinationcontroller");
 	}
 	return resList;

@@ -100,16 +100,16 @@ public class Select {
     public String selectSafariDestinationElement(String location, String column) throws SQLException{
 	String element = "";
 	Connection c = new OpenDb().getConnection();
-	PreparedStatement stmt = c.prepareStatement("SELECT ? FROM safaridestination WHERE location = ?");
-	stmt.setString(1, column);
-	stmt.setString(2, location);
+	PreparedStatement stmt = c.prepareStatement("SELECT * FROM safaridestination WHERE location = ?");
+	//stmt.setString(1, column);
+	stmt.setString(1, location);
 	ResultSet rs = stmt.executeQuery();
 
 	while (rs.next()){
 	    element = rs.getString(column);
 	   
 	}
-	
+	System.out.println("Lyckades med databasen");
 	return element;
     }
 
