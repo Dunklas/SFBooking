@@ -354,7 +354,7 @@ public class SafariDestinationView extends JPanel {
 
 	public void clearSelection(){
 		textFieldLocation.setText("");
-		textFieldParticipants("");
+		textFieldParticipants.setText("");
 		clearTerrain();
 
 
