@@ -143,9 +143,15 @@ public class SafariDestinationController {
 	String result = destination.getSafariDestinationElement(tempDest, "terrain");
 	Scanner parser = new Scanner(result).useDelimiter(";");
 
+
+int index = 0; // testing
 	while(parser.hasNext()){
 		resList.add(parser.next());
+
+    System.out.println(resList.get(index));
+    index++;
 	}
+
 
 	} catch (SQLException se){
 	    System.out.println(se.getMessage());
