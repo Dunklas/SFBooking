@@ -21,6 +21,9 @@ public class ModifyFishingSafariView extends JPanel {
 
 	HashMap<String,Component> compMap = new HashMap<String,Component>();
 	ArrayList<Component> compArray = new ArrayList<Component>();
+
+	DefaultListModel<String> placeholderModel = new DefaultListModel<String>();
+	JList<String> modifyList;
 	
 	public ModifyFishingSafariView() {
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
@@ -43,7 +46,7 @@ public class ModifyFishingSafariView extends JPanel {
 		gbc_modifyListScrollPane.gridy = 1;
 		panel.add(modifyListScrollPane, gbc_modifyListScrollPane);
 		
-		JList<String> modifyList = new JList<String>();
+		modifyList = new JList<String>();
 		compArray.add(modifyList);
 		modifyList.setName("modifyList");
 		modifyListScrollPane.setViewportView(modifyList);
@@ -97,6 +100,10 @@ public class ModifyFishingSafariView extends JPanel {
 	}
 	public HashMap<String,Component> getCompMap(){
 		return compMap;
+	}
+
+	public void fillList(DefaultListModel<String> listModel){
+      modifyList.setModel(listModel);
 	}
 
 }
