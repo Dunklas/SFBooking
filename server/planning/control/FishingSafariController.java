@@ -2,6 +2,7 @@ package server.planning.control;
 
 import server.planning.model.FishingSafariCatalog;
 import server.planning.model.SafariDestinationCatalog;
+import server.planning.model.SafariDestination;
 import client.ui.FishingSafariTopView;
 import client.ui.FishingSafariBottomView;
 import client.ui.ModifyFishingSafariView;
@@ -11,6 +12,8 @@ import java.awt.event.*;
 import javax.swing.event.*;
 import java.util.*;
 import org.jdatepicker.impl.*;
+import java.sql.*;
+import java.sql.Date;
 
 public class FishingSafariController {
 
@@ -37,15 +40,20 @@ public class FishingSafariController {
 		modifyView = mfsv;
 		modifyMap = modifyView.getCompMap();
 		addListeners(topMap, bottomMap);
+
+		try{
+			mfsv.fillList(fishingModel.selectAllFishingSafari());
+		}
+		catch(SQLException se){
+			se.printStackTrace();
+		}
 		
 		
 	}
 
 	
 	
-	public void newFishingSafari(){
-		
-	}
+
 	
 	/**
 	 * Adds listeners to components from a HashMap. HashMap derives from View-classes.
@@ -79,12 +87,21 @@ public class FishingSafariController {
 	
 	ActionListener datePickerListener = new ActionListener(){ // Is this needed?
 		public void actionPerformed(ActionEvent e){
-			Component comp = (Component) e.getSource();
+			JDatePickerImpl comp = (JDatePickerImpl) e.getSource();
 			if(comp.getName()=="startDate"){
-				// do something
+				JTextField startTimeTextField = (JTextField) bottomMap.get("startTime");
+				startTimeTextField.setText(comp.getModel().getValue().toString());
 			}
 		}
 	};
+
+/**
+*Method to create and insert new FishingSafari-instance into db
+*/
+		public void newFishingSafari(String destination,java.sql.Date startDate, java.sql.Date endDate){
+		SafariDestination destinationObject = destinationModel.selectSafariDestination(destination);
+		fishingModel.newFishingSafari(destinationObject,startDate,endDate);
+	}
 	
 	
 }

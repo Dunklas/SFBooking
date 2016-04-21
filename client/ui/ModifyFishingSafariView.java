@@ -16,6 +16,7 @@ import javax.swing.JComboBox;
 import javax.swing.Box;
 import java.util.HashMap;
 import java.util.ArrayList;
+import javax.swing.*;
 
 public class ModifyFishingSafariView extends JPanel {
 

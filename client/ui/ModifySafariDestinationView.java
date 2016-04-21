@@ -13,6 +13,8 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.JButton;
 import java.awt.Component;
 import javax.swing.*;
+import java.awt.*;
+import javax.swing.DefaultListModel;
 
 public class ModifySafariDestinationView extends JPanel {
 

@@ -28,7 +28,7 @@ public class Select {
 
 	while (rs.next()){
 	    String location =  rs.getString("location");
-		sdList.add(location);
+		sdList.addElement(location);
 	}//End of while
 
 	return sdList;
