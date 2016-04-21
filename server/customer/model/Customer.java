@@ -1,6 +1,6 @@
 package server.customer.model;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class Customer {
 
@@ -15,9 +15,12 @@ public class Customer {
 
     public Customer (int customerID, String firstName, String lastName, String email, String telephone, Date registered) {
 
+    	this.customerID = customerID;
     }
 
     public int getId(){
     	return customerID;
     }
+
+
 }
