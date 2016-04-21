@@ -13,7 +13,7 @@ import javax.swing.event.*;
 import java.util.*;
 import org.jdatepicker.impl.*;
 import java.sql.*;
-import java.sql.Date;
+import java.util.Date;
 
 public class FishingSafariController {
 
@@ -26,6 +26,9 @@ public class FishingSafariController {
 	
 	SafariDestinationCatalog destinationModel; // needed when creating new FishingSafari
 	FishingSafariCatalog fishingModel;
+
+	Date selectedStartDate;
+	Date selectedEndDate;
 	
 	
 	public FishingSafariController(FishingSafariTopView fstv,FishingSafariBottomView fsbv,ModifyFishingSafariView mfsv,
@@ -40,15 +43,34 @@ public class FishingSafariController {
 		modifyView = mfsv;
 		modifyMap = modifyView.getCompMap();
 		addListeners(topMap, bottomMap);
+    fillModifyList();
+		
+		bottomView.fillDestinationPicker(getAllDestinations());
+		
+	}
 
+	public void fillModifyList(){
 		try{
-			mfsv.fillList(fishingModel.selectAllFishingSafari());
+			modifyView.fillList(fishingModel.selectAllFishingSafaris());
 		}
 		catch(SQLException se){
 			se.printStackTrace();
 		}
-		
-		
+	}
+
+	public ArrayList<String> getAllDestinations(){
+		ArrayList<String> destinationList = new ArrayList<String>();
+		try{
+			  
+        DefaultListModel<String> destinationListModel = destinationModel.selectAllSafariDestination();
+        for(int i=0; i<destinationListModel.size(); i++){
+        	destinationList.add(destinationListModel.getElementAt(i));
+        }
+		}
+		catch(SQLException se){
+			se.printStackTrace();
+		}
+		return destinationList;
 	}
 
 	
@@ -63,8 +85,8 @@ public class FishingSafariController {
 	 */
 	public void addListeners(HashMap<String,Component> topMap,HashMap<String,Component> bottomMap){
 		//1st add components from topView
-		JDatePickerImpl startDate = (JDatePickerImpl) topMap.get("startDate"); 
-		JDatePickerImpl endDate = (JDatePickerImpl) topMap.get("endDate");
+		JButton startDate = (JButton) topMap.get("selectStartDate"); 
+		JButton endDate = (JButton) topMap.get("selectEndDate");
 		startDate.addActionListener(datePickerListener);
 		endDate.addActionListener(datePickerListener);
 		
@@ -80,17 +102,30 @@ public class FishingSafariController {
 		public void actionPerformed(ActionEvent e){
 			Component comp = (Component) e.getSource();
 			if(comp.getName()=="saveFishingSafari"){
-				
+				JComboBox<String> destinationPicker = (JComboBox<String>) bottomMap.get("locationPicker");
+				String destination = destinationPicker.getSelectedItem();
+
+				newFishingSafari(destination,selectedStartDate,selectedEndDate); // Have to handle exceptions in input...
 			}
 		}
 	};
 	
 	ActionListener datePickerListener = new ActionListener(){ // Is this needed?
 		public void actionPerformed(ActionEvent e){
-			JDatePickerImpl comp = (JDatePickerImpl) e.getSource();
-			if(comp.getName()=="startDate"){
+			Component comp = (Component) e.getSource();
+			if(comp.getName()=="selectStartDate"){
 				JTextField startTimeTextField = (JTextField) bottomMap.get("startTime");
-				startTimeTextField.setText(comp.getModel().getValue().toString());
+				JDatePickerImpl startDatePicker = (JDatePickerImpl) topMap.get("startDate");
+				
+				startTimeTextField.setText(startDatePicker.getJFormattedTextField().getText());
+				selectedStartDate = (Date) startDatePicker.getModel().getValue();
+			}
+			else if(comp.getName()=="selectEndDate"){
+				JTextField endTimeTextField = (JTextField) bottomMap.get("endTime");
+				JDatePickerImpl endDatePicker = (JDatePickerImpl) topMap.get("endDate");
+
+        endTimeTextField.setText(endDatePicker.getJFormattedTextField().getText());
+        selectedEndDate = (Date) endDatePicker.getModel().getValue();
 			}
 		}
 	};
@@ -98,9 +133,16 @@ public class FishingSafariController {
 /**
 *Method to create and insert new FishingSafari-instance into db
 */
-		public void newFishingSafari(String destination,java.sql.Date startDate, java.sql.Date endDate){
+		public void newFishingSafari(String destination,Date startDate, Date endDate){
+		try{
 		SafariDestination destinationObject = destinationModel.selectSafariDestination(destination);
-		fishingModel.newFishingSafari(destinationObject,startDate,endDate);
+		
+    fishingModel.newFishingSafari(destinationObject,startDate,endDate);
+		}
+		catch(SQLException se){
+			se.printStackTrace();
+		}
+		
 	}
 	
 	

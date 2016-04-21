@@ -10,7 +10,7 @@ public class FishingSafariCatalog{
     
     private List<FishingSafari> safariList = new ArrayList<>();
 
-    public void newFishingSafari(SafariDestination destination, java.sql.Date startDate, java.sql.Date endDate) {
+    public void newFishingSafari(SafariDestination destination, java.util.Date startDate, java.util.Date endDate) {
 
 	String safariDestination = destination.getLocation();
 

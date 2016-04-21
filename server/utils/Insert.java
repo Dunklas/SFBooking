@@ -44,13 +44,13 @@ public class Insert {
      *@param endDate Date when the Fishing Safari ends
      *@return void
      */
-    public void insertFishingSafari(String safariDestination, java.sql.Date startDate, java.sql.Date endDate) throws SQLException {
+    public void insertFishingSafari(String safariDestination, java.util.Date startDate, java.util.Date endDate) throws SQLException {
 	Connection c = new OpenDb().getConnection();
 	if (c != null) {
 	    PreparedStatement stmt = c.prepareStatement("INSERT INTO fishingsafari (safaridestination, end_date, start_date) VALUES (?, ?, ?);");
 	    stmt.setString(1, safariDestination);
-	    stmt.setDate(2, endDate);
-	    stmt.setDate(3, startDate);
+	    stmt.setDate(2, new java.sql.Date(endDate.getTime()));
+	    stmt.setDate(3, new java.sql.Date(startDate.getTime()));
 	    stmt.executeUpdate();
 
 	    stmt.close();
