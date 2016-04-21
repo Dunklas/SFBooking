@@ -39,6 +39,13 @@ public class SafariDestinationCatalog{
 
     }
 
+    public DefaultListModel<String> selectSafariDestinationByStatus(boolean active) throws SQLException {
+	DefaultListModel<String> sdList = new DefaultListModel<String>();
+	Select dbEntry = new Select();
+	sdList = dbEntry.selectSafariDestinationByStatus(active);
+	return sdList;
+    }
+
     public SafariDestination selectSafariDestination(String location) throws SQLException {
 	Select dbEntry = new Select();
 	SafariDestination tempSd = dbEntry.selectSafariDestination(location);
