@@ -44,7 +44,7 @@ public class Insert {
      *@param endDate Date when the Fishing Safari ends
      *@return void
      */
-    public void insertFishingSafari(String safariDestination, Date startDate, Date endDate) throws SQLException {
+    public void insertFishingSafari(String safariDestination, java.sql.Date startDate, java.sql.Date endDate) throws SQLException {
 	Connection c = new OpenDb().getConnection();
 	if (c != null) {
 	    PreparedStatement stmt = c.prepareStatement("INSERT INTO fishingsafari (safaridestination, end_date, start_date) VALUES (?, ?, ?);");
@@ -58,7 +58,7 @@ public class Insert {
 	}
     }
 
-    public void insertCustomer(String firstName, String lastName, String email, String telephone, java.util.Date registered) throws SQLExeption { 
+    public void insertCustomer(String firstName, String lastName, String email, String telephone, java.util.Date registered) throws SQLException { 
     Connection c = new OpenDb().getConnection();
     if (c != null) {
     	PreparedStatement stmt = c.prepareStatement("INSERT INTO customer (first_name, last_name, email, phone_nr, registered) VALUES (?,?,?,?,?);");
@@ -74,7 +74,7 @@ public class Insert {
     }	
     }
 
-    public void insertBooking(int bookingStatus, double price, int safariID, int customerID, Date booked) throws SQLException {
+    public void insertBooking(int bookingStatus, double price, int safariID, int customerID, java.sql.Date booked) throws SQLException {
     Connection c = new OpenDb().getConnection();
     if (c != null) {
     	PreparedStatement stmt = c.prepareStatement("INSERT INTO booking (booking_status, price, safari, customer, booked) VALUES (?,?,?,?,?);");

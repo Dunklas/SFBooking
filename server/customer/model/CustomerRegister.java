@@ -2,6 +2,7 @@ package server.customer.model;
 
 import java.util.ArrayList;
 import java.util.Date;
+import server.utils.Insert;
 
 public class CustomerRegister {
 
