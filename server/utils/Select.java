@@ -28,7 +28,7 @@ public class Select {
 
 	while (rs.next()){
 	    String location =  rs.getString("location");
-		sdList.add(location);
+	    sdList.addElement(location);
 	}//End of while
 
 	return sdList;
@@ -89,6 +89,8 @@ public class Select {
 	
 	}
 
+   
+
 
     public String selectSafariDestinationElement(String location, String column) throws SQLException{
 	String element = "";
@@ -107,6 +109,24 @@ public class Select {
 	return element;
     }
 
+    public DefaultListModel<String> selectAllFishingSafaris() throws SQLException{
+	DefaultListModel<String> fsList = new DefaultListModel<String>();
+	Connection c = new OpenDb().getConnection();
+	PreparedStatement stmt = c.prepareStatement("SELECT * FROM fishingsafari");
+	ResultSet rs = stmt.executeQuery();
+	String tempFs = "";
+
+	while (rs.next()){
+	    tempFs = rs.getString("safaridestination");
+	    tempFs = tempFs +";" + rs.getDate("start_date");
+	    tempFs = tempFs + ";" + rs.getDate("end_date");
+
+	    fsList.addElement(tempFs);
+
+	}
+	return fsList;
+
+    }
 
 
 }//End of class
