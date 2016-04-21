@@ -21,6 +21,7 @@ import java.util.*;
 public class FishingSafariBottomView extends JPanel {
 	private JTextField startTimeTextfield;
 	private JTextField endTimeTextfield;
+	JComboBox<String> locationPicker;
 
 	private HashMap<String,Component> compMap = new HashMap<String,Component>();
 	ArrayList<Component> compArray = new ArrayList<Component>();
@@ -90,7 +91,7 @@ public class FishingSafariBottomView extends JPanel {
 		horizontalStrut_2.setMaximumSize(new Dimension(20, 20));
 		pickLocationPanel.add(horizontalStrut_2);
 		
-		JComboBox<String> locationPicker = new JComboBox<String>();
+		locationPicker = new JComboBox<String>();
 		compArray.add(locationPicker);
 		locationPicker.setName("locationPicker");
 		locationPicker.setMaximumSize(new Dimension(150, 25));
@@ -222,6 +223,12 @@ public class FishingSafariBottomView extends JPanel {
 	}
 	public HashMap<String,Component> getCompMap(){
 		return compMap;
+	}
+
+	public void fillDestinationPicker(ArrayList<String> array){
+		for(String destination : array){
+			locationPicker.addItem(destination);
+		}
 	}
 
 }
