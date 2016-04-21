@@ -56,4 +56,36 @@ public class Insert {
 	    c.close();
 	}
     }
+
+    public void insertCustomer(String firstName, String lastName, String email, String telephone, Date registered) throws SQLExeption { 
+    Connection c = new OpenDb().getConnection();
+    if (c != null) {
+    	PreparedStatement stmt = c.prepareStatement("INSERT INTO customer (first_name, last_name, email, phone_nr, registered) VALUES (?,?,?,?,?);");
+    	stmt.setString(1, firstName);
+    	stmt.setString(2, lastName);
+    	stmt.setString(3, email);
+    	stmt.setString(4, telephone);
+    	stmt.setDate(5, registered);
+        stmt.executeUpdate();
+
+        stmt.close();
+        c.close();
+    }	
+    }
+
+    public void insertBooking(int bookingStatus, double price, int safariID, int customerID, Date booked) throws SQLException {
+    Connection c = new OpenDb().getConnection();
+    if (c != null) {
+    	PreparedStatement stmt = c.prepareStatement("INSERT INTO booking (booking_status, price, safari, customer, booked) VALUES (?,?,?,?,?);");
+    	stmt.setInt(1, bookingStatus);
+    	stmt.setDouble(2, price);
+    	stmt.setInt(3, safariID);
+    	stmt.setInt(4, customerID);
+    	stmt.setDate(5, booked);
+    	stmt.executeUpdate();
+
+    	stmt.close();
+    	c.close();
+    }	
+    }
 }
