@@ -28,6 +28,6 @@ public class CustomerRegister {
     }
 
     public boolean checkCustomer(String email) {
-
+    return true;
     }
 }
