@@ -74,7 +74,7 @@ public class Insert {
     }	
     }
 
-    public void insertBooking(int bookingStatus, double price, int safariID, int customerID, java.sql.Date booked) throws SQLException {
+    public void insertBooking(int bookingStatus, double price, int safariID, int customerID, java.util.Date booked) throws SQLException {
     Connection c = new OpenDb().getConnection();
     if (c != null) {
     	PreparedStatement stmt = c.prepareStatement("INSERT INTO booking (booking_status, price, safari, customer, booked) VALUES (?,?,?,?,?);");
@@ -82,7 +82,7 @@ public class Insert {
     	stmt.setDouble(2, price);
     	stmt.setInt(3, safariID);
     	stmt.setInt(4, customerID);
-    	stmt.setDate(5, booked);
+    	stmt.setDate(5, new java.sql.Date(booked.getTime()));
     	stmt.executeUpdate();
 
     	stmt.close();

@@ -16,4 +16,8 @@ public class Customer {
     public Customer (int customerID, String firstName, String lastName, String email, String telephone, Date registered) {
 
     }
+
+    public int getId(){
+    	return customerID;
+    }
 }
