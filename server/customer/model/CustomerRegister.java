@@ -8,7 +8,7 @@ public class CustomerRegister {
     private ArrayList<Customer> customerList;
 
 
-    public CustomerRegistered() {
+    public CustomerRegister() {
 	customerList = new ArrayList<>();
     }
 
@@ -20,6 +20,9 @@ public class CustomerRegister {
     Insert dbEntry = new Insert();
     dbEntry.insertCustomer(firstName, lastName, email, telephone, registrationDate);
 
+    }
+    catch (Exception x){
+    	x.printStackTrace();
     }
     }
 
