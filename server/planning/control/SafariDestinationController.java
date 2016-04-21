@@ -1,4 +1,4 @@
-package server.booking.control;
+package server.planning.control;
 
 
 import javax.swing.*;
@@ -6,10 +6,10 @@ import javax.swing.event.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
-import server.booking.model.SafariDestinationCatalog;
+import server.planning.model.SafariDestinationCatalog;
 import client.ui.SafariDestinationView; 
 import client.ui.ModifySafariDestinationView;
-import server.booking.model.SafariDestination;
+import server.planning.model.SafariDestination;
 import java.sql.*;
 
 public class SafariDestinationController {
@@ -24,7 +24,7 @@ public class SafariDestinationController {
 	HashMap<String,Component> safariDestinationMap;
 	HashMap<String,Component> modifySafariDestinationMap;
 	
-	SafariDestination newSafari;
+	SafariDestination newSafari; // declare object here to be created when needed during updatingphase
 	
 	boolean modSelected = false;
 	
@@ -76,6 +76,12 @@ public class SafariDestinationController {
 			if(modSelected==false){
 				model.newSafariDestination(location, equipment, participants, guide, terrain);
 				safariDestinationView.clearSelection();
+        try{
+				modifySafariDestinationView.fillList(model.selectAllSafariDestination());
+			}
+			catch(SQLException se){
+				System.out.println(se.getMessage());
+			}
 		} 
 			else if(modSelected==true){
 				  
@@ -96,11 +102,11 @@ public class SafariDestinationController {
 				modSelected = true;
 				JList<String> modifyList = (JList<String>) safariDestinationMap.get("modifyList");
 				
-				String selected = modifySafariDestinationView.getValues();
+				String selectedDestination = modifySafariDestinationView.getSelectedDestination();
 				safariDestinationView.enableStatus(true);
 				
 				try{
-				newSafari = model.selectSafariDestination(selected);
+				newSafari = model.selectSafariDestination(selectedDestination);
 				
 				JTextField locationText = (JTextField) safariDestinationMap.get("location");
 				locationText.setText(newSafari.getLocation());
@@ -113,6 +119,10 @@ public class SafariDestinationController {
 				guideBox.setSelectedItem(newSafari.getGuide());
 				
 				safariDestinationView.fillTerrain(convertTerrainFromDb(newSafari));
+
+				safariDestinationView.setActive(newSafari.getActive());
+
+
 				
 				
 				} catch (SQLException se){
@@ -171,20 +181,16 @@ public class SafariDestinationController {
      *
      */
     public ArrayList<String> convertTerrainFromDb(SafariDestination destination){
-	ArrayList<String> resList = new ArrayList<String>();
+	ArrayList<String> parsedTerrain = new ArrayList<String>();
     	
     	String tempDest = destination.getLocation();
 	try{
 	String result = destination.getSafariDestinationElement(tempDest, "terrain");
 	Scanner parser = new Scanner(result).useDelimiter(";");
 
-
-int index = 0; // testing
 	while(parser.hasNext()){
-		resList.add(parser.next());
+		parsedTerrain.add(parser.next());
 
-		//  System.out.println(resList.get(index));
-		// index++;
 	}
 
 
@@ -192,7 +198,7 @@ int index = 0; // testing
 	    System.out.println(se.getMessage());
 	    System.out.println("fel i safaridestinationcontroller");
 	}
-	return resList;
+	return parsedTerrain;
     }
 
     public void setUpdatedFields(String equipment,int participants,String guide,String terrain,

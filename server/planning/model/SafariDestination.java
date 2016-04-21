@@ -1,4 +1,4 @@
-package server.booking.model;
+package server.planning.model;
 
 import java.sql.*;
 import server.utils.Update;

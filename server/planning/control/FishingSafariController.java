@@ -1,7 +1,7 @@
-package server.booking.control;
+package server.planning.control;
 
-import server.booking.model.FishingSafariCatalog;
-import server.booking.model.SafariDestinationCatalog;
+import server.planning.model.FishingSafariCatalog;
+import server.planning.model.SafariDestinationCatalog;
 import client.ui.FishingSafariTopView;
 import client.ui.FishingSafariBottomView;
 import client.ui.ModifyFishingSafariView;

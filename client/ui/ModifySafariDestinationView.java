@@ -23,7 +23,7 @@ public class ModifySafariDestinationView extends JPanel {
 	JScrollPane modifyListScrollPane;
 	
 	public ModifySafariDestinationView() {
-		setPreferredSize(new Dimension(452, 641));
+		setPreferredSize(new Dimension(200, 641));
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{0, 400, 0};
 		gridBagLayout.rowHeights = new int[]{392, 0, 0};
@@ -66,7 +66,7 @@ public class ModifySafariDestinationView extends JPanel {
 
 		
 	}
-    public String getValues(){
+    public String getSelectedDestination(){
 	return modifyList.getSelectedValue();
     }    
 

@@ -1,4 +1,4 @@
-package server.booking.model;
+package server.planning.model;
 
 import javax.swing.DefaultListModel;
 import java.util.*;

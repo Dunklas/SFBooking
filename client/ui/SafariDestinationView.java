@@ -59,7 +59,7 @@ public class SafariDestinationView extends JPanel {
 	public SafariDestinationView() {
 		
 		
-		setBackground(new Color(204, 204, 204));
+setBackground(UIManager.getColor("CheckBox.light"));
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{443, 0};
 		gridBagLayout.rowHeights = new int[]{6, -5, 2, 22, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
@@ -119,7 +119,7 @@ public class SafariDestinationView extends JPanel {
 		add(lblTerrngtyp, gbc_lblTerrngtyp);
 		
 		JPanel terrainPanel = new JPanel();
-		terrainPanel.setBackground(new Color(204, 204, 204));
+		terrainPanel.setBackground(UIManager.getColor("CheckBox.light"));
 		GridBagConstraints gbc_terrainPanel = new GridBagConstraints();
 		gbc_terrainPanel.insets = new Insets(0, 0, 5, 0);
 		gbc_terrainPanel.ipady = 15;
@@ -170,7 +170,7 @@ public class SafariDestinationView extends JPanel {
 		guideBox.setMaximumSize(new Dimension(200, 25));
 		
 		JPanel guidePanel = new JPanel();
-		guidePanel.setBackground(new Color(204, 204, 204));
+		guidePanel.setBackground(UIManager.getColor("CheckBox.light"));
 		GridBagConstraints gbc_guidePanel = new GridBagConstraints();
 		gbc_guidePanel.insets = new Insets(0, 0, 5, 0);
 		gbc_guidePanel.ipady = 15;
@@ -190,7 +190,7 @@ public class SafariDestinationView extends JPanel {
 		add(lblUtrustning, gbc_lblUtrustning);
 		
 		JPanel gearPanel = new JPanel();
-		gearPanel.setBackground(new Color(204, 204, 204));
+		gearPanel.setBackground(UIManager.getColor("CheckBox.light"));
 		GridBagConstraints gbc_gearPanel = new GridBagConstraints();
 		gbc_gearPanel.insets = new Insets(0, 0, 5, 0);
 		gbc_gearPanel.ipady = 99;
@@ -201,6 +201,7 @@ public class SafariDestinationView extends JPanel {
 		gearPanel.setLayout(new BoxLayout(gearPanel, BoxLayout.X_AXIS));
 		
 		JScrollPane availableGearScrollPane = new JScrollPane();
+		availableGearScrollPane.setMaximumSize(new Dimension(300, 32767));
 		availableGearScrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		gearPanel.add(availableGearScrollPane);
 		
@@ -225,17 +226,20 @@ public class SafariDestinationView extends JPanel {
 		gearButtonPanel.add(removeGearButton);
 		
 		JScrollPane addedGearScrollPane = new JScrollPane();
+		addedGearScrollPane.setMaximumSize(new Dimension(300, 32767));
 		addedGearScrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		gearPanel.add(addedGearScrollPane);
 		
 		fillUpAvailableList(); // testaLista
 		addedGearList = new JList<String>(listModelAdded);
+		addedGearList.setPreferredSize(new Dimension(100, 50));
+		addedGearList.setSize(new Dimension(100, 50));
 		addedGearList.setName("addedGearList");
 		compArray.add(addedGearList);
 		addedGearScrollPane.setViewportView(addedGearList);
 		
 		JPanel statusPanel = new JPanel();
-		statusPanel.setBackground(new Color(204, 204, 204));
+		statusPanel.setBackground(UIManager.getColor("CheckBox.light"));
 		
 		
 		
@@ -274,6 +278,8 @@ public class SafariDestinationView extends JPanel {
 		
 		
 		initCompMap();
+		
+
 
 	}
 	public void initCompMap(){
@@ -365,6 +371,7 @@ public class SafariDestinationView extends JPanel {
 	}
 
 	public void setActive(boolean status){
+		System.out.println(status);
 		if(status==true){
 			activeButton.setSelected(true);
 		}
