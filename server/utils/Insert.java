@@ -2,6 +2,7 @@ package server.utils;
 
 import java.sql.*;
 import java.time.*;
+import java.util.*;
 /**
  *@author Grupp 11
  *@version 1.1
@@ -57,7 +58,7 @@ public class Insert {
 	}
     }
 
-    public void insertCustomer(String firstName, String lastName, String email, String telephone, Date registered) throws SQLExeption { 
+    public void insertCustomer(String firstName, String lastName, String email, String telephone, java.util.Date registered) throws SQLExeption { 
     Connection c = new OpenDb().getConnection();
     if (c != null) {
     	PreparedStatement stmt = c.prepareStatement("INSERT INTO customer (first_name, last_name, email, phone_nr, registered) VALUES (?,?,?,?,?);");
@@ -65,7 +66,7 @@ public class Insert {
     	stmt.setString(2, lastName);
     	stmt.setString(3, email);
     	stmt.setString(4, telephone);
-    	stmt.setDate(5, registered);
+    	stmt.setDate(5, new java.sql.Date(registered.getTime()));
         stmt.executeUpdate();
 
         stmt.close();
