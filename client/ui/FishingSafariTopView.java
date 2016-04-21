@@ -9,6 +9,7 @@ import java.util.Properties;
 import java.util.HashMap;
 import java.util.ArrayList;
 import java.awt.*;
+import java.sql.Date;
 
 
 public class FishingSafariTopView extends JPanel {
@@ -19,7 +20,7 @@ public class FishingSafariTopView extends JPanel {
 	public FishingSafariTopView() {
 		setLayout(new GridLayout(0, 2, 0, 0));
 		
-		UtilDateModel model = new UtilDateModel();
+		SqlDateModel model = new SqlDateModel();
 		Properties prop = new Properties();
 		prop.put("text.today","Today");
 		prop.put("text.month", "Month");

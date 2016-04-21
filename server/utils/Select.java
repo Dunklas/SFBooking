@@ -1,6 +1,6 @@
 package server.utils;
 
-import server.booking.model.*;
+import server.planning.model.*;
 import javax.swing.DefaultListModel;
 import java.util.*;
 import java.sql.*;
