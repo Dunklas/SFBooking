@@ -1,8 +1,10 @@
 package server.planning.model;
 
+import java.sql.*;
 import java.util.*;
 import java.sql.Date;
-import server.utils.Insert;
+import server.utils.*;
+import javax.swing.*;
 
 public class FishingSafariCatalog{
     
@@ -28,7 +30,12 @@ public class FishingSafariCatalog{
 
     }
 
-
+    public DefaultListModel<String> selectAllFishingSafaris() throws SQLException{
+	DefaultListModel<String> fsList = new DefaultListModel<String>();
+	Select dbEntry = new Select();
+	fsList = dbEntry.selectAllFishingSafaris();
+	return fsList;
+    }
 
 
 
