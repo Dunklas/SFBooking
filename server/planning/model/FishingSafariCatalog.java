@@ -16,7 +16,7 @@ public class FishingSafariCatalog{
 
 	try {
 	    Insert dbEntry = new Insert();
-	    dbEntry.insertFishingSafari(safariDestination, startDate, endDate);
+	    dbEntry.insertFishingSafari(safariDestination, startDate, endDate,0);
 	} catch (Exception ex) {
 	    ex.printStackTrace();
 	}

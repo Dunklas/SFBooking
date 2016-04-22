@@ -9,20 +9,20 @@ public class FishingSafari{
     private Date startDate;
     private Date endDate;
     
-    private boolean minParticipantsMet;
-    private boolean maxParticipantsMet;
+    private int status; // 0-4 , 0=preliminar,1=utforbar,2=slutgiltig,3=kancellerad,4=genomford
     private Date announcementDate;
     //bookinglist
     //equipmentlist
-    private int nrParticipants;
+    
     private Date timeLimit;
     private boolean assignmentPlanSent;
 
-    public FishingSafari(SafariDestination destination, Date startDate, Date endDate) {
+    public FishingSafari(SafariDestination destination, Date startDate, Date endDate,int status) {
 	
     	this.safariDestination = destination;
 	    this.startDate = startDate;
 	    this.endDate = endDate;
+        this.status = status;
     }
     
     public SafariDestination getSafariDestination(){
@@ -41,13 +41,9 @@ public class FishingSafari{
 	this.endDate = date;
     }
 
-    public void setMinParticipantsMet(Boolean status){
-	this.minParticipantsMet = status;
-    }
+    
 
-    public void setMaxParticipantsMet(Boolean status){
-	this.maxParticipantsMet = status;
-    }
+    
 
     public void setId(int newId){
 	this.id = newId;
@@ -58,8 +54,6 @@ public class FishingSafari{
 	return id;
     }
 
-    public int getNrParticipants(){
-	return nrParticipants;
-    }
+    
 
 }//End of class

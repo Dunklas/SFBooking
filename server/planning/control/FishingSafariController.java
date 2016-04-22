@@ -145,7 +145,7 @@ public class FishingSafariController {
 		
 	}
 	public void updateFishingSafari(String destination,Date startDate, Date endDate, int status){
-		try{
+		/*try{
 			// update FishingSafari-object
 		
 		
@@ -153,7 +153,7 @@ public class FishingSafariController {
 		}
 		catch(SQLException se){
 			se.printStackTrace();
-		}
+		}*/
 	}
 	
 	
