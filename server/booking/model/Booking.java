@@ -8,6 +8,7 @@ public class Booking {
 
     private int bookingID;
     private int bookingStatus; // 0 = Preliminary, 1 = Payed, 2 = Confirmed, 3 = Completed, 4 = Cancelled by customer, 5 = Cancelled
+    private int nrParticipants;
     private double price;
     private FishingSafari fishingSafari;
     private Customer customer;
