@@ -17,6 +17,7 @@ import javax.swing.Box;
 import java.util.HashMap;
 import java.util.ArrayList;
 import javax.swing.*;
+import java.util.Scanner;
 
 public class ModifyFishingSafariView extends JPanel {
 
@@ -118,8 +119,16 @@ public class ModifyFishingSafariView extends JPanel {
 		}
       modifyList.setModel(listModel);
 	}
-	public String getSelectedFishingSafari(){
-		return modifyList.getSelectedValue();
+	public int getSelectedFishingSafari(){
+		Scanner parser = new Scanner(modifyList.getSelectedValue());
+		int fishingSafariID = 0;
+    try{
+    fishingSafariID = Integer.parseInt(parser.next());
 	}
+	catch (NumberFormatException e){
+     e.printStackTrace();
+	}
+	return fishingSafariID;
+}
 
 }
