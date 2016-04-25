@@ -24,4 +24,48 @@ public class Booking {
 	this.customer = customer;
     }
 
+    public int getBookingID(){
+    return bookingID;    
+    }
+
+    public int getBookingStatus(){
+    return bookingStatus;    
+    }
+
+    public double getPrice(){
+    return price;    
+    }
+
+    public FishingSafari getFishingSafari(){
+    return FishingSafari;    
+    }
+
+    public Customer getCustomer(){
+    return Customer;    
+    }
+
+    public Date getPreliminaryConfirmationSent(){
+    return preliminaryConfirmationSent;    
+    }
+
+    public Date getFinalConfirmationSent(){
+    return finalConfirmationSent;
+    }
+
+    public Date getPaymentRecieved(){
+    return paymentRecieved;
+    }
+
+    public Date getBookingCancelled(){
+    return bookingCancelled;    
+    }
+
+    public Date getBooked(){
+    return booked;    
+    }
+
+    public Date getRefunded(){
+    return refunded;    
+    }
+
 }
