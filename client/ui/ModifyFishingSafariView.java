@@ -91,6 +91,14 @@ public class ModifyFishingSafariView extends JPanel {
 		comboBox.setMaximumSize(new Dimension(150, 25));
 		modifyButtonPanel.add(comboBox);
 		
+		Component verticalStrut_3 = Box.createVerticalStrut(5);
+		modifyButtonPanel.add(verticalStrut_3);
+		
+		JButton selectButton = new JButton("Select");
+		modifyButtonPanel.add(selectButton);
+		selectButton.setName("selectButton");
+		compArray.add(selectButton);
+		
 		initCompMap();
 
 	}

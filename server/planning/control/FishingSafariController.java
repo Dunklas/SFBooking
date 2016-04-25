@@ -103,7 +103,7 @@ public class FishingSafariController {
 			Component comp = (Component) e.getSource();
 			if(comp.getName()=="saveFishingSafari"){
 				JComboBox<String> destinationPicker = (JComboBox<String>) bottomMap.get("locationPicker");
-				String destination = destinationPicker.getSelectedItem();
+				String destination = destinationPicker.getSelectedItem().toString();
 
 				newFishingSafari(destination,selectedStartDate,selectedEndDate); // Have to handle exceptions in input...
 			}
@@ -143,6 +143,17 @@ public class FishingSafariController {
 			se.printStackTrace();
 		}
 		
+	}
+	public void updateFishingSafari(String destination,Date startDate, Date endDate, int status){
+		/*try{
+			// update FishingSafari-object
+		
+		
+    
+		}
+		catch(SQLException se){
+			se.printStackTrace();
+		}*/
 	}
 	
 	
