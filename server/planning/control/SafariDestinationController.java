@@ -59,8 +59,8 @@ public class SafariDestinationController {
 			JTextField locationText = (JTextField) safariDestinationMap.get("location");
 			String location = locationText.getText();
 			
-			
-			String equipment = safariDestinationView.checkEquipment(safariDestinationView.getListModelAdded());
+			JTextArea equipmentText = (JTextArea) safariDestinationMap.get("equipmentReq");
+			String equipment = equipmentText.getText();
 			
 			JTextField participantsText = (JTextField) safariDestinationMap.get("participants");
 			int participants = Integer.parseInt(participantsText.getText()); // Vart ska vi hantera verifiering av input
@@ -98,7 +98,7 @@ public class SafariDestinationController {
 			Component comp = (Component) e.getSource();
 			if(comp.getName()=="selectButton"){
 				safariDestinationView.clearTerrain();
-        safariDestinationView.clearAddedEquipment();
+        
 
 				modSelected = true;
 				JList<String> modifyList = (JList<String>) safariDestinationMap.get("modifyList");
@@ -123,7 +123,8 @@ public class SafariDestinationController {
 
 				safariDestinationView.setActive(newSafari.getActive());
 
-        safariDestinationView.fillUpAddedList(newSafari.getEquipmentReq());
+        JTextArea equipmentText = (JTextArea) safariDestinationMap.get("equipmentReq");
+        equipmentText.setText(newSafari.getEquipmentReq());
 
 
 				
@@ -135,29 +136,7 @@ public class SafariDestinationController {
 		}
 	    };
 
-	    ActionListener equipmentListener = new ActionListener(){
-	    	public void actionPerformed(ActionEvent e){
-         Component comp = (Component) e.getSource();
-         DefaultListModel<String> addedListModel = safariDestinationView.getListModelAdded();
-         DefaultListModel<String> availableListModel = safariDestinationView.getListModelAvailable();
-
-         JList<String> addedList = (JList<String>) safariDestinationMap.get("addedGearList");
-         JList<String> availableList = (JList<String>) safariDestinationMap.get("availableGearList");
-
-         if(comp.getName()=="addGearButton"){
-	     for(String s : availableList.getSelectedValuesList()){
-           addedListModel.addElement(s);
-           availableListModel.removeElement(s);
-         }
-	 }
-         else if(comp.getName()=="removeGearButton"){
-         	for(String s : addedList.getSelectedValuesList()){
-           availableListModel.addElement(s);
-           addedListModel.removeElement(s);
-         }
-         }
-	    	}
-	    };
+	  
 	
 	    /**
 	     * Adds listeners
@@ -171,12 +150,6 @@ public class SafariDestinationController {
 			JButton selectButton = (JButton) modifyMap.get("selectButton");
 			selectButton.addActionListener(selectListener);
 
-      JButton addButton = (JButton) safariMap.get("addGearButton");
-      addButton.addActionListener(equipmentListener);
-
-      JButton removeButton = (JButton) safariMap.get("removeGearButton");
-      removeButton.addActionListener(equipmentListener);
-		
 	}
     
     /**
