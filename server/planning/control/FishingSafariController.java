@@ -139,13 +139,13 @@ public class FishingSafariController {
         if(comp.getName()=="destinationPicker"){
            JComboBox<String> destinationPicker = (JComboBox<String>) comp;
            String selectedDestination = destinationPicker.getSelectedItem().toString();
-           JTextArea equipmentReq = (JTextArea) bottomMap.get("equipmentReq");
+           JList<String> equipmentReq = (JList<String>) bottomMap.get("equipmentList");
            
            try{
            	SafariDestination destinationObject = destinationModel.selectSafariDestination(selectedDestination);
+            bottomView.fillEquipmentList(destinationObject.getEquipmentReq(),equipmentReq);
+           	
 
-           	equipmentReq.setText("");
-           equipmentReq.insert(destinationObject.getEquipmentReq(),0);
            }
            catch(SQLException se){
            	se.printStackTrace();
@@ -157,6 +157,8 @@ public class FishingSafariController {
         }
 		}
 	};
+
+
 
 /**
 *Method to create and insert new FishingSafari-instance into db

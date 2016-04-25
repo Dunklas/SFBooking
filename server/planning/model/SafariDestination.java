@@ -3,6 +3,8 @@ package server.planning.model;
 import java.sql.*;
 import server.utils.Update;
 import server.utils.*;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 public class SafariDestination{
     private String location;
