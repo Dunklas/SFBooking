@@ -31,16 +31,16 @@ public class SafariDestinationCatalog{
 	}
     } 
 
-    public DefaultListModel<String> selectAllSafariDestination() throws SQLException{
-	DefaultListModel<String> sdList = new DefaultListModel<>();
+    public ArrayList<String> selectAllSafariDestination() throws SQLException{
+	ArrayList<String> sdList = new ArrayList<>();
 	Select dbEntry = new Select();
 	sdList =  dbEntry.selectAllSafariDestination();
 	return sdList;
 
     }
 
-    public DefaultListModel<String> selectSafariDestinationByStatus(boolean active) throws SQLException {
-	DefaultListModel<String> sdList = new DefaultListModel<String>();
+    public ArrayList<String> selectSafariDestinationByStatus(boolean active) throws SQLException {
+	ArayList<String> sdList = new ArrayList<String>();
 	Select dbEntry = new Select();
 	sdList = dbEntry.selectSafariDestinationByStatus(active);
 	return sdList;

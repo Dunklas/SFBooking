@@ -18,12 +18,12 @@ public class Select {
      *@param active Boolean wich specifies what to Select. Either active or inactive Safari Destinations from the database
      *@return returns the Safari Destinations as an arraylist
      */
-    public DefaultListModel<String> selectSafariDestinationByStatus(boolean active) throws SQLException{
+    public ArrayList<String> selectSafariDestinationByStatus(boolean active) throws SQLException{
 	int status = 0; // This is done because Oracle DB does not support booleans
 	if (active)
 	    status = 1;
 	
-	DefaultListModel<String> sdList = new DefaultListModel<String>();
+	ArrayList<String> sdList = new ArrayList<String>();
        
 	Connection c = new OpenDb().getConnection();
 	PreparedStatement stmt = c.prepareStatement("SELECT * FROM safaridestination WHERE active = ?");
@@ -33,7 +33,7 @@ public class Select {
 	while (rs.next()){
 	    String location =  rs.getString("location");
 
-		sdList.addElement(location);
+		sdList.add(location);
 
 	}//End of while
 
@@ -41,8 +41,8 @@ public class Select {
     }//End of selectSafariDestination
 
 
-    public DefaultListModel<String> selectAllSafariDestination() throws SQLException{
-	DefaultListModel<String> sdList = new DefaultListModel<>();
+    public ArrayList<String> selectAllSafariDestination() throws SQLException{
+	ArrayList<String> sdList = new ArrayList<String>();
 	String location = "";
 	    Connection c = new OpenDb().getConnection();
 	    PreparedStatement stmt = c.prepareStatement("SELECT * FROM safaridestination");
@@ -50,7 +50,7 @@ public class Select {
 	    
 	    while (rs.next()){
 		location = rs.getString("location");
-		sdList.addElement(location);
+		sdList.add(location);
 
 	    }
 	return sdList;
@@ -115,8 +115,8 @@ public class Select {
 	return element;
     }
 
-    public DefaultListModel<String> selectAllFishingSafaris() throws SQLException{
-	DefaultListModel<String> fsList = new DefaultListModel<String>();
+    public ArrayList<String> selectAllFishingSafaris() throws SQLException{
+	ArrayList<String> fsList = new ArrayList<String>();
 	Connection c = new OpenDb().getConnection();
 	PreparedStatement stmt = c.prepareStatement("SELECT * FROM fishingsafari");
 	ResultSet rs = stmt.executeQuery();
@@ -127,7 +127,7 @@ public class Select {
 	    tempFs = tempFs +";" + rs.getDate("start_date");
 	    tempFs = tempFs + ";" + rs.getDate("end_date");
 
-	    fsList.addElement(tempFs);
+	    fsList.add(tempFs);
 
 	}
 	return fsList;
