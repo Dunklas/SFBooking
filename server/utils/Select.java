@@ -1,6 +1,7 @@
 package server.utils;
 
 import server.planning.model.*;
+import server.customer.model.*;
 import javax.swing.DefaultListModel;
 import java.util.*;
 import java.sql.*;
@@ -134,5 +135,23 @@ public class Select {
 
     }
 
+    //Returns null if no customer is found
+    public Customer selectCustomer(String email) throws SQLException {
+	Connection c = new OpenDb().getConnection();
+	PreparedStatement stmt = c.prepareStatement("SELECT * FROM customer WHERE email = ?");
+	stmt.setString(1, email);
+	ResultSet rs = stmt.executeQuery();
+	Customer queryCustomer = null;
+
+	while (rs.next()) {
+	    queryCustomer = new Customer(rs.getInt("customer_id"),
+	    		    rs.getString("first_name"),
+			    rs.getString("last_name"),
+			    rs.getString("email"),
+			    rs.getString("phone_nr"),
+			    new java.util.Date(rs.getDate("registered").getTime()));
+	}
+	return queryCustomer;
+    }
 
 }//End of class
