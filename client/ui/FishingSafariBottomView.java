@@ -17,11 +17,13 @@ import javax.swing.JList;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.JButton;
 import java.util.*;
+import javax.swing.DefaultListModel;
 
 public class FishingSafariBottomView extends JPanel {
 	private JTextField startTimeTextfield;
 	private JTextField endTimeTextfield;
-	JComboBox<String> locationPicker;
+	JComboBox<String> destinationPicker;
+	DefaultListModel<String> equipmentListModel = new DefaultListModel<String>();
 
 	private HashMap<String,Component> compMap = new HashMap<String,Component>();
 	ArrayList<Component> compArray = new ArrayList<Component>();
@@ -91,11 +93,11 @@ public class FishingSafariBottomView extends JPanel {
 		horizontalStrut_2.setMaximumSize(new Dimension(20, 20));
 		pickLocationPanel.add(horizontalStrut_2);
 		
-		locationPicker = new JComboBox<String>();
-		compArray.add(locationPicker);
-		locationPicker.setName("locationPicker");
-		locationPicker.setMaximumSize(new Dimension(150, 25));
-		pickLocationPanel.add(locationPicker);
+		destinationPicker = new JComboBox<String>();
+		compArray.add(destinationPicker);
+		destinationPicker.setName("destinationPicker");
+		destinationPicker.setMaximumSize(new Dimension(150, 25));
+		pickLocationPanel.add(destinationPicker);
 		
 		Component verticalStrut_2 = Box.createVerticalStrut(10);
 		leftFormPanel.add(verticalStrut_2);
@@ -152,13 +154,16 @@ public class FishingSafariBottomView extends JPanel {
 		
 		JLabel gearReqLabel = new JLabel("Utrustningskrav");
 		gearReqPanel.add(gearReqLabel);
+	
 		
-		JTextArea textArea = new JTextArea();
-		compArray.add(textArea);
-		textArea.setName("equipmentReq");
-		textArea.setMaximumSize(new Dimension(400, 100));
-		textArea.setAlignmentX(0.0f);
-		gearReqPanel.add(textArea);
+		JScrollPane equipmentReqScrollPane = new JScrollPane();
+		equipmentReqScrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		gearReqPanel.add(equipmentReqScrollPane);
+		
+		JList<String> equipmentReqList = new JList<String>(equipmentListModel);
+		equipmentReqList.setName("equipmentList");
+		compArray.add(equipmentReqList);
+		equipmentReqScrollPane.setViewportView(equipmentReqList);
 		
 		Component verticalStrut_4 = Box.createVerticalStrut(30);
 		verticalStrut_4.setMaximumSize(new Dimension(30, 30));
@@ -226,9 +231,17 @@ public class FishingSafariBottomView extends JPanel {
 	}
 
 	public void fillDestinationPicker(ArrayList<String> array){
+		destinationPicker.addItem("");
 		for(String destination : array){
-			locationPicker.addItem(destination);
+			destinationPicker.addItem(destination);
 		}
+	}
+	public void fillEquipmentList(ArrayList<String> array,JList<String> list){
+      DefaultListModel<String> listModel = new DefaultListModel<String>();
+      for(int i=0; i<array.size(); i++){
+         listModel.addElement(array.get(i));
+      }
+      list.setModel(listModel);
 	}
 
 }

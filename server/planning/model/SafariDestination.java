@@ -3,6 +3,8 @@ package server.planning.model;
 import java.sql.*;
 import server.utils.Update;
 import server.utils.*;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 public class SafariDestination{
     private String location;
@@ -26,8 +28,13 @@ public class SafariDestination{
 
     }
     
-    public String getEquipmentReq(){
-	return equipmentReq;
+    public ArrayList<String> getEquipmentReq(){
+  ArrayList<String> parsedTerrain = new ArrayList<String>();
+  Scanner parser = new Scanner(this.terrain).useDelimiter(";");
+  while(parser.hasNext()){
+    parsedTerrain.add(parser.next());
+  }
+  return parsedTerrain;    
     }
     
     public int getMaxParticipants(){

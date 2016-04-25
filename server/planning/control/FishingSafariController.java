@@ -93,6 +93,9 @@ public class FishingSafariController {
 		//2nd add components from bottomView
 		JButton saveButton = (JButton) bottomMap.get("saveFishingSafari");
 		saveButton.addActionListener(saveFishingSafariListener);
+
+		JComboBox destinationPicker = (JComboBox) bottomMap.get("destinationPicker");
+		destinationPicker.addItemListener(destinationListener);
 }
 
 	/**
@@ -102,7 +105,7 @@ public class FishingSafariController {
 		public void actionPerformed(ActionEvent e){
 			Component comp = (Component) e.getSource();
 			if(comp.getName()=="saveFishingSafari"){
-				JComboBox<String> destinationPicker = (JComboBox<String>) bottomMap.get("locationPicker");
+				JComboBox<String> destinationPicker = (JComboBox<String>) bottomMap.get("destinationPicker");
 				String destination = destinationPicker.getSelectedItem().toString();
 
 				newFishingSafari(destination,selectedStartDate,selectedEndDate); // Have to handle exceptions in input...
@@ -129,6 +132,33 @@ public class FishingSafariController {
 			}
 		}
 	};
+
+	ItemListener destinationListener = new ItemListener(){
+		public void itemStateChanged(ItemEvent e){
+        Component comp = (Component) e.getSource();
+        if(comp.getName()=="destinationPicker"){
+           JComboBox<String> destinationPicker = (JComboBox<String>) comp;
+           String selectedDestination = destinationPicker.getSelectedItem().toString();
+           JList<String> equipmentReq = (JList<String>) bottomMap.get("equipmentList");
+           
+           try{
+           	SafariDestination destinationObject = destinationModel.selectSafariDestination(selectedDestination);
+            bottomView.fillEquipmentList(destinationObject.getEquipmentReq(),equipmentReq);
+           	
+
+           }
+           catch(SQLException se){
+           	se.printStackTrace();
+           }
+
+           
+
+
+        }
+		}
+	};
+
+
 
 /**
 *Method to create and insert new FishingSafari-instance into db
