@@ -69,10 +69,14 @@ public class Update{
     }
 
     public void updateStatus(String location, Boolean active) throws SQLException{
+	int status = 0; // This is done because Oracle DB does nto support booleans
+	if (active)
+	    status = 1;
+	
 	Connection c = new OpenDb().getConnection();
 	if (c != null){
 	    PreparedStatement stmt = c.prepareStatement("UPDATE safaridestination SET active = ? WHERE location = ?");
-	    stmt.setBoolean(1, active);
+	    stmt.setInt(1, status);
 	    stmt.setString(2, location);
 	    stmt.executeUpdate();
 	    stmt.close();

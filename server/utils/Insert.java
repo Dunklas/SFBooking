@@ -21,15 +21,19 @@ public class Insert {
      *@return void
      */
     public void insertSafariDestination(String location, String equipmentReq, int maxParticipants, String guide, String terrain, boolean active) throws SQLException {
+	int status = 0; // This is done because Oracle db does not support booleans
+	if (active)
+	    status = 1;
+	
 	Connection c = new OpenDb().getConnection();
 	if (c != null) {
-	    PreparedStatement stmt = c.prepareStatement("INSERT INTO safaridestination VALUES (?, ?, ?, ?, ?, ?);");
+	    PreparedStatement stmt = c.prepareStatement("INSERT INTO safaridestination VALUES (?, ?, ?, ?, ?, ?)");
 	    stmt.setInt(1, maxParticipants);
 	    stmt.setString(2, terrain);
 	    stmt.setString(3, equipmentReq);
 	    stmt.setString(4, guide);
 	    stmt.setString(5, location);
-	    stmt.setBoolean(6, active);
+	    stmt.setInt(6, status);
 	    stmt.executeUpdate();
 
 	    stmt.close();
@@ -47,11 +51,11 @@ public class Insert {
     public void insertFishingSafari(String safariDestination, java.util.Date startDate, java.util.Date endDate,int status) throws SQLException {
 	Connection c = new OpenDb().getConnection();
 	if (c != null) {
-	    PreparedStatement stmt = c.prepareStatement("INSERT INTO fishingsafari (safaridestination, end_date, start_date,fishingsafari_status) VALUES (?, ?, ?,?);");
+	    PreparedStatement stmt = c.prepareStatement("INSERT INTO fishingsafari (safaridestination, end_date, start_date,fishingsafari_status) VALUES (?, ?, ?,?)");
 	    stmt.setString(1, safariDestination);
 	    stmt.setDate(2, new java.sql.Date(endDate.getTime()));
 	    stmt.setDate(3, new java.sql.Date(startDate.getTime()));
-        stmt.setInt(4,status);
+            stmt.setInt(4,status);
 	    stmt.executeUpdate();
 
 	    stmt.close();
@@ -62,7 +66,7 @@ public class Insert {
     public void insertCustomer(String firstName, String lastName, String email, String telephone, java.util.Date registered) throws SQLException { 
     Connection c = new OpenDb().getConnection();
     if (c != null) {
-    	PreparedStatement stmt = c.prepareStatement("INSERT INTO customer (first_name, last_name, email, phone_nr, registered) VALUES (?,?,?,?,?);");
+    	PreparedStatement stmt = c.prepareStatement("INSERT INTO customer (first_name, last_name, email, phone_nr, registered) VALUES (?,?,?,?,?)");
     	stmt.setString(1, firstName);
     	stmt.setString(2, lastName);
     	stmt.setString(3, email);
@@ -78,7 +82,7 @@ public class Insert {
     public void insertBooking(int bookingStatus, double price, int safariID, int customerID, java.util.Date booked) throws SQLException {
     Connection c = new OpenDb().getConnection();
     if (c != null) {
-    	PreparedStatement stmt = c.prepareStatement("INSERT INTO booking (booking_status, price, safari, customer, booked) VALUES (?,?,?,?,?);");
+    	PreparedStatement stmt = c.prepareStatement("INSERT INTO booking (booking_status, price, safari, customer, booked) VALUES (?,?,?,?,?)");
     	stmt.setInt(1, bookingStatus);
     	stmt.setDouble(2, price);
     	stmt.setInt(3, safariID);

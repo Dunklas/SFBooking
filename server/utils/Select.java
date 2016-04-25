@@ -19,11 +19,15 @@ public class Select {
      *@return returns the Safari Destinations as an arraylist
      */
     public DefaultListModel<String> selectSafariDestinationByStatus(boolean active) throws SQLException{
+	int status = 0; // This is done because Oracle DB does not support booleans
+	if (active)
+	    status = 1;
+	
 	DefaultListModel<String> sdList = new DefaultListModel<String>();
        
 	Connection c = new OpenDb().getConnection();
 	PreparedStatement stmt = c.prepareStatement("SELECT * FROM safaridestination WHERE active = ?");
-	stmt.setBoolean(1, active);
+	stmt.setInt(1, status);
 	ResultSet rs = stmt.executeQuery();
 
 	while (rs.next()){

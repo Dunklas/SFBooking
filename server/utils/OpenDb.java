@@ -6,19 +6,20 @@ import java.sql.DriverManager;
 public class OpenDb {
 
     Connection c;
-    private String ip = "127.0.0.1";
+    private String hostname = "db.student.chalmers.se";
+    private String servicename = "kingu.ita.chalmers.se";
     private String PATH;
-    private String USERNAME = "postgres";
-    private String PASSWORD = "tig059";
+    private String USERNAME = "rickaan";
+    private String PASSWORD = "zDi3zwHN";
 
     public OpenDb() {
-	PATH = "jdbc:postgresql://" + ip + ":5432/sftest";
+	PATH = "jdbc:oracle:thin:@//" + hostname + ":1521/" + servicename; 
 	openConnection();
     }
 
     private void openConnection() {
 	try {
-	    Class.forName("org.postgresql.Driver");
+	    Class.forName("oracle.jdbc.driver.OracleDriver");
 	    c = DriverManager.getConnection(PATH, USERNAME, PASSWORD);
 	} catch (Exception e) {
 	    e.printStackTrace();
