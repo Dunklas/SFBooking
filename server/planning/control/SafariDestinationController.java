@@ -98,6 +98,7 @@ public class SafariDestinationController {
 			Component comp = (Component) e.getSource();
 			if(comp.getName()=="selectButton"){
 				safariDestinationView.clearTerrain();
+        safariDestinationView.clearAddedEquipment();
 
 				modSelected = true;
 				JList<String> modifyList = (JList<String>) safariDestinationMap.get("modifyList");
@@ -118,9 +119,11 @@ public class SafariDestinationController {
 				JComboBox<String> guideBox = (JComboBox<String>) safariDestinationMap.get("guideBox"); 
 				guideBox.setSelectedItem(newSafari.getGuide());
 				
-				safariDestinationView.fillTerrain(newSafari.getEquipmentReq());
+				safariDestinationView.fillTerrain(newSafari.getTerrain());
 
 				safariDestinationView.setActive(newSafari.getActive());
+
+        safariDestinationView.fillUpAddedList(newSafari.getEquipmentReq());
 
 
 				
@@ -180,26 +183,6 @@ public class SafariDestinationController {
      *Methods for converting data etc 
      *
      */
-    public ArrayList<String> convertTerrainFromDb(SafariDestination destination){
-	ArrayList<String> parsedTerrain = new ArrayList<String>();
-    	
-    	String tempDest = destination.getLocation();
-	try{
-	String result = destination.getSafariDestinationElement(tempDest, "terrain");
-	Scanner parser = new Scanner(result).useDelimiter(";");
-
-	while(parser.hasNext()){
-		parsedTerrain.add(parser.next());
-
-	}
-
-
-	} catch (SQLException se){
-	    System.out.println(se.getMessage());
-	    System.out.println("fel i safaridestinationcontroller");
-	}
-	return parsedTerrain;
-    }
 
     public void setUpdatedFields(String equipment,int participants,String guide,String terrain,
     		boolean active,SafariDestination destination){

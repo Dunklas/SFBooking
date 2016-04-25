@@ -29,12 +29,12 @@ public class SafariDestination{
     }
     
     public ArrayList<String> getEquipmentReq(){
-  ArrayList<String> parsedTerrain = new ArrayList<String>();
-  Scanner parser = new Scanner(this.terrain).useDelimiter(";");
+  ArrayList<String> parsedEquipment = new ArrayList<String>();
+  Scanner parser = new Scanner(this.equipmentReq).useDelimiter(";");
   while(parser.hasNext()){
-    parsedTerrain.add(parser.next());
+    parsedEquipment.add(parser.next());
   }
-  return parsedTerrain;    
+  return parsedEquipment;    
     }
     
     public int getMaxParticipants(){
@@ -45,9 +45,15 @@ public class SafariDestination{
 	return guide;
     }
 
-    public String getTerrain(){
-	return terrain;
+    public ArrayList<String> getTerrain(){
+	ArrayList<String> parsedTerrain = new ArrayList<String>();
+  Scanner parser = new Scanner(this.terrain).useDelimiter(";");
+  while(parser.hasNext()){
+    parsedTerrain.add(parser.next());
+  }
+  return parsedTerrain;    
     }
+    
 
     public boolean getActive(){
 	return active;

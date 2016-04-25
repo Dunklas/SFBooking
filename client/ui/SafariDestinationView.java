@@ -50,6 +50,8 @@ public class SafariDestinationView extends JPanel {
 	
     private HashMap<String,Component> compMap = new HashMap<String,Component>();
     private ArrayList<Component> compArray = new ArrayList<Component>();
+
+    private ArrayList<String> dummyEquipment = new ArrayList<String>();
 	
 	
 
@@ -342,12 +344,23 @@ setBackground(UIManager.getColor("CheckBox.light"));
 	
 	public void fillUpAvailableList(){ // Dummylist representing list of available gear
 	    listModelAvailable.addElement("Fiskespö");
+      dummyEquipment.add("Fiskespö");
 	    listModelAvailable.addElement("Regnställ");
+	    dummyEquipment.add("Regnställ");
 	    listModelAvailable.addElement("Fiskehatt");
+	    dummyEquipment.add("Fiskehatt");
 	    listModelAvailable.addElement("Stövlar");
+	    dummyEquipment.add("Stövlar");
 	    listModelAvailable.addElement("Håv");
+	    dummyEquipment.add("Håv");
 	    listModelAvailable.addElement("Drag");
+	    dummyEquipment.add("Drag");
 	}
+	public void fillUpAddedList(ArrayList<String> equipment){
+			for(String s : equipment){
+				listModelAdded.addElement(s);
+			}
+		}
 
 		
 		
@@ -389,6 +402,9 @@ setBackground(UIManager.getColor("CheckBox.light"));
        c.setSelected(false);
 		}
 	}
+	public void clearAddedEquipment(){
+		listModelAdded.removeAllElements();
+	}
 
 
 	public void clearSelection(){
@@ -399,6 +415,7 @@ setBackground(UIManager.getColor("CheckBox.light"));
 		listModelAdded.removeAllElements();
 		listModelAvailable.removeAllElements();
 		fillUpAvailableList();
+
 		//clear statusselection too
 
 
