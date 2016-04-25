@@ -5,7 +5,6 @@ import java.util.Date;
 public class Customer {
 
     private int customerID;
-    private int nrParticipants;
     private String firstName;
     private String lastName;
     private String email;
@@ -14,10 +13,9 @@ public class Customer {
     private Date registered;
     private Date unregistered;
 
-    public Customer (int customerID, int nrParticipants String firstName, String lastName, String email, String telephone, Date registered) {
+    public Customer (int customerID, String firstName, String lastName, String email, String telephone, Date registered) {
 
     	this.customerID = customerID;
-    	this.nrParticipants = nrParticipants;
     	this.firstName = firstName;
     	this.lastName = lastName;
     	this.email = email;
