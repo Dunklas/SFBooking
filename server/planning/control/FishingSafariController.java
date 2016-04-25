@@ -65,14 +65,8 @@ public class FishingSafariController {
 	catch(SQLException se){
 		se.printStackTrace();
 	}
-}
+}	
 
-
-
-	
-	
-
-	
 	/**
 	 * Adds listeners to components from a HashMap. HashMap derives from View-classes.
 	 * 
@@ -155,7 +149,11 @@ public class FishingSafariController {
 		public void actionPerformed(ActionEvent e){
 			Component comp = (Component) e.getSource();
 			if(comp.getName()=="selectButton"){
-					
+         FishingSafari newFishingSafari = fishingModel.selectFishingSafari
+         (modifyView.getSelectedFishingSafari());
+
+         String test = newFishingSafari.getSafariDestination().getLocation();
+         System.out.println(test);
 			}
 		}
 	};
