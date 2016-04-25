@@ -61,7 +61,7 @@ public class SafariDestinationView extends JPanel {
 	public SafariDestinationView() {
 		
 		
-setBackground(UIManager.getColor("CheckBox.light"));
+		setBackground(UIManager.getColor("CheckBox.light"));
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{443, 0};
 		gridBagLayout.rowHeights = new int[]{6, -5, 2, 22, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
@@ -202,43 +202,12 @@ setBackground(UIManager.getColor("CheckBox.light"));
 		add(gearPanel, gbc_gearPanel);
 		gearPanel.setLayout(new BoxLayout(gearPanel, BoxLayout.X_AXIS));
 		
-		JScrollPane availableGearScrollPane = new JScrollPane();
-		availableGearScrollPane.setMaximumSize(new Dimension(300, 32767));
-		availableGearScrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-		gearPanel.add(availableGearScrollPane);
+		JTextArea equipmentTextArea = new JTextArea();
+		equipmentTextArea.setMaximumSize(new Dimension(500, 500));
+		gearPanel.add(equipmentTextArea);
+		compArray.add(equipmentTextArea);
+		equipmentTextArea.setName("equipmentReq");
 		
-		availableGearList = new JList<String>(listModelAvailable);
-		availableGearList.setName("availableGearList");
-		compArray.add(availableGearList);
-		availableGearScrollPane.setViewportView(availableGearList);
-		
-		JPanel gearButtonPanel = new JPanel();
-		gearPanel.add(gearButtonPanel);
-		gearButtonPanel.setLayout(new BoxLayout(gearButtonPanel, BoxLayout.Y_AXIS));
-		
-		JButton addGearButton = new JButton("L\u00E4gg till >>");
-		addGearButton.setName("addGearButton");
-		compArray.add(addGearButton);
-		gearButtonPanel.add(addGearButton);
-		
-		JButton removeGearButton = new JButton("<< Ta bort");
-		removeGearButton.setName("removeGearButton");
-		compArray.add(removeGearButton);
-		removeGearButton.setMaximumSize(new Dimension(105, 25));
-		gearButtonPanel.add(removeGearButton);
-		
-		JScrollPane addedGearScrollPane = new JScrollPane();
-		addedGearScrollPane.setMaximumSize(new Dimension(300, 32767));
-		addedGearScrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-		gearPanel.add(addedGearScrollPane);
-		
-		fillUpAvailableList(); // testaLista
-		addedGearList = new JList<String>(listModelAdded);
-		addedGearList.setPreferredSize(new Dimension(100, 50));
-		addedGearList.setSize(new Dimension(100, 50));
-		addedGearList.setName("addedGearList");
-		compArray.add(addedGearList);
-		addedGearScrollPane.setViewportView(addedGearList);
 		
 		JPanel statusPanel = new JPanel();
 		statusPanel.setBackground(UIManager.getColor("CheckBox.light"));
@@ -280,7 +249,6 @@ setBackground(UIManager.getColor("CheckBox.light"));
 		
 		
 		initCompMap();
-		
 
 
 	}
@@ -321,48 +289,6 @@ setBackground(UIManager.getColor("CheckBox.light"));
 		return result;
 	}
 	
-	public String checkEquipment(DefaultListModel<String> list){
-		String result = "";
-		Object [] objList = list.toArray();
-		String [] equipmentList = new String[objList.length];
-		for(int i=0; i<objList.length; i++){
-			equipmentList[i] = objList[i].toString();
-		}
-		for(int i=0; i<equipmentList.length; i++){
-			
-			result = result+equipmentList[i]+";";
-		}
-		return result;
-	}
-	public DefaultListModel<String> getListModelAdded(){
-		return listModelAdded;
-	}
-	public DefaultListModel<String> getListModelAvailable(){
-		return listModelAvailable;
-	}
-	
-	
-	public void fillUpAvailableList(){ // Dummylist representing list of available gear
-	    listModelAvailable.addElement("Fiskespö");
-      dummyEquipment.add("Fiskespö");
-	    listModelAvailable.addElement("Regnställ");
-	    dummyEquipment.add("Regnställ");
-	    listModelAvailable.addElement("Fiskehatt");
-	    dummyEquipment.add("Fiskehatt");
-	    listModelAvailable.addElement("Stövlar");
-	    dummyEquipment.add("Stövlar");
-	    listModelAvailable.addElement("Håv");
-	    dummyEquipment.add("Håv");
-	    listModelAvailable.addElement("Drag");
-	    dummyEquipment.add("Drag");
-	}
-	public void fillUpAddedList(ArrayList<String> equipment){
-			for(String s : equipment){
-				listModelAdded.addElement(s);
-			}
-		}
-
-		
 		
 	
 	public void fillGuideBox(ArrayList<String> array){
@@ -402,9 +328,7 @@ setBackground(UIManager.getColor("CheckBox.light"));
        c.setSelected(false);
 		}
 	}
-	public void clearAddedEquipment(){
-		listModelAdded.removeAllElements();
-	}
+
 
 
 	public void clearSelection(){
@@ -412,9 +336,8 @@ setBackground(UIManager.getColor("CheckBox.light"));
 		textFieldLocation.setEnabled(true);
 		textFieldParticipants.setText("");
 		clearTerrain();
-		listModelAdded.removeAllElements();
-		listModelAvailable.removeAllElements();
-		fillUpAvailableList();
+		
+		
 
 		//clear statusselection too
 

@@ -28,13 +28,8 @@ public class SafariDestination{
 
     }
     
-    public ArrayList<String> getEquipmentReq(){
-  ArrayList<String> parsedEquipment = new ArrayList<String>();
-  Scanner parser = new Scanner(this.equipmentReq).useDelimiter(";");
-  while(parser.hasNext()){
-    parsedEquipment.add(parser.next());
-  }
-  return parsedEquipment;    
+    public String getEquipmentReq(){
+	return equipmentReq;
     }
     
     public int getMaxParticipants(){
