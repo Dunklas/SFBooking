@@ -341,13 +341,17 @@ setBackground(UIManager.getColor("CheckBox.light"));
 	
 	
 	public void fillUpAvailableList(){ // Dummylist representing list of available gear
-		for(int i=0; i<10; i++){
-			listModelAvailable.addElement("Stilton"+i);
-		}
+	    listModelAvailable.addElement("Fiskespö");
+	    listModelAvailable.addElement("Regnställ");
+	    listModelAvailable.addElement("Fiskehatt");
+	    listModelAvailable.addElement("Stövlar");
+	    listModelAvailable.addElement("Håv");
+	    listModelAvailable.addElement("Drag");
+	}
 
 		
 		
-	}
+	
 	public void fillGuideBox(ArrayList<String> array){
 	    for(int i = 0; i<array.size(); i++){
 		guideBox.addItem(array.get(i));
