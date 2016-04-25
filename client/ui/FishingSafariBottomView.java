@@ -154,16 +154,11 @@ public class FishingSafariBottomView extends JPanel {
 		
 		JLabel gearReqLabel = new JLabel("Utrustningskrav");
 		gearReqPanel.add(gearReqLabel);
-	
 		
-		JScrollPane equipmentReqScrollPane = new JScrollPane();
-		equipmentReqScrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-		gearReqPanel.add(equipmentReqScrollPane);
-		
-		JList<String> equipmentReqList = new JList<String>(equipmentListModel);
-		equipmentReqList.setName("equipmentList");
-		compArray.add(equipmentReqList);
-		equipmentReqScrollPane.setViewportView(equipmentReqList);
+		JTextArea equipmentReq = new JTextArea();
+		equipmentReq.setName("equipmentReq");
+		gearReqPanel.add(equipmentReq);
+		compArray.add(equipmentReq);
 		
 		Component verticalStrut_4 = Box.createVerticalStrut(30);
 		verticalStrut_4.setMaximumSize(new Dimension(30, 30));
@@ -235,13 +230,6 @@ public class FishingSafariBottomView extends JPanel {
 		for(String destination : array){
 			destinationPicker.addItem(destination);
 		}
-	}
-	public void fillEquipmentList(ArrayList<String> array,JList<String> list){
-      DefaultListModel<String> listModel = new DefaultListModel<String>();
-      for(int i=0; i<array.size(); i++){
-         listModel.addElement(array.get(i));
-      }
-      list.setModel(listModel);
 	}
 
 }

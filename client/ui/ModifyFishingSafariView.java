@@ -111,8 +111,15 @@ public class ModifyFishingSafariView extends JPanel {
 		return compMap;
 	}
 
-	public void fillList(DefaultListModel<String> listModel){
+	public void fillList(ArrayList<String> array){
+		DefaultListModel<String> listModel = new DefaultListModel<String>();
+		for(String s : array){
+			listModel.addElement(s);
+		}
       modifyList.setModel(listModel);
+	}
+	public String getSelectedFishingSafari(){
+		return modifyList.getSelectedValue();
 	}
 
 }

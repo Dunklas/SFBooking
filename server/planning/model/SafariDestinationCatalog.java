@@ -40,7 +40,7 @@ public class SafariDestinationCatalog{
     }
 
     public ArrayList<String> selectSafariDestinationByStatus(boolean active) throws SQLException {
-	ArayList<String> sdList = new ArrayList<String>();
+	ArrayList<String> sdList = new ArrayList<String>();
 	Select dbEntry = new Select();
 	sdList = dbEntry.selectSafariDestinationByStatus(active);
 	return sdList;

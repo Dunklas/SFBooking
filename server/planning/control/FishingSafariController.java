@@ -44,8 +44,9 @@ public class FishingSafariController {
 		modifyMap = modifyView.getCompMap();
 		addListeners(topMap, bottomMap);
     fillModifyList();
+		fillDestinations();
+
 		
-		bottomView.fillDestinationPicker(getAllDestinations());
 		
 	}
 
@@ -57,21 +58,16 @@ public class FishingSafariController {
 			se.printStackTrace();
 		}
 	}
-
-	public ArrayList<String> getAllDestinations(){
-		ArrayList<String> destinationList = new ArrayList<String>();
+	public void fillDestinations(){
 		try{
-			  
-        DefaultListModel<String> destinationListModel = destinationModel.selectAllSafariDestination();
-        for(int i=0; i<destinationListModel.size(); i++){
-        	destinationList.add(destinationListModel.getElementAt(i));
-        }
-		}
-		catch(SQLException se){
-			se.printStackTrace();
-		}
-		return destinationList;
+		bottomView.fillDestinationPicker(destinationModel.selectAllSafariDestination());
 	}
+	catch(SQLException se){
+		se.printStackTrace();
+	}
+}
+
+
 
 	
 	
@@ -139,22 +135,28 @@ public class FishingSafariController {
         if(comp.getName()=="destinationPicker"){
            JComboBox<String> destinationPicker = (JComboBox<String>) comp;
            String selectedDestination = destinationPicker.getSelectedItem().toString();
-           JList<String> equipmentReq = (JList<String>) bottomMap.get("equipmentList");
+           JTextArea equipmentReq = (JTextArea) bottomMap.get("equipmentReq");
            
            try{
            	SafariDestination destinationObject = destinationModel.selectSafariDestination(selectedDestination);
-            bottomView.fillEquipmentList(destinationObject.getEquipmentReq(),equipmentReq);
-           	
+            String equipment = destinationObject.getEquipmentReq();
+            
+           	equipmentReq.setText(equipment);
 
            }
            catch(SQLException se){
            	se.printStackTrace();
            }
-
-           
-
-
         }
+		}
+	};
+
+	ActionListener selectListener = new ActionListener(){
+		public void actionPerformed(ActionEvent e){
+			Component comp = (Component) e.getSource();
+			if(comp.getName()=="selectButton"){
+					
+			}
 		}
 	};
 
