@@ -118,7 +118,7 @@ public class SafariDestinationController {
 				JComboBox<String> guideBox = (JComboBox<String>) safariDestinationMap.get("guideBox"); 
 				guideBox.setSelectedItem(newSafari.getGuide());
 				
-				safariDestinationView.fillTerrain(convertTerrainFromDb(newSafari));
+				safariDestinationView.fillTerrain(newSafari.getEquipmentReq());
 
 				safariDestinationView.setActive(newSafari.getActive());
 
