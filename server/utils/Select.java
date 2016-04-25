@@ -124,7 +124,8 @@ public class Select {
 	String tempFs = "";
 
 	while (rs.next()){
-	    tempFs = rs.getString("safaridestination");
+	    tempFs = Integer.toString(rs.getInt("safari_id"));
+	    tempFs = tempFs +";" +rs.getString("safaridestination");
 	    tempFs = tempFs +";" + rs.getDate("start_date");
 	    tempFs = tempFs + ";" + rs.getDate("end_date");
 
@@ -132,6 +133,31 @@ public class Select {
 
 	}
 	return fsList;
+
+    }
+
+    public FishingSafari selectFishingSafari(int id) throws SQLException{
+	Connection c = new OpenDb().getConnection();
+	PreparedStatement stmt = c.prepareStatement("SELECT * FROM fishingsafari where safari_id = ?");
+	stmt.setInt(1, id);
+	ResultSet rs = stmt.executeQuery();
+	String tempLocation = "";
+	java.util.Date tempStartDate = new java.util.Date(0);
+	java.util.Date tempEndDate = new java.util.Date(0);
+	SafariDestination tempsd = new SafariDestination("", "", 0, "", "", true);
+	FishingSafari tempFishingSafari = new FishingSafari(tempsd, tempStartDate, tempEndDate, 0); 
+
+	while (rs.next()){
+	    tempLocation = rs.getString("safaridestination");
+	    SafariDestination tempSd = selectSafariDestination(tempLocation);
+	    tempStartDate = rs.getDate("start_date");
+	    tempEndDate = rs.getDate("end_date");
+	    tempFishingSafari = new FishingSafari(tempSd, tempStartDate, tempEndDate, 0); 
+
+	}
+	stmt.close();
+	c.close();
+	return tempFishingSafari;
 
     }
 

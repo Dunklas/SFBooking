@@ -40,6 +40,11 @@ public class FishingSafariCatalog{
 
 
 
+    public FishingSafari selectFishingSafari(int id) throws SQLException{
+	Select dbEntry = new Select();
+	FishingSafari fs = dbEntry.selectFishingSafari(id);
+	return fs;
 
+    }
 
 }
