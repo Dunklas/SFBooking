@@ -30,8 +30,8 @@ public class FishingSafariCatalog{
 
     }
 
-    public DefaultListModel<String> selectAllFishingSafaris() throws SQLException{
-	DefaultListModel<String> fsList = new DefaultListModel<String>();
+    public ArrayList<String> selectAllFishingSafaris() throws SQLException{
+	ArrayList<String> fsList = new ArrayList<String>();
 	Select dbEntry = new Select();
 	fsList = dbEntry.selectAllFishingSafaris();
 	return fsList;
