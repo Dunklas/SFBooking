@@ -10,7 +10,7 @@ public class OpenDb {
     private String servicename = "kingu.ita.chalmers.se";
     private String PATH;
     private String USERNAME = "rickaan";
-    private String PASSWORD = "zDi3zwHN";
+    private String PASSWORD = "zDi3zwHN"; //Bad!
 
     public OpenDb() {
 	PATH = "jdbc:oracle:thin:@//" + hostname + ":1521/" + servicename; 

@@ -44,7 +44,7 @@ public class Insert {
      *Insert new Fishing Safari to database
      *<p>
      *@param safariDestination the location of the Fishing Safari
-     *@param startDate Date when the Fishing Safari starts
+     *@param startDate Date when the Fishing Safari start
      *@param endDate Date when the Fishing Safari ends
      *@return void
      */

@@ -9,7 +9,7 @@ import java.sql.*;
 public class Update{
 
     /**
-     *Update the guide at a Safari destination
+     *Update guide at a Safari destination
      *<p>
      *Use {@see server.utils.Opendb#getConnection()} too open a connection to the database
      *
