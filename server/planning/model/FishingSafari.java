@@ -44,7 +44,7 @@ public class FishingSafari{
     
 
     
-
+    
     public void setId(int newId){
 	this.id = newId;
 
