@@ -1,4 +1,5 @@
 package server.utils.storage;
+import server.customer.model.*;
 
 public interface CustomerStorage{
 
