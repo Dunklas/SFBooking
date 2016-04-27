@@ -26,35 +26,35 @@ public class Booking {
     }
 
     public int getBookingID(){
-    return bookingID;    
+	return bookingID;    
     }
 
     public int getBookingStatus(){
-    return bookingStatus;    
+	return bookingStatus;    
     }
 
     public double getPrice(){
-    return price;    
+	return price;    
     }
 
     public FishingSafari getFishingSafari(){
-    return FishingSafari;    
+	return fishingSafari;    
     }
 
     public Customer getCustomer(){
-    return Customer;    
+	return customer;    
     }
 
     public Date getPreliminaryConfirmationSent(){
-    return preliminaryConfirmationSent;    
+	return preliminaryConfirmationSent;    
     }
 
     public Date getFinalConfirmationSent(){
-    return finalConfirmationSent;
+	return finalConfirmationSent;
     }
 
     public Date getPaymentRecieved(){
-    return paymentRecieved;
+	return paymentReceived;
     }
 
     public Date getBookingCancelled(){
