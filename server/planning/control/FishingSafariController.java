@@ -1,6 +1,7 @@
 package server.planning.control;
 
 import server.planning.model.FishingSafariCatalog;
+import server.planning.model.FishingSafari;
 import server.planning.model.SafariDestinationCatalog;
 import server.planning.model.SafariDestination;
 import client.ui.FishingSafariTopView;
@@ -86,6 +87,9 @@ public class FishingSafariController {
 
 		JComboBox destinationPicker = (JComboBox) bottomMap.get("destinationPicker");
 		destinationPicker.addItemListener(destinationListener);
+
+		JButton selectButton = (JButton) modifyMap.get("selectButton");
+		selectButton.addActionListener(selectListener);
 }
 
 	/**
@@ -149,11 +153,18 @@ public class FishingSafariController {
 		public void actionPerformed(ActionEvent e){
 			Component comp = (Component) e.getSource();
 			if(comp.getName()=="selectButton"){
+         
+         try{
          FishingSafari newFishingSafari = fishingModel.selectFishingSafari
          (modifyView.getSelectedFishingSafari());
-
          String test = newFishingSafari.getSafariDestination().getLocation();
          System.out.println(test);
+       }
+       catch(SQLException se){
+       	se.printStackTrace();
+       }
+
+         
 			}
 		}
 	};

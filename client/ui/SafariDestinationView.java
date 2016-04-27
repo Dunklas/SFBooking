@@ -28,6 +28,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.*;
 import java.util.HashMap;
+import javax.swing.AbstractButton;
+import javax.swing.JTextComponent;
 
 public class SafariDestinationView extends JPanel {
 	private JTextField textFieldLocation;
@@ -263,11 +265,36 @@ public class SafariDestinationView extends JPanel {
 	return compMap;
 	
 	}
+
 	
+	public void setText(String name, String text){
+    try{
+		JTextComponent textComp = (JTextComponent) compMap.get(name);
+		textComp.setText(text);
+	}
+	catch(ClassCastException cce){
+		cce.printStackTrace();
+	}
+}
 	
-	public void enableStatus(boolean status){ // kalla pa denna n'a'r det ska modifieras
-		activeButton.setVisible(status);
-		inactiveButton.setVisible(status);
+	public void setSelected(String name, boolean status){
+		try{
+    AbstractButton buttonComp = (AbstractButton) compMap.get(name);
+    buttonComp.setSelected(status);
+		}
+		catch(ClassCastException cce){
+			cce.printStackTrace();
+		}
+	}
+
+	public void showButton(String name,boolean status){
+		try{
+			AbstractButton buttonComp = (AbstractButton) compMap.get(name);
+      buttonComp.setVisible(status);
+		}
+		catch(ClassCastException cce){
+			cce.printStackTrace();
+		}
 	}
 	
 	public boolean checkStatus(){
