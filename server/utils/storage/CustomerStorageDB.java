@@ -1,5 +1,8 @@
 package server.utils.storage;
-import server.customer.model.customer;
+import server.customer.model.*;
+import java.util.Formatter;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class CustomerStorageDB implements CustomerStorage {
    
@@ -14,10 +17,11 @@ public class CustomerStorageDB implements CustomerStorage {
     }
 
     public Customer get(String email){
-	String sql = String.Format("SELECT * FROM customer where EMAIL = %s", email);
+	String sql = String.format("SELECT * FROM customer where EMAIL = %s", email);
 	ResultSet rs = DBHelper.getInstance().query(sql);
 	java.util.Date d = new java.util.Date(0);
 	Customer c = new Customer(-100, "", "", "", "", d);
+	try{
 	while (rs.next()){
 	    c = new Customer( rs.getInt("CUSTOMER_ID"),
 			      rs.getString("FIRST_NAME"),
@@ -26,15 +30,19 @@ public class CustomerStorageDB implements CustomerStorage {
 			      rs.getString("PHONE_NR"),
 			      rs.getDate("REGISTERED"));
 
+	}
+	} catch (SQLException se){
+	    se.printStackTrace();
 	}
 	return c;
     }
 
     public Customer get(int id){
-	String sql = String.Format("SELECT * FROM customer where CUSTOMER_ID = %d", id);
+	String sql = String.format("SELECT * FROM customer where CUSTOMER_ID = %d", id);
 	ResultSet rs = DBHelper.getInstance().query(sql);
 	java.util.Date d = new java.util.Date(0);
 	Customer c = new Customer(-100, "", "", "", "", d);
+	try{
 	while (rs.next()){
 	    c = new Customer( rs.getInt("CUSTOMER_ID"),
 			      rs.getString("FIRST_NAME"),
@@ -42,8 +50,12 @@ public class CustomerStorageDB implements CustomerStorage {
 			      rs.getString("EMAIL"),
 			      rs.getString("PHONE_NR"),
 			      rs.getDate("REGISTERED"));
-
 	}
+	} catch (SQLException se){
+	    se.printStackTrace();
+	}
+	
+    
 	return c;
     }
 
