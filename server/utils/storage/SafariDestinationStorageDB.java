@@ -18,7 +18,7 @@ public class SafariDestinationStorageDB implements SafariDestinationStorage{
 		public ArrayList<SafariDestination> get(int status){
 			
 			String sql = String.format("SELECT * safaridestination WHERE active=%d",status);
-			ResultSet = rs DBHelper.getInstance().query(sql);
+			ResultSet rs = DBHelper.getInstance().query(sql);
 			
 			while(rs.hasNext()){
 				

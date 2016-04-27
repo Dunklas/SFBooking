@@ -2,7 +2,7 @@ package server.utils.storage;
 
 public class SafariDestinationFactory {
 
-    public static SafariDestionationFactory getStorage() {
+    public static SafariDestionationStorage getStorage() {
 		return new SafariDestinationDB();
     }
 }
