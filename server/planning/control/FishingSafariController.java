@@ -4,6 +4,7 @@ import server.planning.model.FishingSafariCatalog;
 import server.planning.model.FishingSafari;
 import server.planning.model.SafariDestinationCatalog;
 import server.planning.model.SafariDestination;
+import server.planning.model.FishingSafari;
 import client.ui.FishingSafariTopView;
 import client.ui.FishingSafariBottomView;
 import client.ui.ModifyFishingSafariView;
@@ -153,10 +154,12 @@ public class FishingSafariController {
 		public void actionPerformed(ActionEvent e){
 			Component comp = (Component) e.getSource();
 			if(comp.getName()=="selectButton"){
+
          
          try{
          FishingSafari newFishingSafari = fishingModel.selectFishingSafari
          (modifyView.getSelectedFishingSafari());
+
          String test = newFishingSafari.getSafariDestination().getLocation();
          System.out.println(test);
        }
