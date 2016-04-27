@@ -1,12 +1,16 @@
-package server.util.storage;
+package server.utils.storage;
+
+import java.util.*;
+
+import server.planning.model.*;
 
 public interface SafariDestinationStorage{
 
 	SafariDestination get();
 	
-	SafariDestination get(int status);
+	ArrayList<SafariDestination> get(int status);
 	
-	SafariDestination get(int id);
+	SafariDestination get(String location);
 	
-	void put(FishingSafari fs);
+	void put(SafariDestination sd);
 }
