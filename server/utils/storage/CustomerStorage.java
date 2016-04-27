@@ -3,7 +3,7 @@ package server.utils.storage;
 public interface CustomerStorage{
 
 
-    void put();
+    void put(Customer c);
 
     Customer get(String email);
     
