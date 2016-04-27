@@ -20,7 +20,7 @@ public class CustomerStorageDB implements CustomerStorage {
 	String sql = String.format("SELECT * FROM customer where EMAIL = %s", email);
 	ResultSet rs = DBHelper.getInstance().query(sql);
 	java.util.Date d = new java.util.Date(0);
-	Customer c = new Customer(-100, "", "", "", "", d);
+	Customer c = null;
 	try{
 	while (rs.next()){
 	    c = new Customer( rs.getInt("CUSTOMER_ID"),
@@ -41,7 +41,7 @@ public class CustomerStorageDB implements CustomerStorage {
 	String sql = String.format("SELECT * FROM customer where CUSTOMER_ID = %d", id);
 	ResultSet rs = DBHelper.getInstance().query(sql);
 	java.util.Date d = new java.util.Date(0);
-	Customer c = new Customer(-100, "", "", "", "", d);
+	Customer c = null;
 	try{
 	while (rs.next()){
 	    c = new Customer( rs.getInt("CUSTOMER_ID"),
