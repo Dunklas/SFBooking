@@ -22,11 +22,21 @@ import javax.swing.DefaultListModel;
 public class FishingSafariBottomView extends JPanel {
 	private JTextField startTimeTextfield;
 	private JTextField endTimeTextfield;
-	JComboBox<String> destinationPicker;
+	private JComboBox<String> destinationPicker;
+	private JComboBox<String> statusPicker;
+	private JTextArea commentTextArea;
+	private JButton saveFishingSafariButton;
+	private JTextArea equipmentReq;
+	private JList<String> gearAvailableList;
+	private JButton addGearToRentButton;
+	private JButton removeGearToRentButton;
+	private JList<String> addedGearToRentList;
+
+
 	DefaultListModel<String> equipmentListModel = new DefaultListModel<String>();
 
-	private HashMap<String,Component> compMap = new HashMap<String,Component>();
-	ArrayList<Component> compArray = new ArrayList<Component>();
+	private HashMap<String,JComponent> compMap = new HashMap<String,JComponent>();
+	ArrayList<JComponent> compArray = new ArrayList<JComponent>();
 	
 	public FishingSafariBottomView() {
 		setMaximumSize(new Dimension(1000, 860));
@@ -114,7 +124,7 @@ public class FishingSafariBottomView extends JPanel {
 		horizontalStrut_3.setMaximumSize(new Dimension(38, 20));
 		pickStatusPanel.add(horizontalStrut_3);
 		
-		JComboBox<String> statusPicker = new JComboBox<String>();
+		statusPicker = new JComboBox<String>();
 		compArray.add(statusPicker);
 		statusPicker.setName("statusPicker");
 		statusPicker.setMaximumSize(new Dimension(150, 25));
@@ -131,14 +141,14 @@ public class FishingSafariBottomView extends JPanel {
 		JLabel commentLabel = new JLabel("Kommentar");
 		commentPanel.add(commentLabel);
 		
-		JTextArea commentTextArea = new JTextArea();
+		commentTextArea = new JTextArea();
 		compArray.add(commentTextArea);
 		commentTextArea.setName("commentArea");
 		commentTextArea.setMaximumSize(new Dimension(400, 100));
 		commentTextArea.setAlignmentX(Component.LEFT_ALIGNMENT);
 		commentPanel.add(commentTextArea);
 		
-		JButton saveFishingSafariButton = new JButton("Spara");
+		saveFishingSafariButton = new JButton("Spara");
 		compArray.add(saveFishingSafariButton);
 		saveFishingSafariButton.setName("saveFishingSafari");
 		leftFormPanel.add(saveFishingSafariButton);
@@ -155,7 +165,7 @@ public class FishingSafariBottomView extends JPanel {
 		JLabel gearReqLabel = new JLabel("Utrustningskrav");
 		gearReqPanel.add(gearReqLabel);
 		
-		JTextArea equipmentReq = new JTextArea();
+	  equipmentReq = new JTextArea();
 		equipmentReq.setName("equipmentReq");
 		gearReqPanel.add(equipmentReq);
 		compArray.add(equipmentReq);
@@ -181,7 +191,7 @@ public class FishingSafariBottomView extends JPanel {
 		gearAvailableScrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		gearToRentPanel.add(gearAvailableScrollPane);
 		
-		JList<String> gearAvailableList = new JList<String>();
+		gearAvailableList = new JList<String>();
 		compArray.add(gearAvailableList);
 		gearAvailableList.setName("availableGear");
 		gearAvailableList.setAlignmentX(Component.LEFT_ALIGNMENT);
@@ -191,12 +201,12 @@ public class FishingSafariBottomView extends JPanel {
 		gearToRentPanel.add(gearToRentButtonPanel);
 		gearToRentButtonPanel.setLayout(new BoxLayout(gearToRentButtonPanel, BoxLayout.Y_AXIS));
 		
-		JButton addGearToRentButton = new JButton("L\u00E4gg till >>");
+		addGearToRentButton = new JButton("L\u00E4gg till >>");
 		compArray.add(addGearToRentButton);
 		addGearToRentButton.setName("addGear");
 		gearToRentButtonPanel.add(addGearToRentButton);
 		
-		JButton removeGearToRentButton = new JButton("<< Ta bort");
+		removeGearToRentButton = new JButton("<< Ta bort");
 		compArray.add(removeGearToRentButton);
 		removeGearToRentButton.setName("removeGear");
 		removeGearToRentButton.setMaximumSize(new Dimension(88, 28));
@@ -208,7 +218,7 @@ public class FishingSafariBottomView extends JPanel {
 		addedGearToRentScrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		gearToRentPanel.add(addedGearToRentScrollPane);
 		
-		JList<String> addedGearToRentList = new JList<String>();
+		addedGearToRentList = new JList<String>();
 		compArray.add(addedGearToRentList);
 		addedGearToRentList.setName("addedGear");
 		addedGearToRentScrollPane.setViewportView(addedGearToRentList);
@@ -217,11 +227,11 @@ public class FishingSafariBottomView extends JPanel {
 	}
 	public void initCompMap(){
 		
-		for(int i=0; i<compArray.size(); i++){
-			compMap.put(compArray.get(i).getName(), compArray.get(i));
+		for(JComponent comp : compArray){
+			compMap.put(comp.getName(), comp);
 		}
 	}
-	public HashMap<String,Component> getCompMap(){
+	public HashMap<String,JComponent> getCompMap(){
 		return compMap;
 	}
 

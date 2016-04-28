@@ -16,8 +16,13 @@ import java.awt.*;
 
 public class FishingSafariTopView extends JPanel {
 
-	HashMap<String,Component> compMap = new HashMap<String,Component>();
-	ArrayList<Component> compArray = new ArrayList<Component>();
+private JButton selectEndDateButton;
+private JButton selectStartDateButton;
+private JDatePickerImpl = endDatePicker;
+private JDatePickerImpl = startDatePicker;
+
+	HashMap<String,JComponent> compMap = new HashMap<String,JComponent>();
+	ArrayList<JComponent> compArray = new ArrayList<JComponent>();
 	
 	public FishingSafariTopView() {
 		setLayout(new GridLayout(0, 2, 0, 0));
@@ -31,12 +36,12 @@ public class FishingSafariTopView extends JPanel {
 		JPanel leftDatePickerPanel = new JPanel();
 		add(leftDatePickerPanel);
 		JDatePanelImpl startDatePanel = new JDatePanelImpl(startDateModel,propStart);
-		JDatePickerImpl startDatePicker = new JDatePickerImpl(startDatePanel,new DateComponentFormatter());
+		startDatePicker = new JDatePickerImpl(startDatePanel,new DateComponentFormatter());
 		compArray.add(startDatePicker);
 		startDatePicker.setName("startDate");
 		leftDatePickerPanel.add(startDatePicker);
 		
-		JButton selectStartDateButton = new JButton("V\u00E4lj");
+		selectStartDateButton = new JButton("V\u00E4lj");
 		selectStartDateButton.setName("selectStartDate");
 		compArray.add(selectStartDateButton);
 		leftDatePickerPanel.add(selectStartDateButton);
@@ -51,12 +56,12 @@ public class FishingSafariTopView extends JPanel {
 		JPanel rightDatePickerPanel = new JPanel();
 		add(rightDatePickerPanel);
 		JDatePanelImpl endDatePanel = new JDatePanelImpl(endDateModel,propEnd); 
-		JDatePickerImpl endDatePicker = new JDatePickerImpl(endDatePanel,new DateComponentFormatter());
+		endDatePicker = new JDatePickerImpl(endDatePanel,new DateComponentFormatter());
 		compArray.add(endDatePicker);
 		endDatePicker.setName("endDate");
 		rightDatePickerPanel.add(endDatePicker);
 		
-		JButton selectEndDateButton = new JButton("V\u00E4lj");
+		selectEndDateButton = new JButton("V\u00E4lj");
 		selectEndDateButton.setName("selectEndDate");
 		compArray.add(selectEndDateButton);
 		rightDatePickerPanel.add(selectEndDateButton);
@@ -66,11 +71,11 @@ public class FishingSafariTopView extends JPanel {
 	}
 	public void initCompMap(){
 		
-		for(int i=0; i<compArray.size(); i++){
-			compMap.put(compArray.get(i).getName(), compArray.get(i));
+		for(JComponent comp : compArray){
+			compMap.put(comp.getName(), comp);
 		}
 	}
-	public HashMap<String,Component> getCompMap(){
+	public HashMap<String,JComponent> getCompMap(){
 		return compMap;
 	}
 
