@@ -15,11 +15,12 @@ import java.awt.Component;
 import javax.swing.*;
 import java.awt.*;
 import javax.swing.DefaultListModel;
+import server.planning.model.SafariDestination;
 
 public class ModifySafariDestinationView extends JPanel {
 
 	private DefaultListModel<String> listModel = new DefaultListModel<String>();
-	private HashMap<String,Component> compMap = new HashMap<String,Component>();
+	private HashMap<String,JComponent> compMap = new HashMap<String,JComponent>();
 	JList<String> modifyList;
 	JButton selectButton;
 	JScrollPane modifyListScrollPane;
@@ -72,15 +73,15 @@ public class ModifySafariDestinationView extends JPanel {
 	return modifyList.getSelectedValue();
     }    
 
-	public void fillList(ArrayList<String> array){
+	public void fillList(ArrayList<SafariDestination> array){
 		DefaultListModel<String> model = new DefaultListModel<String>();
-		for(String s : array){
-       model.addElement(s);
+		for(SafariDestination destination : array){
+       model.addElement(destination.getLocation());
 		}
 		modifyList.setModel(model);
 	}
 	
-	public HashMap<String,Component> getCompMap(){
+	public HashMap<String,JComponent> getCompMap(){
 		return compMap;
 	}
 
