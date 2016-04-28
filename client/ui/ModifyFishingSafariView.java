@@ -120,7 +120,7 @@ public class ModifyFishingSafariView extends JPanel {
       modifyList.setModel(listModel);
 	}
 	public int getSelectedFishingSafari(){
-		Scanner parser = new Scanner(modifyList.getSelectedValue());
+		Scanner parser = new Scanner(modifyList.getSelectedValue()).useDelimiter(";");
 		int fishingSafariID = 0;
     try{
     fishingSafariID = Integer.parseInt(parser.next());

@@ -226,7 +226,7 @@ public class FishingSafariBottomView extends JPanel {
 	}
 
 	public void fillDestinationPicker(ArrayList<String> array){
-		destinationPicker.addItem("");
+		destinationPicker.addItem(""); // adds empty string as default when creating new Safari
 		for(String destination : array){
 			destinationPicker.addItem(destination);
 		}
