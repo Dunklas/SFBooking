@@ -3,6 +3,7 @@ import server.customer.model.*;
 import java.util.Formatter;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 
 public class CustomerStorageDB implements CustomerStorage {
    
@@ -13,11 +14,13 @@ public class CustomerStorageDB implements CustomerStorage {
     }
 
     public void put(Customer toDB){
-	if (toDB.getId()== null){
-	    String sql = String.format("INSERT INTO CUSTOMER (FIRST_NAME, LAST_NAME, EMAIL, PHONE_NR, REGISTERED) VALUES (%s, &s, %s, %s, %t", c.getFirstName(), c.getlastName(), c.getEmail(), c.getTelephone(), c.getRegistered());
+	if (toDB.getId()== 0){
+	    Format formatter = new SimpleDateFormat("yyyy-MM-dd");
+	    String date = formatter.format(toDB.getRegistered());
+	    String sql = String.format("INSERT INTO CUSTOMER (FIRST_NAME, LAST_NAME, EMAIL, PHONE_NR, REGISTERED) VALUES (%s, &s, %s, %s, TO_DATE('%s')", toDB.getFirstName(), toDB.getlastName(), toDB.getEmail(), toDB.getTelephone(), date);
 	    DBHelper.getInstance().update(sql);
 	} else {
-	    Customer fromDB = get(toDB.get());
+	    Customer fromDB = get(toDB.getId());
 	    
 	}
     }
