@@ -75,12 +75,14 @@ public class SafariDestinationStorageDB implements SafariDestinationStorage{
 		
 		public void put(SafariDestination sd){
 			
-			String sql = String.format("INSERT INTO safaridestination (location, equipment_req, max_participants, guide, terrain, active) VALUES (%s, %s, %d, %s, %s, %b)" , sd.getLocation()
-																																										   , sd.getEquipmentReq()
-																																										   , sd.getMaxParticipants()
-																																										   , sd.getGuide()
-																																										   , sd.getTerrain()
-																																										   , sd.getActive());
+
+			String sql = String.format("INSERT INTO safaridestination VALUES ('%s', '%s', %d, '%s', '%s', %b,)" , sd.getLocation()
+																												, sd.getEquipmentReq()
+																												, sd.getMaxParticipants()
+																												, sd.getGuide()
+																												, sd.getTerrain()
+																												, sd.getActive());
+
 			DBHelper.getInstance().update(sql); 
 		}
 	
