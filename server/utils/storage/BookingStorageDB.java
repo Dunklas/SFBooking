@@ -45,12 +45,16 @@ public class BookingStorageDB implements BookingStorage {
 	try {
 	    while(rs.next()) {
 		Booking tempBook = new Booking(FishingSafariStorageFactory.getStorage().get(rs.getInt("safari")),
-					       CustomerStorageFactory.getStorage().get(rs.getInt("customer")));
+					       CustomerStorageFactory.getStorage().get(rs.getInt("customer")),
+					       rs.getInt("nr_participants"));
 
-
+		tempBook.setBookingID(rs.getInt("booking_id"));
+		tempBook.setBookingStatus(rs.getInt("booking_status"));
+		tempBook.setPrice(rs.getDouble("price"));
+		tempBook.setBooked(rs.getDate("booked"));
 	    }
 	} catch (SQLException ex) {
-	    //..
+	    ex.printStackTrace();
 	}
 	return null;
     }
