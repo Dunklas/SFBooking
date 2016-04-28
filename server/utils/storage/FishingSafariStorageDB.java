@@ -32,7 +32,7 @@ public class FishingSafariStorageDB implements FishingSafariStorage {
 	}
 
 
-	public ArrayList<FishingSafari> get(){
+	public ArrayList<FishingSafari> getList(){
 	    ResultSet rs = DBHelper.getInstance().query("SELECT * FROM fishingsafari");
 
         return toArrayList(rs);

@@ -6,6 +6,7 @@ import client.ui.ModifyFishingSafariView;
 import server.planning.model.FishingSafari;
 import server.planning.model.SafariDestination;
 import server.utils.storage.FishingSafariStorage;
+import server.utils.storage.FishingSafariStorageFactory;
 
 public class FishingSafariController{
   FishingSafariTopView topView;
@@ -27,6 +28,8 @@ public class FishingSafariController{
     topMap = topView.getCompMap();
     bottomMap = bottomView.getCompMap();
     modifyMap = modifyView.getCompMap();
+
+    bottomView.fillDestinationPicker(storage.getList());
 
 
   }

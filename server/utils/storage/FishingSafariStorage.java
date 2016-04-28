@@ -5,7 +5,7 @@ import java.util.*;
 
 public interface FishingSafariStorage{
 
-    ArrayList<FishingSafari> get();
+    ArrayList<FishingSafari> getList();
 
     ArrayList<FishingSafari> getByStatus(int status);
 
