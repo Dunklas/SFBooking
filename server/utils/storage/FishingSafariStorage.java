@@ -7,7 +7,7 @@ public interface FishingSafariStorage{
 
     ArrayList<FishingSafari> get();
 
-    FishingSafari getByStatus(int status);
+    ArrayList<FishingSafari> getByStatus(int status);
 
     FishingSafari get(int id);
 

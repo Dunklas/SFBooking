@@ -20,21 +20,36 @@ public class Booking {
     private Date booked;
     private Date refunded;
 
-    public Booking(FishingSafari safari, Customer customer) {
+    public Booking(FishingSafari safari, Customer customer, int nrParticipants) {
 	this.fishingSafari = safari;
 	this.customer = customer;
+	this.nrParticipants = nrParticipants;
+	this.price = 500*nrParticipants; // Always 500 for now, since we haven't implemented price
+	//bookingStatus always get 0, since that's default for int instance variables
     }
 
     public int getBookingID(){
 	return bookingID;    
     }
 
+    public void setBookingID(int id){
+	this.bookingID = id;
+    }
+
     public int getBookingStatus(){
 	return bookingStatus;    
     }
 
+    public void setBookingStatus(int status) {
+	this.bookingStatus = status;
+    }
+
     public double getPrice(){
 	return price;    
+    }
+
+    public void setPrice(double price) {
+	this.price = price;
     }
 
     public FishingSafari getFishingSafari(){
@@ -49,24 +64,47 @@ public class Booking {
 	return preliminaryConfirmationSent;    
     }
 
+    public void setPreliminaryConfirmationSent(Date date){
+	this.preliminaryConfirmationSent = date;
+    }
+
     public Date getFinalConfirmationSent(){
 	return finalConfirmationSent;
     }
 
-    public Date getPaymentRecieved(){
+    public void setFinalConfirmationSent(Date date) {
+	this.finalConfirmationSent = date;
+    }
+
+    public Date getPaymentReceived(){
 	return paymentReceived;
+    }
+
+    public void setPaymentReceived(Date date){
+	this.paymentReceived = date;
     }
 
     public Date getBookingCancelled(){
     return bookingCancelled;    
     }
 
+    public void setBookingCancelled(Date date){
+	this.bookingCancelled = date;
+    }
+
     public Date getBooked(){
     return booked;    
+    }
+
+    public void setBooked(Date date){
+	this.booked = date;
     }
 
     public Date getRefunded(){
     return refunded;    
     }
 
+    public void setRefunded(Date date){
+	this.refunded = date;
+    }
 }

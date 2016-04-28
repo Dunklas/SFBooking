@@ -3,6 +3,7 @@ import server.customer.model.*;
 import java.util.Formatter;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 
 public class CustomerStorageDB implements CustomerStorage {
    
@@ -12,8 +13,16 @@ public class CustomerStorageDB implements CustomerStorage {
 
     }
 
-    public void put(Customer c){
-
+    public void put(Customer toDB){
+	if (toDB.getId()== 0){
+	    SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+	    String date = formatter.format(toDB.getRegistered());
+	    String sql = String.format("INSERT INTO CUSTOMER (FIRST_NAME, LAST_NAME, EMAIL, PHONE_NR, REGISTERED) VALUES (%s, &s, %s, %s, TO_DATE('%s');", toDB.getFirstName(), toDB.getlastName(), toDB.getEmail(), toDB.getTelephone(), date);
+	    DBHelper.getInstance().update(sql);
+	} else {
+	    Customer fromDB = get(toDB.getId());
+	    
+	}
     }
 
     public Customer get(String email){
@@ -23,13 +32,13 @@ public class CustomerStorageDB implements CustomerStorage {
 	Customer c = null;
 	try{
 	while (rs.next()){
-	    c = new Customer( rs.getInt("CUSTOMER_ID"),
-			      rs.getString("FIRST_NAME"),
+	    c = new Customer( rs.getString("FIRST_NAME"),
 			      rs.getString("LAST_NAME"),
 			      rs.getString("EMAIL"),
 			      rs.getString("PHONE_NR"),
 			      rs.getDate("REGISTERED"));
 
+	    c.setId(rs.getInt("CUSTOMER_ID"));
 	}
 	} catch (SQLException se){
 	    se.printStackTrace();
@@ -44,12 +53,12 @@ public class CustomerStorageDB implements CustomerStorage {
 	Customer c = null;
 	try{
 	while (rs.next()){
-	    c = new Customer( rs.getInt("CUSTOMER_ID"),
-			      rs.getString("FIRST_NAME"),
+	    c = new Customer( rs.getString("FIRST_NAME"),
 			      rs.getString("LAST_NAME"),
 			      rs.getString("EMAIL"),
 			      rs.getString("PHONE_NR"),
 			      rs.getDate("REGISTERED"));
+	    c.setId(rs.getInt("CUSTOMER_ID"));
 	}
 	} catch (SQLException se){
 	    se.printStackTrace();
