@@ -29,7 +29,9 @@ import java.awt.event.ActionEvent;
 import javax.swing.*;
 import java.util.HashMap;
 import javax.swing.AbstractButton;
-import javax.swing.JTextComponent;
+import javax.swing.text.JTextComponent;
+import javax.swing.JComponent;
+import server.planning.model.SafariDestination;
 
 public class SafariDestinationView extends JPanel {
 	private JTextField textFieldLocation;
@@ -40,6 +42,7 @@ public class SafariDestinationView extends JPanel {
 	private JCheckBox terrain1;
 	private JCheckBox terrain2;
 	private JCheckBox terrain3;
+	private JTextArea equipmentTextArea;
         
 	private JRadioButton activeButton;
 	private JRadioButton inactiveButton;
@@ -54,6 +57,8 @@ public class SafariDestinationView extends JPanel {
     private ArrayList<JComponent> compArray = new ArrayList<JComponent>();
 
     private ArrayList<String> dummyEquipment = new ArrayList<String>();
+
+    private SafariDestination destination;
 	
 	
 
@@ -204,7 +209,7 @@ public class SafariDestinationView extends JPanel {
 		add(gearPanel, gbc_gearPanel);
 		gearPanel.setLayout(new BoxLayout(gearPanel, BoxLayout.X_AXIS));
 		
-		JTextArea equipmentTextArea = new JTextArea();
+		equipmentTextArea = new JTextArea();
 		equipmentTextArea.setMaximumSize(new Dimension(500, 500));
 		gearPanel.add(equipmentTextArea);
 		compArray.add(equipmentTextArea);
@@ -256,12 +261,12 @@ public class SafariDestinationView extends JPanel {
 	}
 	public void initCompMap(){
 		
-		for(int i=0; i<compArray.size(); i++){
-			compMap.put(compArray.get(i).getName(), compArray.get(i));
+		for(JComponent comp : compArray){
+			compMap.put(comp.getName(), comp);
 		}
 	}
 
-	public HashMap<String,Component> getCompMap(){
+	public HashMap<String,JComponent> getCompMap(){
 	return compMap;
 	
 	}
@@ -296,6 +301,33 @@ public class SafariDestinationView extends JPanel {
 			cce.printStackTrace();
 		}
 	}
+
+	public void buildSafariDestination(){
+		String location = textFieldLocation.getText();
+		String equipmentReq = equipmentTextArea.getText();
+		int maxParticipants = checkMaxParticipants(textFieldParticipants.getText());
+		String guide = guideBox.getSelectedItem().toString();
+		String terrain = checkTerrain();
+		boolean status = checkStatus();
+
+		destination = new SafariDestination(location,equipmentReq,maxParticipants,guide,terrain,status);
+	}
+	public SafariDestination getSafariDestination(){
+		return destination;
+	}
+
+	public int checkMaxParticipants(String input){
+    int maxParticipants = 0;
+    try{
+    maxParticipants = Integer.parseInt(input);
+	}
+	catch(NumberFormatException nfe){
+		nfe.printStackTrace(); // input verification needed...
+	}
+	return maxParticipants;
+}
+
+
 	
 	public boolean checkStatus(){
 		if(activeButton.isSelected()){
@@ -363,8 +395,6 @@ public class SafariDestinationView extends JPanel {
 		textFieldLocation.setEnabled(true);
 		textFieldParticipants.setText("");
 		clearTerrain();
-		
-		
 
 		//clear statusselection too
 
