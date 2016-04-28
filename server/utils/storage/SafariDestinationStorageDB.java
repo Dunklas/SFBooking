@@ -81,7 +81,7 @@ public class SafariDestinationStorageDB implements SafariDestinationStorage{
 																																										   , sd.getGuide()
 																																										   , sd.getTerrain()
 																																										   , sd.getActive());
-			ResultSet rs = DBHelper.getInstance().update(sql); 
+			DBHelper.getInstance().update(sql); 
 		}
 	
 }
