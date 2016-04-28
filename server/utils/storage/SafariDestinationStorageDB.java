@@ -20,8 +20,11 @@ public class SafariDestinationStorageDB implements SafariDestinationStorage{
 			String sql = String.format("SELECT * safaridestination WHERE active=%d",status);
 			ResultSet rs = DBHelper.getInstance().query(sql);
 			
-			while(rs.hasNext()){
-				
+			try {
+			    while(rs.next()){
+			    }
+			} catch (SQLException ex) {
+			    ex.printStackTrace();
 			}
 			
 			return null;
@@ -29,25 +32,23 @@ public class SafariDestinationStorageDB implements SafariDestinationStorage{
 		
 		public SafariDestination get(String location){
 			
-			String sql = String.format("SELECT * FROM safaridestination WHERE location=%s",location);
+			String sql = String.format("SELECT * FROM safaridestination WHERE location= '%s'",location);
 			ResultSet rs = DBHelper.getInstance().query(sql);
 			
 			SafariDestination sd = null;
 			
-			while(rs.hasNext()){
-				try{
-					sd = new SafariDestination (rs.getString("location"), 
-												rs.getString("equipment_req"), 
-												rs.getInt("max_participants"), 
-												rs.getString("guide"), 
-												rs.getString("terrain"), 
-												rs.getBoolean("active"));
-																 
-				}catch(SQLException e){
-					e.printStackTrace();
-				}
+			try {
+			    while(rs.next()){
+				sd = new SafariDestination (rs.getString("location"), 
+							    rs.getString("equipment_req"), 
+							    rs.getInt("max_participants"), 
+							    rs.getString("guide"), 
+							    rs.getString("terrain"), 
+							    rs.getBoolean("active"));
+			    }
+			} catch (SQLException ex) {
+			    ex.printStackTrace();
 			}
-			
 			return sd;
 		}
 		

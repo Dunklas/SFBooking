@@ -1,0 +1,13 @@
+package client.ui.test;
+
+import client.ui.*;
+import server.planning.model.*;
+import server.planning.control.*;
+
+public class TestMain{
+  
+  public static void main(String[] args){
+
+  SafariDestinationView view = new SafariDestinationView
+  }
+}

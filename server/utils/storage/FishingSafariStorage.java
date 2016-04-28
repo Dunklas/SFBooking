@@ -1,10 +1,11 @@
-import server.planning.model.FishingSafari;
-
 package server.utils.storage;
+
+import server.planning.model.FishingSafari;
+import java.util.*;
 
 public interface FishingSafariStorage{
 
-    FishingSafari get();
+    ArrayList<FishingSafari> get();
 
     FishingSafari getByStatus(int status);
 
