@@ -27,7 +27,7 @@ public class SafariDestinationStorageDB implements SafariDestinationStorage{
 		
 		public SafariDestination get(String location){
 			
-			String sql = String.format("SELECT * FROM safaridestination WHERE location=%s",location);
+			String sql = String.format("SELECT * FROM safaridestination WHERE location= '%s'",location);
 			ResultSet rs = DBHelper.getInstance().query(sql);
 			
 			return toSafariDestination(rs);

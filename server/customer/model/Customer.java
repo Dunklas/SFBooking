@@ -13,14 +13,16 @@ public class Customer {
     private Date registered;
     private Date unregistered;
 
-    public Customer (int customerID, String firstName, String lastName, String email, String telephone, Date registered) {
+    public Customer (String firstName, String lastName, String email, String telephone, Date registered) {
 
-    	this.customerID = customerID;
     	this.firstName = firstName;
     	this.lastName = lastName;
     	this.email = email;
     	this.telephone = telephone;
     	this.registered = registered;
+    }
+    public void setId(int newId){
+	this.customerId = newId;
     }
 
     public int getId(){

@@ -26,47 +26,82 @@ public class Booking {
     }
 
     public int getBookingID(){
-    return bookingID;    
+	return bookingID;    
+    }
+
+    public void setBookingID(int id){
+	this.bookingID = id;
     }
 
     public int getBookingStatus(){
-    return bookingStatus;    
+	return bookingStatus;    
+    }
+
+    public void setBookingStatus(int status) {
+	this.bookingStatus = status;
     }
 
     public double getPrice(){
-    return price;    
+	return price;    
+    }
+
+    public void setPrice(double price) {
+	this.price = price;
     }
 
     public FishingSafari getFishingSafari(){
-    return FishingSafari;    
+	return fishingSafari;    
     }
 
     public Customer getCustomer(){
-    return Customer;    
+	return customer;    
     }
 
     public Date getPreliminaryConfirmationSent(){
-    return preliminaryConfirmationSent;    
+	return preliminaryConfirmationSent;    
+    }
+
+    public void setPreliminaryConfirmationSent(Date date){
+	this.preliminaryConfirmationSent = date;
     }
 
     public Date getFinalConfirmationSent(){
-    return finalConfirmationSent;
+	return finalConfirmationSent;
     }
 
-    public Date getPaymentRecieved(){
-    return paymentRecieved;
+    public void setFinalConfirmationSent(Date date) {
+	this.finalConfirmationSent = date;
+    }
+
+    public Date getPaymentReceived(){
+	return paymentReceived;
+    }
+
+    public void setPaymentReceived(Date date){
+	this.paymentReceived = date;
     }
 
     public Date getBookingCancelled(){
     return bookingCancelled;    
     }
 
+    public void setBookingCancelled(Date date){
+	this.bookingCancelled = date;
+    }
+
     public Date getBooked(){
     return booked;    
+    }
+
+    public void setBooked(Date date){
+	this.booked = date;
     }
 
     public Date getRefunded(){
     return refunded;    
     }
 
+    public void setRefunded(Date date){
+	this.refunded = date;
+    }
 }

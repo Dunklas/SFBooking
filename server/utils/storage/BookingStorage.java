@@ -1,14 +1,19 @@
 package server.utils.storage;
 
+import server.booking.model.*;
+import server.customer.model.*;
+import server.planning.model.*;
+import java.util.*;
+
 public interface BookingStorage{
 	
    void put(Booking b);
 
-   Booking get(int status);
+   ArrayList<Booking> get(int status);
 
-   Booking get(Customer c);
+   ArrayList<Booking> get(Customer c);
 
-   Booking get (FishingSafari fs);
+   ArrayList<Booking> get(FishingSafari fs);
 
 
 }
