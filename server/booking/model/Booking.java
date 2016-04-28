@@ -20,9 +20,12 @@ public class Booking {
     private Date booked;
     private Date refunded;
 
-    public Booking(FishingSafari safari, Customer customer) {
+    public Booking(FishingSafari safari, Customer customer, int nrParticipants) {
 	this.fishingSafari = safari;
 	this.customer = customer;
+	this.nrParticipants = nrParticipants;
+	this.price = 500*nrParticipants; // Always 500 for now, since we haven't implemented price
+	//bookingStatus always get 0, since that's default for int instance variables
     }
 
     public int getBookingID(){

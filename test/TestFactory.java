@@ -27,5 +27,8 @@ public class TestFactory {
 	c = CustomerStorageFactory.getStorage().get("wille@wille.com");
 	sd = SafariDestinationStorageFactory.getStorage().get("Helge ¿¿");
 	fs = FishingSafariStorageFactory.getStorage().get();
+	java.util.Date dd = new java.util.Date(0); 
+	Customer cTemp = new Customer("Palle", "Andersson", "geogoe.com", "oegoeogeo", dd);
+	CustomerStorageFactory.getStorage().put(cTemp);
     }
 }
