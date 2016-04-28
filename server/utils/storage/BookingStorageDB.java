@@ -8,16 +8,12 @@ import java.sql.*;
 
 public class BookingStorageDB implements BookingStorage {
 
-    BookingStorageDB() {
-
-    }
-
     public ArrayList<Booking> get(FishingSafari fs) {
 	
 	String sql = String.format("SELECT * FROM booking WHERE safari = %d", fs.getId());
 	ResultSet rs = DBHelper.getInstance().query(sql);
 
-	return null;
+	return toArrayList(rs);
     }
 
     public ArrayList<Booking> get(Customer c) {
@@ -25,7 +21,7 @@ public class BookingStorageDB implements BookingStorage {
 	String sql = String.format("SELECT * FROM booking WHERE customer = %d", c.getId());
 	ResultSet rs = DBHelper.getInstance().query(sql);
 
-	return null;
+	return toArrayList(rs);
     }
 
     public ArrayList<Booking> get(int status) {
@@ -33,7 +29,7 @@ public class BookingStorageDB implements BookingStorage {
 	String sql = String.format("SELECT * FROM booking WHERE booking_status = %d", status);
 	ResultSet rs = DBHelper.getInstance().query(sql);
 	
-	return null;
+	return toArrayList(rs);
     }
 
     public void put(Booking booking) {
@@ -52,10 +48,11 @@ public class BookingStorageDB implements BookingStorage {
 		tempBook.setBookingStatus(rs.getInt("booking_status"));
 		tempBook.setPrice(rs.getDouble("price"));
 		tempBook.setBooked(rs.getDate("booked"));
+		bookArrayList.add(tempBook);
 	    }
 	} catch (SQLException ex) {
 	    ex.printStackTrace();
 	}
-	return null;
+	return bookArrayList;
     }
 }
