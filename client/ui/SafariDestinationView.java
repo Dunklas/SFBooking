@@ -316,6 +316,10 @@ public class SafariDestinationView extends JPanel {
 		return destination;
 	}
 
+	/**
+	*Methods to check user input and translate for Objectcreation
+	*
+	*/
 	public int checkMaxParticipants(String input){
     int maxParticipants = 0;
     try{
@@ -327,8 +331,6 @@ public class SafariDestinationView extends JPanel {
 	return maxParticipants;
 }
 
-
-	
 	public boolean checkStatus(){
 		if(activeButton.isSelected()){
 			return true;
@@ -347,6 +349,21 @@ public class SafariDestinationView extends JPanel {
 		}
 		return result;
 	}
+
+	/**
+	*Method to populate textfield according to Object fetched from storage
+	*/
+	public void populateSafariDestination(SafariDestination destination){
+     textFieldLocation.setText(destination.getLocation());
+     equipmentTextArea.setText(destination.getEquipmentReq());
+     textFieldParticipants.setText(destination.getMaxParticipants());
+     guideBox.setSelectedItem(destination.getGuide());
+     fillTerrain(destination.getTerrainList());
+     setActive(destination.getActive());
+
+
+	}
+
 	
 		
 	
