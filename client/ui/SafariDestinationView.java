@@ -50,8 +50,8 @@ public class SafariDestinationView extends JPanel {
 	private DefaultListModel<String> listModelAvailable = new DefaultListModel<String>();
 	private ArrayList<JCheckBox> terrains = new ArrayList<JCheckBox>();
 	
-    private HashMap<String,Component> compMap = new HashMap<String,Component>();
-    private ArrayList<Component> compArray = new ArrayList<Component>();
+    private HashMap<String,JComponent> compMap = new HashMap<String,JComponent>();
+    private ArrayList<JComponent> compArray = new ArrayList<JComponent>();
 
     private ArrayList<String> dummyEquipment = new ArrayList<String>();
 	
