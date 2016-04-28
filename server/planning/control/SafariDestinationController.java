@@ -17,7 +17,7 @@ public class SafariDestinationController{
   SafariDestinationView safariView;
   ModifySafariDestinationView modifyView;
   HashMap<String,JComponent> safariMap;
-  HashMap<String,Component> modifyMap;
+  HashMap<String,JComponent> modifyMap;
 
   SafariDestinationStorage storage = SafariDestinationStorageFactory.getStorage();
   SafariDestination destination;
@@ -27,6 +27,18 @@ public class SafariDestinationController{
     modifyView = msdv;
     safariMap = safariView.getCompMap();
     modifyMap = modifyView.getCompMap();
+
+
+    modifyView.fillList(storage.getList()); // initates and gets all SafariDestinations to represent in GUI
+    addListeners();
+  }
+
+  public void addListeners(){
+    JButton saveButton = (JButton) safariMap.get("saveNewSafariButton");
+    saveButton.addActionListener(saveListener);
+
+    JButton selectButton = (JButton) modifyMap.get("selectButton");
+    selectButton.addActionListener(selectListener);
   }
 
 
@@ -41,6 +53,21 @@ public class SafariDestinationController{
       if(comp.getName()=="saveNewSafariButton"){
         safariView.buildSafariDestination();
          destination = safariView.getSafariDestination();
+         storage.put(destination);
+         safariView.showButton(safariMap.get("activeButton").getName(),false);
+         safariView.showButton(safariMap.get("inactiveButton").getName(),false);
+      }
+    }
+  };
+
+  ActionListener selectListener = new ActionListener(){
+    public void actionPerformed(ActionEvent e){
+      JComponent comp = (JComponent) e.getSource();
+      if(comp.getName()=="selectButton"){
+         safariView.showButton(safariMap.get("activeButton").getName(),true);
+         safariView.showButton(safariMap.get("inactiveButton").getName(),true);
+         destination = storage.get(modifyView.getSelectedDestination());
+         safariView.populateSafariDestination(destination); // argument från storage ska in here..
       }
     }
   };

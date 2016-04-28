@@ -17,8 +17,10 @@ public class CustomerStorageDB implements CustomerStorage {
 	if (toDB.getId()== 0){
 	    SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 	    String date = formatter.format(toDB.getRegistered());
-	    String sql = String.format("INSERT INTO CUSTOMER (FIRST_NAME, LAST_NAME, EMAIL, PHONE_NR, REGISTERED) VALUES (%s, &s, %s, %s, TO_DATE('%s');", toDB.getFirstName(), toDB.getlastName(), toDB.getEmail(), toDB.getTelephone(), date);
-	    DBHelper.getInstance().update(sql);
+	    System.out.println(date);
+	     String sql = String.format("INSERT INTO CUSTOMER (FIRST_NAME, LAST_NAME, EMAIL, PHONE_NR, REGISTERED) VALUES (%s, %s, %s, %s, TO_DATE('%s'))", toDB.getFirstName(), toDB.getlastName(), toDB.getEmail(), toDB.getTelephone(), date);
+	     System.out.println(sql);
+	     DBHelper.getInstance().update(sql);
 	} else {
 	    Customer fromDB = get(toDB.getId());
 	    
@@ -28,7 +30,6 @@ public class CustomerStorageDB implements CustomerStorage {
     public Customer get(String email){
 	String sql = String.format("SELECT * FROM customer where EMAIL = '%s'", email);
 	ResultSet rs = DBHelper.getInstance().query(sql);
-	java.util.Date d = new java.util.Date(0);
 	Customer c = null;
 	try{
 	while (rs.next()){
@@ -49,7 +50,6 @@ public class CustomerStorageDB implements CustomerStorage {
     public Customer get(int id){
 	String sql = String.format("SELECT * FROM customer where CUSTOMER_ID = %d", id);
 	ResultSet rs = DBHelper.getInstance().query(sql);
-	java.util.Date d = new java.util.Date(0);
 	Customer c = null;
 	try{
 	while (rs.next()){
