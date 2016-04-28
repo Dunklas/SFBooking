@@ -170,7 +170,7 @@ public class Select {
 	Customer queryCustomer = null;
 
 	while (rs.next()) {
-	    queryCustomer = new Customer(rs.getInt("customer_id"),
+	    queryCustomer = new Customer(
 	    		    rs.getString("first_name"),
 			    rs.getString("last_name"),
 			    rs.getString("email"),
