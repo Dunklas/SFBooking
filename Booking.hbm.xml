@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping.dtd">
+
+<hibernate-mapping>
+  <class name ="Booking" table="BOOKING">
+    <meta attribute="class-description">
+      This class contains the details of a booking.
+    </meta>
+    <id name="bookingId" type "int" column="BOOKING_ID">
+      <generator class="native"/>
+    </id>
+    <component name="fishingSafari" class="FishingSafari">
+      <property name="id" column="SAFARI" type="int"/>
+    </component>
+    <component name="customer" class="Customer">
+      <property name="id" column="CUSTOMER" type="int"/>
+    </component>
+    <property name="bookingStatus" column="BOOKING_STATUS" type="int"/>
+    <property name="nrParticipants" column="NR_PARTICIPANTS" type="int"/>
+    <property name="price" column="PRICE" type="double"/>
+    <property name="preliminaryConfirmationSent" column="PRELIMINARY_CONFIRMATION_SENT" type="date"/>
+    <property name="finalConfirmationSent" column="FINAL_CONFIRMATION_SENT" type="date"/>
+    <property name="paymentReceived" column="PAYMENT_RECEIVED" type="date"/>
+    <property name="bookingCancelled" column="BOOKING_CANCELLED" type="date"/>
+    <property name="booked" column="BOOKED" type="date"/>
+    <property name="refunded" column="REFUNDED" type="date"/>
+  </class>
+</hibernate-mapping>
