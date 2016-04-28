@@ -2,33 +2,43 @@ package test;
 
 import server.customer.model.*;
 import server.planning.model.*;
+import server.booking.model.*;
 import server.utils.storage.*;
 import java.util.*;
 
 public class TestFactory {
 
-    static Customer c;
-    static SafariDestination sd;
-    static ArrayList<FishingSafari> fs;
+    CustomerStorage 		cStore = CustomerStorageFactory.getStorage();
+    BookingStorage 		bStore = BookingStorageFactory.getStorage();
+    SafariDestinationStorage	sStore = SafariDestinationStorageFactory.getStorage();
+    FishingSafariStorage 	fStore = FishingSafariStorageFactory.getStorage();
 
     public static void main(String[] args) {
-
 	new TestFactory();
-
-	System.out.println("Customer: " + c);
-	System.out.println("SafariDestination: " + sd);
-	for (FishingSafari f : fs) {
-	    System.out.println("FishingSafari: " + f);
-	}
     }
 
     public TestFactory() {
 
-	c = CustomerStorageFactory.getStorage().get("wille@wille.com");
-	sd = SafariDestinationStorageFactory.getStorage().get("Helge ¿¿");
-	fs = FishingSafariStorageFactory.getStorage().get();
+	Customer c = cStore.get("wille@wille.com");
+	SafariDestination s = sStore.get("Helge ¿¿");
+	ArrayList<FishingSafari> f = fStore.get();
+	ArrayList<Booking> b = bStore.get(0);
+
+	System.out.println("Customer: " + c);
+	
+	System.out.println("SafariDestination: " + s);
+	
+	System.out.println("FishingSafari:");
+	for (FishingSafari fs : f) {
+	    System.out.println(fs);
+	}
+
+	System.out.println("Booking:");
+	for (Booking bb : b) {
+	    System.out.println(bb);
+	}
+
 	java.util.Date dd = new java.util.Date(0); 
 	Customer cTemp = new Customer("Palle", "Andersson", "geogoe.com", "oegoeogeo", dd);
-	CustomerStorageFactory.getStorage().put(cTemp);
     }
 }

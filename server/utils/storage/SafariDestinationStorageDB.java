@@ -10,7 +10,7 @@ public class SafariDestinationStorageDB implements SafariDestinationStorage{
 		SafariDestinationStorageDB(){
 			
 		}
-		public ArrayList<SafariDestination> get(){
+		public ArrayList<SafariDestination> getList(){
 
 			ResultSet rs = DBHelper.getInstance().query("SELECT * FROM safaridestination");
 			
@@ -75,6 +75,12 @@ public class SafariDestinationStorageDB implements SafariDestinationStorage{
 		
 		public void put(SafariDestination sd){
 			
+			String.format("INSERT INTO safaridestination VALUES %s, %s, %d, %s, %s, %b" , sd.getLocation()
+																						, sd.getEquipmentReq()
+																						, sd.getMaxParticipants()
+																						, sd.getGuide()
+																						, sd.)
+			ResultSet rs = DBHelper.getInstance().update(sql);
 		}
 	
 }

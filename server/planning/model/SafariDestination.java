@@ -38,7 +38,7 @@ public class SafariDestination{
 	return guide;
     }
 
-    public ArrayList<String> getTerrain(){
+    public ArrayList<String> getTerrainList(){
 	ArrayList<String> parsedTerrain = new ArrayList<String>();
   Scanner parser = new Scanner(this.terrain).useDelimiter(";");
   while(parser.hasNext()){
@@ -47,6 +47,9 @@ public class SafariDestination{
   return parsedTerrain;    
     }
     
+	public String getTerrain(){
+		return terrain;
+	}
 
     public boolean getActive(){
 	return active;
@@ -55,31 +58,29 @@ public class SafariDestination{
 
     public void setTerrain(String newTerrain){
 	this.terrain = newTerrain;
+	
     }
 
     public void setGuide(String newGuide) {
 	this.guide = newGuide;
+	
     }
 
     public void setEquipmentReq(String newEquipment){
 	this.equipmentReq = newEquipment;
+	
     }
    
     public void setMaxParticipants(int newMaxParticipants){
-	this.maxParticipants = newMaxParticipants;   
+	this.maxParticipants = newMaxParticipants;
+	
     }
 
     public void setStatus(Boolean active){
 	this.active = active;
+	
     }
- 
-    /**
-    public String getSafariDestinationElement(String location, String column) throws SQLException{
-	Select dbSelect = new Select();
-	String element = dbSelect.selectSafariDestinationElement(location, column);
-	return element;
+   
 
-	}*/
-
-
+    
 }//End of class
