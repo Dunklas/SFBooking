@@ -76,13 +76,12 @@ public class SafariDestinationStorageDB implements SafariDestinationStorage{
 		public void put(SafariDestination sd){
 			
 
-			String sql = String.format("INSERT INTO safaridestination VALUES ('%s','%s',%d,'%s','%s',%d)" , sd.getLocation()
-
-																												, sd.getEquipmentReq()
-																												, sd.getMaxParticipants()
-																												, sd.getGuide()
-																												, sd.getTerrain()
-																												, 1);
+			String sql = String.format("INSERT INTO safaridestination VALUES ('%d','%s',%s,'%s','%s',%d)" , sd.getMaxParticipants()
+																										  , sd.getTerrain()
+																										  , sd.getEquipmentReq()
+																										  , sd.getGuide()
+																										  , sd.getLocation()
+																										  , 1);
 
 			DBHelper.getInstance().update(sql); 
 		}
