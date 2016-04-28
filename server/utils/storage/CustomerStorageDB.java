@@ -15,9 +15,9 @@ public class CustomerStorageDB implements CustomerStorage {
 
     public void put(Customer toDB){
 	if (toDB.getId()== 0){
-	    Format formatter = new SimpleDateFormat("yyyy-MM-dd");
+	    SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 	    String date = formatter.format(toDB.getRegistered());
-	    String sql = String.format("INSERT INTO CUSTOMER (FIRST_NAME, LAST_NAME, EMAIL, PHONE_NR, REGISTERED) VALUES (%s, &s, %s, %s, TO_DATE('%s')", toDB.getFirstName(), toDB.getlastName(), toDB.getEmail(), toDB.getTelephone(), date);
+	    String sql = String.format("INSERT INTO CUSTOMER (FIRST_NAME, LAST_NAME, EMAIL, PHONE_NR, REGISTERED) VALUES (%s, &s, %s, %s, TO_DATE('%s');", toDB.getFirstName(), toDB.getlastName(), toDB.getEmail(), toDB.getTelephone(), date);
 	    DBHelper.getInstance().update(sql);
 	} else {
 	    Customer fromDB = get(toDB.getId());
