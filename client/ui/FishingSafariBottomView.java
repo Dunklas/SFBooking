@@ -17,7 +17,12 @@ import javax.swing.JList;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.JButton;
 import java.util.*;
+import javax.swing.JComponent;
 import javax.swing.DefaultListModel;
+import server.planning.model.SafariDestination;
+import server.planning.model.FishingSafari;
+import server.utils.storage.SafariDestinationStorage;
+import server.utils.storage.SafariDestinationStorageFactory;
 
 public class FishingSafariBottomView extends JPanel {
 	private JTextField startTimeTextfield;
@@ -37,6 +42,13 @@ public class FishingSafariBottomView extends JPanel {
 
 	private HashMap<String,JComponent> compMap = new HashMap<String,JComponent>();
 	ArrayList<JComponent> compArray = new ArrayList<JComponent>();
+
+	FishingSafari fishingSafari;
+	SafariDestination destination;
+
+	SafariDestinationStorage safariStorage = SafariDestinationStorageFactory.getStorage();
+
+
 	
 	public FishingSafariBottomView() {
 		setMaximumSize(new Dimension(1000, 860));
@@ -234,6 +246,8 @@ public class FishingSafariBottomView extends JPanel {
 	public HashMap<String,JComponent> getCompMap(){
 		return compMap;
 	}
+
+
 
 	public void fillDestinationPicker(ArrayList<String> array){
 		destinationPicker.addItem(""); // adds empty string as default when creating new Safari

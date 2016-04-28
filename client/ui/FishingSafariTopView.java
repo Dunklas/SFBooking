@@ -18,8 +18,8 @@ public class FishingSafariTopView extends JPanel {
 
 private JButton selectEndDateButton;
 private JButton selectStartDateButton;
-private JDatePickerImpl = endDatePicker;
-private JDatePickerImpl = startDatePicker;
+private JDatePickerImpl endDatePicker;
+private JDatePickerImpl startDatePicker;
 
 	HashMap<String,JComponent> compMap = new HashMap<String,JComponent>();
 	ArrayList<JComponent> compArray = new ArrayList<JComponent>();

@@ -17,7 +17,12 @@ public class TestMain{
 
   SafariDestinationController safariController = new SafariDestinationController(safariView,modifyView);
   
-  MainSplitView split = new MainSplitView(modifyView,safariView);
+  FishingSafariBottomView bottomView = new FishingSafariBottomView();
+  FishingSafariTopView topView = new FishingSafariTopView();
+  FishingSafariView mainView = new FishingSafariView(topView,bottomView);
+  ModifyFishingSafariView modifyFishingView = new ModifyFishingSafariView();
+
+  MainSplitView split = new MainSplitView(modifyFishingView,mainView);
   TestMain.addToFrame(split);
   
   }
