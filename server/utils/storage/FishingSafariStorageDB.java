@@ -15,49 +15,72 @@ public class FishingSafariStorageDB implements FishingSafariStorage {
 
 	}
 
-	public FishingSafari getByStatus(int status){
-	    return null;
+	public ArrayList<FishingSafari> getByStatus(int status){
+	    String sql = String.format("SELECT * FROM fishingsafari WHERE status = %d", status);
+	    ResultSet rs = DBHelper.getInstance().query(sql);
+      
+	    return toArrayList(rs);
 	}
 
 	public FishingSafari get(int id){
 		String sql = String.format("SELECT * FROM fishingsafari WHERE id = %d", id);
 		ResultSet rs = DBHelper.getInstance().query(sql);
-		SafariDestination sd = null;
-		FishingSafari fs = null;
-
-		try {
-		    while (rs.next()){
-			sd = SafariDestinationStorageFactory.getStorage().get(rs.getString("SafariDestination"));
-			fs = new FishingSafari(sd, rs.getDate("START_DATE"), rs.getDate("END_DATE"), rs.getInt("STATUS"));
-			fs.setId(rs.getInt("SAFARI_ID"));
-		    }
-		} catch(SQLException ex) {
-		    ex.printStackTrace();
-		}
-
-        return fs;
+		
+		return toFishingSafari(rs);
 
 
 	}
 
 
 	public ArrayList<FishingSafari> get(){
-		ArrayList<FishingSafari> fsList = new ArrayList<FishingSafari>();
-    	ResultSet rs = DBHelper.getInstance().query("SELECT * FROM fishingsafari");
-    	SafariDestination sd = null; 
-        FishingSafari fs =null;
-    	try {
-	    while (rs.next()){
-		sd = SafariDestinationStorageFactory.getStorage().get(rs.getString("SafariDestination"));
-		fs = new FishingSafari(sd, rs.getDate("START_DATE"), rs.getDate("END_DATE"), rs.getInt("STATUS"));
-		fs.setId(rs.getInt("SAFARI_ID"));
-		fsList.add(fs);
-	    }
-	} catch(SQLException ex) {
-	    ex.printStackTrace();
+	    ResultSet rs = DBHelper.getInstance().query("SELECT * FROM fishingsafari");
+
+        return toArrayList(rs);
 	}
 
-    	return fsList;
+	private ArrayList<FishingSafari> toArrayList(ResultSet rs){
+		ArrayList<FishingSafari> fsList = new ArrayList<FishingSafari>();
+		
+		SafariDestination sd = null;
+		FishingSafari fs = null;
+		try {
+           while (rs.next()){
+               sd = SafariDestinationStorageFactory.getStorage().get(rs.getString("SafariDestination"));
+               fs = new FishingSafari(sd,
+               	                      rs.getDate("START_DATE"),
+               	                      rs.getDate("END_DATE"),
+               	                      rs.getInt("STATUS"));
+               fs.setId(rs.getInt("SAFARI_ID"));
+               fsList.add(fs);
+           }
+         
+		} catch(SQLException ex){
+			ex.printStackTrace();
+		}
+
+		return fsList;
+
+	}
+
+	private FishingSafari toFishingSafari(ResultSet rs){
+		
+	    SafariDestination sd = null;
+	    FishingSafari fs = null;
+
+	    try{
+	    	while (rs.next()){
+               sd = SafariDestinationStorageFactory.getStorage().get(rs.getString("SafariDestination"));
+               fs = new FishingSafari(sd,
+               	                      rs.getDate("START_DATE"),
+               	                      rs.getDate("END_DATE"),
+               	                      rs.getInt("STATUS"));
+               fs.setId(rs.getInt("SAFARI_ID"));
+	    	}
+	    } catch(SQLException ex){
+	    	ex.printStackTrace();
+	    }
+	    return fs;
+
 	}
 	
 

@@ -40,11 +40,14 @@ public class BookingStorageDB implements BookingStorage {
 
     }
 
-    private ArrayList<Booking> toBookingArr(ResultSet rs) {
-
+    private ArrayList<Booking> toArrayList(ResultSet rs) {
+	ArrayList<Booking> bookArrayList = new ArrayList<>();
 	try {
 	    while(rs.next()) {
-		Booking tempBook; 
+		Booking tempBook = new Booking(FishingSafariStorageFactory.getStorage().get(rs.getInt("safari")),
+					       CustomerStorageFactory.getStorage().get(rs.getInt("customer")));
+
+
 	    }
 	} catch (SQLException ex) {
 	    //..
