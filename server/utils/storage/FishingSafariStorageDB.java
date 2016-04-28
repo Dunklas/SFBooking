@@ -11,7 +11,8 @@ public class FishingSafariStorageDB implements FishingSafariStorage {
 	  
 	}
 
-	public void put(FishingSafari fs){
+	public void put(FishingSafari fs){ 
+		
 
 	}
 
