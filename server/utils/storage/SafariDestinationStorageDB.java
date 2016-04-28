@@ -10,9 +10,11 @@ public class SafariDestinationStorageDB implements SafariDestinationStorage{
 		SafariDestinationStorageDB(){
 			
 		}
-		public SafariDestination get(){
+		public ArrayList<SafariDestination> get(){
+
+			ResultSet rs = DBHelper.getInstance().query("SELECT * FROM safaridestination");
 			
-			return null;
+			return toArrayList(rs);
 		}
 		
 		public ArrayList<SafariDestination> get(int status){
@@ -20,11 +22,7 @@ public class SafariDestinationStorageDB implements SafariDestinationStorage{
 			String sql = String.format("SELECT * safaridestination WHERE active=%d",status);
 			ResultSet rs = DBHelper.getInstance().query(sql);
 			
-			while(rs.hasNext()){
-				
-			}
-			
-			return null;
+			return toArrayList(rs);
 		}
 		
 		public SafariDestination get(String location){
@@ -32,24 +30,48 @@ public class SafariDestinationStorageDB implements SafariDestinationStorage{
 			String sql = String.format("SELECT * FROM safaridestination WHERE location=%s",location);
 			ResultSet rs = DBHelper.getInstance().query(sql);
 			
-			SafariDestination sd = null;
+			return toSafariDestination(rs);
+		}
+		
+		public ArrayList<SafariDestination> toArrayList(ResultSet rs){
 			
-			while(rs.hasNext()){
-				try{
+			ArrayList<SafariDestination> sdList = new ArrayList<SafariDestination>();
+			SafariDestination sd = null;
+			try{
+				while(rs.next()){
 					sd = new SafariDestination (rs.getString("location"), 
 												rs.getString("equipment_req"), 
 												rs.getInt("max_participants"), 
 												rs.getString("guide"), 
 												rs.getString("terrain"), 
 												rs.getBoolean("active"));
-																 
-				}catch(SQLException e){
-					e.printStackTrace();
+					sdList.add(sd);
 				}
+			}catch(SQLException e){
+					e.printStackTrace();
 			}
+			return sdList;
+		}
+		
+		public SafariDestination toSafariDestination(ResultSet rs){
 			
+			SafariDestination sd = null;
+			try{
+				while(rs.next()){
+					sd = new SafariDestination (rs.getString("location"), 
+												rs.getString("equipment_req"), 
+												rs.getInt("max_participants"), 
+												rs.getString("guide"), 
+												rs.getString("terrain"), 
+												rs.getBoolean("active"));
+					
+				}
+			}catch(SQLException e){
+				e.printStackTrace();
+			}
 			return sd;
 		}
+		
 		
 		public void put(SafariDestination sd){
 			
