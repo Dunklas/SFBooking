@@ -1,8 +1,8 @@
 package server.utils.storage;
 
-public class SafariDestinationFactory {
+public class SafariDestinationStorageFactory {
 
-    public static SafariDestionationStorage getStorage() {
-		return new SafariDestinationDB();
+    public static SafariDestinationStorage getStorage() {
+		return new SafariDestinationStorageDB();
     }
 }

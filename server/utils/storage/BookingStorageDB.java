@@ -40,10 +40,15 @@ public class BookingStorageDB implements BookingStorage {
 
     }
 
-    private ArrayList<Booking> toBookingArr(ResultSet res) {
+    private ArrayList<Booking> toBookingArr(ResultSet rs) {
 
-	while(rs.next()) {
-	    Booking tempBook; 
+	try {
+	    while(rs.next()) {
+		Booking tempBook; 
+	    }
+	} catch (SQLException ex) {
+	    //..
 	}
+	return null;
     }
 }

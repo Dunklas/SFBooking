@@ -8,7 +8,7 @@ public class CustomerStorageDB implements CustomerStorage {
    
 
 
-    private CustomerStorageDB(){
+    CustomerStorageDB(){
 
     }
 
@@ -17,7 +17,7 @@ public class CustomerStorageDB implements CustomerStorage {
     }
 
     public Customer get(String email){
-	String sql = String.format("SELECT * FROM customer where EMAIL = %s", email);
+	String sql = String.format("SELECT * FROM customer where EMAIL = '%s'", email);
 	ResultSet rs = DBHelper.getInstance().query(sql);
 	java.util.Date d = new java.util.Date(0);
 	Customer c = null;
