@@ -22,7 +22,7 @@ public class Customer {
     	this.registered = registered;
     }
     public void setId(int newId){
-	this.customerId = newId;
+	this.customerID = newId;
     }
 
     public int getId(){
