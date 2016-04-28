@@ -54,7 +54,8 @@ public class SafariDestinationController{
         safariView.buildSafariDestination();
          destination = safariView.getSafariDestination();
          storage.put(destination);
-
+         safariView.showButton(safariMap.get("activeButton").getName(),false);
+         safariView.showButton(safariMap.get("inactiveButton").getName(),false);
       }
     }
   };
@@ -63,7 +64,10 @@ public class SafariDestinationController{
     public void actionPerformed(ActionEvent e){
       JComponent comp = (JComponent) e.getSource();
       if(comp.getName()=="selectButton"){
-         //safariView.populateSafariDestination(); // argument från storage ska in here..
+         safariView.showButton(safariMap.get("activeButton").getName(),true);
+         safariView.showButton(safariMap.get("inactiveButton").getName(),true);
+         destination = storage.get(modifyView.getSelectedDestination());
+         safariView.populateSafariDestination(destination); // argument från storage ska in here..
       }
     }
   };

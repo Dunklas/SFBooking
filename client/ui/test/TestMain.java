@@ -5,6 +5,8 @@ import server.planning.model.*;
 import server.planning.control.*;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JSplitPane;
+import client.ui.MainSplitView;
 
 public class TestMain{
   
@@ -14,17 +16,18 @@ public class TestMain{
   ModifySafariDestinationView modifyView = new ModifySafariDestinationView();
 
   SafariDestinationController safariController = new SafariDestinationController(safariView,modifyView);
-
-  TestMain.addToFrame(safariView);
+  
+  MainSplitView split = new MainSplitView(modifyView,safariView);
+  TestMain.addToFrame(split);
   
   }
 
-  static void addToFrame(JPanel panel){
+  static void addToFrame(MainSplitView split){
     JFrame frame = new JFrame();
     frame.setVisible(true);
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     frame.setSize(800,800);
-    frame.add(panel);
+    frame.add(split);
 
   }
 
