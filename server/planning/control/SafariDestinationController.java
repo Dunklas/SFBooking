@@ -27,6 +27,16 @@ public class SafariDestinationController{
     modifyView = msdv;
     safariMap = safariView.getCompMap();
     modifyMap = modifyView.getCompMap();
+
+    modifyView.fillList(storage.getList()); // initates and gets all SafariDestinations to represent in GUI
+  }
+
+  public void addListeners(){
+    JButton saveButton = (JButton) safariMap.get("saveNewSafariButton");
+    saveButton.addActionListener(saveListener);
+
+    JButton selectButton = (JButton) modifyMap.get("selectButton");
+    selectButton.addActionListener(selectListener);
   }
 
 
@@ -41,6 +51,15 @@ public class SafariDestinationController{
       if(comp.getName()=="saveNewSafariButton"){
         safariView.buildSafariDestination();
          destination = safariView.getSafariDestination();
+      }
+    }
+  };
+
+  ActionListener selectListener = new ActionListener(){
+    public void actionPerformed(ActionEvent e){
+      JComponent comp = (JComponent) e.getSource();
+      if(comp.getName()=="selectButton"){
+         
       }
     }
   };

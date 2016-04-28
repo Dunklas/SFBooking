@@ -6,7 +6,7 @@ import server.planning.model.*;
 
 public interface SafariDestinationStorage{
 
-	ArrayList<SafariDestination> get();
+	ArrayList<SafariDestination> getList();
 	
 	ArrayList<SafariDestination> get(int status);
 	
