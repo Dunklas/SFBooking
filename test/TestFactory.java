@@ -40,5 +40,6 @@ public class TestFactory {
 
 	java.util.Date dd = new java.util.Date(0); 
 	Customer cTemp = new Customer("Palle", "Andersson", "geogoe.com", "oegoeogeo", dd);
+	cStore.put(cTemp);
     }
 }
