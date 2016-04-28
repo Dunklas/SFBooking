@@ -59,7 +59,7 @@ public class SafariDestinationController{
     public void actionPerformed(ActionEvent e){
       JComponent comp = (JComponent) e.getSource();
       if(comp.getName()=="selectButton"){
-         
+         safariView.populateSafariDestination(); // argument från storage ska in here..
       }
     }
   };
