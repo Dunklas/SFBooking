@@ -178,7 +178,7 @@ public class SafariDestinationView extends JPanel {
 		add(guideBox, gbc_guideBox);
 		guideBox.setMaximumSize(new Dimension(200, 25));
 
-		guideBox.addItem("Pelle");
+		guideBox.addItem("Jason");
 		
 		JPanel guidePanel = new JPanel();
 		guidePanel.setBackground(UIManager.getColor("CheckBox.light"));

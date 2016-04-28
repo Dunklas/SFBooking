@@ -30,6 +30,7 @@ public class SafariDestinationController{
 
 
     modifyView.fillList(storage.getList()); // initates and gets all SafariDestinations to represent in GUI
+    addListeners();
   }
 
   public void addListeners(){
@@ -53,7 +54,7 @@ public class SafariDestinationController{
         safariView.buildSafariDestination();
          destination = safariView.getSafariDestination();
          storage.put(destination);
-         
+
       }
     }
   };
