@@ -22,9 +22,9 @@ public class TestFactory {
 	Customer c = cStore.get("wille@wille.com");
 	SafariDestination s = sStore.get("Helge ¿¿");
 	ArrayList<FishingSafari> f = fStore.get();
-	ArrayList<Booking> b = bStore.get(0);
+	ArrayList<Booking> b = bStore.get(c);
 
-	System.out.println("Customer: " + c);
+	System.out.println("Customer: " + c + "With ID: " + c.getId());
 	
 	System.out.println("SafariDestination: " + s);
 	
