@@ -6,9 +6,9 @@ public interface CustomerStorage{
 
     void put(Customer c);
 
-    Customer get(String email);
+    Customer get(String email) throws StorageException;
     
-    Customer get(int id);
+    Customer get(int id) throws StorageException;
 
 
 
