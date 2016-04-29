@@ -75,10 +75,10 @@ public class SafariDestinationStorageDB implements SafariDestinationStorage{
 		
 		public void put(SafariDestination sd){
 			
-			SafariDestination fromDB = get(sd.getLocation);
+			SafariDestination fromDB = get(sd.getLocation());
 			
 			if(fromDB == null){	
-			String sql = String.format("INSERT INTO SAFARIDESTINATION(MAX_PARTICIPANTS, TERRAIN, EQUIPMENT_REQ, GUIDE, LOCATION, ACTIVE)VALUES (%d,'%s','%s','%s','%s',%d)",sd.getMaxParticipants()
+			String sql = String.format("INSERT INTO SAFARIDESTINATION(MAX_PARTICIPANTS, TERRAIN, EQUIPMENT_REQ, GUIDE, LOCATION, ACTIVE) VALUES (%d,'%s','%s','%s','%s',%d)",sd.getMaxParticipants()
 																																										   ,sd.getTerrain()
 																																										   ,sd.getEquipmentReq()
 																																										   ,sd.getGuide()
@@ -87,7 +87,7 @@ public class SafariDestinationStorageDB implements SafariDestinationStorage{
 			System.out.println(sql);
 			
 														 
-				DBHelper.getInstance().query(sql);
+				DBHelper.getInstance().update(sql);
 			}else if(fromDB !=null){
 				String sql = String.format("UPDATE SAFARIDESTINATION SET MAX_PARTICIPANTS=%d, TERRAIN='%s', EQUIPMENT_REQ='%s', GUIDE='%s', LOCATION='%s', ACTIVE=%d WHERE LOCATION='%s')",sd.getMaxParticipants()
 																																														  ,sd.getTerrain()
