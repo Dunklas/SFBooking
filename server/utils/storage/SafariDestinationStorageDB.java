@@ -88,14 +88,14 @@ public class SafariDestinationStorageDB implements SafariDestinationStorage{
 			
 														 
 				DBHelper.getInstance().update(sql);
-			}else if(fromDB !=null){
-				String sql = String.format("UPDATE SAFARIDESTINATION SET MAX_PARTICIPANTS=%d, TERRAIN='%s', EQUIPMENT_REQ='%s', GUIDE='%s', LOCATION='%s', ACTIVE=%d WHERE LOCATION='%s')",sd.getMaxParticipants()
-																																														  ,sd.getTerrain()
-																																														  ,sd.getEquipmentReq()
-																																														  ,sd.getGuide()
-																																														  ,sd.getLocation()
-																																														  ,1
-																																														  ,sd.getLocation());
+			}else {
+				String sql = String.format("UPDATE SAFARIDESTINATION SET MAX_PARTICIPANTS=%d, TERRAIN='%s', EQUIPMENT_REQ='%s', GUIDE='%s', ACTIVE=%d WHERE LOCATION='%s'",sd.getMaxParticipants()
+						,sd.getTerrain()
+						,sd.getEquipmentReq()
+						,sd.getGuide() 
+					 	,1
+						,sd.getLocation());
+				System.out.println(sql);
 				DBHelper.getInstance().update(sql);
 			}
 		}
