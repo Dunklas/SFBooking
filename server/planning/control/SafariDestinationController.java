@@ -6,6 +6,7 @@ import server.planning.model.SafariDestination;
 import server.utils.storage.SafariDestinationStorageFactory;
 import server.utils.storage.SafariDestinationStorage;
 import server.utils.storage.SafariDestinationStorageDB;
+import server.utils.storage.SafariDestinationGUIStorage;
 import javax.swing.event.*;
 import java.awt.event.*;
 import javax.swing.*;
@@ -19,7 +20,7 @@ public class SafariDestinationController{
   HashMap<String,JComponent> safariMap;
   HashMap<String,JComponent> modifyMap;
 
-  SafariDestinationStorage storage = SafariDestinationStorageFactory.getStorage();
+  SafariDestinationStorage storage = SafariDestinationStorageFactory.getGUITestStorage();
   SafariDestination destination;
 
   public SafariDestinationController(SafariDestinationView sdv,ModifySafariDestinationView msdv){
@@ -56,6 +57,8 @@ public class SafariDestinationController{
          storage.put(destination);
          safariView.showButton(safariMap.get("activeButton").getName(),false);
          safariView.showButton(safariMap.get("inactiveButton").getName(),false);
+         safariView.clearSelection();
+
       }
     }
   };
