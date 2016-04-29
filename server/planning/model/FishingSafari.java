@@ -53,6 +53,9 @@ public class FishingSafari{
     public int getId(){
 	return id;
     }
+    public int getStatus(){
+        return status;
+    }
 
     
 
