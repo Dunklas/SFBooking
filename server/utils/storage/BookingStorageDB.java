@@ -10,6 +10,7 @@ public class BookingStorageDB implements BookingStorage {
 /*
 VI BEHÖVER INTE JÄMFÖRA ATTRIBUT!
 KOLLA OM OBJEKT FINNS OCH SKRIV IN RESTEN AV SKITEN
+Testa att uppdatera en bokning också...
 */
     public ArrayList<Booking> get(FishingSafari fs) {
 	

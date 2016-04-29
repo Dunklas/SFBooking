@@ -67,6 +67,10 @@ public class FishingSafari{
         return status;
     }
 
+    public void setStatus(int status) {
+	this.status = status;
+    }
+
     
 
 }//End of class

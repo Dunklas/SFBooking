@@ -12,14 +12,25 @@ public class FishingSafariStorageDB implements FishingSafariStorage {
 	}
 
 	public void put(FishingSafari fs){ 
-		if(fs == null){
-		   String sql = "INSERT INTO fishingsafari VALUES(?, ?, ?, ?, ?)";
-		   DBHelper.getInstance().update(sql, fs.getSafariDestination().getLocation(), fs.getEndDate(), fs.getStartDate(), fs.getId(), fs.getStatus());
+		FishingSafari fromDb = get(fs.getId());
+	
+		if(fromDb == null) {
+		   String sql = "INSERT INTO fishingsafari (safaridestination, end_date, start_date, status)VALUES(?, ?, ?, ?)";
+		   DBHelper.getInstance().update(sql, 
+		   				fs.getSafariDestination().getLocation(), 
+						fs.getEndDate(), 
+						fs.getStartDate(), 
+						fs.getStatus());
 		} else{
-           String sql = "UPDATE fishingsafari SET safaridestination = ?, end_date = ?, start_date = ?, safari_id = ?. status = ? WHERE safari_id = ?";
-           DBHelper.getInstance().update(sql, fs.getSafariDestination().getLocation(), fs.getEndDate(), fs.getStartDate(), fs.getId(), fs.getStatus(), fs.getId()); 
+		    String sql = "UPDATE fishingsafari SET safaridestination = ?, end_date = ?, start_date = ?, safari_id = ?, status = ? WHERE safari_id = ?";
+		    DBHelper.getInstance().update(sql, 
+		    				fs.getSafariDestination().getLocation(), 
+						fs.getEndDate(), 
+						fs.getStartDate(), 
+						fs.getId(), 
+						fs.getStatus(), 
+						fs.getId()); 
 		}
-
 	}
 
 	public ArrayList<FishingSafari> getByStatus(int status){
