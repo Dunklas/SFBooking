@@ -9,6 +9,7 @@ public class FishingSafariGUIStorage implements FishingSafariStorage{
   ArrayList<FishingSafari> fsList = new ArrayList<FishingSafari>();
   ArrayList<SafariDestination> sdList = new ArrayList<SafariDestination>();
 
+  //FishingSafari fs = new FishingSafari(,new Date(),new Date(),0);
   SafariDestinationStorage storage = SafariDestinationStorageFactory.getGUITestStorage(); //used to fetch destinations
 
   public FishingSafariGUIStorage(){
@@ -45,7 +46,8 @@ public class FishingSafariGUIStorage implements FishingSafariStorage{
     return statusList;
   }
   public FishingSafari get(int id){
-    return fs;
+    //return fs;
+    return null;
   }
   public void put(FishingSafari fs){
     fsList.add(fs);
