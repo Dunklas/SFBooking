@@ -84,7 +84,7 @@ public class SafariDestinationStorageDB implements SafariDestinationStorage{
 																																										   ,1);
 			System.out.println(sql);
 																		 
-			DBHelper.getInstance().update(sql); 
+			DBHelper.getInstance().query(sql); 
 		}
 	
 }
