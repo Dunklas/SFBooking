@@ -11,7 +11,16 @@ public class FishingSafariStorageDB implements FishingSafariStorage {
 	  
 	}
 
-	public void put(FishingSafari fs){
+	public void put(FishingSafari fs){ 
+		if(fs == null){
+		   String sql = "INSERT INTO fishingsafari VALUES(?, ?, ?, ?, ?)";
+		   ResultSet rs = DBHelper.getInstance().update(sql, fs.getSafariDestination().getLocation(), fs.getEndDate(), fs.getStartDate(), fs.getInteger(), fs.getInteger());
+		   rs.executeUpdate();
+		} else{
+           String sql = "UPDATE fishingsafari SET safaridestination = ?, end_date = ?, start_date = ?, safari_id = ?. status = ? WHERE safari_id = ?");
+           ResultSet rs = DBHelper.getInstance().update(sql, fs.getSafariDestination().getLocation(), fs.getEndDate(), fs.getStartDate(), fs.getInteger(), fs.getInteger(), fs.getInteger());
+           rs.executeUpdate();
+		}
 
 	}
 
