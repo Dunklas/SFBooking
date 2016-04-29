@@ -26,6 +26,8 @@ SafariDestination destination;
 HashMap<String,JComponent> topMap;
 HashMap<String,JComponent> bottomMap;
 
+DateFormat df = DateFormat.getDateInstance(DateFormat.SHORT);
+
 public FishingSafariView(FishingSafariTopView top, FishingSafariBottomView bottom){
   topView = top;
   bottomView = bottom;
@@ -59,21 +61,16 @@ public void populateFishingSafari(FishingSafari safari){
     
 
   JDatePickerImpl startDatePicker = (JDatePickerImpl) topMap.get("startDate");
-  /*startDatePicker.setTextFieldValue(startDatePicker.getJFormattedTextField()
-    ,)*/
-    
+  String start = df.format(safari.getStartDate());
+  startDatePicker.getJFormattedTextField().setText(start);
+  
+  JDatePickerImpl endDatePicker = (JDatePickerImpl) topMap.get("endDate");
+  JFormattedTextField endDateText = endDatePicker.getJFormattedTextField();
+  String end = df.format(safari.getEndDate());  
+  endDateText.setText(end);
 }
 
-public ArrayList<Integer> parseDate(Date date){
-  ArrayList<Integer> array = new ArrayList<Integer>();
-  DateFormat df = DateFormat.getDateInstance(DateFormat.SHORT);
-  Scanner parser = new Scanner(df.format(date)).useDelimiter("-");
 
-  while(parser.hasNext()){
-    array.add(Integer.parseInt(parser.next()));
-  }
-  return array;
-}
 
 
 

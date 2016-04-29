@@ -51,6 +51,8 @@ public class FishingSafariController{
     bottomView.fillDestinationPicker(safariStorage.getList());
     modifyView.fillList(fishingStorage.getList());
 
+    addListeners();
+
 
   }
     public void addListeners(){
@@ -91,7 +93,11 @@ if(comp.getName().equals("saveFishingSafari")){
   };
   ActionListener selectListener = new ActionListener(){
     public void actionPerformed(ActionEvent e){
-
+      JComponent comp = (JComponent) e.getSource();
+      if(comp.getName().equals("selectButton")){
+        FishingSafari selectedSafari = modifyView.getSelectedFishingSafari();
+        mainView.populateFishingSafari(selectedSafari);
+      }
     }
   };
 
