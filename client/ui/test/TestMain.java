@@ -22,7 +22,9 @@ public class TestMain{
   FishingSafariView mainView = new FishingSafariView(topView,bottomView);
   ModifyFishingSafariView modifyFishingView = new ModifyFishingSafariView();
 
-  MainSplitView split = new MainSplitView(modifyView,safariView);
+  FishingSafariController fishingController = new FishingSafariController(topView,bottomView,mainView,modifyFishingView);
+
+  MainSplitView split = new MainSplitView(modifyFishingView,mainView);
   TestMain.addToFrame(split);
   
   }

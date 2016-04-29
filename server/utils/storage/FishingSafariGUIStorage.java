@@ -1,6 +1,7 @@
 package server.utils.storage;
 
-import server.utils.storage.*;
+import server.utils.storage.SafariDestinationStorage;
+import server.utils.storage.SafariDestinationStorageFactory;
 import server.planning.model.FishingSafari;
 import server.planning.model.SafariDestination;
 import java.util.*;

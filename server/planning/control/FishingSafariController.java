@@ -2,6 +2,7 @@ package server.planning.control;
 
 import client.ui.FishingSafariTopView;
 import client.ui.FishingSafariBottomView;
+import client.ui.FishingSafariView;
 import client.ui.ModifyFishingSafariView;
 import server.planning.model.FishingSafari;
 import server.planning.model.SafariDestination;
@@ -9,6 +10,14 @@ import server.utils.storage.FishingSafariStorage;
 import server.utils.storage.FishingSafariStorageFactory;
 import server.utils.storage.SafariDestinationStorage;
 import server.utils.storage.SafariDestinationStorageFactory;
+import java.util.ArrayList;
+import java.util.HashMap;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.event.*;
+import javax.swing.JComponent;
+import java.awt.event.*;
+
 
 public class FishingSafariController{
   FishingSafariTopView topView;
@@ -33,7 +42,7 @@ public class FishingSafariController{
     topView=top;
     bottomView=bottom;
     mainView = main;
-    modifyMap=mod;
+    modifyView=mod;
 
     topMap = topView.getCompMap();
     bottomMap = bottomView.getCompMap();
@@ -43,7 +52,7 @@ public class FishingSafariController{
 
 
   }
-  public void addListeners(){
+  /*public void addListeners(){
     JButton startDateButton = (JButton) topMap.get("selectStartDate");
     startDateButton.addActionListener(datePickerListener);
 
@@ -61,6 +70,6 @@ public class FishingSafariController{
 
 
 
-  }
+  }*/
 
 }

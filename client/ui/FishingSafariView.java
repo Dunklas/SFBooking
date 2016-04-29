@@ -17,7 +17,7 @@ FishingSafariTopView topView;
 FishingSafariBottomView bottomView;
 
 
-SafariDestinationStorage destinationStorage = SafariDestinationStorageFactory.getStorage();
+SafariDestinationStorage destinationStorage = SafariDestinationStorageFactory.getGUITestStorage();
 
 FishingSafari fishingSafari;
 SafariDestination destination;
@@ -53,5 +53,6 @@ fishingSafari = new FishingSafari(destination,selectedStartDate,selectedEndDate,
 public FishingSafari getFishingSafari(){
   return fishingSafari;
 }
+
 
 }

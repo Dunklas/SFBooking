@@ -21,8 +21,7 @@ import javax.swing.JComponent;
 import javax.swing.DefaultListModel;
 import server.planning.model.SafariDestination;
 import server.planning.model.FishingSafari;
-import server.utils.storage.SafariDestinationStorage;
-import server.utils.storage.SafariDestinationStorageFactory;
+
 
 public class FishingSafariBottomView extends JPanel {
 	private JTextField startTimeTextfield;
@@ -45,9 +44,6 @@ public class FishingSafariBottomView extends JPanel {
 
 	FishingSafari fishingSafari;
 	SafariDestination destination;
-
-	SafariDestinationStorage safariStorage = SafariDestinationStorageFactory.getStorage();
-
 
 	
 	public FishingSafariBottomView() {
@@ -252,6 +248,7 @@ public class FishingSafariBottomView extends JPanel {
 	public void fillDestinationPicker(ArrayList<SafariDestination> array){
 		destinationPicker.addItem(""); // adds empty string as default when creating new Safari
 		for(SafariDestination destination : array){
+
 			destinationPicker.addItem(destination.getLocation());
 		}
 	}
