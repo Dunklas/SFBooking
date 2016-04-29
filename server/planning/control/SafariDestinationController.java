@@ -20,8 +20,8 @@ public class SafariDestinationController{
   HashMap<String,JComponent> safariMap;
   HashMap<String,JComponent> modifyMap;
 
-  SafariDestinationStorage storage = SafariDestinationStorageFactory.getGUITestStorage();
-  //SafariDestinationStorage storage = SafariDestinationStorageFactory.getStorage();
+  //SafariDestinationStorage storage = SafariDestinationStorageFactory.getGUITestStorage();
+  SafariDestinationStorage storage = SafariDestinationStorageFactory.getStorage();
   SafariDestination destination;
 
   public SafariDestinationController(SafariDestinationView sdv,ModifySafariDestinationView msdv){
