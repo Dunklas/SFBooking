@@ -9,6 +9,7 @@ import server.planning.model.SafariDestination;
 import server.planning.model.FishingSafari;
 import org.jdatepicker.*;
 import org.jdatepicker.impl.*;
+import java.text.DateFormat;
 
 
 public class FishingSafariView extends JPanel{
@@ -53,6 +54,27 @@ fishingSafari = new FishingSafari(destination,selectedStartDate,selectedEndDate,
 public FishingSafari getFishingSafari(){
   return fishingSafari;
 }
+
+public void populateFishingSafari(FishingSafari safari){
+    
+
+  JDatePickerImpl startDatePicker = (JDatePickerImpl) topMap.get("startDate");
+  /*startDatePicker.setTextFieldValue(startDatePicker.getJFormattedTextField()
+    ,)*/
+    
+}
+
+public ArrayList<Integer> parseDate(Date date){
+  ArrayList<Integer> array = new ArrayList<Integer>();
+  DateFormat df = DateFormat.getDateInstance(DateFormat.SHORT);
+  Scanner parser = new Scanner(df.format(date)).useDelimiter("-");
+
+  while(parser.hasNext()){
+    array.add(Integer.parseInt(parser.next()));
+  }
+  return array;
+}
+
 
 
 }

@@ -16,9 +16,11 @@ import javax.swing.JComboBox;
 import javax.swing.Box;
 import java.util.HashMap;
 import java.util.ArrayList;
+import java.text.DateFormat;
 import javax.swing.*;
 import java.util.Scanner;
 import server.planning.model.FishingSafari;
+import server.planning.model.SafariDestination;
 
 public class ModifyFishingSafariView extends JPanel {
 
@@ -27,6 +29,9 @@ public class ModifyFishingSafariView extends JPanel {
 
 	DefaultListModel<String> placeholderModel = new DefaultListModel<String>();
 	JList<String> modifyList;
+
+	ArrayList<FishingSafari> fishingSafariList = new ArrayList<FishingSafari>();
+	DateFormat df = DateFormat.getDateInstance(DateFormat.SHORT);
 	
 	public ModifyFishingSafariView() {
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
@@ -114,23 +119,19 @@ public class ModifyFishingSafariView extends JPanel {
 	}
 
 	public void fillList(ArrayList<FishingSafari> array){
+		fishingSafariList = array; // temporary while testing maybe, needs discussion
+
 		DefaultListModel<String> listModel = new DefaultListModel<String>();
 		for(FishingSafari safari : array){
-			listModel.addElement(String.format("%s %s %s",safari.getLocation(),safari.getStartDate().toString()
-				,safari.getEndDate().toString()));
+			listModel.addElement(String.format("%s %s %s",safari.getSafariDestination().getLocation()
+				,df.format(safari.getStartDate())
+				,df.format(safari.getEndDate())));
 		}
       modifyList.setModel(listModel);
 	}
-	public int getSelectedFishingSafari(){
-		Scanner parser = new Scanner(modifyList.getSelectedValue()).useDelimiter(";");
-		int fishingSafariID = 0;
-    try{
-    fishingSafariID = Integer.parseInt(parser.next());
-	}
-	catch (NumberFormatException e){
-     e.printStackTrace();
-	}
-	return fishingSafariID;
-}
+	public FishingSafari getSelectedFishingSafari(){
+		int index = modifyList.getSelectedIndex();
+		return fishingSafariList.get(index);
 
+}
 }
