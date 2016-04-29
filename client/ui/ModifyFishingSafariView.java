@@ -18,6 +18,7 @@ import java.util.HashMap;
 import java.util.ArrayList;
 import javax.swing.*;
 import java.util.Scanner;
+import server.planning.model.FishingSafari;
 
 public class ModifyFishingSafariView extends JPanel {
 
@@ -112,10 +113,11 @@ public class ModifyFishingSafariView extends JPanel {
 		return compMap;
 	}
 
-	public void fillList(ArrayList<String> array){
+	public void fillList(ArrayList<FishingSafari> array){
 		DefaultListModel<String> listModel = new DefaultListModel<String>();
-		for(String s : array){
-			listModel.addElement(s);
+		for(FishingSafari safari : array){
+			listModel.addElement(String.format("%s %s %s",safari.getLocation(),safari.getStartDate().toString()
+				,safari.getEndDate().toString()));
 		}
       modifyList.setModel(listModel);
 	}

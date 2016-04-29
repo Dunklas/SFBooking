@@ -52,7 +52,7 @@ public class FishingSafariController{
 
 
   }
-  /*public void addListeners(){
+    public void addListeners(){
     JButton startDateButton = (JButton) topMap.get("selectStartDate");
     startDateButton.addActionListener(datePickerListener);
 
@@ -70,6 +70,35 @@ public class FishingSafariController{
 
 
 
-  }*/
+  }
+
+  /**
+  * Listeners
+  */
+
+  ActionListener saveListener = new ActionListener(){
+    public void actionPerformed(ActionEvent e){
+      mainView.buildFishingSafari();
+      FishingSafari safari = mainView.getFishingSafari();
+      fishingStorage.put(safari);
+    }
+  };
+  ActionListener selectListener = new ActionListener(){
+    public void actionPerformed(ActionEvent e){
+
+    }
+  };
+
+  ActionListener datePickerListener = new ActionListener(){
+    public void actionPerformed(ActionEvent e){
+
+    }
+  };
+
+  ItemListener destinationListener = new ItemListener(){
+    public void itemStateChanged(ItemEvent e){
+
+    }
+  };
 
 }
