@@ -2,7 +2,7 @@ package server.booking.model;
 
 import server.planning.model.FishingSafari;
 import server.customer.model.Customer;
-import java.sql.Date;
+import java.util.Date;
 
 public class Booking {
 
@@ -46,6 +46,14 @@ public class Booking {
 
     public void setBookingStatus(int status) {
 	this.bookingStatus = status;
+    }
+
+    public int getNrParticipants() {
+	return nrParticipants;
+    }
+
+    public void setNrParticipants(int nr) {
+	this.nrParticipants = nr;
     }
 
     public double getPrice(){

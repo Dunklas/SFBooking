@@ -27,7 +27,7 @@ KOLLA OM OBJEKT FINNS OCH SKRIV IN RESTEN AV SKITEN
 	return toArrayList(rs);
     }
 
-    public ArrayList<Booking> get(int status) {
+    public ArrayList<Booking> getByStatus(int status) {
 
 	String sql = String.format("SELECT * FROM booking WHERE booking_status = %d", status);
 	ResultSet rs = DBHelper.getInstance().query(sql);
@@ -35,8 +35,60 @@ KOLLA OM OBJEKT FINNS OCH SKRIV IN RESTEN AV SKITEN
 	return toArrayList(rs);
     }
 
+    public Booking get(int id) {
+
+	String sql = String.format("SELECT * FROM booking WHERE booking_id = %d", id);
+	ResultSet rs = DBHelper.getInstance().query(sql);
+
+	return toBooking(rs);
+    }
+
     public void put(Booking booking) {
 
+	Booking toDb = booking;
+	Booking fromDb = get(booking.getBookingID());
+	String sql = "";
+
+	if (fromDb == null) {
+	    sql = "INSERT INTO booking (booking_status, price, safari, customer, booked, nr_participants) VALUES (?, ?, ?, ?, ?, ?)";
+	    DBHelper.getInstance().update(sql,
+	    				  new Integer(toDb.getBookingStatus()),
+					  new Double(toDb.getPrice()),
+					  new Integer(toDb.getFishingSafari().getId()),
+					  new Integer(toDb.getCustomer().getId()),
+					  toDb.getBooked(),
+					  new Integer(toDb.getNrParticipants()));
+	    System.out.println(sql);
+	}
+	else {
+	    sql = "UPDATE booking SET booking_status = ?, price = ?, safari = ?, customer = ?, booked = ?, nr_participants = ? WHERE booking_id = ?";
+	    DBHelper.getInstance().update(sql,
+	    				  new Integer(toDb.getBookingStatus()),
+					  new Double(toDb.getPrice()),
+					  new Integer(toDb.getFishingSafari().getId()),
+					  new Integer(toDb.getCustomer().getId()),
+					  toDb.getBooked(),
+					  new Integer(toDb.getNrParticipants()),
+					  new Integer(toDb.getBookingID()));
+	}
+    }
+
+    private Booking toBooking(ResultSet rs) {
+	Booking tempBook = null;
+	try {
+	    while(rs.next()) {
+		tempBook = new Booking(FishingSafariStorageFactory.getStorage().get(rs.getInt("safari")),
+				       CustomerStorageFactory.getStorage().get(rs.getInt("customer")),
+				       rs.getInt("nr_participants"));
+		tempBook.setBookingID(rs.getInt("booking_id"));
+		tempBook.setBookingStatus(rs.getInt("booking_status"));
+		tempBook.setPrice(rs.getDouble("price"));
+		tempBook.setBooked(rs.getDate("booked"));
+	    }
+	} catch (SQLException ex) {
+	    ex.printStackTrace();
+	}
+	return tempBook;
     }
 
     private ArrayList<Booking> toArrayList(ResultSet rs) {

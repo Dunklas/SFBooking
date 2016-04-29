@@ -9,7 +9,9 @@ public interface BookingStorage{
 	
    void put(Booking b);
 
-   ArrayList<Booking> get(int status);
+   ArrayList<Booking> getByStatus(int status);
+
+   Booking get(int id);
 
    ArrayList<Booking> get(Customer c);
 

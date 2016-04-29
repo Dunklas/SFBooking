@@ -63,16 +63,16 @@ class DBHelper {
 	    PreparedStatement stmt = c.prepareStatement(sql);
 	    for (int i = 0; i < args.length; i++) {
 		if (args[i] instanceof java.util.Date) {
-		    stmt.setDate(i, new java.sql.Date(((java.util.Date)args[i]).getTime()));
+		    stmt.setDate(i+1, new java.sql.Date(((java.util.Date)args[i]).getTime()));
 		}
 		if (args[i] instanceof String) {
-		    stmt.setString(i, (String)args[i]);
+		    stmt.setString(i+1, (String)args[i]);
 		}
 		if (args[i] instanceof Integer) {
-		    stmt.setInt(i, (Integer)args[i]);
+		    stmt.setInt(i+1, (Integer)args[i]);
 		}
 		if (args[i] instanceof Double) {
-		    stmt.setDouble(i, (Double)args[i]);
+		    stmt.setDouble(i+1, (Double)args[i]);
 		}
 	    }
 	    return stmt.executeUpdate();
