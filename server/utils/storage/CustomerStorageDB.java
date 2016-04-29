@@ -4,7 +4,7 @@ import java.util.Formatter;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
-
+import java.util.Date;
 public class CustomerStorageDB implements CustomerStorage {
    
 
@@ -14,16 +14,20 @@ public class CustomerStorageDB implements CustomerStorage {
     }
 
     public void put(Customer toDB){
+	SimpleDateFormat formatter =  new SimpleDateFormat("yyyy-MM-dd");
 	if (toDB.getId()== 0){
-	    SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-	    String date = formatter.format(toDB.getRegistered());
-	    System.out.println(date);
-	     String sql = String.format("INSERT INTO CUSTOMER (FIRST_NAME, LAST_NAME, EMAIL, PHONE_NR, REGISTERED) VALUES (%s, %s, %s, %s, TO_DATE('%s'))", toDB.getFirstName(), toDB.getlastName(), toDB.getEmail(), toDB.getTelephone(), date);
+	    Date reg = new Date();
+	    String dateNow = formatter.format(reg);
+	    System.out.println(dateNow);
+	     String sql = String.format("INSERT INTO CUSTOMER (FIRST_NAME, LAST_NAME, EMAIL, PHONE_NR, REGISTERED) VALUES ('%s', '%s', '%s', '%s', TO_DATE('%s','yyyy-mm-dd'))", toDB.getFirstName(), toDB.getlastName(), toDB.getEmail(), toDB.getTelephone(), dateNow);
 	     System.out.println(sql);
 	     DBHelper.getInstance().update(sql);
 	} else {
-	    Customer fromDB = get(toDB.getId());
-	    
+	    Date reg = toDB.getRegistered();
+	    String regDate = formatter.format(reg);
+	    String sql = String.format("UPDATE CUSTOMER SET FIRST_NAME = '%s', LAST_NAME = '%s', EMAIL = '%s', PHONE_NR = '%s', REGISTERED = TO_DATE('%s', 'yyyy-mm-dd') WHERE CUSTOMER_ID =%d", toDB.getFirstName(), toDB.getlastName(), toDB.getEmail(), toDB.getTelephone(), regDate, toDB.getId());
+	    System.out.println(sql);
+	    DBHelper.getInstance().update(sql);    
 	}
     }
 
