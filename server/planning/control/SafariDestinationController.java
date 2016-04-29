@@ -21,6 +21,7 @@ public class SafariDestinationController{
   HashMap<String,JComponent> modifyMap;
 
   SafariDestinationStorage storage = SafariDestinationStorageFactory.getGUITestStorage();
+  //SafariDestinationStorage storage = SafariDestinationStorageFactory.getStorage();
   SafariDestination destination;
 
   public SafariDestinationController(SafariDestinationView sdv,ModifySafariDestinationView msdv){
@@ -58,6 +59,7 @@ public class SafariDestinationController{
          safariView.showButton(safariMap.get("activeButton").getName(),false);
          safariView.showButton(safariMap.get("inactiveButton").getName(),false);
          safariView.clearSelection();
+         modifyView.fillList(storage.getList()); // fills the list again
 
       }
     }
