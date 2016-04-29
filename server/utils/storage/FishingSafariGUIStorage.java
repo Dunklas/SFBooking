@@ -44,8 +44,8 @@ public class FishingSafariGUIStorage implements FishingSafariStorage{
     }
     return statusList;
   }
-  public void put(FishingSafari){
-
+  public void put(FishingSafari fs){
+    fsList.add(fs);
   }
 
 }

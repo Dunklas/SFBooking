@@ -39,12 +39,28 @@ public class FishingSafariController{
     bottomMap = bottomView.getCompMap();
     modifyMap = modifyView.getCompMap();
 
-    bottomView.fillDestinationPicker(storage.getList());
+    bottomView.fillDestinationPicker(safariStorage.getList());
 
 
   }
   public void addListeners(){
-    JButton startDateButton = (JButton) topMap.get("");
+    JButton startDateButton = (JButton) topMap.get("selectStartDate");
+    startDateButton.addActionListener(datePickerListener);
+
+    JButton endDateButton = (JButton) topMap.get("selectEndDate");
+    endDateButton.addActionListener(datePickerListener);
+
+    JButton saveSafari = (JButton) bottomMap.get("saveFishingSafari");
+    saveSafari.addActionListener(saveListener);
+
+    JComboBox<String> destinationPicker = (JComboBox<String>) bottomMap.get("destinationPicker");
+    destinationPicker.addItemListener(destinationListener);
+
+    JButton selectButton = (JButton) modifyMap.get("selectButton");
+    selectButton.addActionListener(selectListener);
+
+
+
   }
 
 }
