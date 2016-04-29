@@ -64,7 +64,7 @@ public class FishingSafari{
 	return id;
     }
 
-    public in getStatus(){
+    public int getStatus(){
     return status;
     }
 

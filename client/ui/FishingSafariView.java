@@ -5,7 +5,6 @@ import java.util.*;
 import java.awt.*;
 import server.utils.storage.SafariDestinationStorage;
 import server.utils.storage.SafariDestinationStorageFactory;
-import server.utils.storage.SafariDestinationGUIStorage;
 import server.planning.model.SafariDestination;
 import server.planning.model.FishingSafari;
 import org.jdatepicker.*;
