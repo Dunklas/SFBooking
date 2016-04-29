@@ -37,19 +37,19 @@ public class FishingSafari{
 	} catch
     }
     **/
-
-    public void setStartDate(Date date){
-        this.startDate = date;
-    }
-    public Date getStartDate(){
-        return startDate;
-    }
     public void setEndDate(Date date){
 	this.endDate = date;
     }
+
     public Date getEndDate(){
         return endDate;
     }
+
+    public Date getStartDate(){
+        return startDate;
+    }
+
+    
 
     
 
@@ -63,8 +63,9 @@ public class FishingSafari{
     public int getId(){
 	return id;
     }
-    public int getStatus(){
-        return status;
+
+    public in getStatus(){
+    return status;
     }
 
     public void setStatus(int status) {
