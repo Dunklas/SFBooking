@@ -55,7 +55,7 @@ public class SafariDestinationGUIStorage implements SafariDestinationStorage{
   }
 
   public void put(SafariDestination sd){
-
+    destinations.add(sd);
   }
 
 }

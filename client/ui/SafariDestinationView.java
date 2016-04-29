@@ -138,19 +138,19 @@ public class SafariDestinationView extends JPanel {
 		add(terrainPanel, gbc_terrainPanel);
 		terrainPanel.setLayout(new BoxLayout(terrainPanel, BoxLayout.X_AXIS));
 		
-		terrain1 = new JCheckBox("Terr\u00E4ng 1");
+		terrain1 = new JCheckBox("Terrain 1");
 		terrain1.setName("terrain1");
 		compArray.add(terrain1);
 		terrainPanel.add(terrain1);
 		terrains.add(terrain1);
 		
-		terrain2 = new JCheckBox("Terr\u00E4ng 2");
+		terrain2 = new JCheckBox("Terrain 2");
 		terrain2.setName("terrain2");
 		compArray.add(terrain2);
 		terrainPanel.add(terrain2);
 		terrains.add(terrain2);
 		
-		terrain3 = new JCheckBox("Terr\u00E4ng 3");
+		terrain3 = new JCheckBox("Terrain 3");
 		terrain3.setName("terrain3");
 		compArray.add(terrain3);
 		terrainPanel.add(terrain3);
@@ -379,13 +379,13 @@ public class SafariDestinationView extends JPanel {
 	public void fillTerrain(ArrayList<String> array){
 		for(int i = 0; i<array.size(); i++){
 		    System.out.println(array.get(i)); // testutskrift
-		    if(array.get(i).equals("Terr\u00E4ng 1")){
+		    if(array.get(i).equals("Terrain 1")){
          terrain1.setSelected(true);
 			}
-		    else if(array.get(i).equals("Terr\u00E4ng 2")){
+		    else if(array.get(i).equals("Terrain 2")){
 				terrain2.setSelected(true);
 			}
-		    else if(array.get(i).equals("Terr\u00E4ng 3")){
+		    else if(array.get(i).equals("Terrain 3")){
 				terrain3.setSelected(true);
 			} else {
 			    System.out.println("FAtTAR NADAccZz");

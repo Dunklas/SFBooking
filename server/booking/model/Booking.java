@@ -28,6 +28,10 @@ public class Booking {
 	//bookingStatus always get 0, since that's default for int instance variables
     }
 
+    public String toString() {
+	return String.format("Id: %d Status: %d Customer: %s FishingSafari: %s Nr participants: %d Price: %f", bookingID, bookingStatus, customer.toString(), fishingSafari.toString(), nrParticipants, price);
+    }
+
     public int getBookingID(){
 	return bookingID;    
     }

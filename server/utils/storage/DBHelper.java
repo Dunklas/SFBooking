@@ -1,6 +1,7 @@
 package server.utils.storage;
 
 import java.sql.*;
+import java.util.Date;
 
 class DBHelper {
 
@@ -52,6 +53,30 @@ class DBHelper {
 	    Statement stmt = c.createStatement();
 	    return stmt.executeUpdate(sql);
 	} catch (SQLException ex) {
+	    ex.printStackTrace();
+	    return -1;
+	}
+    }
+
+    int update(String sql, Object ... args) {
+	try {
+	    PreparedStatement stmt = c.prepareStatement(sql);
+	    for (int i = 0; i < args.length; i++) {
+		if (args[i] instanceof java.util.Date) {
+		    stmt.setDate(i, new java.sql.Date(((java.util.Date)args[i]).getTime()));
+		}
+		if (args[i] instanceof String) {
+		    stmt.setString(i, (String)args[i]);
+		}
+		if (args[i] instanceof Integer) {
+		    stmt.setInt(i, (Integer)args[i]);
+		}
+		if (args[i] instanceof Double) {
+		    stmt.setDouble(i, (Double)args[i]);
+		}
+	    }
+	    return stmt.executeUpdate();
+	} catch(SQLException ex) {
 	    ex.printStackTrace();
 	    return -1;
 	}

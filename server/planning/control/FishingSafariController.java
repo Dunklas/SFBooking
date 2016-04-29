@@ -20,8 +20,10 @@ public class FishingSafariController{
   HashMap<String,JComponent> bottomMap;
   HashMap<String,JComponent> modifyMap;
 
-  FishingSafariStorage fishingStorage = FishingSafariStorageFactory.getStorage();
-  SafariDestinationStorage safariStorage = SafariDestinationStorage.getStorage();
+  //FishingSafariStorage fishingStorage = FishingSafariStorageFactory.getStorage();
+  FishingSafariStorage fishingStorage = FishingSafariStorageFactory.getGUITestStorage();
+  //SafariDestinationStorage safariStorage = SafariDestinationStorageFactory.getStorage();
+  SafariDestinationStorage safariStorage = SafariDestinationStorageFactory.getGUITestStorage();
 
   SafariDestination destination;
   FishingSafari fishingSafari; 

@@ -51,7 +51,6 @@ KOLLA OM OBJEKT FINNS OCH SKRIV IN RESTEN AV SKITEN
 		tempBook.setBookingStatus(rs.getInt("booking_status"));
 		tempBook.setPrice(rs.getDouble("price"));
 		tempBook.setBooked(rs.getDate("booked"));
-		System.out.println("From DB-file: " + tempBook);
 		bookArrayList.add(tempBook);
 	    }
 	} catch (SQLException ex) {

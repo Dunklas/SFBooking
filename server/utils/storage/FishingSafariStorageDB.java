@@ -24,7 +24,7 @@ public class FishingSafariStorageDB implements FishingSafariStorage {
 	}
 
 	public FishingSafari get(int id){
-		String sql = String.format("SELECT * FROM fishingsafari WHERE id = %d", id);
+		String sql = String.format("SELECT * FROM fishingsafari WHERE safari_id = %d", id);
 		ResultSet rs = DBHelper.getInstance().query(sql);
 		
 		return toFishingSafari(rs);
