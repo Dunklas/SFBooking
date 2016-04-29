@@ -37,8 +37,18 @@ public class FishingSafari{
 	} catch
     }
     **/
+
+    public void setStartDate(Date date){
+        this.startDate = date;
+    }
+    public Date getStartDate(){
+        return startDate;
+    }
     public void setEndDate(Date date){
 	this.endDate = date;
+    }
+    public Date getEndDate(){
+        return endDate;
     }
 
     
