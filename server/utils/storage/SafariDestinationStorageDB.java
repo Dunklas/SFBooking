@@ -84,9 +84,9 @@ public class SafariDestinationStorageDB implements SafariDestinationStorage{
 																																										   ,1);
 			System.out.println(sql);
 			
-			if(get(sd.getLocation)==null){															 
+			if(get(sd.getLocation())==null){															 
 				DBHelper.getInstance().query(sql);
-			}else if(get(sd.getLocaton)!=null){
+			}else if(get(sd.getLocation())!=null){
 				DBHelper.getInstance().update(sql);
 			}
 		}
