@@ -21,8 +21,8 @@ import java.util.Scanner;
 
 public class ModifyFishingSafariView extends JPanel {
 
-	HashMap<String,Component> compMap = new HashMap<String,Component>();
-	ArrayList<Component> compArray = new ArrayList<Component>();
+	HashMap<String,JComponent> compMap = new HashMap<String,JComponent>();
+	ArrayList<JComponent> compArray = new ArrayList<JComponent>();
 
 	DefaultListModel<String> placeholderModel = new DefaultListModel<String>();
 	JList<String> modifyList;
@@ -104,11 +104,11 @@ public class ModifyFishingSafariView extends JPanel {
 
 	}
 	public void initCompMap(){
-		for(int i=0; i<compArray.size(); i++){
-			compMap.put(compArray.get(i).getName(),compArray.get(i));
+		for(JComponent comp : compArray){
+			compMap.put(comp.getName(),comp);
 		}
 	}
-	public HashMap<String,Component> getCompMap(){
+	public HashMap<String,JComponent> getCompMap(){
 		return compMap;
 	}
 

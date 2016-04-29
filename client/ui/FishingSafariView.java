@@ -5,6 +5,7 @@ import java.util.*;
 import java.awt.*;
 import server.utils.storage.SafariDestinationStorage;
 import server.utils.storage.SafariDestinationStorageFactory;
+import server.utils.storage.SafariDestinationGUIStorage;
 import server.planning.model.SafariDestination;
 import server.planning.model.FishingSafari;
 import org.jdatepicker.*;
@@ -17,7 +18,7 @@ FishingSafariTopView topView;
 FishingSafariBottomView bottomView;
 
 
-SafariDestinationStorage destinationStorage = SafariDestinationStorageFactory.getStorage();
+SafariDestinationStorage destinationStorage = SafariDestinationStorageFactory.getGUITestStorage();
 
 FishingSafari fishingSafari;
 SafariDestination destination;
@@ -53,5 +54,6 @@ fishingSafari = new FishingSafari(destination,selectedStartDate,selectedEndDate,
 public FishingSafari getFishingSafari(){
   return fishingSafari;
 }
+
 
 }
