@@ -22,7 +22,7 @@ public class TestMain{
   FishingSafariView mainView = new FishingSafariView(topView,bottomView);
   ModifyFishingSafariView modifyFishingView = new ModifyFishingSafariView();
 
-  MainSplitView split = new MainSplitView(modifyFishingView,mainView);
+  MainSplitView split = new MainSplitView(modifyView,safariView);
   TestMain.addToFrame(split);
   
   }

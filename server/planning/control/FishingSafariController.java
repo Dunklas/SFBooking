@@ -20,8 +20,13 @@ public class FishingSafariController{
   HashMap<String,JComponent> bottomMap;
   HashMap<String,JComponent> modifyMap;
 
-  FishingSafariStorage = server.utils.storage.FishingSafariStorageFactory.getStorage();
-  SafariDestinationStorage
+  //FishingSafariStorage fishingStorage = FishingSafariStorageFactory.getStorage();
+  FishingSafariStorage fishingStorage = FishingSafariStorageFactory.getGUITestStorage();
+  //SafariDestinationStorage safariStorage = SafariDestinationStorageFactory.getStorage();
+  SafariDestinationStorage safariStorage = SafariDestinationStorageFactory.getGUITestStorage();
+
+  SafariDestination destination;
+  FishingSafari fishingSafari; 
 
   public FishingSafariController(FishingSafariTopView top,
     FishingSafariBottomView bottom,FishingSafariView main,ModifyFishingSafariView mod){
@@ -34,7 +39,26 @@ public class FishingSafariController{
     bottomMap = bottomView.getCompMap();
     modifyMap = modifyView.getCompMap();
 
-    bottomView.fillDestinationPicker(storage.getList());
+    bottomView.fillDestinationPicker(safariStorage.getList());
+
+
+  }
+  public void addListeners(){
+    JButton startDateButton = (JButton) topMap.get("selectStartDate");
+    startDateButton.addActionListener(datePickerListener);
+
+    JButton endDateButton = (JButton) topMap.get("selectEndDate");
+    endDateButton.addActionListener(datePickerListener);
+
+    JButton saveSafari = (JButton) bottomMap.get("saveFishingSafari");
+    saveSafari.addActionListener(saveListener);
+
+    JComboBox<String> destinationPicker = (JComboBox<String>) bottomMap.get("destinationPicker");
+    destinationPicker.addItemListener(destinationListener);
+
+    JButton selectButton = (JButton) modifyMap.get("selectButton");
+    selectButton.addActionListener(selectListener);
+
 
 
   }
