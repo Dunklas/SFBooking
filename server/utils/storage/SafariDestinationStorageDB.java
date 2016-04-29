@@ -75,7 +75,7 @@ public class SafariDestinationStorageDB implements SafariDestinationStorage{
 		
 		public void put(SafariDestination sd){
 			
-			SafariDestination fromDB = get(sd.getLocation);
+			SafariDestination fromDB = get(sd.getLocation());
 			
 			if(fromDB == null){	
 			String sql = String.format("INSERT INTO SAFARIDESTINATION(MAX_PARTICIPANTS, TERRAIN, EQUIPMENT_REQ, GUIDE, LOCATION, ACTIVE)VALUES (%d,'%s','%s','%s','%s',%d)",sd.getMaxParticipants()
