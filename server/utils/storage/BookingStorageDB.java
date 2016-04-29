@@ -7,7 +7,10 @@ import java.util.*;
 import java.sql.*;
 
 public class BookingStorageDB implements BookingStorage {
-
+/*
+VI BEHÖVER INTE JÄMFÖRA ATTRIBUT!
+KOLLA OM OBJEKT FINNS OCH SKRIV IN RESTEN AV SKITEN
+*/
     public ArrayList<Booking> get(FishingSafari fs) {
 	
 	String sql = String.format("SELECT * FROM booking WHERE safari = %d", fs.getId());

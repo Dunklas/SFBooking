@@ -7,22 +7,30 @@ import server.planning.model.FishingSafari;
 import server.planning.model.SafariDestination;
 import server.utils.storage.FishingSafariStorage;
 import server.utils.storage.FishingSafariStorageFactory;
+import server.utils.storage.SafariDestinationStorage;
+import server.utils.storage.SafariDestinationStorageFactory;
 
 public class FishingSafariController{
   FishingSafariTopView topView;
   FishingSafariBottomView bottomView;
   ModifyFishingSafariView modifyView;
+  FishingSafariView mainView;
 
   HashMap<String,JComponent> topMap;
   HashMap<String,JComponent> bottomMap;
   HashMap<String,JComponent> modifyMap;
 
-  FishingSafariStorage = server.utils.storage.FishingSafariStorageFactory.getStorage();
+  FishingSafariStorage fishingStorage = FishingSafariStorageFactory.getStorage();
+  SafariDestinationStorage safariStorage = SafariDestinationStorage.getStorage();
+
+  SafariDestination destination;
+  FishingSafari fishingSafari; 
 
   public FishingSafariController(FishingSafariTopView top,
-    FishingSafariBottomView bottom,ModifyFishingSafariView mod){
+    FishingSafariBottomView bottom,FishingSafariView main,ModifyFishingSafariView mod){
     topView=top;
     bottomView=bottom;
+    mainView = main;
     modifyMap=mod;
 
     topMap = topView.getCompMap();
