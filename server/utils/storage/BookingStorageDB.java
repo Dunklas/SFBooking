@@ -12,7 +12,7 @@ VI BEHÖVER INTE JÄMFÖRA ATTRIBUT!
 KOLLA OM OBJEKT FINNS OCH SKRIV IN RESTEN AV SKITEN
 Testa att uppdatera en bokning också...
 */
-    public ArrayList<Booking> get(FishingSafari fs) {
+    public ArrayList<Booking> get(FishingSafari fs) throws StorageException {
 	
 	String sql = String.format("SELECT * FROM booking WHERE safari = %d", fs.getId());
 	ResultSet rs = DBHelper.getInstance().query(sql);
@@ -20,7 +20,7 @@ Testa att uppdatera en bokning också...
 	return toArrayList(rs);
     }
 
-    public ArrayList<Booking> get(Customer c) {
+    public ArrayList<Booking> get(Customer c) throws StorageException {
 
 	String sql = String.format("SELECT * FROM booking WHERE customer = %d", c.getId());
 	ResultSet rs = DBHelper.getInstance().query(sql);
@@ -28,7 +28,7 @@ Testa att uppdatera en bokning också...
 	return toArrayList(rs);
     }
 
-    public ArrayList<Booking> getByStatus(int status) {
+    public ArrayList<Booking> getByStatus(int status) throws StorageException {
 
 	String sql = String.format("SELECT * FROM booking WHERE booking_status = %d", status);
 	ResultSet rs = DBHelper.getInstance().query(sql);
@@ -36,7 +36,7 @@ Testa att uppdatera en bokning också...
 	return toArrayList(rs);
     }
 
-    public Booking get(int id) {
+    public Booking get(int id) throws StorageException {
 
 	String sql = String.format("SELECT * FROM booking WHERE booking_id = %d", id);
 	ResultSet rs = DBHelper.getInstance().query(sql);
@@ -44,7 +44,7 @@ Testa att uppdatera en bokning också...
 	return toBooking(rs);
     }
 
-    public void put(Booking booking) {
+    public void put(Booking booking) throws StorageException {
 
 	Booking toDb = booking;
 	Booking fromDb = get(booking.getBookingID());
@@ -74,7 +74,7 @@ Testa att uppdatera en bokning också...
 	}
     }
 
-    private Booking toBooking(ResultSet rs) {
+    private Booking toBooking(ResultSet rs) throws StorageException {
 	Booking tempBook = null;
 	try {
 	    while(rs.next()) {
@@ -92,7 +92,7 @@ Testa att uppdatera en bokning också...
 	return tempBook;
     }
 
-    private ArrayList<Booking> toArrayList(ResultSet rs) {
+    private ArrayList<Booking> toArrayList(ResultSet rs) throws StorageException {
 	ArrayList<Booking> bookArrayList = new ArrayList<>();
 	try {
 	    while(rs.next()) {
