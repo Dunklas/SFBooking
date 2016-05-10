@@ -22,7 +22,7 @@ public class TestBookingStorage {
 		    System.out.println(ex.getMessage());
 	    }
 
-	    Booking tempBook = new Booking(f1, c1, 2);
+	    Booking tempBook = new Booking(f1, c1, 1);
 	    tempBook.setBooked(new Date());
 
 	    try {

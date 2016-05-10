@@ -12,26 +12,28 @@ import java.io.FileNotFoundException;
 
 public class BookingHandler {
     BookingStorage bStore = BookingStorageFactory.getStorage();
-
+    FishingSafariStorage fStore = FishingSafariStorageFactory.getStorage();
 
 	public void feasabilityCheck(FishingSafari fs)throws StorageException{
-		ArrayList<Booking> list = new ArrayList<Booking>();
+		
+		ArrayList<Booking> list = new ArrayList<>();
 		list = bStore.get(fs);
-
-		int total = 0;
-		for (Booking b : list) {
-		    if (b.getBookingStatus() == 1){
-				total = total + b.getNrParticipants();
-			  }	
-
-		}
+		int total = getPaid(list);
+		
 		if (total >= 5){
-			fs.setStatus(1);
+			if (fs.getStatus() == 0) {
+				fs.setStatus(1);
+				fStore.put(fs);
+			}
+
 			for(Booking b : list){
-				b.setBookingStatus(2);
+				if (b.getBookingStatus() == 1) {
+					b.setBookingStatus(2);
+					bStore.put(b);
+				}
 			}
 		}
-	}	  
+	}
 
 	public void finalCheck(FishingSafari fs)throws StorageException{
 		
@@ -44,6 +46,7 @@ public class BookingHandler {
 		
 		if(total == fs.getSafariDestination().getMaxParticipants()){
 			fs.setStatus(2);
+			fStore.put(fs);
 		}else if(total > fs.getSafariDestination().getMaxParticipants()){
 			Log.put(String.format("FishingSafari overbooked. ID = %d",fs.getId()));
 		}
@@ -81,9 +84,11 @@ public class BookingHandler {
 
 		for (Integer bookingId : paymentDataList) {
 		    Booking tempBooking = bStore.get(bookingId);
-		    tempBooking.setBookingStatus(1);
-		    tempBooking.setPaymentReceived(new Date());
-		    bStore.put(tempBooking);
+		    if (tempBooking.getBookingStatus() == 0) { //Only change bookings with status "Preliminary"
+			    tempBooking.setBookingStatus(1);
+			    tempBooking.setPaymentReceived(new Date());
+			    bStore.put(tempBooking);
+		    }
 		}
 	}
 }
