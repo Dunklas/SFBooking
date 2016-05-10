@@ -19,6 +19,7 @@ import javax.swing.JButton;
 import java.util.*;
 import javax.swing.JComponent;
 import javax.swing.DefaultListModel;
+import javax.swing.text.JTextComponent;
 import server.planning.model.SafariDestination;
 import server.planning.model.FishingSafari;
 
@@ -174,6 +175,8 @@ public class FishingSafariBottomView extends JPanel {
 		gearReqPanel.add(gearReqLabel);
 		
 	  equipmentReq = new JTextArea();
+	  equipmentReq.setMaximumSize(new Dimension(400,200));
+	  equipmentReq.setAlignmentX(Component.LEFT_ALIGNMENT);
 		equipmentReq.setName("equipmentReq");
 		gearReqPanel.add(equipmentReq);
 		compArray.add(equipmentReq);
@@ -233,6 +236,33 @@ public class FishingSafariBottomView extends JPanel {
 
 		initCompMap();
 	}
+	public void setText(String name,String text){
+		try{
+		JTextComponent comp = (JTextComponent) compMap.get(name);
+		comp.setText(text);
+	}
+	catch(ClassCastException cce){
+		cce.printStackTrace();
+	}
+}
+public void setEnabled(String name,boolean status){
+compMap.get(name).setEnabled(status);
+}
+public String getSelectedItem(String name){
+	String selectedItem = "";
+	try{
+	JComboBox<String> comp = (JComboBox<String>) compMap.get(name);
+	selectedItem = comp.getSelectedItem().toString();
+}
+catch(ClassCastException cce){
+	cce.printStackTrace();
+}
+return selectedItem;
+}
+public void initActionListener(String name,ActionListener al){
+	compMap.get(name).addActionListener(al);
+}
+
 	public void initCompMap(){
 		
 		for(JComponent comp : compArray){
@@ -241,6 +271,16 @@ public class FishingSafariBottomView extends JPanel {
 	}
 	public HashMap<String,JComponent> getCompMap(){
 		return compMap;
+	}
+
+	public void clearSelection(){
+		startTimeTextfield.setText("");
+		endTimeTextfield.setText("");
+		setEnabled("startTime",true);
+		setEnabled("endTime",true);
+		destinationPicker.setSelectedIndex(0);
+		commentTextArea.setText("");
+		equipmentReq.setText("");
 	}
 
 

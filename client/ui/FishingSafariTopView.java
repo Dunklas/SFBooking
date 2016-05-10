@@ -78,5 +78,11 @@ private JDatePickerImpl startDatePicker;
 	public HashMap<String,JComponent> getCompMap(){
 		return compMap;
 	}
+	public String getSelectedDate(String name){
+		JDatePickerImpl comp = (JDatePickerImpl) compMap.get(name);
+
+		return comp.getJFormattedTextField().getText();
+
+	}
 
 }

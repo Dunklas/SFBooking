@@ -51,8 +51,10 @@ public class FishingSafariController{
     bottomView.fillDestinationPicker(safariStorage.getList());
     modifyView.fillList(fishingStorage.getList());
 
-    addListeners();
-
+    //addListeners();
+    bottomView.initActionListener("selectStartDate",datePickerListener);
+    bottomView.initActionListener("selectEndDate",datePickerListener);
+    bottomView.initActionListener("selectButton",selectListener);
 
   }
     public void addListeners(){
@@ -88,6 +90,7 @@ if(comp.getName().equals("saveFishingSafari")){
       FishingSafari safari = mainView.getFishingSafari();
       fishingStorage.put(safari);
       modifyView.fillList(fishingStorage.getList());
+      bottomView.clearSelection();
     }
   }
   };
@@ -97,19 +100,32 @@ if(comp.getName().equals("saveFishingSafari")){
       if(comp.getName().equals("selectButton")){
         FishingSafari selectedSafari = modifyView.getSelectedFishingSafari();
         mainView.populateFishingSafari(selectedSafari);
+        bottomView.setText("startTime",topView.getSelectedDate("startDate"));
+        bottomView.setEnabled("startTime",false);
+        bottomView.setText("endTime",topView.getSelectedDate("endDate"));
+        bottomView.setEnabled("endTime",false);
       }
     }
   };
 
   ActionListener datePickerListener = new ActionListener(){
     public void actionPerformed(ActionEvent e){
-
+      JComponent comp = (JComponent) e.getSource();
+      if(comp.getName()=="selectStartDate"){
+        bottomView.setText("startTime",topView.getSelectedDate("startDate"));
+      }
+      else if(comp.getName()=="selectEndDate"){
+        bottomView.setText("endTime",topView.getSelectedDate("endDate"));
+      }
     }
   };
 
   ItemListener destinationListener = new ItemListener(){
     public void itemStateChanged(ItemEvent e){
 
+        SafariDestination selectedDestination = safariStorage.get(bottomView.getSelectedItem("destinationPicker"));
+        bottomView.setText("equipmentReq",selectedDestination.getEquipmentReq());        
+      
     }
   };
 
