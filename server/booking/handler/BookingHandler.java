@@ -89,6 +89,11 @@ public class BookingHandler {
 			    tempBooking.setPaymentReceived(new Date());
 			    bStore.put(tempBooking);
 		    }
+
+		    // The stuff below runs feasability and final checks for FishingSafari
+		    FishingSafari fs = tempBooking.getFishingSafari();
+		    feasabilityCheck(fs);
+		    finalCheck(fs);
 		}
 	}
 }
