@@ -1,45 +1,55 @@
 package server.booking.handler;
 
 import server.utils.logs.Log;
+import server.planning.model.*;
+import server.booking.model.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.Scanner;
+import java.io.File;
+import server.utils.storage.*;
+import java.io.FileNotFoundException;
 
 public class BookingHandler {
+    BookingStorage bStore = BookingStorageFactory.getStorage();
 
-	public void feasabilityCheck(FishingSafari fs){
+
+	public void feasabilityCheck(FishingSafari fs)throws StorageException{
 		ArrayList<Booking> list = new ArrayList<Booking>();
-		list = get(fs);
+		list = bStore.get(fs);
 
 		int total = 0;
-		while (i < list.size) {
-			if (b.getStatus = 1){
+		for (Booking b : list) {
+		    if (b.getBookingStatus() == 1){
 				total = total + b.getNrParticipants();
 			  }	
 
 		}
-		if (total => 5){
+		if (total >= 5){
 			fs.setStatus(1);
 			for(Booking b : list){
-				b.setStatus(2);
+				b.setBookingStatus(2);
 			}
 		}
-		}	  
+	}	  
 
-	public void finalCheck(FishingSafari fs){
+	public void finalCheck(FishingSafari fs)throws StorageException{
 		
 		int total = 0;
-		Arraylist<Booking> list = new ArrayList<>();
+		ArrayList<Booking> list = new ArrayList<>();
 		
 		list = bStore.get(fs);
 		
 		total = getPaid(list);
 		
-		if(total = fs.getMaxParticipants()){
+		if(total == fs.getSafariDestination().getMaxParticipants()){
 			fs.setStatus(2);
-		}else if(total > fs.getMaxParticipants()){
+		}else if(total > fs.getSafariDestination().getMaxParticipants()){
 			Log.put(String.format("FishingSafari overbooked. ID = %d",fs.getId()));
 		}
 	}
 	
-	private int getPaid(ArrayList<Booking> bookingList){
+	private int getPaid(ArrayList<Booking> bookingList)throws StorageException{
 		int total=0;
 		for(Booking tempB : bookingList){
 			
@@ -51,7 +61,7 @@ public class BookingHandler {
 	}
 
 
-	public void paymentCheck() {
+	public void paymentCheck()throws StorageException {
 		Scanner input = null;
 		ArrayList<Integer> paymentDataList = new ArrayList<>();
 		ArrayList<Booking> paidBookings = new ArrayList<>();
@@ -65,6 +75,15 @@ public class BookingHandler {
 					Log.put(nfe.getMessage());
 				}
 			}
+		} catch (FileNotFoundException fnfe){
+		    Log.put(fnfe.getMessage());
+		}
+
+		for (Integer bookingId : paymentDataList) {
+		    Booking tempBooking = bStore.get(bookingId);
+		    tempBooking.setBookingStatus(1);
+		    tempBooking.setPaymentReceived(new Date());
+		    bStore.put(tempBooking);
 		}
 	}
 }
