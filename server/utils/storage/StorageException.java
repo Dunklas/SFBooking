@@ -1,5 +1,4 @@
 package server.utils.storage;
-import java.sql.SQLException;
 
 public class StorageException extends Exception {
 
