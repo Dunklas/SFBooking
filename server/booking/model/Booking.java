@@ -25,6 +25,7 @@ public class Booking {
 	this.customer = customer;
 	this.nrParticipants = nrParticipants;
 	this.price = 500*nrParticipants; // Always 500 for now, since we haven't implemented price
+   
 	//bookingStatus always get 0, since that's default for int instance variables
     }
 
