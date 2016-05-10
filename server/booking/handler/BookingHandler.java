@@ -2,29 +2,28 @@ package server.booking.handler;
 
 public class BookingHandler {
 
-	public void paymentCheck() {
-		Scanner input = null;
-		ArrayList<Integer> paymentDataList = new ArrayList<>();
-		ArrayList<Booking> paidBookings = new ArrayList<>();
-		try { // Fetches all booking IDs from txt-file
-			input = new Scanner(new File("payment.txt"));
-			while (input.hasNext()) {
-				try {
-					int bookingId = Integer.parseInt(input.nextLine());
-					paymentDataList.add(bookingId);
-				} catch (NumberFormatException nfe) {
-					//Log an error?
-				}
+
+	public feasabilityCheck(FishingSafari fs){
+		ArrayList<Booking> list = new ArrayList<Booking>();
+		list = get(fs);
+
+		int total = 0;
+		while (i < list.size) {
+			if (b.getStatus = 1){
+				total = total + b.getNrParticipants();
 			}
-		} catch (FileNotFoundException fnfe) {
-			//Do stuff
+		}
+		if (total => 5){
+			fs.setStatus(1);
+			for(Booking b : list){
+				b.setStatus(2);
+			}
 		}
 
-		for (Integer bookingId : paymentDataList) { // Loops through all bookings from txt-file and set new status and paymentDate
-			Booking tempBooking = bStore.get(bookingId);
-			tempBooking.setBookingStatus(1);
-			tempBooking.setPaymentReceived(new Date()); //Right now
-			bStore.put(tempBooking);
-		}
-	}
+
+		
+	    }
+
+	    
+
 }
