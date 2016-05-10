@@ -1,5 +1,7 @@
 package server.booking.handler;
 
+import server.utils.logs.Log;
+
 public class BookingHandler {
 
 	public void paymentCheck() {
@@ -13,7 +15,7 @@ public class BookingHandler {
 					int bookingId = Integer.parseInt(input.nextLine());
 					paymentDataList.add(bookingId);
 				} catch (NumberFormatException nfe) {
-					//Log an error?
+					Log.put(nfe.getMessage());
 				}
 			}
 		} catch (FileNotFoundException fnfe) {
