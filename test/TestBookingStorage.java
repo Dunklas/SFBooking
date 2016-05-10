@@ -4,6 +4,7 @@ import server.utils.storage.*;
 import server.customer.model.*;
 import server.planning.model.*;
 import server.booking.model.*;
+import java.util.Date;
 
 public class TestBookingStorage {
 
@@ -22,6 +23,7 @@ public class TestBookingStorage {
 	    }
 
 	    Booking tempBook = new Booking(f1, c1, 2);
+	    tempBook.setBooked(new Date());
 
 	    try {
 		    bStore.put(tempBook);
