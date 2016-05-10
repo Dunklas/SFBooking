@@ -4,7 +4,7 @@ import server.utils.logs.Log;
 
 public class BookingHandler {
 
-	public feasabilityCheck(FishingSafari fs){
+	public void feasabilityCheck(FishingSafari fs){
 		ArrayList<Booking> list = new ArrayList<Booking>();
 		list = get(fs);
 
