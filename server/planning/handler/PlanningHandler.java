@@ -7,7 +7,7 @@ import server.planning.model.SafariDestination;
 import java.util.ArrayList;
 
 public class PlanningHandler {
-    Storage s = BookingStorageFactory.getStorage();
+   BookingStorage s = BookingStorageFactory.getStorage();
 
     public int availabilityCheck(FishingSafari fs){
 	SafariDestination sd = fs.getSafariDestination();
