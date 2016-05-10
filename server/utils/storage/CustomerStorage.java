@@ -11,7 +11,4 @@ public interface CustomerStorage{
     Customer get(int id) throws StorageException;
 
 
-
-
-
 }
