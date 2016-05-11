@@ -2,7 +2,7 @@ package client.ui.test;
 
 import client.ui.*;
 import server.planning.model.*;
-import server.planning.control.*;
+import client.control.*;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
@@ -24,18 +24,29 @@ public class TestMain{
 
   FishingSafariController fishingController = new FishingSafariController(topView,bottomView,mainView,modifyFishingView);
 
-  MainSplitView split = new MainSplitView(modifyFishingView,mainView);
-  TestMain.addToFrame(split);
+  /*MainSplitView split = new MainSplitView(modifyFishingView,mainView);
+  TestMain.addSplitToFrame(split);*/
+
+  AddBookingView addBookingView = new AddBookingView();
+
+  TestMain.addPanelToFrame(addBookingView);
   
   }
 
-  static void addToFrame(MainSplitView split){
+  static void addSplitToFrame(MainSplitView split){
     JFrame frame = new JFrame();
     frame.setVisible(true);
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     frame.setSize(800,800);
     frame.add(split);
 
+  }
+  static void addPanelToFrame(JPanel panel){
+    JFrame frame = new JFrame();
+    frame.setVisible(true);
+    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    frame.setSize(800,800);
+    frame.add(panel);
   }
 
 }

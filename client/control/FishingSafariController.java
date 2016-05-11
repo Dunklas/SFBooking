@@ -51,10 +51,8 @@ public class FishingSafariController{
     bottomView.fillDestinationPicker(safariStorage.getList());
     modifyView.fillList(fishingStorage.getList());
 
-    //addListeners();
-    bottomView.initActionListener("selectStartDate",datePickerListener);
-    bottomView.initActionListener("selectEndDate",datePickerListener);
-    bottomView.initActionListener("selectButton",selectListener);
+    addListeners();
+    
 
   }
     public void addListeners(){

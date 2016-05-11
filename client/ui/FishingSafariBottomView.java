@@ -259,9 +259,7 @@ catch(ClassCastException cce){
 }
 return selectedItem;
 }
-public void initActionListener(String name,ActionListener al){
-	compMap.get(name).addActionListener(al);
-}
+
 
 	public void initCompMap(){
 		

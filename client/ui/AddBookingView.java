@@ -1,3 +1,5 @@
+package client.ui;
+
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 import java.awt.GridBagLayout;
@@ -19,11 +21,15 @@ import javax.swing.JTextArea;
 import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.FlowLayout;
-import java.awt.ButtonGroup;
+import javax.swing.ButtonGroup;
+import javax.swing.DefaultListModel;
+import javax.swing.JComponent;
+import javax.swing.text.JTextComponent;
 import java.util.ArrayList;
 import java.util.HashMap;
 import server.booking.model.Booking;
 import server.planning.model.FishingSafari;
+import server.planning.model.SafariDestination;
 import server.customer.model.Customer;
 
 public class AddBookingView extends JPanel {
@@ -508,7 +514,7 @@ setMaximumSize(new Dimension(1000, 1000));
     String firstName = customerFirstName.getText();
   }
   public Customer getCustomer(){
-
+    return null;
   }
   public void populateCustomerInfo(Customer customer){
     customerFirstName.setText(customer.getFirstName());
@@ -516,7 +522,15 @@ setMaximumSize(new Dimension(1000, 1000));
     customerPhoneNumber.setText(customer.getTelephone());
   }
   public String getText(String name){
-    return compMap.getName(name).getText();
+   String text = "";
+    try{
+      JTextComponent comp = (JTextComponent) compMap.get(name);
+       text = comp.getText();
+  }
+    catch(ClassCastException cce){
+      // Do something..
+    }
+    return text;
   }
 
 

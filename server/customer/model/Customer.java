@@ -33,7 +33,7 @@ public class Customer {
         return firstName;
     }
 
-    public String getlastName(){
+    public String getLastName(){
     	return lastName;
     }
 
