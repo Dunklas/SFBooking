@@ -1,4 +1,4 @@
-package server.planning.control;
+package client.control;
 
 import client.ui.FishingSafariTopView;
 import client.ui.FishingSafariBottomView;

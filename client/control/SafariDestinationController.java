@@ -1,4 +1,4 @@
-package server.planning.control;
+package client.control;
 
 import client.ui.SafariDestinationView;
 import client.ui.ModifySafariDestinationView;
