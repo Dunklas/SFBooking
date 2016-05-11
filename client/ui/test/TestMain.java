@@ -28,6 +28,7 @@ public class TestMain{
   TestMain.addSplitToFrame(split);*/
 
   AddBookingView addBookingView = new AddBookingView();
+  AddBookingController addBookingController = new AddBookingController(addBookingView);
 
   TestMain.addPanelToFrame(addBookingView);
   

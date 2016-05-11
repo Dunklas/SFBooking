@@ -2,9 +2,21 @@ package client.control;
 
 import server.booking.model.Booking;
 import server.booking.handler.BookingHandler;
+import server.customer.model.Customer;
+import server.planning.model.FishingSafari;
+import server.utils.storage.CustomerStorage;
+import server.utils.storage.CustomerStorageFactory;
 import server.utils.storage.BookingStorage;
 import server.utils.storage.BookingStorageFactory;
+import server.utils.storage.FishingSafariStorage;
+import server.utils.storage.FishingSafariStorageFactory;
+import server.utils.storage.StorageException;
 import client.ui.AddBookingView;
+import javax.swing.JButton;
+import javax.swing.JComponent;
+import javax.swing.event.*;
+import java.awt.event.*;
+import java.util.HashMap;
 
 public class AddBookingController{
   
@@ -12,14 +24,21 @@ public class AddBookingController{
  
   HashMap<String,JComponent> addMap;
 
-  BookingStorage storage = BookingStorageFactory.getStorage();
+  BookingStorage bookingStorage = BookingStorageFactory.getStorage();
+  CustomerStorage customerStorage = CustomerStorageFactory.getStorage();
+  FishingSafariStorage safariStorage = FishingSafariStorageFactory.getStorage();
 
-  public BookingController(AddBookingView abv){
+  Customer customer;
+  FishingSafari safari;
+
+  public AddBookingController(AddBookingView abv){
     addView = abv;
     addMap = addView.getCompMap();
     
 
     addListeners();
+
+    addView.updateFishingSafariList(safariStorage.getList());
   }
 
   public void addListeners(){
@@ -39,6 +58,14 @@ public class AddBookingController{
    rentButton.addActionListener(equipmentListener);
    JButton regretButton = (JButton) addMap.get("regretButton");
    regretButton.addActionListener(equipmentListener);
+
+   JButton getCustomerButton = (JButton) addMap.get("getCustomerButton");
+   getCustomerButton.addActionListener(customerListener);
+   JButton saveCustomerButton = (JButton) addMap.get("saveCustomerButton");
+   saveCustomerButton.addActionListener(customerListener);
+
+   JButton selectButton = (JButton) addMap.get("selectButton");
+   selectButton.addActionListener(selectListener);
   }
 
   /**
@@ -71,7 +98,39 @@ public class AddBookingController{
 
   ActionListener equipmentListener = new ActionListener(){
     public void actionPerformed(ActionEvent e){
+      JComponent comp = (JComponent) e.getSource();
+      if(comp.getName().equals("rentButton")){
 
+      }
+      else if(comp.getName().equals("regretButton")){
+
+      }
+
+    }
+  };
+
+  ActionListener customerListener = new ActionListener(){
+    public void actionPerformed(ActionEvent e){
+      JComponent comp = (JComponent) e.getSource();
+      try{
+      if(comp.getName().equals("getCustomerButton")){
+        customer = customerStorage.get(addView.getText("customerEmail"));
+        addView.populateCustomerInfo(customer);
+      }
+      else if(comp.getName().equals("saveCustomerButton")){
+        addView.buildCustomer();
+        customerStorage.put(addView.getCustomer());
+      }
+    }
+    catch(StorageException se){
+      se.printStackTrace();
+    }
+  }
+  };
+
+  ActionListener selectListener = new ActionListener(){
+    public void actionPerformed(ActionEvent e){
+      addView.populateFishingSafariInfo(addView.getSelectedSafari());
     }
   };
 

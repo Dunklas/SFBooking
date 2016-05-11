@@ -21,7 +21,7 @@ public class CustomerStorageDB implements CustomerStorage {
 	    System.out.println(dateNow);
 	     String sql = String.format("INSERT INTO CUSTOMER (FIRST_NAME, LAST_NAME, EMAIL, PHONE_NR, REGISTERED) VALUES ('%s', '%s', '%s', '%s', TO_DATE('%s','yyyy-mm-dd'))", 
 					toDB.getFirstName(), 
-					toDB.getlastName(), 
+					toDB.getLastName(), 
 					toDB.getEmail(), 
 					toDB.getTelephone(), 
 					dateNow);
@@ -32,7 +32,7 @@ public class CustomerStorageDB implements CustomerStorage {
 	    String regDate = formatter.format(reg);
 	    String sql = String.format("UPDATE CUSTOMER SET FIRST_NAME = '%s', LAST_NAME = '%s', EMAIL = '%s', PHONE_NR = '%s', REGISTERED = TO_DATE('%s', 'yyyy-mm-dd') WHERE CUSTOMER_ID =%d", 
 				       toDB.getFirstName(), 
-				       toDB.getlastName(), 
+				       toDB.getLastName(), 
 				       toDB.getEmail(), 
 				       toDB.getTelephone(), 
 				       regDate, 

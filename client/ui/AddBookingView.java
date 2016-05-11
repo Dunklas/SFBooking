@@ -27,6 +27,7 @@ import javax.swing.JComponent;
 import javax.swing.text.JTextComponent;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Date;
 import server.booking.model.Booking;
 import server.planning.model.FishingSafari;
 import server.planning.model.SafariDestination;
@@ -49,6 +50,10 @@ public class AddBookingView extends JPanel {
   private DefaultListModel<FishingSafari> fishingListModel = new DefaultListModel<FishingSafari>();
   private JComboBox<SafariDestination> destinationPicker;
   private Booking booking;
+  private FishingSafari safari;
+  private Customer customer;
+
+
 
 	
 	public AddBookingView() {
@@ -512,15 +517,23 @@ setMaximumSize(new Dimension(1000, 1000));
   }
   public void buildCustomer(){
     String firstName = customerFirstName.getText();
+    String lastName = customerLastName.getText();
+    String email = customerEmail.getText();
+    String phoneNumber = customerPhoneNumber.getText();
+    Date regDate = new Date();
+
+    customer = new Customer(firstName,lastName,email,phoneNumber,regDate);
   }
   public Customer getCustomer(){
-    return null;
+    return customer;
   }
   public void populateCustomerInfo(Customer customer){
     customerFirstName.setText(customer.getFirstName());
     customerLastName.setText(customer.getLastName());
     customerPhoneNumber.setText(customer.getTelephone());
   }
+  
+
   public String getText(String name){
    String text = "";
     try{
@@ -532,6 +545,7 @@ setMaximumSize(new Dimension(1000, 1000));
     }
     return text;
   }
+
 
 
 }

@@ -1,6 +1,7 @@
 package server.planning.model;
 
 import java.util.Date;
+import java.text.DateFormat;
 
 public class FishingSafari{
 
@@ -16,6 +17,7 @@ public class FishingSafari{
     
     private Date timeLimit;
     private boolean assignmentPlanSent;
+    private DateFormat df = DateFormat.getDateInstance(DateFormat.SHORT); // for toString..
 
     public FishingSafari(SafariDestination destination, Date startDate, Date endDate,int status) {
 	
@@ -72,6 +74,13 @@ public class FishingSafari{
 	this.status = status;
     }
 
+public String toString(){
+    String stringStartDate = df.format(startDate);
+    String stringEndDate = df.format(endDate);
+    String stringDestination = safariDestination.getLocation();
+    return String.format("Startdatum: %s Slutdatum: %s Destination: %s"
+        ,stringStartDate,stringEndDate,stringDestination);
+}
     
 
 }//End of class
