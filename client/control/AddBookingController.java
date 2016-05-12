@@ -47,8 +47,13 @@ public class AddBookingController{
 
     addListeners();
 
+    try{
     addView.updateFishingSafariList(safariStorage.getList());
     addView.updateDestinationPicker(destinationStorage.getList());
+    }
+    catch(StorageException se){
+      JOptionPane.showMessageDialog(null,se.getMessage());
+    }
   }
 
   public void addListeners(){

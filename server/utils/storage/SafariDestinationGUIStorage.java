@@ -24,7 +24,7 @@ public class SafariDestinationGUIStorage implements SafariDestinationStorage{
       int randParticipants = 10 + rand.nextInt(20);
       int randTerrain = rand.nextInt(3);
       destinations.add(new SafariDestination(locations[i],equipmentReq[randEquipment],randParticipants,guides[i]
-        ,terrain[randTerrain],true));
+        ,terrain[randTerrain],1));
     }
   }
   public ArrayList<SafariDestination> getList(){
@@ -33,7 +33,7 @@ public class SafariDestinationGUIStorage implements SafariDestinationStorage{
   public ArrayList<SafariDestination> get(int status){
     ArrayList<SafariDestination> statusList = new ArrayList<SafariDestination>();
     for(SafariDestination dest : destinations){
-      if(dest.getActive()==true){
+      if(dest.getStatus()==1){
         statusList.add(dest);
       }
     }

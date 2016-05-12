@@ -10,6 +10,7 @@ import server.utils.storage.FishingSafariStorage;
 import server.utils.storage.FishingSafariStorageFactory;
 import server.utils.storage.SafariDestinationStorage;
 import server.utils.storage.SafariDestinationStorageFactory;
+import server.utils.storage.StorageException;
 import server.utils.logs.Log;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -17,6 +18,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.event.*;
 import javax.swing.JComponent;
+import javax.swing.JOptionPane;
 import java.awt.event.*;
 
 
@@ -51,8 +53,13 @@ public class FishingSafariController{
     bottomMap = bottomView.getCompMap();
     modifyMap = modifyView.getCompMap();
 
+    try{
     bottomView.fillDestinationPicker(safariStorage.getList());
     modifyView.fillList(fishingStorage.getList());
+    }
+    catch(StorageException se){
+      JOptionPane.showMessageDialog(null,se.getMessage());
+    }
 
     addListeners();
     
@@ -89,8 +96,13 @@ public class FishingSafariController{
 if(comp.getName().equals("saveFishingSafari")){
       mainView.buildFishingSafari();
       FishingSafari safari = mainView.getFishingSafari();
-      fishingStorage.put(safari);
-      modifyView.fillList(fishingStorage.getList());
+      try{
+        fishingStorage.put(safari);
+        modifyView.fillList(fishingStorage.getList());
+      }
+      catch(StorageException se){
+        JOptionPane.showMessageDialog(null,se.getMessage());
+      }
       bottomView.clearSelection();
     }
   }
@@ -127,8 +139,8 @@ if(comp.getName().equals("saveFishingSafari")){
         SafariDestination selectedDestination = safariStorage.get(bottomView.getSelectedItem("destinationPicker"));
         bottomView.setText("equipmentReq",selectedDestination.getEquipmentReq());        
       }
-      catch(NullPointerException npe){
-        log.put("DestinationPicker back to default");
+      catch(StorageException se){
+        JOptionPane.showMessageDialog(null,se.getMessage());
       }
     }
   };

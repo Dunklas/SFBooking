@@ -310,7 +310,7 @@ public class SafariDestinationView extends JPanel {
 		int maxParticipants = checkMaxParticipants(textFieldParticipants.getText());
 		String guide = guideBox.getSelectedItem().toString();
 		String terrain = checkTerrain();
-		boolean status = checkStatus();
+		int status = checkStatus();
 
 		destination = new SafariDestination(location,equipmentReq,maxParticipants,guide,terrain,status);
 	}
@@ -333,12 +333,12 @@ public class SafariDestinationView extends JPanel {
 	return maxParticipants;
 }
 
-	public boolean checkStatus(){
+	public int checkStatus(){
 		if(activeButton.isSelected()){
-			return true;
+			return 1;
 		}
 		else{
-			return false;
+			return 0;
 		}
 	}
 	public String checkTerrain(){
@@ -361,7 +361,7 @@ public class SafariDestinationView extends JPanel {
      textFieldParticipants.setText(""+destination.getMaxParticipants()+"");
      guideBox.setSelectedItem(destination.getGuide());
      fillTerrain(destination.getTerrainList());
-     setActive(destination.getActive());
+     setActive(destination.getStatus());
 
 
 	}
@@ -393,9 +393,9 @@ public class SafariDestinationView extends JPanel {
 		}
 	}
 
-	public void setActive(boolean status){
+	public void setActive(int status){
 		System.out.println(status);
-		if(status==true){
+		if(status==1){
 			activeButton.setSelected(true);
 		}
 		else{
