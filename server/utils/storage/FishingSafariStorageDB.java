@@ -15,7 +15,7 @@ public class FishingSafariStorageDB implements FishingSafariStorage {
 
 	public void put(FishingSafari fs) throws StorageException{ 
 		FishingSafari fromDb = get(fs.getId());
-	
+	   
 		if(fromDb == null) {
 		   String sql = "INSERT INTO fishingsafari (safaridestination, end_date, start_date, status)VALUES(?, ?, ?, ?)";
 		   DBHelper.getInstance().update(sql, 
@@ -33,16 +33,21 @@ public class FishingSafariStorageDB implements FishingSafariStorage {
 						fs.getStatus(), 
 						fs.getId()); 
 		}
+  
+ 
 	}
 
 	public ArrayList<FishingSafari> getByStatus(int status) throws StorageException{
+    
 	    String sql = String.format("SELECT * FROM fishingsafari WHERE status = %d", status);
 	    ResultSet rs = DBHelper.getInstance().query(sql);
+      
       
 	    return toArrayList(rs);
 	}
 
 	public FishingSafari get(int id) throws StorageException{
+   
 		String sql = String.format("SELECT * FROM fishingsafari WHERE safari_id = %d", id);
 		ResultSet rs = DBHelper.getInstance().query(sql);
 		
@@ -52,6 +57,7 @@ public class FishingSafariStorageDB implements FishingSafariStorage {
 	}
 
   public ArrayList<FishingSafari> getByDestination(SafariDestination destination) throws StorageException{
+    
     String destinationString = destination.getLocation();
     String sql = String.format("SELECT * FROM fishingsafari WHERE safaridestination = %s"
       ,destinationString);
@@ -73,7 +79,7 @@ public class FishingSafariStorageDB implements FishingSafariStorage {
 		
 		SafariDestination sd = null;
 		FishingSafari fs = null;
-		try {
+		
            while (rs.next()){
                sd = SafariDestinationStorageFactory.getStorage().get(rs.getString("SafariDestination"));
                fs = new FishingSafari(sd,
@@ -84,8 +90,7 @@ public class FishingSafariStorageDB implements FishingSafariStorage {
                fsList.add(fs);
            }
 	   Log.put("Successfuly fetched FishingSafaris from the DB");
-		} catch(SQLException ex){
-		    throw new StorageException(ex);
+	
 		}
 
 		return fsList;
@@ -97,7 +102,7 @@ public class FishingSafariStorageDB implements FishingSafariStorage {
 	    SafariDestination sd = null;
 	    FishingSafari fs = null;
 
-	    try{
+	    
 	    	while (rs.next()){
                sd = SafariDestinationStorageFactory.getStorage().get(rs.getString("SafariDestination"));
                fs = new FishingSafari(sd,
@@ -107,9 +112,7 @@ public class FishingSafariStorageDB implements FishingSafariStorage {
                fs.setId(rs.getInt("SAFARI_ID"));
 	    	}
 		Log.put("Successfully fetched FishingSafari from the DB");
-	    } catch(SQLException ex){
-	    	throw new StorageException(ex);
-	    }
+	   
 	    return fs;
 
 	}

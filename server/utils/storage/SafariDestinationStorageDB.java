@@ -40,37 +40,29 @@ public class SafariDestinationStorageDB extends Observable implements SafariDest
 		public ArrayList<SafariDestination> getList() throws StorageException{
 
 			ResultSet rs = null;
-			try{
+			
 			rs = DBHelper.getInstance().query("SELECT * FROM safaridestination");
-			}
-			catch(SQLException se){
-				throw new StorageException(se);
-			}
+			
+			
 			
 			return toArrayList(rs);
 		}
 		
 		public ArrayList<SafariDestination> get(int status) throws StorageException{
 			ResultSet rs = null;
-			try{
+			
 			String sql = String.format("SELECT * safaridestination WHERE active=%d",status);
 			rs = DBHelper.getInstance().query(sql);
-			}
-			catch(SQLException se){
-				throw new StorageException(se);
-			}
+			
 			return toArrayList(rs);
 		}
 		
 		public SafariDestination get(String location) throws StorageException{
 			ResultSet rs = null;
-			try{
+			
 			String sql = String.format("SELECT * FROM safaridestination WHERE location= '%s'",location);
 			rs = DBHelper.getInstance().query(sql);
-			}
-			catch(SQLException se){
-				throw new StorageException(se);
-			}
+			
 			return toSafariDestination(rs);
 
 		}
@@ -83,7 +75,7 @@ public class SafariDestinationStorageDB extends Observable implements SafariDest
 			
 			ArrayList<SafariDestination> sdList = new ArrayList<SafariDestination>();
 			SafariDestination sd = null;
-			try{
+			
 				while(rs.next()){
 					sd = new SafariDestination (rs.getString("location"), 
 												rs.getString("equipment_req"), 
@@ -94,16 +86,14 @@ public class SafariDestinationStorageDB extends Observable implements SafariDest
 					sdList.add(sd);
 				}
 				Log.put("Successfully fetched SafariDestination from DB");
-			}catch(SQLException e){
-			    throw new StorageException(e);
-			}
+		
 			return sdList;
 		}
 		
 		public SafariDestination toSafariDestination(ResultSet rs) throws StorageException{
 			
 			SafariDestination sd = null;
-			try{
+			
 				while(rs.next()){
 					sd = new SafariDestination (rs.getString("location"), 
 												rs.getString("equipment_req"), 
@@ -114,16 +104,15 @@ public class SafariDestinationStorageDB extends Observable implements SafariDest
 					
 				}
 				Log.put("Successfully fetched SafariDestination from DB");
-			}catch(SQLException e){
-			    throw new StorageException(e);
-			}
+			
+			
 			return sd;
 		}
 		
 		
 		public void put(SafariDestination sd) throws StorageException{
 			
-			try{
+		
 			SafariDestination fromDB = get(sd.getLocation());
 			
 			if(fromDB == null){	
@@ -148,10 +137,7 @@ public class SafariDestinationStorageDB extends Observable implements SafariDest
 				DBHelper.getInstance().update(sql);
 				}
 
-			}
-				catch(SQLException se){
-					throw new StorageException(se);
-				}
+		
 		}
 	
 }

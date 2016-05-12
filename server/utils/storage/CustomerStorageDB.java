@@ -16,7 +16,7 @@ public class CustomerStorageDB implements CustomerStorage {
 
     public void put(Customer toDB) throws StorageException{
 	SimpleDateFormat formatter =  new SimpleDateFormat("yyyy-MM-dd");
-	try{
+	
 	if (toDB.getId()== 0){
 	    Date reg = new Date();
 	    String dateNow = formatter.format(reg);
@@ -44,10 +44,7 @@ public class CustomerStorageDB implements CustomerStorage {
 	
 	}
 	  Log.put("Suceccsfully wrote to DB");
-	}
-	catch(SQLException se){
-	    throw new StorageException(se);
-	}
+	
     }
 
 
@@ -55,7 +52,7 @@ public class CustomerStorageDB implements CustomerStorage {
 	String sql = String.format("SELECT * FROM customer where EMAIL = '%s'", email);
 	ResultSet rs = DBHelper.getInstance().query(sql);
 	Customer c = null;
-	try{
+	
 	while (rs.next()){
 	    c = new Customer( rs.getString("FIRST_NAME"),
 			      rs.getString("LAST_NAME"),
@@ -66,9 +63,7 @@ public class CustomerStorageDB implements CustomerStorage {
 	    c.setId(rs.getInt("CUSTOMER_ID"));
 	}
 	Log.put("Sucessfully fetched a Customer object from the DB");
-	} catch (SQLException se){
-	    throw new StorageException(se);
-	}
+	
 	
 	return c;
     }
@@ -77,7 +72,7 @@ public class CustomerStorageDB implements CustomerStorage {
 	String sql = String.format("SELECT * FROM customer where CUSTOMER_ID = %d", id);
 	ResultSet rs = DBHelper.getInstance().query(sql);
 	Customer c = null;
-	try{
+	
 	while (rs.next()){
 	    c = new Customer( rs.getString("FIRST_NAME"),
 			      rs.getString("LAST_NAME"),
@@ -87,9 +82,7 @@ public class CustomerStorageDB implements CustomerStorage {
 	    c.setId(rs.getInt("CUSTOMER_ID"));
 	}
 	Log.put("Sucessfully fetched a Customer object from the DB");
-	} catch (SQLException se){
-	    throw new StorageException(se);
-	}
+	
 	
 	return c;
     }

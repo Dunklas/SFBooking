@@ -50,7 +50,7 @@ Testa att uppdatera en bokning också...
 	Booking toDb = booking;
 	Booking fromDb = get(booking.getBookingID());
 	String sql = "";
-	try{
+	
 	if (fromDb == null) {
 	    sql = "INSERT INTO booking (booking_status, price, safari, customer, booked, nr_participants) VALUES (?, ?, ?, ?, SYSDATE, ?)";
 	    DBHelper.getInstance().update(sql,
@@ -72,14 +72,12 @@ Testa att uppdatera en bokning också...
 					  new Integer(toDb.getNrParticipants()),
 					  new Integer(toDb.getBookingID()));
 	}
-	} catch (SQLException ex){
-	    throw new StorageException(ex);
-	}
+
     }
 
     private Booking toBooking(ResultSet rs) throws StorageException {
 	Booking tempBook = null;
-	try {
+	
 	    while(rs.next()) {
 		tempBook = new Booking(FishingSafariStorageFactory.getStorage().get(rs.getInt("safari")),
 				       CustomerStorageFactory.getStorage().get(rs.getInt("customer")),
@@ -90,15 +88,13 @@ Testa att uppdatera en bokning också...
 		tempBook.setBooked(rs.getDate("booked"));
 	    }
 	    Log.put("Successfully managed to fetch Booking from the DB");
-	} catch (SQLException ex) {
-	    throw new StorageException(ex);
-	}
+	
 	return tempBook;
     }
 
     private ArrayList<Booking> toArrayList(ResultSet rs) throws StorageException {
 	ArrayList<Booking> bookArrayList = new ArrayList<>();
-	try {
+	
 	    while(rs.next()) {
 		Booking tempBook = new Booking(FishingSafariStorageFactory.getStorage().get(rs.getInt("safari")),
 					       CustomerStorageFactory.getStorage().get(rs.getInt("customer")),
@@ -111,9 +107,7 @@ Testa att uppdatera en bokning också...
 		bookArrayList.add(tempBook);
 	    }
 	    Log.put("Successfully managed to fetch Bookings from the DB");
-	} catch (SQLException ex) {
-	    throw new StorageException(ex);
-	}
+	
 	return bookArrayList;
     }
 }
