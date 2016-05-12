@@ -11,7 +11,6 @@ public class FishingSafari{
     private Date endDate;
     
     private int status; // 0-4 , 0=preliminar,1=utforbar,2=slutgiltig,3=kancellerad,4=genomford
-    private Date announcementDate;
     //bookinglist
     //equipmentlist
     
