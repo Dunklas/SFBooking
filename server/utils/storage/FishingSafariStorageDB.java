@@ -4,6 +4,7 @@ import server.planning.model.*;
 import java.util.*;
 import java.sql.*;
 import server.utils.storage.StorageException;
+import server.util.logs.Log;
 
 public class FishingSafariStorageDB implements FishingSafariStorage {
 
