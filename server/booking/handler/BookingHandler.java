@@ -95,4 +95,14 @@ public class BookingHandler {
 		    finalCheck(fs);
 		}
 	}
+
+	public void sendPreliminaryConfirmation(Booking b) {
+		//Information about booking and payment.
+		Log.put("Preliminary confirmation sent for booking: " + b.getBookingID());
+	}
+
+	public void sendFinalConfirmation(Booking b) {
+		//Information about fishingsafari and booking
+		Log.put("Final confirmation sent for booking: " + b.getBookingID());
+	}
 }
