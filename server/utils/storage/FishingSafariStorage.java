@@ -5,12 +5,12 @@ import java.util.*;
 
 public interface FishingSafariStorage{
 
-    ArrayList<FishingSafari> getList();
+    ArrayList<FishingSafari> getList() throws StorageException;
 
-    ArrayList<FishingSafari> getByStatus(int status);
+    ArrayList<FishingSafari> getByStatus(int status) throws StorageException;
 
-    FishingSafari get(int id);
+    FishingSafari get(int id) throws StorageException;
 
-    void put(FishingSafari fs);
+    void put(FishingSafari fs) throws StorageException;
 
 }

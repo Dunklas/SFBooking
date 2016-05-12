@@ -11,7 +11,6 @@ public class Customer {
     private String telephone;
 
     private Date registered;
-    private Date unregistered;
 
     public Customer (String firstName, String lastName, String email, String telephone, Date registered) {
 
@@ -49,9 +48,7 @@ public class Customer {
     	return registered;
     }
 
-    public Date getUnregistered(){
-    	return unregistered;
-    }
+  
 
 
 

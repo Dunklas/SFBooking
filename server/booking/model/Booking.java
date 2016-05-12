@@ -13,12 +13,8 @@ public class Booking {
     private FishingSafari fishingSafari;
     private Customer customer;
 
-    private Date preliminaryConfirmationSent;
-    private Date finalConfirmationSent;
-    private Date paymentReceived;
-    private Date bookingCancelled;
     private Date booked;
-    private Date refunded;
+
 
     public Booking(FishingSafari safari, Customer customer, int nrParticipants) {
 	this.fishingSafari = safari;

@@ -2,6 +2,7 @@ package server.utils.storage;
 
 import java.util.*;
 import java.sql.*;
+import server.utils.storage.StorageException;
 
 import server.planning.model.*;
 
@@ -10,14 +11,14 @@ public class SafariDestinationStorageDB implements SafariDestinationStorage{
 		SafariDestinationStorageDB(){
 			
 		}
-		public ArrayList<SafariDestination> getList(){
+		public ArrayList<SafariDestination> getList() throws StorageException{
 
 			ResultSet rs = DBHelper.getInstance().query("SELECT * FROM safaridestination");
 			
 			return toArrayList(rs);
 		}
 		
-		public ArrayList<SafariDestination> get(int status){
+		public ArrayList<SafariDestination> get(int status) throws StorageException{
 			
 			String sql = String.format("SELECT * safaridestination WHERE active=%d",status);
 			ResultSet rs = DBHelper.getInstance().query(sql);
@@ -25,7 +26,7 @@ public class SafariDestinationStorageDB implements SafariDestinationStorage{
 			return toArrayList(rs);
 		}
 		
-		public SafariDestination get(String location){
+		public SafariDestination get(String location) throws StorageException{
 			
 			String sql = String.format("SELECT * FROM safaridestination WHERE location= '%s'",location);
 			ResultSet rs = DBHelper.getInstance().query(sql);
@@ -33,7 +34,7 @@ public class SafariDestinationStorageDB implements SafariDestinationStorage{
 			return toSafariDestination(rs);
 		}
 		
-		public ArrayList<SafariDestination> toArrayList(ResultSet rs){
+		public ArrayList<SafariDestination> toArrayList(ResultSet rs) throws StorageException{
 			
 			ArrayList<SafariDestination> sdList = new ArrayList<SafariDestination>();
 			SafariDestination sd = null;
@@ -47,8 +48,9 @@ public class SafariDestinationStorageDB implements SafariDestinationStorage{
 												rs.getBoolean("active"));
 					sdList.add(sd);
 				}
+				Log.put("Successfully fetched SafariDestination from DB");
 			}catch(SQLException e){
-					e.printStackTrace();
+			    throw new StorageException(e);
 			}
 			return sdList;
 		}
@@ -66,8 +68,9 @@ public class SafariDestinationStorageDB implements SafariDestinationStorage{
 												rs.getBoolean("active"));
 					
 				}
+				Log.put("Successfully fetched SafariDestination from DB");
 			}catch(SQLException e){
-				e.printStackTrace();
+			    throw new StorageException(e);
 			}
 			return sd;
 		}
