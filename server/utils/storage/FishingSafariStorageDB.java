@@ -50,6 +50,16 @@ public class FishingSafariStorageDB implements FishingSafariStorage {
 
 	}
 
+  public ArrayList<FishingSafari> getByDestination(SafariDestination destination){
+    String destinationString = destination.getLocation();
+    String sql = String.format("SELECT * FROM fishingsafari WHERE safaridestination = %s"
+      ,destinationString);
+
+    ResultSet rs = DBHelper.getInstance().query(sql);
+
+    return toArrayList(rs);
+  }
+
 
 	public ArrayList<FishingSafari> getList() throws StorageException{
 	    ResultSet rs = DBHelper.getInstance().query("SELECT * FROM fishingsafari");
