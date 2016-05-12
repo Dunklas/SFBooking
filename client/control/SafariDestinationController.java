@@ -12,8 +12,10 @@ import java.awt.event.*;
 import javax.swing.*;
 import java.awt.*;
 import java.util.HashMap;
+import java.util.Observer;
+import java.util.Observable;
 
-public class SafariDestinationController{
+public class SafariDestinationController implements Observer{
   
   SafariDestinationView safariView;
   ModifySafariDestinationView modifyView;
@@ -42,6 +44,10 @@ public class SafariDestinationController{
     JButton selectButton = (JButton) modifyMap.get("selectButton");
     selectButton.addActionListener(selectListener);
   }
+  public void update(Observable observable, Object object){
+    ArrayList<SafariDestination> updatedList = (ArrayList<SafariDestination>) object;
+    modifyView.fillList(updatedList);
+  }
 
 
 
@@ -59,7 +65,7 @@ public class SafariDestinationController{
          safariView.showButton(safariMap.get("activeButton").getName(),false);
          safariView.showButton(safariMap.get("inactiveButton").getName(),false);
          safariView.clearSelection();
-         modifyView.fillList(storage.getList()); // fills the list again
+         //modifyView.fillList(storage.getList()); // fills the list again
 
       }
     }

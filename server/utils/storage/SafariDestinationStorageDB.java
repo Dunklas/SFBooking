@@ -2,14 +2,35 @@ package server.utils.storage;
 
 import java.util.*;
 import java.sql.*;
+import java.util.Observable;
+import java.util.Observer;
 
 import server.planning.model.*;
 
-public class SafariDestinationStorageDB implements SafariDestinationStorage{
+public class SafariDestinationStorageDB implements SafariDestinationStorage extends Observable{
 
+	ArrayList<Observer> observerList = new ArrayList<Observer>();
 		SafariDestinationStorageDB(){
 			
 		}
+		/**
+		*	Observer methods
+		*/
+		public void addObserver(Observer observer){
+			observerList.add(observer);
+		}
+		protected void setChanged(){
+
+		}
+		public void notifyAllObservers(){
+			for(Observer o : observerList){
+				o.update(this,getList());
+			}
+		}
+
+		/**
+		*	Storage methods
+		*/
 		public ArrayList<SafariDestination> getList(){
 
 			ResultSet rs = DBHelper.getInstance().query("SELECT * FROM safaridestination");
@@ -33,6 +54,9 @@ public class SafariDestinationStorageDB implements SafariDestinationStorage{
 			return toSafariDestination(rs);
 		}
 		
+		/**
+		*	Utils methods
+		*/
 		public ArrayList<SafariDestination> toArrayList(ResultSet rs){
 			
 			ArrayList<SafariDestination> sdList = new ArrayList<SafariDestination>();
@@ -97,6 +121,8 @@ public class SafariDestinationStorageDB implements SafariDestinationStorage{
 						,sd.getLocation());
 				System.out.println(sql);
 				DBHelper.getInstance().update(sql);
+
+
 			}
 		}
 	
