@@ -4,7 +4,7 @@ import java.util.*;
 
 import server.planning.model.*;
 
-public interface SafariDestinationStorage{
+public interface SafariDestinationStorage extends ObservableStorage{
 
 	ArrayList<SafariDestination> getList() throws StorageException;
 	

@@ -6,8 +6,9 @@ import java.sql.*;
 import server.utils.storage.StorageException;
 import server.utils.logs.Log;
 
-public class FishingSafariStorageDB implements FishingSafariStorage {
+public class FishingSafariStorageDB implements FishingSafariStorage{
 
+ArrayList<Observer> observerList = new ArrayList<Observer>();
 	
 	public FishingSafariStorageDB(){
 	  
@@ -73,6 +74,17 @@ public class FishingSafariStorageDB implements FishingSafariStorage {
 
         return DBTranslator.toFishingSafariList(rs);
 	}
+
+
+
+    public void addObserver(Observer observer){
+      observerList.add(observer);
+    }
+    public void notifyObservers(){
+      for(Observer o : observerList){
+        // do something to update view..
+      }
+    }
 
 	
 

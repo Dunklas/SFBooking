@@ -5,10 +5,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Observer;
+import java.util.Observable;
 import server.utils.logs.Log;
-public class CustomerStorageDB implements CustomerStorage {
+public class CustomerStorageDB extends Observable implements CustomerStorage {
    
-
+ArrayList<Observer> observerList = new ArrayList<Observer>();
 
     CustomerStorageDB(){
 
@@ -61,5 +63,16 @@ public class CustomerStorageDB implements CustomerStorage {
 	
 	return DBTranslator.toCustomer(rs);
     }
+
+    
+    public void addObserver(Observer observer){
+      observerList.add(observer);
+    }
+    public void notifyObservers(){
+      for(Observer o : observerList){
+        // do something to update view..
+      }
+    }
+
 
 }

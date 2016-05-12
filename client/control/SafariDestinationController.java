@@ -40,6 +40,8 @@ public class SafariDestinationController implements Observer{
     catch(StorageException se){JOptionPane.showMessageDialog(null,se.getMessage());}
 
     addListeners();
+    storage.addObserver(this);
+
   }
 
   public void addListeners(){
@@ -52,6 +54,7 @@ public class SafariDestinationController implements Observer{
   public void update(Observable observable, Object object){
     ArrayList<SafariDestination> updatedList = (ArrayList<SafariDestination>) object;
     modifyView.fillList(updatedList);
+    System.out.println("Test");
   }
 
 

@@ -1,7 +1,7 @@
 package server.utils.storage;
 import server.customer.model.*;
 
-public interface CustomerStorage{
+public interface CustomerStorage extends ObservableStorage{
 
 
     void put(Customer c) throws StorageException;

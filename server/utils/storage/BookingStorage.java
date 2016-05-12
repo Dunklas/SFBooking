@@ -5,7 +5,7 @@ import server.customer.model.*;
 import server.planning.model.*;
 import java.util.*;
 
-public interface BookingStorage{
+public interface BookingStorage extends ObservableStorage{
 	
    void put(Booking b) throws StorageException;
 

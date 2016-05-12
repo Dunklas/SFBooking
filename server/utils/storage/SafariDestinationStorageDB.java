@@ -14,6 +14,7 @@ import server.planning.model.*;
 public class SafariDestinationStorageDB extends Observable implements SafariDestinationStorage {
 	
 	ArrayList<Observer> observerList = new ArrayList<Observer>();
+	ArrayList<SafariDestination> array = new ArrayList<SafariDestination>();
 		SafariDestinationStorageDB(){
 			
 		}
@@ -24,12 +25,10 @@ public class SafariDestinationStorageDB extends Observable implements SafariDest
 		public void addObserver(Observer observer){
 			observerList.add(observer);
 		}
-		protected void setChanged(){
-
-		}
-		public void notifyAllObservers() throws StorageException{
+		
+		public void notifyObservers() {
 			for(Observer o : observerList){
-				o.update(this,getList());
+				o.update(this,array);
 
 			}
 		}
@@ -89,6 +88,8 @@ public class SafariDestinationStorageDB extends Observable implements SafariDest
 			
 														 
 				DBHelper.getInstance().update(sql);
+
+				
 			}else {
 				String sql = String.format("UPDATE SAFARIDESTINATION SET MAX_PARTICIPANTS=%d, TERRAIN='%s', EQUIPMENT_REQ='%s', GUIDE='%s', ACTIVE=%d WHERE LOCATION='%s'",sd.getMaxParticipants()
 						,sd.getTerrain()
@@ -98,7 +99,11 @@ public class SafariDestinationStorageDB extends Observable implements SafariDest
 						,sd.getLocation());
 				System.out.println(sql);
 				DBHelper.getInstance().update(sql);
+
+
 				}
+				array = getList();
+				notifyObservers();
 
 		
 		}

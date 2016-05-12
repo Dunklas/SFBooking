@@ -4,7 +4,7 @@ import server.planning.model.FishingSafari;
 import server.planning.model.SafariDestination;
 import java.util.*;
 
-public interface FishingSafariStorage{
+public interface FishingSafariStorage extends ObservableStorage{
 
     ArrayList<FishingSafari> getList() throws StorageException;
 

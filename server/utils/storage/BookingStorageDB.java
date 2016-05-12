@@ -7,12 +7,16 @@ import java.util.*;
 import java.sql.*;
 import server.utils.logs.Log;
 
-public class BookingStorageDB implements BookingStorage {
+public class BookingStorageDB extends Observable implements BookingStorage {
 /*
 VI BEHÖVER INTE JÄMFÖRA ATTRIBUT!
 KOLLA OM OBJEKT FINNS OCH SKRIV IN RESTEN AV SKITEN
 Testa att uppdatera en bokning också...
 */
+
+ArrayList<Observers> observerList = new ArrayList<Observers>();
+
+
     public ArrayList<Booking> get(FishingSafari fs) throws StorageException {
 	
 	String sql = String.format("SELECT * FROM booking WHERE safari = %d", fs.getId());
@@ -73,6 +77,15 @@ Testa att uppdatera en bokning också...
 					  new Integer(toDb.getBookingID()));
 	}
 
+    }
+
+    public void addObserver(Observer observer){
+      observerList.add(observer);
+    }
+    public void notifyObservers(){
+      for(Observer o : observerList){
+        // do something to update view..
+      }
     }
 
     

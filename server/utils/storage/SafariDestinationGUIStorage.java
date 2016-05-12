@@ -3,6 +3,7 @@ package server.utils.storage;
 import java.util.*;
 import server.planning.model.SafariDestination;
 
+
 public class SafariDestinationGUIStorage implements SafariDestinationStorage{
   
   ArrayList<SafariDestination> destinations = new ArrayList<SafariDestination>();
@@ -56,6 +57,13 @@ public class SafariDestinationGUIStorage implements SafariDestinationStorage{
 
   public void put(SafariDestination sd){
     destinations.add(sd);
+  }
+
+  public void addObserver(Observer observer){
+
+  }
+  public void notifyObservers(){
+
   }
 
 }
