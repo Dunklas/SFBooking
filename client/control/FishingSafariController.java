@@ -10,6 +10,7 @@ import server.utils.storage.FishingSafariStorage;
 import server.utils.storage.FishingSafariStorageFactory;
 import server.utils.storage.SafariDestinationStorage;
 import server.utils.storage.SafariDestinationStorageFactory;
+import server.utils.logs.Log;
 import java.util.ArrayList;
 import java.util.HashMap;
 import javax.swing.JButton;
@@ -29,13 +30,15 @@ public class FishingSafariController{
   HashMap<String,JComponent> bottomMap;
   HashMap<String,JComponent> modifyMap;
 
-  //FishingSafariStorage fishingStorage = FishingSafariStorageFactory.getStorage();
-  FishingSafariStorage fishingStorage = FishingSafariStorageFactory.getGUITestStorage();
-  //SafariDestinationStorage safariStorage = SafariDestinationStorageFactory.getStorage();
-  SafariDestinationStorage safariStorage = SafariDestinationStorageFactory.getGUITestStorage();
+  FishingSafariStorage fishingStorage = FishingSafariStorageFactory.getStorage();
+  //FishingSafariStorage fishingStorage = FishingSafariStorageFactory.getGUITestStorage();
+  SafariDestinationStorage safariStorage = SafariDestinationStorageFactory.getStorage();
+  //SafariDestinationStorage safariStorage = SafariDestinationStorageFactory.getGUITestStorage();
 
   SafariDestination destination;
   FishingSafari fishingSafari; 
+
+  Log log = new Log();
 
   public FishingSafariController(FishingSafariTopView top,
     FishingSafariBottomView bottom,FishingSafariView main,ModifyFishingSafariView mod){
@@ -120,10 +123,13 @@ if(comp.getName().equals("saveFishingSafari")){
 
   ItemListener destinationListener = new ItemListener(){
     public void itemStateChanged(ItemEvent e){
-
+      try{
         SafariDestination selectedDestination = safariStorage.get(bottomView.getSelectedItem("destinationPicker"));
         bottomView.setText("equipmentReq",selectedDestination.getEquipmentReq());        
-      
+      }
+      catch(NullPointerException npe){
+        log.put("DestinationPicker back to default");
+      }
     }
   };
 

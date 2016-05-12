@@ -18,7 +18,8 @@ FishingSafariTopView topView;
 FishingSafariBottomView bottomView;
 
 
-SafariDestinationStorage destinationStorage = SafariDestinationStorageFactory.getGUITestStorage();
+//SafariDestinationStorage destinationStorage = SafariDestinationStorageFactory.getGUITestStorage();
+SafariDestinationStorage destinationStorage = SafariDestinationStorageFactory.getStorage();
 
 FishingSafari fishingSafari;
 SafariDestination destination;

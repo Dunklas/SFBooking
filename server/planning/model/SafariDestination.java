@@ -81,7 +81,7 @@ public class SafariDestination{
 	
     }
     public String toString(){ // can be changed
-        return location + equipmentReq + maxParticipants + guide + terrain + active;
+        return location;
     }
    
 

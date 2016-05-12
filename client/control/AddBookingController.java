@@ -4,17 +4,21 @@ import server.booking.model.Booking;
 import server.booking.handler.BookingHandler;
 import server.customer.model.Customer;
 import server.planning.model.FishingSafari;
+import server.planning.handler.PlanningHandler;
 import server.utils.storage.CustomerStorage;
 import server.utils.storage.CustomerStorageFactory;
 import server.utils.storage.BookingStorage;
 import server.utils.storage.BookingStorageFactory;
 import server.utils.storage.FishingSafariStorage;
 import server.utils.storage.FishingSafariStorageFactory;
+import server.utils.storage.SafariDestinationStorage;
+import server.utils.storage.SafariDestinationStorageFactory;
 import server.utils.storage.StorageException;
 import client.ui.AddBookingView;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.event.*;
+import javax.swing.JOptionPane;
 import java.awt.event.*;
 import java.util.HashMap;
 
@@ -27,9 +31,14 @@ public class AddBookingController{
   BookingStorage bookingStorage = BookingStorageFactory.getStorage();
   CustomerStorage customerStorage = CustomerStorageFactory.getStorage();
   FishingSafariStorage safariStorage = FishingSafariStorageFactory.getStorage();
+  SafariDestinationStorage destinationStorage = SafariDestinationStorageFactory.getStorage();
+
+  PlanningHandler planningHandler = new PlanningHandler();
 
   Customer customer;
   FishingSafari safari;
+  Booking booking;
+
 
   public AddBookingController(AddBookingView abv){
     addView = abv;
@@ -39,6 +48,7 @@ public class AddBookingController{
     addListeners();
 
     addView.updateFishingSafariList(safariStorage.getList());
+    addView.updateDestinationPicker(destinationStorage.getList());
   }
 
   public void addListeners(){
@@ -74,13 +84,23 @@ public class AddBookingController{
 
   ActionListener saveListener = new ActionListener(){
     public void actionPerformed(ActionEvent e){
+      customer = addView.getCustomer();
+      safari = addView.getSelectedSafari();
+      int participants = addView.getParticipants();
 
+      booking = new Booking(safari,customer,participants);
+      try{
+      bookingStorage.put(booking);
+    }
+    catch(StorageException se){
+      JOptionPane.showMessageDialog(null,se.getMessage());
+    }
     }
   };
 
   ActionListener clearListener = new ActionListener(){
     public void actionPerformed(ActionEvent e){
-
+      addView.clearSelection();
     }
   };
 
@@ -130,7 +150,16 @@ public class AddBookingController{
 
   ActionListener selectListener = new ActionListener(){
     public void actionPerformed(ActionEvent e){
-      addView.populateFishingSafariInfo(addView.getSelectedSafari());
+      addView.clearSelection();
+      safari = addView.getSelectedSafari();
+      addView.setFishingSafari(safari);
+      addView.populateFishingSafariInfo(safari);
+      try{
+      addView.updateParticipantsPicker(planningHandler.availabilityCheck(safari));
+    }
+    catch(StorageException se){
+      JOptionPane.showMessageDialog(null,se.getMessage());
+    }
     }
   };
 

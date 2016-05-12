@@ -24,13 +24,13 @@ public class TestMain{
 
   FishingSafariController fishingController = new FishingSafariController(topView,bottomView,mainView,modifyFishingView);
 
-  /*MainSplitView split = new MainSplitView(modifyFishingView,mainView);
-  TestMain.addSplitToFrame(split);*/
+  MainSplitView split = new MainSplitView(modifyView,safariView);
+  TestMain.addSplitToFrame(split);
 
   AddBookingView addBookingView = new AddBookingView();
   AddBookingController addBookingController = new AddBookingController(addBookingView);
 
-  TestMain.addPanelToFrame(addBookingView);
+  //TestMain.addPanelToFrame(addBookingView);
   
   }
 
@@ -38,7 +38,7 @@ public class TestMain{
     JFrame frame = new JFrame();
     frame.setVisible(true);
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    frame.setSize(800,800);
+    frame.setSize(1200,1000);
     frame.add(split);
 
   }
@@ -46,7 +46,7 @@ public class TestMain{
     JFrame frame = new JFrame();
     frame.setVisible(true);
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    frame.setSize(800,800);
+    frame.setSize(1200,1000);
     frame.add(panel);
   }
 

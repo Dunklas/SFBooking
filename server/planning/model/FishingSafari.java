@@ -78,8 +78,8 @@ public String toString(){
     String stringStartDate = df.format(startDate);
     String stringEndDate = df.format(endDate);
     String stringDestination = safariDestination.getLocation();
-    return String.format("Startdatum: %s Slutdatum: %s Destination: %s"
-        ,stringStartDate,stringEndDate,stringDestination);
+    return String.format("%s %s till %s"
+        ,stringDestination,stringStartDate,stringEndDate);
 }
     
 

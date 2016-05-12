@@ -54,4 +54,8 @@ public class FishingSafariGUIStorage implements FishingSafariStorage{
     fsList.add(fs);
   }
 
+  public ArrayList<FishingSafari> getByDestination(SafariDestination destination){
+    return null;
+  }
+
 }
