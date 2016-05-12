@@ -14,10 +14,15 @@ public class FishingSafariGUIStorage implements FishingSafariStorage{
   SafariDestinationStorage storage = SafariDestinationStorageFactory.getGUITestStorage(); //used to fetch destinations
 
   public FishingSafariGUIStorage(){
-    generateList();
+    try{
+      generateList();
+    }
+    catch(StorageException se){
+      //...
+    }
   }
 
-  public void generateList(){
+  public void generateList() throws StorageException{
     sdList = storage.getList();
     for(SafariDestination sd : sdList){
 

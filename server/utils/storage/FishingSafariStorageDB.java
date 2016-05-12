@@ -51,7 +51,7 @@ public class FishingSafariStorageDB implements FishingSafariStorage {
 
 	}
 
-  public ArrayList<FishingSafari> getByDestination(SafariDestination destination){
+  public ArrayList<FishingSafari> getByDestination(SafariDestination destination) throws StorageException{
     String destinationString = destination.getLocation();
     String sql = String.format("SELECT * FROM fishingsafari WHERE safaridestination = %s"
       ,destinationString);
@@ -92,7 +92,7 @@ public class FishingSafariStorageDB implements FishingSafariStorage {
 
 	}
 
-	private FishingSafari toFishingSafari(ResultSet rs){
+	private FishingSafari toFishingSafari(ResultSet rs)throws StorageException{
 		
 	    SafariDestination sd = null;
 	    FishingSafari fs = null;
