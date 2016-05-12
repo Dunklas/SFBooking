@@ -77,7 +77,7 @@ public class SafariDestinationStorageDB extends Observable implements SafariDest
 												rs.getInt("max_participants"), 
 												rs.getString("guide"), 
 												rs.getString("terrain"), 
-												rs.getBoolean("active"));
+												rs.getInt("active"));
 					sdList.add(sd);
 				}
 				Log.put("Successfully fetched SafariDestination from DB");
@@ -97,7 +97,7 @@ public class SafariDestinationStorageDB extends Observable implements SafariDest
 												rs.getInt("max_participants"), 
 												rs.getString("guide"), 
 												rs.getString("terrain"), 
-												rs.getBoolean("active"));
+												rs.getInt("active"));
 					
 				}
 				Log.put("Successfully fetched SafariDestination from DB");
@@ -118,7 +118,7 @@ public class SafariDestinationStorageDB extends Observable implements SafariDest
 																																										   ,sd.getEquipmentReq()
 																																										   ,sd.getGuide()
 																																										   ,sd.getLocation()
-																																										   ,1);
+																																										   ,sd.getStatus());
 			System.out.println(sql);
 			
 														 
@@ -128,7 +128,7 @@ public class SafariDestinationStorageDB extends Observable implements SafariDest
 						,sd.getTerrain()
 						,sd.getEquipmentReq()
 						,sd.getGuide() 
-					 	,1
+					 	,sd.getStatus()
 						,sd.getLocation());
 				System.out.println(sql);
 				DBHelper.getInstance().update(sql);

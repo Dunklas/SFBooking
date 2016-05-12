@@ -10,9 +10,9 @@ public class SafariDestination{
     private int maxParticipants;
     private String guide;
     private String terrain;
-    private boolean active;
+    private int active; //0 = inactive, 1 = active
 
-    public SafariDestination(String location, String equipmentReq, int maxParticipants, String guide, String terrain, boolean active) {
+    public SafariDestination(String location, String equipmentReq, int maxParticipants, String guide, String terrain, int active) {
 	this.location = location;
 	this.equipmentReq = equipmentReq;
 	this.maxParticipants = maxParticipants;
@@ -51,7 +51,7 @@ public class SafariDestination{
 		return terrain;
 	}
 
-    public boolean getActive(){
+    public int getStatus(){
 	return active;
     }
     
@@ -76,7 +76,7 @@ public class SafariDestination{
 	
     }
 
-    public void setStatus(Boolean active){
+    public void setStatus(int active){
 	this.active = active;
 	
     }
