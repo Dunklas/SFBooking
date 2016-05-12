@@ -38,27 +38,20 @@ class DBHelper {
 	return instance;
     }
 
-    ResultSet query(String sql) {
-	try {
+    ResultSet query(String sql) throws SQLException {
+       
 	    Statement stmt = c.createStatement();
 	    return stmt.executeQuery(sql);
-	} catch (SQLException ex) {
-	    ex.printStackTrace();
-	    return null;
-	}
+       
     }
 
-    int update(String sql) {
-	try {
+    int update(String sql) throws SQLException {
 	    Statement stmt = c.createStatement();
 	    return stmt.executeUpdate(sql);
-	} catch (SQLException ex) {
-	    ex.printStackTrace();
-	    return -1;
-	}
+	
     }
 
-    int update(String sql, Object ... args) {
+    int update(String sql, Object ... args) throws SQLException{
 	try {
 	    PreparedStatement stmt = c.prepareStatement(sql);
 	    for (int i = 0; i < args.length; i++) {
@@ -77,8 +70,7 @@ class DBHelper {
 	    }
 	    return stmt.executeUpdate();
 	} catch(SQLException ex) {
-	    ex.printStackTrace();
-	    return -1;
+	    throw  new SQLException(ex);
 	}
     }
 }
