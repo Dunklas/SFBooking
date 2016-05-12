@@ -6,11 +6,11 @@ import server.planning.model.*;
 
 public interface SafariDestinationStorage{
 
-	ArrayList<SafariDestination> getList();
+	ArrayList<SafariDestination> getList() throws StorageException;
 	
-	ArrayList<SafariDestination> get(int status);
+	ArrayList<SafariDestination> get(int status) throws StorageException;
 	
-	SafariDestination get(String location);
+	SafariDestination get(String location) throws StorageException;
 	
-	void put(SafariDestination sd);
+	void put(SafariDestination sd) throws StorageException;
 }

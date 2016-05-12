@@ -2,6 +2,9 @@ package server.utils.storage;
 
 import java.util.*;
 import java.sql.*;
+
+import server.utils.storage.StorageException;
+
 import java.util.Observable;
 import java.util.Observer;
 
@@ -13,6 +16,7 @@ public class SafariDestinationStorageDB implements SafariDestinationStorage exte
 		SafariDestinationStorageDB(){
 			
 		}
+		public ArrayList<SafariDestination> getList() throws StorageException{
 		/**
 		*	Observer methods
 		*/
@@ -32,13 +36,14 @@ public class SafariDestinationStorageDB implements SafariDestinationStorage exte
 		*	Storage methods
 		*/
 		public ArrayList<SafariDestination> getList(){
+>>>>>>> 73bf7a9f92a9dac0de18bb4dc9c6eb32bf991dbb
 
 			ResultSet rs = DBHelper.getInstance().query("SELECT * FROM safaridestination");
 			
 			return toArrayList(rs);
 		}
 		
-		public ArrayList<SafariDestination> get(int status){
+		public ArrayList<SafariDestination> get(int status) throws StorageException{
 			
 			String sql = String.format("SELECT * safaridestination WHERE active=%d",status);
 			ResultSet rs = DBHelper.getInstance().query(sql);
@@ -46,7 +51,7 @@ public class SafariDestinationStorageDB implements SafariDestinationStorage exte
 			return toArrayList(rs);
 		}
 		
-		public SafariDestination get(String location){
+		public SafariDestination get(String location) throws StorageException{
 			
 			String sql = String.format("SELECT * FROM safaridestination WHERE location= '%s'",location);
 			ResultSet rs = DBHelper.getInstance().query(sql);
@@ -54,10 +59,14 @@ public class SafariDestinationStorageDB implements SafariDestinationStorage exte
 			return toSafariDestination(rs);
 		}
 		
+<<<<<<< HEAD
+		public ArrayList<SafariDestination> toArrayList(ResultSet rs) throws StorageException{
+=======
 		/**
 		*	Utils methods
 		*/
 		public ArrayList<SafariDestination> toArrayList(ResultSet rs){
+>>>>>>> 73bf7a9f92a9dac0de18bb4dc9c6eb32bf991dbb
 			
 			ArrayList<SafariDestination> sdList = new ArrayList<SafariDestination>();
 			SafariDestination sd = null;
@@ -71,8 +80,9 @@ public class SafariDestinationStorageDB implements SafariDestinationStorage exte
 												rs.getBoolean("active"));
 					sdList.add(sd);
 				}
+				Log.put("Successfully fetched SafariDestination from DB");
 			}catch(SQLException e){
-					e.printStackTrace();
+			    throw new StorageException(e);
 			}
 			return sdList;
 		}
@@ -90,8 +100,9 @@ public class SafariDestinationStorageDB implements SafariDestinationStorage exte
 												rs.getBoolean("active"));
 					
 				}
+				Log.put("Successfully fetched SafariDestination from DB");
 			}catch(SQLException e){
-				e.printStackTrace();
+			    throw new StorageException(e);
 			}
 			return sd;
 		}
