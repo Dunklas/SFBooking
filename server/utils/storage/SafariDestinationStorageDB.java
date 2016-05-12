@@ -2,16 +2,41 @@ package server.utils.storage;
 
 import java.util.*;
 import java.sql.*;
+
 import server.utils.storage.StorageException;
+
+import java.util.Observable;
+import java.util.Observer;
 
 import server.planning.model.*;
 
-public class SafariDestinationStorageDB implements SafariDestinationStorage{
+public class SafariDestinationStorageDB implements SafariDestinationStorage extends Observable{
 
+	ArrayList<Observer> observerList = new ArrayList<Observer>();
 		SafariDestinationStorageDB(){
 			
 		}
 		public ArrayList<SafariDestination> getList() throws StorageException{
+		/**
+		*	Observer methods
+		*/
+		public void addObserver(Observer observer){
+			observerList.add(observer);
+		}
+		protected void setChanged(){
+
+		}
+		public void notifyAllObservers(){
+			for(Observer o : observerList){
+				o.update(this,getList());
+			}
+		}
+
+		/**
+		*	Storage methods
+		*/
+		public ArrayList<SafariDestination> getList(){
+>>>>>>> 73bf7a9f92a9dac0de18bb4dc9c6eb32bf991dbb
 
 			ResultSet rs = DBHelper.getInstance().query("SELECT * FROM safaridestination");
 			
@@ -34,7 +59,14 @@ public class SafariDestinationStorageDB implements SafariDestinationStorage{
 			return toSafariDestination(rs);
 		}
 		
+<<<<<<< HEAD
 		public ArrayList<SafariDestination> toArrayList(ResultSet rs) throws StorageException{
+=======
+		/**
+		*	Utils methods
+		*/
+		public ArrayList<SafariDestination> toArrayList(ResultSet rs){
+>>>>>>> 73bf7a9f92a9dac0de18bb4dc9c6eb32bf991dbb
 			
 			ArrayList<SafariDestination> sdList = new ArrayList<SafariDestination>();
 			SafariDestination sd = null;
@@ -100,6 +132,8 @@ public class SafariDestinationStorageDB implements SafariDestinationStorage{
 						,sd.getLocation());
 				System.out.println(sql);
 				DBHelper.getInstance().update(sql);
+
+
 			}
 		}
 	
