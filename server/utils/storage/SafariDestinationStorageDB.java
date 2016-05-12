@@ -17,7 +17,7 @@ public class SafariDestinationStorageDB extends Observable implements SafariDest
 		SafariDestinationStorageDB(){
 			
 		}
-		public ArrayList<SafariDestination> getList() throws StorageException{
+		
 		/**
 		*	Observer methods
 		*/
@@ -36,7 +36,7 @@ public class SafariDestinationStorageDB extends Observable implements SafariDest
 		/**
 		*	Storage methods
 		*/
-		public ArrayList<SafariDestination> getList(){
+		public ArrayList<SafariDestination> getList() throws StorageException{
 
 
 			ResultSet rs = DBHelper.getInstance().query("SELECT * FROM safaridestination");
