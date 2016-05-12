@@ -7,10 +7,12 @@ import server.utils.storage.SafariDestinationStorageFactory;
 import server.utils.storage.SafariDestinationStorage;
 import server.utils.storage.SafariDestinationStorageDB;
 import server.utils.storage.SafariDestinationGUIStorage;
+import server.utils.storage.StorageException; 
 import javax.swing.event.*;
 import java.awt.event.*;
 import javax.swing.*;
 import java.awt.*;
+import javax.swing.JOptionPane;
 import java.util.HashMap;
 import java.util.ArrayList;
 import java.util.Observer;
@@ -34,7 +36,9 @@ public class SafariDestinationController implements Observer{
     modifyMap = modifyView.getCompMap();
 
 
-    modifyView.fillList(storage.getList()); // initates and gets all SafariDestinations to represent in GUI
+    try{modifyView.fillList(storage.getList());}
+    catch(StorageException se){JOptionPane.showMessageDialog(null,se.getMessage());}
+
     addListeners();
   }
 
@@ -62,7 +66,10 @@ public class SafariDestinationController implements Observer{
       if(comp.getName()=="saveNewSafariButton"){
         safariView.buildSafariDestination();
          destination = safariView.getSafariDestination();
-         storage.put(destination);
+         
+         try{storage.put(destination);}
+         catch(StorageException se){JOptionPane.showMessageDialog(null,se.getMessage());}
+
          safariView.showButton(safariMap.get("activeButton").getName(),false);
          safariView.showButton(safariMap.get("inactiveButton").getName(),false);
          safariView.clearSelection();
@@ -78,7 +85,10 @@ public class SafariDestinationController implements Observer{
       if(comp.getName()=="selectButton"){
          safariView.showButton(safariMap.get("activeButton").getName(),true);
          safariView.showButton(safariMap.get("inactiveButton").getName(),true);
-         destination = storage.get(modifyView.getSelectedDestination());
+         
+         try{destination = storage.get(modifyView.getSelectedDestination());}
+         catch(StorageException se){JOptionPane.showMessageDialog(null,se.getMessage());}
+
          safariView.populateSafariDestination(destination); // argument från storage ska in here..
       }
     }

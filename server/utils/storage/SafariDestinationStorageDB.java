@@ -12,7 +12,7 @@ import server.utils.logs.Log;
 import server.planning.model.*;
 
 public class SafariDestinationStorageDB extends Observable implements SafariDestinationStorage {
-
+	
 	ArrayList<Observer> observerList = new ArrayList<Observer>();
 		SafariDestinationStorageDB(){
 			
@@ -27,9 +27,10 @@ public class SafariDestinationStorageDB extends Observable implements SafariDest
 		protected void setChanged(){
 
 		}
-		public void notifyAllObservers(){
+		public void notifyAllObservers() throws StorageException{
 			for(Observer o : observerList){
 				o.update(this,getList());
+
 			}
 		}
 
@@ -40,6 +41,7 @@ public class SafariDestinationStorageDB extends Observable implements SafariDest
 
 
 			ResultSet rs = DBHelper.getInstance().query("SELECT * FROM safaridestination");
+			
 			
 			return toArrayList(rs);
 		}
@@ -85,7 +87,7 @@ public class SafariDestinationStorageDB extends Observable implements SafariDest
 			return sdList;
 		}
 		
-		public SafariDestination toSafariDestination(ResultSet rs){
+		public SafariDestination toSafariDestination(ResultSet rs) throws StorageException{
 			
 			SafariDestination sd = null;
 			try{
@@ -106,7 +108,7 @@ public class SafariDestinationStorageDB extends Observable implements SafariDest
 		}
 		
 		
-		public void put(SafariDestination sd){
+		public void put(SafariDestination sd) throws StorageException{
 			
 			SafariDestination fromDB = get(sd.getLocation());
 			

@@ -5,6 +5,7 @@ import java.util.*;
 import java.awt.*;
 import server.utils.storage.SafariDestinationStorage;
 import server.utils.storage.SafariDestinationStorageFactory;
+import server.utils.storage.StorageException;
 import server.planning.model.SafariDestination;
 import server.planning.model.FishingSafari;
 import org.jdatepicker.*;
@@ -43,7 +44,9 @@ public FishingSafariView(FishingSafariTopView top, FishingSafariBottomView botto
 public void buildFishingSafari(){
 JComboBox<String> destinationPicker = (JComboBox<String>) bottomMap.get("destinationPicker");
 String selectedDestination = destinationPicker.getSelectedItem().toString();
-destination = destinationStorage.get(selectedDestination);
+
+try{destination = destinationStorage.get(selectedDestination);}
+catch(StorageException se){JOptionPane.showMessageDialog(null,se.getMessage());}
 
 JDatePickerImpl startDatePicker = (JDatePickerImpl) topMap.get("startDate");
 Date selectedStartDate = (Date) startDatePicker.getModel().getValue();
