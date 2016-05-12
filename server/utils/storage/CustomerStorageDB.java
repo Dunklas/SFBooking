@@ -44,7 +44,8 @@ public class CustomerStorageDB implements CustomerStorage {
 	
 	}
 	  Log.put("Suceccsfully wrote to DB");
-	} catch (SQLException se){
+	}
+	catch(SQLException se){
 	    throw new StorageException(se);
 	}
     }
