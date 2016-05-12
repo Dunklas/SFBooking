@@ -4,7 +4,7 @@ import server.customer.model.*;
 public interface CustomerStorage{
 
 
-    void put(Customer c);
+    void put(Customer c) throws StorageException;
 
     Customer get(String email) throws StorageException;
     

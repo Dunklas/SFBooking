@@ -86,7 +86,6 @@ public class BookingHandler {
 		    Booking tempBooking = bStore.get(bookingId);
 		    if (tempBooking.getBookingStatus() == 0) { //Only change bookings with status "Preliminary"
 			    tempBooking.setBookingStatus(1);
-			    tempBooking.setPaymentReceived(new Date());
 			    bStore.put(tempBooking);
 		    }
 

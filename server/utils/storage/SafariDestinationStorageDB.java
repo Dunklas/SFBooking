@@ -7,7 +7,7 @@ import server.utils.storage.StorageException;
 
 import java.util.Observable;
 import java.util.Observer;
-import server.util.logs.Log;
+import server.utils.logs.Log;
 
 import server.planning.model.*;
 

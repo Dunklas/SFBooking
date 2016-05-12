@@ -13,9 +13,7 @@ public interface FishingSafariStorage{
 
     FishingSafari get(int id) throws StorageException;
 
-    ArrayList<FishingSafari> getByDestination(SafariDestination destination);
-
-    FishingSafari get(int id) throws StorageException;
+    ArrayList<FishingSafari> getByDestination(SafariDestination destination) throws StorageException;
 
     void put(FishingSafari fs) throws StorageException;
 

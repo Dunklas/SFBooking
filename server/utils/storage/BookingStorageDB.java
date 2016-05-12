@@ -5,7 +5,7 @@ import server.customer.model.Customer;
 import server.booking.model.Booking;
 import java.util.*;
 import java.sql.*;
-import server.util.logs.Log;
+import server.utils.logs.Log;
 
 public class BookingStorageDB implements BookingStorage {
 /*

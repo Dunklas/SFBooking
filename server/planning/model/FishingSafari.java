@@ -30,15 +30,7 @@ public class FishingSafari{
     public SafariDestination getSafariDestination(){
 	    return safariDestination;
     }
-    /*
-    public void setAnnouncementDate(Date date) {
-	this.announcementDate = date;
-	try{
-	    OpenDb dbc = new OpenDb();
 
-	} catch
-    }
-    **/
     public void setEndDate(Date date){
 	this.endDate = date;
     }
