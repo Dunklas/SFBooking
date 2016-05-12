@@ -18,7 +18,7 @@ Testa att uppdatera en bokning också...
 	String sql = String.format("SELECT * FROM booking WHERE safari = %d", fs.getId());
 	ResultSet rs = DBHelper.getInstance().query(sql);
 
-	return toArrayList(rs);
+	return DBTranslator.toBookingList(rs);
     }
 
     public ArrayList<Booking> get(Customer c) throws StorageException {
@@ -26,7 +26,7 @@ Testa att uppdatera en bokning också...
 	String sql = String.format("SELECT * FROM booking WHERE customer = %d", c.getId());
 	ResultSet rs = DBHelper.getInstance().query(sql);
 
-	return toArrayList(rs);
+	return DBTranslator.toBookingList(rs);
     }
 
     public ArrayList<Booking> getByStatus(int status) throws StorageException {
@@ -34,7 +34,7 @@ Testa att uppdatera en bokning också...
 	String sql = String.format("SELECT * FROM booking WHERE booking_status = %d", status);
 	ResultSet rs = DBHelper.getInstance().query(sql);
 	
-	return toArrayList(rs);
+	return DBTranslator.toBookingList(rs);
     }
 
     public Booking get(int id) throws StorageException {
@@ -42,7 +42,7 @@ Testa att uppdatera en bokning också...
 	String sql = String.format("SELECT * FROM booking WHERE booking_id = %d", id);
 	ResultSet rs = DBHelper.getInstance().query(sql);
 
-	return toBooking(rs);
+	return DBTranslator.toBooking(rs);
     }
 
     public void put(Booking booking) throws StorageException {
@@ -75,39 +75,5 @@ Testa att uppdatera en bokning också...
 
     }
 
-    private Booking toBooking(ResultSet rs) throws StorageException {
-	Booking tempBook = null;
-	
-	    while(rs.next()) {
-		tempBook = new Booking(FishingSafariStorageFactory.getStorage().get(rs.getInt("safari")),
-				       CustomerStorageFactory.getStorage().get(rs.getInt("customer")),
-				       rs.getInt("nr_participants"));
-		tempBook.setBookingID(rs.getInt("booking_id"));
-		tempBook.setBookingStatus(rs.getInt("booking_status"));
-		tempBook.setPrice(rs.getDouble("price"));
-		tempBook.setBooked(rs.getDate("booked"));
-	    }
-	    Log.put("Successfully managed to fetch Booking from the DB");
-	
-	return tempBook;
-    }
-
-    private ArrayList<Booking> toArrayList(ResultSet rs) throws StorageException {
-	ArrayList<Booking> bookArrayList = new ArrayList<>();
-	
-	    while(rs.next()) {
-		Booking tempBook = new Booking(FishingSafariStorageFactory.getStorage().get(rs.getInt("safari")),
-					       CustomerStorageFactory.getStorage().get(rs.getInt("customer")),
-					       rs.getInt("nr_participants"));
-
-		tempBook.setBookingID(rs.getInt("booking_id"));
-		tempBook.setBookingStatus(rs.getInt("booking_status"));
-		tempBook.setPrice(rs.getDouble("price"));
-		tempBook.setBooked(rs.getDate("booked"));
-		bookArrayList.add(tempBook);
-	    }
-	    Log.put("Successfully managed to fetch Bookings from the DB");
-	
-	return bookArrayList;
-    }
-}
+    
+} // end of class

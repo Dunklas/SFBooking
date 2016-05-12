@@ -51,40 +51,15 @@ public class CustomerStorageDB implements CustomerStorage {
     public Customer get(String email) throws StorageException{
 	String sql = String.format("SELECT * FROM customer where EMAIL = '%s'", email);
 	ResultSet rs = DBHelper.getInstance().query(sql);
-	Customer c = null;
-	
-	while (rs.next()){
-	    c = new Customer( rs.getString("FIRST_NAME"),
-			      rs.getString("LAST_NAME"),
-			      rs.getString("EMAIL"),
-			      rs.getString("PHONE_NR"),
-			      rs.getDate("REGISTERED"));
 
-	    c.setId(rs.getInt("CUSTOMER_ID"));
-	}
-	Log.put("Sucessfully fetched a Customer object from the DB");
-	
-	
-	return c;
+	return DBTranslator.toCustomer(rs);
     }
 
     public Customer get(int id) throws StorageException{
 	String sql = String.format("SELECT * FROM customer where CUSTOMER_ID = %d", id);
 	ResultSet rs = DBHelper.getInstance().query(sql);
-	Customer c = null;
 	
-	while (rs.next()){
-	    c = new Customer( rs.getString("FIRST_NAME"),
-			      rs.getString("LAST_NAME"),
-			      rs.getString("EMAIL"),
-			      rs.getString("PHONE_NR"),
-			      rs.getDate("REGISTERED"));
-	    c.setId(rs.getInt("CUSTOMER_ID"));
-	}
-	Log.put("Sucessfully fetched a Customer object from the DB");
-	
-	
-	return c;
+	return DBTranslator.toCustomer(rs);
     }
 
 }

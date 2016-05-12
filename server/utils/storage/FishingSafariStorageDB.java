@@ -43,7 +43,7 @@ public class FishingSafariStorageDB implements FishingSafariStorage {
 	    ResultSet rs = DBHelper.getInstance().query(sql);
       
       
-	    return toArrayList(rs);
+	    return DBTranslator.toFishingSafariList(rs);
 	}
 
 	public FishingSafari get(int id) throws StorageException{
@@ -51,7 +51,7 @@ public class FishingSafariStorageDB implements FishingSafariStorage {
 		String sql = String.format("SELECT * FROM fishingsafari WHERE safari_id = %d", id);
 		ResultSet rs = DBHelper.getInstance().query(sql);
 		
-		return toFishingSafari(rs);
+		return DBTranslator.toFishingSafari(rs);
 
 
 	}
@@ -64,58 +64,16 @@ public class FishingSafariStorageDB implements FishingSafariStorage {
 
     ResultSet rs = DBHelper.getInstance().query(sql);
 
-    return toArrayList(rs);
+    return DBTranslator.toFishingSafariList(rs);
   }
 
 
 	public ArrayList<FishingSafari> getList() throws StorageException{
 	    ResultSet rs = DBHelper.getInstance().query("SELECT * FROM fishingsafari");
 
-        return toArrayList(rs);
+        return DBTranslator.toFishingSafariList(rs);
 	}
 
-	private ArrayList<FishingSafari> toArrayList(ResultSet rs) throws StorageException{
-		ArrayList<FishingSafari> fsList = new ArrayList<FishingSafari>();
-		
-		SafariDestination sd = null;
-		FishingSafari fs = null;
-		
-           while (rs.next()){
-               sd = SafariDestinationStorageFactory.getStorage().get(rs.getString("SafariDestination"));
-               fs = new FishingSafari(sd,
-               	                      rs.getDate("START_DATE"),
-               	                      rs.getDate("END_DATE"),
-               	                      rs.getInt("STATUS"));
-               fs.setId(rs.getInt("SAFARI_ID"));
-               fsList.add(fs);
-           }
-	   Log.put("Successfuly fetched FishingSafaris from the DB");
-	
-		}
-
-		return fsList;
-
-	}
-
-	private FishingSafari toFishingSafari(ResultSet rs)throws StorageException{
-		
-	    SafariDestination sd = null;
-	    FishingSafari fs = null;
-
-	    
-	    	while (rs.next()){
-               sd = SafariDestinationStorageFactory.getStorage().get(rs.getString("SafariDestination"));
-               fs = new FishingSafari(sd,
-               	                      rs.getDate("START_DATE"),
-               	                      rs.getDate("END_DATE"),
-               	                      rs.getInt("STATUS"));
-               fs.setId(rs.getInt("SAFARI_ID"));
-	    	}
-		Log.put("Successfully fetched FishingSafari from the DB");
-	   
-	    return fs;
-
-	}
 	
 
 }

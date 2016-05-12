@@ -74,6 +74,10 @@ public void populateFishingSafari(FishingSafari safari){
   endDateText.setText(end);
 }
 
+public void displayError(String message){
+  JOptionPane.showMessageDialog(null,message);
+}
+
 
 
 

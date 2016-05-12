@@ -45,7 +45,7 @@ public class SafariDestinationStorageDB extends Observable implements SafariDest
 			
 			
 			
-			return toArrayList(rs);
+			return DBTranslator.toSafariDestinationList(rs);
 		}
 		
 		public ArrayList<SafariDestination> get(int status) throws StorageException{
@@ -54,7 +54,7 @@ public class SafariDestinationStorageDB extends Observable implements SafariDest
 			String sql = String.format("SELECT * safaridestination WHERE active=%d",status);
 			rs = DBHelper.getInstance().query(sql);
 			
-			return toArrayList(rs);
+			return DBTranslator.toSafariDestinationList(rs);
 		}
 		
 		public SafariDestination get(String location) throws StorageException{
@@ -63,51 +63,14 @@ public class SafariDestinationStorageDB extends Observable implements SafariDest
 			String sql = String.format("SELECT * FROM safaridestination WHERE location= '%s'",location);
 			rs = DBHelper.getInstance().query(sql);
 			
-			return toSafariDestination(rs);
+			return DBTranslator.toSafariDestination(rs);
 
 		}
 				/**
 		*	Utils methods
 		*/
 	
-		public ArrayList<SafariDestination> toArrayList(ResultSet rs) throws StorageException{
-
-			
-			ArrayList<SafariDestination> sdList = new ArrayList<SafariDestination>();
-			SafariDestination sd = null;
-			
-				while(rs.next()){
-					sd = new SafariDestination (rs.getString("location"), 
-												rs.getString("equipment_req"), 
-												rs.getInt("max_participants"), 
-												rs.getString("guide"), 
-												rs.getString("terrain"), 
-												rs.getInt("active"));
-					sdList.add(sd);
-				}
-				Log.put("Successfully fetched SafariDestination from DB");
 		
-			return sdList;
-		}
-		
-		public SafariDestination toSafariDestination(ResultSet rs) throws StorageException{
-			
-			SafariDestination sd = null;
-			
-				while(rs.next()){
-					sd = new SafariDestination (rs.getString("location"), 
-												rs.getString("equipment_req"), 
-												rs.getInt("max_participants"), 
-												rs.getString("guide"), 
-												rs.getString("terrain"), 
-												rs.getInt("active"));
-					
-				}
-				Log.put("Successfully fetched SafariDestination from DB");
-			
-			
-			return sd;
-		}
 		
 		
 		public void put(SafariDestination sd) throws StorageException{
