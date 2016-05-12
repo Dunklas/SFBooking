@@ -39,27 +39,40 @@ public class SafariDestinationStorageDB extends Observable implements SafariDest
 		*/
 		public ArrayList<SafariDestination> getList() throws StorageException{
 
-
-			ResultSet rs = DBHelper.getInstance().query("SELECT * FROM safaridestination");
-			
+			ResultSet rs = null;
+			try{
+			rs = DBHelper.getInstance().query("SELECT * FROM safaridestination");
+			}
+			catch(SQLException se){
+				throw new StorageException(se);
+			}
 			
 			return toArrayList(rs);
 		}
 		
 		public ArrayList<SafariDestination> get(int status) throws StorageException{
-			
+			ResultSet rs = null;
+			try{
 			String sql = String.format("SELECT * safaridestination WHERE active=%d",status);
-			ResultSet rs = DBHelper.getInstance().query(sql);
-			
+			rs = DBHelper.getInstance().query(sql);
+			}
+			catch(SQLException se){
+				throw new StorageException(se);
+			}
 			return toArrayList(rs);
 		}
 		
 		public SafariDestination get(String location) throws StorageException{
-			
+			ResultSet rs = null;
+			try{
 			String sql = String.format("SELECT * FROM safaridestination WHERE location= '%s'",location);
-			ResultSet rs = DBHelper.getInstance().query(sql);
-			
+			rs = DBHelper.getInstance().query(sql);
+			}
+			catch(SQLException se){
+				throw new StorageException(se);
+			}
 			return toSafariDestination(rs);
+
 		}
 				/**
 		*	Utils methods
@@ -110,6 +123,7 @@ public class SafariDestinationStorageDB extends Observable implements SafariDest
 		
 		public void put(SafariDestination sd) throws StorageException{
 			
+			try{
 			SafariDestination fromDB = get(sd.getLocation());
 			
 			if(fromDB == null){	
@@ -132,9 +146,12 @@ public class SafariDestinationStorageDB extends Observable implements SafariDest
 						,sd.getLocation());
 				System.out.println(sql);
 				DBHelper.getInstance().update(sql);
-
+				}
 
 			}
+				catch(SQLException se){
+					throw new StorageException(se);
+				}
 		}
 	
 }
