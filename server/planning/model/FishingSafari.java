@@ -9,13 +9,7 @@ public class FishingSafari{
     private SafariDestination safariDestination;
     private Date startDate;
     private Date endDate;
-    
     private int status; // 0-4 , 0=preliminar,1=utforbar,2=slutgiltig,3=kancellerad,4=genomford
-    //bookinglist
-    //equipmentlist
-    
-    private Date timeLimit;
-    private boolean assignmentPlanSent;
     private DateFormat df = DateFormat.getDateInstance(DateFormat.SHORT); // for toString..
 
     public FishingSafari(SafariDestination destination, Date startDate, Date endDate,int status) {
@@ -40,14 +34,8 @@ public class FishingSafari{
 
     public Date getStartDate(){
         return startDate;
-    }
+    }    
 
-    
-
-    
-
-    
-    
     public void setId(int newId){
 	this.id = newId;
 
