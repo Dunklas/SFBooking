@@ -36,7 +36,7 @@ public class SafariDestinationController implements Observer{
     modifyMap = modifyView.getCompMap();
 
 
-    try{modifyView.fillList(storage.getList());}
+    try{modifyView.updateList(storage.getList());}
     catch(StorageException se){JOptionPane.showMessageDialog(null,se.getMessage());}
 
     addListeners();
@@ -53,7 +53,7 @@ public class SafariDestinationController implements Observer{
   }
   public void update(Observable observable, Object object){
     ArrayList<SafariDestination> updatedList = (ArrayList<SafariDestination>) object;
-    modifyView.updatedList(updatedList);
+    modifyView.updateList(updatedList);
     
   }
 

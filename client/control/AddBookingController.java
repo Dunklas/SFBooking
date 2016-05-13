@@ -48,7 +48,7 @@ public class AddBookingController{
     addListeners();
 
     try{
-    addView.updateFishingSafariList(safariStorage.getList());
+    addView.updateFishingSafariList(safariStorage.getByStatus(0,1));
     addView.updateDestinationPicker(destinationStorage.getList());
     }
     catch(StorageException se){
@@ -156,7 +156,7 @@ public class AddBookingController{
   ActionListener selectListener = new ActionListener(){
     public void actionPerformed(ActionEvent e){
       addView.clearSelection();
-      safari = addView.getSelectedSafari();
+      safari = addView.getSelectedFishingSafari();
       addView.setFishingSafari(safari);
       addView.populateFishingSafariInfo(safari);
       try{
