@@ -7,6 +7,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Observer;
 import java.util.Observable;
+import java.util.ArrayList;
 import server.utils.logs.Log;
 public class CustomerStorageDB extends Observable implements CustomerStorage {
    

@@ -73,7 +73,7 @@ public class ModifySafariDestinationView extends JPanel {
 	return modifyList.getSelectedValue();
     }    
 
-	public void fillList(ArrayList<SafariDestination> array){
+	public void updateList(ArrayList<SafariDestination> array){
 		DefaultListModel<String> model = new DefaultListModel<String>();
 		for(SafariDestination destination : array){
        model.addElement(destination.getLocation());

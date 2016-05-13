@@ -63,4 +63,11 @@ public class FishingSafariGUIStorage implements FishingSafariStorage{
     return null;
   }
 
+  public void addObserver(Observer observer){
+
+  }
+  public void notifyObservers(){
+    
+  }
+
 }

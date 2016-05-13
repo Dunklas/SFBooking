@@ -14,6 +14,8 @@ import server.utils.storage.StorageException;
 import server.utils.logs.Log;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Observer;
+import java.util.Observable;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.event.*;
@@ -22,7 +24,7 @@ import javax.swing.JOptionPane;
 import java.awt.event.*;
 
 
-public class FishingSafariController{
+public class FishingSafariController implements Observer{
   FishingSafariTopView topView;
   FishingSafariBottomView bottomView;
   ModifyFishingSafariView modifyView;
@@ -62,6 +64,8 @@ public class FishingSafariController{
     }
 
     addListeners();
+    fishingStorage.addObserver(this);
+    safariStorage.addObserver(this);
     
 
   }
@@ -82,7 +86,17 @@ public class FishingSafariController{
     selectButton.addActionListener(selectListener);
 
 
+  }
 
+  public void update(Observable obs, Object obj){
+    if(obs instanceof FishingSafariStorage){
+      ArrayList<FishingSafari> updatedFishingSafariList = (ArrayList<FishingSafari>) obj;
+      modifyView.fillList(updatedFishingSafariList);
+    }
+    else if(obs instanceof SafariDestinationStorage){
+      ArrayList<SafariDestination> updatedSafariDestinationList = (ArrayList<SafariDestination>) obj;
+      bottomView.fillDestinationPicker(updatedSafariDestinationList);
+    }
   }
 
   /**
@@ -98,7 +112,7 @@ if(comp.getName().equals("saveFishingSafari")){
       FishingSafari safari = mainView.getFishingSafari();
       try{
         fishingStorage.put(safari);
-        modifyView.fillList(fishingStorage.getList());
+        
       }
       catch(StorageException se){
         JOptionPane.showMessageDialog(null,se.getMessage());
@@ -117,6 +131,7 @@ if(comp.getName().equals("saveFishingSafari")){
         bottomView.setEnabled("startTime",false);
         bottomView.setText("endTime",topView.getSelectedDate("endDate"));
         bottomView.setEnabled("endTime",false);
+        bottomView.setSelectedDestinationIndex(selectedSafari.getSafariDestination());
       }
     }
   };
@@ -124,10 +139,10 @@ if(comp.getName().equals("saveFishingSafari")){
   ActionListener datePickerListener = new ActionListener(){
     public void actionPerformed(ActionEvent e){
       JComponent comp = (JComponent) e.getSource();
-      if(comp.getName()=="selectStartDate"){
+      if(comp.getName().equals("selectStartDate")){
         bottomView.setText("startTime",topView.getSelectedDate("startDate"));
       }
-      else if(comp.getName()=="selectEndDate"){
+      else if(comp.getName().equals("selectEndDate")){
         bottomView.setText("endTime",topView.getSelectedDate("endDate"));
       }
     }
