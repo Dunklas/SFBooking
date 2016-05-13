@@ -11,10 +11,6 @@ public class FishingSafariStorageDB extends Observable implements FishingSafariS
 ArrayList<Observer> observerList = new ArrayList<Observer>();
 ArrayList<FishingSafari> updateList = new ArrayList<FishingSafari>();
 	
-	public FishingSafariStorageDB(){
-	  
-	}
-
 	public void put(FishingSafari fs) throws StorageException{ 
 		FishingSafari fromDb = get(fs.getId());
 	   
@@ -48,6 +44,18 @@ ArrayList<FishingSafari> updateList = new ArrayList<FishingSafari>();
       
       
 	    return DBTranslator.toFishingSafariList(rs);
+	}
+
+	public ArrayList<FishingSafari> getByStatus(int start, int end) throws StorageException {
+
+		if (start > end) {
+			Log.put("Invalid range. Start status cannot be larger than end status.");
+			return null;
+		} else {
+			String sql = String.format("SELECT * FROM fishingsafari WHERE status BETWEEN %d AND %d", start, end);
+			ResultSet rs = DBHelper.getInstance().query(sql);
+			return DBTranslator.toFishingSafariList(rs);
+		}
 	}
 
 	public FishingSafari get(int id) throws StorageException{

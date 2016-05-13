@@ -10,6 +10,7 @@ public interface FishingSafariStorage extends ObservableStorage{
 
     ArrayList<FishingSafari> getByStatus(int status) throws StorageException;
 
+    ArrayList<FishingSafari> getByStatus(int start, int end) throws StorageException;
 
     FishingSafari get(int id) throws StorageException;
 

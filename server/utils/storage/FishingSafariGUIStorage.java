@@ -6,7 +6,7 @@ import server.planning.model.FishingSafari;
 import server.planning.model.SafariDestination;
 import java.util.*;
 
-public class FishingSafariGUIStorage implements FishingSafariStorage{
+public class FishingSafariGUIStorage {
   ArrayList<FishingSafari> fsList = new ArrayList<FishingSafari>();
   ArrayList<SafariDestination> sdList = new ArrayList<SafariDestination>();
 
