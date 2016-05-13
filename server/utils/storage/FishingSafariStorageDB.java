@@ -49,8 +49,7 @@ ArrayList<FishingSafari> updateList = new ArrayList<FishingSafari>();
 	public ArrayList<FishingSafari> getByStatus(int start, int end) throws StorageException {
 
 		if (start > end) {
-			Log.put("Invalid range. Start status cannot be larger than end status.");
-			return null;
+			throw new StorageException("Invalid range. Start status cannot be larger than end status.");
 		} else {
 			String sql = String.format("SELECT * FROM fishingsafari WHERE status BETWEEN %d AND %d", start, end);
 			ResultSet rs = DBHelper.getInstance().query(sql);
