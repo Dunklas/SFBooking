@@ -11,6 +11,8 @@ public interface BookingStorage extends ObservableStorage{
 
    ArrayList<Booking> getByStatus(int status) throws StorageException;
 
+   ArrayList<Booking> getByStatus(int start, int end) throws StorageException; //Range
+
    Booking get(int id) throws StorageException;
 
    ArrayList<Booking> get(Customer c) throws StorageException;

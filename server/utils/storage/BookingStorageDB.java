@@ -41,6 +41,17 @@ ArrayList<Observers> observerList = new ArrayList<Observers>();
 	return DBTranslator.toBookingList(rs);
     }
 
+    public ArrayList<Booking> getByStatus(int start, int end) throws StorageException {
+	
+	if (start > end) {
+		throw new StorageException("Invalid range. Start cannot be larger than end.");
+	} else {
+		String sql = String.format("SELECT * FROM booking WHERE booking_status BETWEEN %d AND %d", start, end);
+		ResultSet rs = DBHelper.getInstance().query(sql);
+		return DBTranslator.toBookingList(rs);
+	}
+    }
+
     public Booking get(int id) throws StorageException {
 
 	String sql = String.format("SELECT * FROM booking WHERE booking_id = %d", id);
