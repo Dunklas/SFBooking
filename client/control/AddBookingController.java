@@ -104,6 +104,8 @@ public class AddBookingController{
       customerStorage.put(customer);
       bookingStorage.put(booking);
       addView.clearSelection();
+      safari = null;
+      customer = null;
     }
     catch(StorageException se){
       JOptionPane.showMessageDialog(null,se.getMessage());

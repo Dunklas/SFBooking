@@ -360,7 +360,7 @@ public class SafariDestinationView extends JPanel {
      equipmentTextArea.setText(destination.getEquipmentReq());
      textFieldParticipants.setText(""+destination.getMaxParticipants()+"");
      guideBox.setSelectedItem(destination.getGuide());
-     fillTerrain(destination.getTerrainList());
+     fillTerrain(destination.getTerrain());
      setActive(destination.getStatus());
 
 
@@ -376,7 +376,12 @@ public class SafariDestinationView extends JPanel {
 		guideBox.addItem(array.get(i));
 		}
 	}
-	public void fillTerrain(ArrayList<String> array){
+	public void fillTerrain(String terrain){
+		ArrayList<String> array = new ArrayList<String>();
+		Scanner parser = new Scanner(terrain).useDelimiter(";");
+		while(parser.hasNext()){
+			array.add(parser.next());
+		}
 		for(int i = 0; i<array.size(); i++){
 		    System.out.println(array.get(i)); // testutskrift
 		    if(array.get(i).equals("Terrain 1")){
