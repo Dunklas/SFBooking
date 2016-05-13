@@ -27,7 +27,7 @@ import server.planning.model.FishingSafari;
 public class FishingSafariBottomView extends JPanel {
 	private JTextField startTimeTextfield;
 	private JTextField endTimeTextfield;
-	private JComboBox<String> destinationPicker;
+	private JComboBox<SafariDestination> destinationPicker;
 	private JComboBox<String> statusPicker;
 	private JTextArea commentTextArea;
 	private JButton saveFishingSafariButton;
@@ -112,7 +112,7 @@ public class FishingSafariBottomView extends JPanel {
 		horizontalStrut_2.setMaximumSize(new Dimension(20, 20));
 		pickLocationPanel.add(horizontalStrut_2);
 		
-		destinationPicker = new JComboBox<String>();
+		destinationPicker = new JComboBox<SafariDestination>();
 		compArray.add(destinationPicker);
 		destinationPicker.setName("destinationPicker");
 		destinationPicker.setMaximumSize(new Dimension(150, 25));
@@ -276,7 +276,7 @@ return selectedItem;
 		endTimeTextfield.setText("");
 		setEnabled("startTime",true);
 		setEnabled("endTime",true);
-		destinationPicker.setSelectedIndex(0);
+		destinationPicker.setSelectedIndex(1);
 		commentTextArea.setText("");
 		equipmentReq.setText("");
 	}
@@ -284,10 +284,20 @@ return selectedItem;
 
 
 	public void fillDestinationPicker(ArrayList<SafariDestination> array){
-		destinationPicker.addItem(""); // adds empty string as default when creating new Safari
+		//destinationPicker.addItem(); // adds empty string as default when creating new Safari
 		for(SafariDestination destination : array){
 
-			destinationPicker.addItem(destination.getLocation());
+			destinationPicker.addItem(destination);
+		}
+	}
+	public void setSelectedDestinationIndex(SafariDestination destination){
+		int amountDestinations = destinationPicker.getItemCount();
+		SafariDestination currentDestination;
+		for(int i=0; i<amountDestinations; i++){
+			currentDestination = destinationPicker.getItemAt(i);
+			if(currentDestination.equals(destination)){
+				destinationPicker.setSelectedIndex(i);
+			}
 		}
 	}
 

@@ -6,9 +6,10 @@ import java.sql.*;
 import server.utils.storage.StorageException;
 import server.utils.logs.Log;
 
-public class FishingSafariStorageDB implements FishingSafariStorage{
+public class FishingSafariStorageDB extends Observable implements FishingSafariStorage{
 
 ArrayList<Observer> observerList = new ArrayList<Observer>();
+ArrayList<FishingSafari> updateList = new ArrayList<FishingSafari>();
 	
 	public FishingSafariStorageDB(){
 	  
@@ -34,6 +35,8 @@ ArrayList<Observer> observerList = new ArrayList<Observer>();
 						fs.getStatus(), 
 						fs.getId()); 
 		}
+    updateList = getList();
+    notifyObservers();
   
  
 	}
@@ -82,7 +85,7 @@ ArrayList<Observer> observerList = new ArrayList<Observer>();
     }
     public void notifyObservers(){
       for(Observer o : observerList){
-        // do something to update view..
+        o.update(this,updateList);
       }
     }
 

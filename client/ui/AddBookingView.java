@@ -530,7 +530,7 @@ setMaximumSize(new Dimension(1000, 1000));
     }
     fishingSafariList.setModel(listModel);
   }
-  public FishingSafari getSelectedSafari(){
+  public FishingSafari getFishingSelectedSafari(){
     return fishingSafariList.getSelectedValue();
   }
   public void setFishingSafari(FishingSafari safari){

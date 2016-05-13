@@ -24,7 +24,7 @@ public class TestMain{
 
   FishingSafariController fishingController = new FishingSafariController(topView,bottomView,mainView,modifyFishingView);
 
-  MainSplitView split = new MainSplitView(modifyView,safariView);
+  MainSplitView split = new MainSplitView(modifyFishingView,mainView);
   TestMain.addSplitToFrame(split);
 
   AddBookingView addBookingView = new AddBookingView();

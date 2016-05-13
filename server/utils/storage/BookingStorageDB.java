@@ -14,7 +14,7 @@ KOLLA OM OBJEKT FINNS OCH SKRIV IN RESTEN AV SKITEN
 Testa att uppdatera en bokning också...
 */
 
-ArrayList<Observers> observerList = new ArrayList<Observers>();
+ArrayList<Observer> observerList = new ArrayList<Observer>();
 
 
     public ArrayList<Booking> get(FishingSafari fs) throws StorageException {

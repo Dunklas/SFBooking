@@ -90,7 +90,7 @@ public class AddBookingController{
   ActionListener saveListener = new ActionListener(){
     public void actionPerformed(ActionEvent e){
       customer = addView.getCustomer();
-      safari = addView.getSelectedSafari();
+      safari = addView.getSelectedFishingSafari();
       int participants = addView.getParticipants();
 
       booking = new Booking(safari,customer,participants);
