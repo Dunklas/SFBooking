@@ -37,17 +37,8 @@ public class SafariDestination{
     public String getGuide(){
 	return guide;
     }
-
-    public ArrayList<String> getTerrainList(){
-	ArrayList<String> parsedTerrain = new ArrayList<String>();
-  Scanner parser = new Scanner(this.terrain).useDelimiter(";");
-  while(parser.hasNext()){
-    parsedTerrain.add(parser.next());
-  }
-  return parsedTerrain;    
-    }
-    
-	public String getTerrain(){
+	
+    public String getTerrain(){
 		return terrain;
 	}
 
