@@ -99,9 +99,9 @@ public class AddBookingController{
     else{
       customer = addView.getCustomer();
     }
-      booking = new Booking(safari,customer,nrParticipants);
       try{
       customerStorage.put(customer);
+      booking = new Booking(safari,customerStorage.get(customer.getEmail()),nrParticipants);
       bookingStorage.put(booking);
       addView.clearSelection();
       safari = null;
