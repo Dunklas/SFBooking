@@ -52,13 +52,17 @@ public class AddBookingView extends JPanel {
   private JTextArea commentTextArea;
   private JTextArea equipmentReqTextArea;
 
+  private JTextComponent[][] textComponents = {{startDate,endDate,destination,startTime,endTime,commentTextArea,equipmentReqTextArea}
+            ,{customerEmail,customerFirstName,customerLastName,customerPhoneNumber}};
+
   /**
   * Utils
   */
   private ArrayList<JComponent> compArray = new ArrayList<JComponent>();
   private HashMap<String,JComponent> compMap = new HashMap<String,JComponent>();
   private DefaultListModel<FishingSafari> fishingListModel = new DefaultListModel<FishingSafari>();
-  
+  private ArrayList<JTextComponent> fishingSafariInfo = new ArrayList<JTextComponent>();
+  private ArrayList<JTextComponent> customerInfo = new ArrayList<JTextComponent>();
   /**
   * Models
   */
@@ -391,11 +395,6 @@ setMaximumSize(new Dimension(1000, 1000));
       getCustomerButton.setAlignmentX(0.2f);
       customerInputPanel.add(getCustomerButton);
       
-      JButton saveCustomerButton = new JButton("Spara kunduppgifter");
-      saveCustomerButton.setName("saveCustomerButton");
-      compArray.add(saveCustomerButton);
-      saveCustomerButton.setAlignmentX(0.2f);
-      customerInputPanel.add(saveCustomerButton);
       
       JPanel equipmentPanel = new JPanel();
       GridBagConstraints gbc_equipmentPanel = new GridBagConstraints();
@@ -506,6 +505,7 @@ setMaximumSize(new Dimension(1000, 1000));
       buttonPanel.add(backButton);
 
     initCompMap();
+    initTextFieldArrays(textComponents);
 
 	}
 /**
@@ -519,6 +519,15 @@ setMaximumSize(new Dimension(1000, 1000));
   public HashMap<String,JComponent> getCompMap(){
     return compMap;
   }
+  private void initTextFieldArrays(JTextComponent[][] array){
+      for(int i=0; i<array.length; i++){
+            for(int j=0; j<array[i].length; j++){
+                  if(i==0){fishingSafariInfo.add(array[0][j]);}
+                  else{customerInfo.add(array[1][j]);}
+            }
+      }
+  }
+
 
   /**
   * Methods to populate and manipulate FishingSafari and SafariDestination
@@ -545,6 +554,10 @@ setMaximumSize(new Dimension(1000, 1000));
     destination.setText(safari.getSafariDestination().toString());
     equipmentReqTextArea.setText(safari.getSafariDestination().getEquipmentReq());
   }
+  public void clearFishingSafariInfo(){
+      clearText(fishingSafariInfo);
+      safari = null;
+  }
   public void updateDestinationPicker(ArrayList<SafariDestination> destinations){
     for(SafariDestination s : destinations){
       destinationPicker.addItem(s);
@@ -563,8 +576,8 @@ setMaximumSize(new Dimension(1000, 1000));
   /**
   * Methods to build new Booking-object
   */
-  public void buildBooking(){
-
+  public void buildBooking(Customer custom){
+      booking = new Booking(safari,custom,getParticipants());
   }
   public Booking getBooking(){
     return booking;
@@ -591,6 +604,10 @@ setMaximumSize(new Dimension(1000, 1000));
     customerPhoneNumber.setText(customer.getTelephone());
     this.customer = customer;
   }
+  public void clearCustomerInfo(){
+      clearText(customerInfo);
+      customer = null;
+  }
   
 /**
 * Utils 
@@ -606,15 +623,9 @@ setMaximumSize(new Dimension(1000, 1000));
     }
     return text;
   }
-  public void clearText(){
-      for(JComponent comp : compArray){
-        try{
-        JTextComponent textComp = (JTextComponent) comp;
-        textComp.setText("");
-      }
-      catch(ClassCastException cce){
-
-      }
+  public void clearText(ArrayList<JTextComponent> array){
+      for(JTextComponent comp : array){
+        comp.setText("");  
     }
     
   }
@@ -623,7 +634,8 @@ setMaximumSize(new Dimension(1000, 1000));
     customer = null;
     safari = null;
     participantsPicker.removeAllItems();
-    clearText();
+    clearText(customerInfo);
+    clearText(fishingSafariInfo);
 
     }
   
