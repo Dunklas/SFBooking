@@ -16,17 +16,16 @@ public class BookingHandler {
 
 	public void feasabilityCheck(FishingSafari fs)throws StorageException{
 		
-		ArrayList<Booking> list = new ArrayList<>();
-		list = bStore.get(fs);
-		int total = getPaid(list);
+		ArrayList<Booking> bookingList = bStore.get(fs);
+		int totalPaid = getPaidBookings(list);
 		
-		if (total >= 5){
+		if (totalPaid >= 5){
 			if (fs.getStatus() == 0) {
 				fs.setStatus(1);
 				fStore.put(fs);
 			}
 
-			for(Booking b : list){
+			for(Booking b : bookingList){
 				if (b.getBookingStatus() == 1) {
 					b.setBookingStatus(2);
 					bStore.put(b);
@@ -36,23 +35,19 @@ public class BookingHandler {
 	}
 
 	public void finalCheck(FishingSafari fs)throws StorageException{
-		
-		int total = 0;
-		ArrayList<Booking> list = new ArrayList<>();
-		
-		list = bStore.get(fs);
-		
-		total = getPaid(list);
-		
-		if(total == fs.getSafariDestination().getMaxParticipants()){
+
+		ArrayList<Booking> bookingList = bStore.get(fs);	
+		int totalPaid = getPaidBookings(list);
+		int maxSpots = fs.getSafariDestination().getMaxParticipants();	
+		if(totalPaid == maxSpots){
 			fs.setStatus(2);
 			fStore.put(fs);
-		}else if(total > fs.getSafariDestination().getMaxParticipants()){
+		} else if(totalPaid > maxSpots){
 			Log.put(String.format("FishingSafari overbooked. ID = %d",fs.getId()));
 		}
 	}
 	
-	private int getPaid(ArrayList<Booking> bookingList)throws StorageException{
+	private int getPaidBookings(ArrayList<Booking> bookingList)throws StorageException{
 		int total=0;
 		for(Booking tempB : bookingList){
 			
@@ -75,7 +70,7 @@ public class BookingHandler {
 					int bookingId = Integer.parseInt(input.nextLine());
 					paymentDataList.add(bookingId);
 				} catch (NumberFormatException nfe) {
-					Log.put(nfe.getMessage());
+					Log.put(nfe.getMessage()); // Writes faulty text input
 				}
 			}
 		} catch (FileNotFoundException fnfe){
