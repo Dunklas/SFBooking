@@ -48,7 +48,7 @@ public class AddBookingController{
     addListeners();
 
     try{
-    addView.updateFishingSafariList(safariStorage.getList());
+    addView.updateFishingSafariList(safariStorage.getByStatus(0,1));
     addView.updateDestinationPicker(destinationStorage.getList());
     }
     catch(StorageException se){
@@ -76,8 +76,7 @@ public class AddBookingController{
 
    JButton getCustomerButton = (JButton) addMap.get("getCustomerButton");
    getCustomerButton.addActionListener(customerListener);
-   JButton saveCustomerButton = (JButton) addMap.get("saveCustomerButton");
-   saveCustomerButton.addActionListener(customerListener);
+   
 
    JButton selectButton = (JButton) addMap.get("selectButton");
    selectButton.addActionListener(selectListener);
@@ -89,13 +88,24 @@ public class AddBookingController{
 
   ActionListener saveListener = new ActionListener(){
     public void actionPerformed(ActionEvent e){
-      customer = addView.getCustomer();
       safari = addView.getSelectedFishingSafari();
-      int participants = addView.getParticipants();
+      int nrParticipants = addView.getParticipants();
 
-      booking = new Booking(safari,customer,participants);
+      if(addView.getCustomer()==null){
+      addView.buildCustomer();
+      customer = addView.getCustomer();
+      
+    }
+    else{
+      customer = addView.getCustomer();
+    }
       try{
+      customerStorage.put(customer);
+      booking = new Booking(safari,customerStorage.get(customer.getEmail()),nrParticipants);
       bookingStorage.put(booking);
+      addView.clearSelection();
+      safari = null;
+      customer = null;
     }
     catch(StorageException se){
       JOptionPane.showMessageDialog(null,se.getMessage());
@@ -105,13 +115,17 @@ public class AddBookingController{
 
   ActionListener clearListener = new ActionListener(){
     public void actionPerformed(ActionEvent e){
+      safari = null;
+      customer = null;
       addView.clearSelection();
     }
   };
 
   ActionListener cancelListener = new ActionListener(){
     public void actionPerformed(ActionEvent e){
-
+      safari = null;
+      customer = null;
+      addView.clearSelection();
     }
   };
 
@@ -142,10 +156,7 @@ public class AddBookingController{
         customer = customerStorage.get(addView.getText("customerEmail"));
         addView.populateCustomerInfo(customer);
       }
-      else if(comp.getName().equals("saveCustomerButton")){
-        addView.buildCustomer();
-        customerStorage.put(addView.getCustomer());
-      }
+ 
     }
     catch(StorageException se){
       se.printStackTrace();
@@ -155,8 +166,8 @@ public class AddBookingController{
 
   ActionListener selectListener = new ActionListener(){
     public void actionPerformed(ActionEvent e){
-      addView.clearSelection();
-      safari = addView.getSelectedSafari();
+      
+      safari = addView.getSelectedFishingSafari();
       addView.setFishingSafari(safari);
       addView.populateFishingSafariInfo(safari);
       try{

@@ -52,6 +52,8 @@ public class AddBookingView extends JPanel {
   private JTextArea commentTextArea;
   private JTextArea equipmentReqTextArea;
 
+  
+ 
   /**
   * Utils
   */
@@ -391,11 +393,6 @@ setMaximumSize(new Dimension(1000, 1000));
       getCustomerButton.setAlignmentX(0.2f);
       customerInputPanel.add(getCustomerButton);
       
-      JButton saveCustomerButton = new JButton("Spara kunduppgifter");
-      saveCustomerButton.setName("saveCustomerButton");
-      compArray.add(saveCustomerButton);
-      saveCustomerButton.setAlignmentX(0.2f);
-      customerInputPanel.add(saveCustomerButton);
       
       JPanel equipmentPanel = new JPanel();
       GridBagConstraints gbc_equipmentPanel = new GridBagConstraints();
@@ -506,6 +503,7 @@ setMaximumSize(new Dimension(1000, 1000));
       buttonPanel.add(backButton);
 
     initCompMap();
+   
 
 	}
 /**
@@ -519,6 +517,8 @@ setMaximumSize(new Dimension(1000, 1000));
   public HashMap<String,JComponent> getCompMap(){
     return compMap;
   }
+  
+
 
   /**
   * Methods to populate and manipulate FishingSafari and SafariDestination
@@ -530,7 +530,7 @@ setMaximumSize(new Dimension(1000, 1000));
     }
     fishingSafariList.setModel(listModel);
   }
-  public FishingSafari getFishingSelectedSafari(){
+  public FishingSafari getSelectedFishingSafari(){
     return fishingSafariList.getSelectedValue();
   }
   public void setFishingSafari(FishingSafari safari){
@@ -544,6 +544,16 @@ setMaximumSize(new Dimension(1000, 1000));
     endDate.setText(safari.getEndDate().toString());
     destination.setText(safari.getSafariDestination().toString());
     equipmentReqTextArea.setText(safari.getSafariDestination().getEquipmentReq());
+  }
+  public void clearFishingSafariInfo(){
+      startDate.setText("");
+      endDate.setText("");
+      destination.setText("");
+      startTime.setText("");
+      endTime.setText("");
+      commentTextArea.setText("");
+      equipmentReqTextArea.setText("");
+      safari = null;
   }
   public void updateDestinationPicker(ArrayList<SafariDestination> destinations){
     for(SafariDestination s : destinations){
@@ -563,12 +573,12 @@ setMaximumSize(new Dimension(1000, 1000));
   /**
   * Methods to build new Booking-object
   */
-  public void buildBooking(){
-
-  }
-  public Booking getBooking(){
+  /*public void buildBooking(){
+      booking = new Booking(safari,custom,getParticipants());
+  }*/
+  /*public Booking getBooking(){
     return booking;
-  }
+  }*/
 
   /**
   * Methods to build new Customer-objects and populate from data from existing Customers in DB
@@ -591,6 +601,13 @@ setMaximumSize(new Dimension(1000, 1000));
     customerPhoneNumber.setText(customer.getTelephone());
     this.customer = customer;
   }
+  public void clearCustomerInfo(){
+      customerEmail.setText("");
+      customerFirstName.setText("");
+      customerLastName.setText("");
+      customerPhoneNumber.setText("");
+      customer = null;
+  }
   
 /**
 * Utils 
@@ -606,15 +623,10 @@ setMaximumSize(new Dimension(1000, 1000));
     }
     return text;
   }
-  public void clearText(){
-      for(JComponent comp : compArray){
-        try{
-        JTextComponent textComp = (JTextComponent) comp;
-        textComp.setText("");
-      }
-      catch(ClassCastException cce){
-
-      }
+  public void clearText(ArrayList<JTextComponent> array){
+      for(JTextComponent comp : array){
+        JTextField textField = (JTextField) comp;
+        textField.setText("");  
     }
     
   }
@@ -622,8 +634,9 @@ setMaximumSize(new Dimension(1000, 1000));
   public void clearSelection(){
     customer = null;
     safari = null;
-    participantsPicker.removeAllItems();
-    clearText();
+    clearCustomerInfo();
+    clearFishingSafariInfo();
+    
 
     }
   
