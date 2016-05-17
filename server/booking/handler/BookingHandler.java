@@ -5,10 +5,7 @@ import server.planning.model.*;
 import server.booking.model.*;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Scanner;
-import java.io.File;
 import server.utils.storage.*;
-import java.io.FileNotFoundException;
 
 public class BookingHandler {
     BookingStorage bStore = BookingStorageFactory.getStorage();
@@ -56,39 +53,6 @@ public class BookingHandler {
 			}
 		}
 		return total;
-	}
-
-
-	public void paymentCheck()throws StorageException {
-		Scanner input = null;
-		ArrayList<Integer> paymentDataList = new ArrayList<>();
-		ArrayList<Booking> paidBookings = new ArrayList<>();
-		try { // Fetches all booking IDs from txt-file
-			input = new Scanner(new File("payment.txt"));
-			while (input.hasNext()) {
-				try {
-					int bookingId = Integer.parseInt(input.nextLine());
-					paymentDataList.add(bookingId);
-				} catch (NumberFormatException nfe) {
-					Log.put(nfe.getMessage()); // Writes faulty text input
-				}
-			}
-		} catch (FileNotFoundException fnfe){
-		    Log.put(fnfe.getMessage());
-		}
-
-		for (Integer bookingId : paymentDataList) {
-		    Booking tempBooking = bStore.get(bookingId);
-		    if (tempBooking.getBookingStatus() == 0) { //Only change bookings with status "Preliminary"
-			    tempBooking.setBookingStatus(1);
-			    bStore.put(tempBooking);
-		    }
-
-		    // The stuff below runs feasability and final checks for FishingSafari
-		    FishingSafari fs = tempBooking.getFishingSafari();
-		    feasabilityCheck(fs);
-		    finalCheck(fs);
-		}
 	}
 
 	public void sendPreliminaryConfirmation(Booking b) {
