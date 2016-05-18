@@ -26,10 +26,12 @@ public class SafariDestinationController implements Observer{
   HashMap<String,JComponent> modifyMap;
 
   //SafariDestinationStorage storage = SafariDestinationStorageFactory.getGUITestStorage();
-  SafariDestinationStorage storage = SafariDestinationStorageFactory.getStorage();
+  SafariDestinationStorage storage;
   SafariDestination destination;
 
-  public SafariDestinationController(SafariDestinationView sdv,ModifySafariDestinationView msdv){
+  public SafariDestinationController(SafariDestinationView sdv,ModifySafariDestinationView msdv
+    ,SafariDestinationStorage destinationStorage){
+    storage = destinationStorage;
     safariView = sdv;
     modifyView = msdv;
     safariMap = safariView.getCompMap();
@@ -40,7 +42,6 @@ public class SafariDestinationController implements Observer{
     catch(StorageException se){JOptionPane.showMessageDialog(null,se.getMessage());}
 
     addListeners();
-    storage.addObserver(this);
 
   }
 

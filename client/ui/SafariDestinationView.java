@@ -48,6 +48,7 @@ public class SafariDestinationView extends JPanel {
 	private JRadioButton inactiveButton;
 	private ButtonGroup statusGroup = new ButtonGroup();
 	private JButton saveNewSafariButton;
+	private JButton backButton;
 	
 	private DefaultListModel<String> listModelAdded = new DefaultListModel<String>();
 	private DefaultListModel<String> listModelAvailable = new DefaultListModel<String>();
@@ -70,10 +71,10 @@ public class SafariDestinationView extends JPanel {
 		
 		setBackground(UIManager.getColor("CheckBox.light"));
 		GridBagLayout gridBagLayout = new GridBagLayout();
-		gridBagLayout.columnWidths = new int[]{443, 0};
-		gridBagLayout.rowHeights = new int[]{6, -5, 2, 22, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+		gridBagLayout.columnWidths = new int[]{150, 0};
+		gridBagLayout.rowHeights = new int[]{6, -5, 2, 22, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 		gridBagLayout.columnWeights = new double[]{1.0, Double.MIN_VALUE};
-		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		setLayout(gridBagLayout);
 		
 		JLabel lblPlats = new JLabel("Plats");
@@ -245,16 +246,27 @@ public class SafariDestinationView extends JPanel {
 		
 		statusGroup.add(activeButton); statusGroup.add(inactiveButton);
 		
-		saveNewSafariButton = new JButton("Save");
+		saveNewSafariButton = new JButton("Spara");
 		saveNewSafariButton.setName("saveNewSafariButton");
 		compArray.add(saveNewSafariButton);
 		
 		saveNewSafariButton.setMinimumSize(new Dimension(100, 25));
 		GridBagConstraints gbc_saveNewSafariButton = new GridBagConstraints();
+		gbc_saveNewSafariButton.insets = new Insets(0, 0, 5, 0);
 		gbc_saveNewSafariButton.anchor = GridBagConstraints.WEST;
 		gbc_saveNewSafariButton.gridx = 0;
 		gbc_saveNewSafariButton.gridy = 13;
 		add(saveNewSafariButton, gbc_saveNewSafariButton);
+		
+		backButton = new JButton("Tillbaka");
+		backButton.setName("backButton");
+		compArray.add(backButton);
+		GridBagConstraints gbc_backButton = new GridBagConstraints();
+		gbc_backButton.anchor = GridBagConstraints.WEST;
+		gbc_backButton.insets = new Insets(0, 0, 0, 10);
+		gbc_backButton.gridx = 0;
+		gbc_backButton.gridy = 14;
+		add(backButton, gbc_backButton);
 		
 		
 		initCompMap();
@@ -423,6 +435,7 @@ public class SafariDestinationView extends JPanel {
 		textFieldLocation.setEnabled(true);
 		textFieldParticipants.setText("");
 		clearTerrain();
+		destination = null;
 
 		//clear statusselection too
 

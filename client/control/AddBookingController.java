@@ -5,6 +5,7 @@ import server.booking.handler.BookingHandler;
 import server.customer.model.Customer;
 import server.planning.model.FishingSafari;
 import server.planning.handler.PlanningHandler;
+import server.planning.model.SafariDestination;
 import server.utils.storage.CustomerStorage;
 import server.utils.storage.CustomerStorageFactory;
 import server.utils.storage.BookingStorage;
@@ -14,6 +15,7 @@ import server.utils.storage.FishingSafariStorageFactory;
 import server.utils.storage.SafariDestinationStorage;
 import server.utils.storage.SafariDestinationStorageFactory;
 import server.utils.storage.StorageException;
+import server.utils.logs.Log;
 import client.ui.AddBookingView;
 import javax.swing.JButton;
 import javax.swing.JComponent;
@@ -21,17 +23,20 @@ import javax.swing.event.*;
 import javax.swing.JOptionPane;
 import java.awt.event.*;
 import java.util.HashMap;
+import java.util.Observer;
+import java.util.Observable;
+import java.util.ArrayList;
 
-public class AddBookingController{
+public class AddBookingController implements Observer{
   
   AddBookingView addView;
  
   HashMap<String,JComponent> addMap;
 
-  BookingStorage bookingStorage = BookingStorageFactory.getStorage();
-  CustomerStorage customerStorage = CustomerStorageFactory.getStorage();
-  FishingSafariStorage safariStorage = FishingSafariStorageFactory.getStorage();
-  SafariDestinationStorage destinationStorage = SafariDestinationStorageFactory.getStorage();
+  BookingStorage bookingStorage;
+  CustomerStorage customerStorage;
+  FishingSafariStorage fishingSafariStorage;
+  SafariDestinationStorage destinationStorage;
 
   PlanningHandler planningHandler = new PlanningHandler();
 
@@ -39,20 +44,44 @@ public class AddBookingController{
   FishingSafari safari;
   Booking booking;
 
+  Log log = new Log();
 
-  public AddBookingController(AddBookingView abv){
+
+  public AddBookingController(AddBookingView abv,BookingStorage bookingStorage,CustomerStorage customerStorage
+    ,FishingSafariStorage fishingSafariStorage,SafariDestinationStorage destinationStorage){
+    this.bookingStorage = bookingStorage;
+    this.customerStorage = customerStorage;
+    this.fishingSafariStorage = fishingSafariStorage;
+    this.destinationStorage = destinationStorage;
+
     addView = abv;
     addMap = addView.getCompMap();
     
 
     addListeners();
+    
 
     try{
-    addView.updateFishingSafariList(safariStorage.getByStatus(0,1));
+    addView.updateFishingSafariList(fishingSafariStorage.getByStatus(0,1));
     addView.updateDestinationPicker(destinationStorage.getList());
     }
     catch(StorageException se){
       JOptionPane.showMessageDialog(null,se.getMessage());
+    }
+  }
+  public void update(Observable obs, Object obj){
+    if(obs instanceof FishingSafariStorage){
+      try{
+      ArrayList<FishingSafari> updatedFishingSafariList = fishingSafariStorage.getByStatus(0,1);
+      addView.updateFishingSafariList(updatedFishingSafariList);
+      }
+      catch(StorageException se){
+        log.put(se.getMessage());
+      }
+    }
+    else if(obs instanceof SafariDestinationStorage){
+      ArrayList<SafariDestination> updatedDestinationList = (ArrayList<SafariDestination>) obj;
+      addView.updateDestinationPicker(updatedDestinationList);
     }
   }
 

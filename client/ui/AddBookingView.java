@@ -519,7 +519,6 @@ setMaximumSize(new Dimension(1000, 1000));
   }
   
 
-
   /**
   * Methods to populate and manipulate FishingSafari and SafariDestination
   */
@@ -556,6 +555,7 @@ setMaximumSize(new Dimension(1000, 1000));
       safari = null;
   }
   public void updateDestinationPicker(ArrayList<SafariDestination> destinations){
+    destinationPicker.removeAllItems();
     for(SafariDestination s : destinations){
       destinationPicker.addItem(s);
     }
@@ -570,15 +570,7 @@ setMaximumSize(new Dimension(1000, 1000));
     return participants;
   }
 
-  /**
-  * Methods to build new Booking-object
-  */
-  /*public void buildBooking(){
-      booking = new Booking(safari,custom,getParticipants());
-  }*/
-  /*public Booking getBooking(){
-    return booking;
-  }*/
+
 
   /**
   * Methods to build new Customer-objects and populate from data from existing Customers in DB

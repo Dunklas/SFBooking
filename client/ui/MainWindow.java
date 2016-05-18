@@ -56,6 +56,9 @@ public class MainWindow extends JPanel {
 		gbc_middlePanel.gridx = 0;
 		gbc_middlePanel.gridy = 1;
 		add(middlePanel, gbc_middlePanel);
+
+		JLabel picture = putImage("Smaland.png");
+		middlePanel.add(picture);
 		
 		JPanel topButtonPanel = new JPanel();
 		GridBagConstraints gbc_topButtonPanel = new GridBagConstraints();
@@ -94,6 +97,7 @@ public class MainWindow extends JPanel {
 		
 		JButton handleDestinationButton = new JButton("Hantera safarim\u00E5l");
 		handleDestinationButton.setName("handleDestinationButton");
+		compArray.add(handleDestinationButton);
 		handleDestinationButton.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		bottomPanelButton.add(handleDestinationButton);
 		
@@ -104,6 +108,8 @@ public class MainWindow extends JPanel {
 		JButton btnHanteraKund = new JButton("Hantera kunder");
 		btnHanteraKund.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		bottomPanelButton.add(btnHanteraKund);
+
+		initCompMap();
 
 	}
 
@@ -118,11 +124,11 @@ public class MainWindow extends JPanel {
 	private JLabel putImage(String filepath){
 		JLabel picLabel = null;
 		try{
-			BufferedImage picture = ImageIO.read(new File(filepath));
+			BufferedImage picture = ImageIO.read(new File("c:/users/christoffer/skola/tig059_sup/githubrep/sfbooking/client/ui/Smaland.png"));
 			picLabel = new JLabel(new ImageIcon(picture));
 		}
 		catch(IOException e){
-			//...
+			e.printStackTrace();
 		}
 		return picLabel;
 	}

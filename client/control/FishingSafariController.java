@@ -34,18 +34,21 @@ public class FishingSafariController implements Observer{
   HashMap<String,JComponent> bottomMap;
   HashMap<String,JComponent> modifyMap;
 
-  FishingSafariStorage fishingStorage = FishingSafariStorageFactory.getStorage();
-  //FishingSafariStorage fishingStorage = FishingSafariStorageFactory.getGUITestStorage();
-  SafariDestinationStorage safariStorage = SafariDestinationStorageFactory.getStorage();
-  //SafariDestinationStorage safariStorage = SafariDestinationStorageFactory.getGUITestStorage();
-
+  FishingSafariStorage fishingSafariStorage;
+  SafariDestinationStorage destinationStorage;
   SafariDestination destination;
   FishingSafari fishingSafari; 
 
   Log log = new Log();
 
+  JComboBox<String> destinationPicker;
+
   public FishingSafariController(FishingSafariTopView top,
-    FishingSafariBottomView bottom,FishingSafariView main,ModifyFishingSafariView mod){
+    FishingSafariBottomView bottom,FishingSafariView main,ModifyFishingSafariView mod
+    ,SafariDestinationStorage destinationStorage,FishingSafariStorage fishingSafariStorage){
+    this.destinationStorage = destinationStorage;
+    this.fishingSafariStorage = fishingSafariStorage;
+
     topView=top;
     bottomView=bottom;
     mainView = main;
@@ -56,16 +59,15 @@ public class FishingSafariController implements Observer{
     modifyMap = modifyView.getCompMap();
 
     try{
-    bottomView.fillDestinationPicker(safariStorage.getList());
-    modifyView.fillList(fishingStorage.getList());
+    bottomView.fillDestinationPicker(destinationStorage.getList());
+    modifyView.fillList(fishingSafariStorage.getList());
     }
     catch(StorageException se){
       JOptionPane.showMessageDialog(null,se.getMessage());
     }
 
     addListeners();
-    fishingStorage.addObserver(this);
-    safariStorage.addObserver(this);
+   
     
 
   }
@@ -79,7 +81,7 @@ public class FishingSafariController implements Observer{
     JButton saveSafari = (JButton) bottomMap.get("saveFishingSafari");
     saveSafari.addActionListener(saveListener);
 
-    JComboBox<String> destinationPicker = (JComboBox<String>) bottomMap.get("destinationPicker");
+    destinationPicker = (JComboBox<String>) bottomMap.get("destinationPicker");
     destinationPicker.addItemListener(destinationListener);
 
     JButton selectButton = (JButton) modifyMap.get("selectButton");
@@ -94,8 +96,11 @@ public class FishingSafariController implements Observer{
       modifyView.fillList(updatedFishingSafariList);
     }
     else if(obs instanceof SafariDestinationStorage){
+      System.out.println("TEST");
       ArrayList<SafariDestination> updatedSafariDestinationList = (ArrayList<SafariDestination>) obj;
-      bottomView.fillDestinationPicker(updatedSafariDestinationList);
+      destinationPicker.removeItemListener(destinationListener);
+      bottomView.updateDestinationPicker(updatedSafariDestinationList);
+      destinationPicker.addItemListener(destinationListener);
     }
   }
 
@@ -111,7 +116,7 @@ if(comp.getName().equals("saveFishingSafari")){
       mainView.buildFishingSafari();
       FishingSafari safari = mainView.getFishingSafari();
       try{
-        fishingStorage.put(safari);
+        fishingSafariStorage.put(safari);
         
       }
       catch(StorageException se){
@@ -148,15 +153,16 @@ if(comp.getName().equals("saveFishingSafari")){
     }
   };
 
-  ItemListener destinationListener = new ItemListener(){
+    ItemListener destinationListener = new ItemListener(){
     public void itemStateChanged(ItemEvent e){
       try{
-        SafariDestination selectedDestination = safariStorage.get(bottomView.getSelectedItem("destinationPicker"));
+        SafariDestination selectedDestination = destinationStorage.get(bottomView.getSelectedItem("destinationPicker"));
         bottomView.setText("equipmentReq",selectedDestination.getEquipmentReq());        
       }
       catch(StorageException se){
         JOptionPane.showMessageDialog(null,se.getMessage());
       }
+
     }
   };
 

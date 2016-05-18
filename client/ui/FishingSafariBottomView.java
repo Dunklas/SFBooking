@@ -162,6 +162,11 @@ public class FishingSafariBottomView extends JPanel {
 		saveFishingSafariButton.setName("saveFishingSafari");
 		leftFormPanel.add(saveFishingSafariButton);
 		
+		JButton backButton = new JButton("Tillbaka");
+		backButton.setName("backButton");
+		compArray.add(backButton);
+		leftFormPanel.add(backButton);
+		
 		JPanel rightFormPanel = new JPanel();
 		add(rightFormPanel);
 		rightFormPanel.setLayout(new BoxLayout(rightFormPanel, BoxLayout.Y_AXIS));
@@ -282,13 +287,17 @@ return selectedItem;
 	}
 
 
-
 	public void fillDestinationPicker(ArrayList<SafariDestination> array){
-		//destinationPicker.addItem(); // adds empty string as default when creating new Safari
 		for(SafariDestination destination : array){
-
 			destinationPicker.addItem(destination);
 		}
+	}
+	public void updateDestinationPicker(ArrayList<SafariDestination> array){
+		destinationPicker.removeAllItems();
+		for(SafariDestination destination : array){
+			destinationPicker.addItem(destination);
+		}
+		
 	}
 	public void setSelectedDestinationIndex(SafariDestination destination){
 		int amountDestinations = destinationPicker.getItemCount();
