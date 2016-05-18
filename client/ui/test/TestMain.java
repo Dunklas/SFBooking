@@ -24,13 +24,13 @@ public class TestMain{
 
   FishingSafariController fishingController = new FishingSafariController(topView,bottomView,mainView,modifyFishingView);
 
-  //MainSplitView split = new MainSplitView(modifyFishingView,mainView);
-  //TestMain.addSplitToFrame(split);
+  MainSplitView split = new MainSplitView(modifyFishingView,mainView);
+  TestMain.addSplitToFrame(split);
 
-  AddBookingView addBookingView = new AddBookingView();
-  AddBookingController addBookingController = new AddBookingController(addBookingView);
+  //AddBookingView addBookingView = new AddBookingView();
+  //AddBookingController addBookingController = new AddBookingController(addBookingView);
 
-  TestMain.addPanelToFrame(addBookingView);
+  //TestMain.addPanelToFrame(addBookingView);
   
   }
 
