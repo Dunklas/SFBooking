@@ -3,9 +3,15 @@ package client.control;
 import client.ui.*;
 import client.control.*;
 import java.util.HashMap;
+import java.util.ArrayList;
 import javax.swing.JComponent;
 import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.Dimension;
+
 
 public class MainController{
   /**
@@ -35,8 +41,48 @@ public class MainController{
   * Init MainWindow
   */
   MainWindow mainWindow = new MainWindow();
+  JFrame mainFrame = new JFrame();
 
-  public void addListeners(HashMap<String,JComponent> compMap){
+  /**
+  * Init utils
+  */
+
+
+
+  public MainController(){
+    initFrame();
+    addListeners(initArrayOfCompMaps());
+  }
+
+  
+
+  public void initFrame(){
+      mainFrame.setVisible(true);
+      mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+      mainFrame.setSize(new Dimension(1000,1000));
+      mainFrame.add(mainWindow);
+  }
+
+  private void setWindow(JComponent window){
+
+  }
+
+  private ArrayList<HashMap<String,JComponent>> initArrayOfCompMaps(){
+    ArrayList<HashMap<String,JComponent>> arrayOfCompMaps = new ArrayList<HashMap<String,JComponent>>();
+    arrayOfCompMaps.add(destinationView.getCompMap());
+    arrayOfCompMaps.add(modifyDestinationView.getCompMap());
+    arrayOfCompMaps.add(fishingSafariTopView.getCompMap());
+    arrayOfCompMaps.add(fishingSafariBottomView.getCompMap());
+    arrayOfCompMaps.add(modifyFishingSafariView.getCompMap());
+    arrayOfCompMaps.add(addBookingView.getCompMap());
+
+    return arrayOfCompMaps;
+  }
+
+
+  private void addListeners(ArrayList<HashMap<String,JComponent>> compMapArray){
+    try{
+      for(HashMap<String,JComponent> compMap : compMapArray){
     JButton backButton = (JButton) compMap.get("backButton");
     backButton.addActionListener(backListener);
 
@@ -48,13 +94,18 @@ public class MainController{
     handleFishingSafariButton.addActionListener(navigationListener);
     JButton handleDestinationButton = (JButton) compMap.get("handleDestinationButton");
     handleDestinationButton.addActionListener(navigationListener);
+    }
+    }
+    catch(NullPointerException npe){
+      // if component found, exception is found: This is expected
+    }
 
     // init this method somewhere,, constructor?? mainmethod?
   }
 
   ActionListener backListener = new ActionListener(){
     public void actionPerformed(ActionEvent e){
-      // repaint window with MainWindow component
+        // repaint window with MainWindow component
     }
   };
 
@@ -62,7 +113,8 @@ public class MainController{
     public void actionPerformed(ActionEvent e){
       JComponent comp = (JComponent) e.getSource();
       if(comp.getName().equals("newBookingButton")){
-        // repaint window with addbookingcomponent
+        mainFrame.remove(mainWindow);
+        mainFrame.add(addBookingView);// repaint window with addbookingcomponent
       }
       else if(comp.getName().equals("handleBookingButton")){
         // repaint window with handlebookingcomponent

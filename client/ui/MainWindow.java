@@ -1,3 +1,5 @@
+package client.ui;
+
 import javax.swing.JPanel;
 import java.awt.GridBagLayout;
 import java.awt.Image;
