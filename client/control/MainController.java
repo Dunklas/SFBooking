@@ -57,7 +57,7 @@ public class MainController{
   MainWindow mainWindow = new MainWindow();
 
   JPanel mainHolderPanel = new JPanel();
-  JFrame mainFrame = new JFrame();
+  JFrame mainFrame = new JFrame("SF Ärendehantering");
   CardLayout mainLayout = new CardLayout();
 
 
@@ -89,7 +89,8 @@ public class MainController{
   private void initFrame(){
       mainFrame.setVisible(true);
       mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-      mainFrame.setSize(new Dimension(1000,1000));
+      mainFrame.setSize(new Dimension(1400,1000)); // Default minmized size
+      mainFrame.setExtendedState(JFrame.MAXIMIZED_BOTH); //Fits to screen
       mainFrame.setLayout(new CardLayout());
       
       mainHolderPanel.setLayout(new CardLayout());
@@ -106,6 +107,11 @@ public class MainController{
 
     return layout;
   }
+      private void clearWindows(){
+      destinationView.clearSelection();
+      fishingSafariBottomView.clearSelection();
+      addBookingView.clearSelection();
+    }
 
 
   private void addListeners(){
@@ -126,12 +132,7 @@ public class MainController{
     JButton handleDestinationButton = (JButton) mainWindow.getCompMap().get("handleDestinationButton");
     handleDestinationButton.addActionListener(navigationListener);
     }
-    private void clearWindows(){
-      destinationView.clearSelection();
-      fishingSafariBottomView.clearSelection();
-      addBookingView.clearSelection();
 
-    }
     
   
 
