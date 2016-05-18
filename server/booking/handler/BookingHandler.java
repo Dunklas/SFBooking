@@ -14,7 +14,7 @@ public class BookingHandler {
 	public void feasabilityCheck(FishingSafari fs)throws StorageException{
 		
 		ArrayList<Booking> bookingList = bStore.get(fs);
-		int totalPaid = getPaidBookings(list);
+		int totalPaid = getPaidBookings(bookingList);
 		
 		if (totalPaid >= 5){
 			if (fs.getStatus() == 0) {
@@ -34,7 +34,7 @@ public class BookingHandler {
 	public void finalCheck(FishingSafari fs)throws StorageException{
 
 		ArrayList<Booking> bookingList = bStore.get(fs);	
-		int totalPaid = getPaidBookings(list);
+		int totalPaid = getPaidBookings(bookingList);
 		int maxSpots = fs.getSafariDestination().getMaxParticipants();	
 		if(totalPaid == maxSpots){
 			fs.setStatus(2);
