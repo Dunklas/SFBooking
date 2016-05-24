@@ -129,7 +129,7 @@ public class AddBookingController implements Observer{
       customer = addView.getCustomer();
     }
       try{
-      customerStorage.put(customer);
+      customerStorage.put(customer); // has to fetch this customer before inserting new booking below
       booking = new Booking(safari,customerStorage.get(customer.getEmail()),nrParticipants);
       bookingStorage.put(booking);
       addView.clearSelection();

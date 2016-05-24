@@ -9,8 +9,9 @@ import server.utils.logs.Log;
 import server.utils.storage.BookingStorageFactory;
 import server.utils.storage.BookingStorage;
 import server.utils.storage.StorageException;
+import server.payment.PaymentAdapter;
 
-public class PaymentHandler {
+public class PaymentHandler implements PaymentAdapter {
 
 	BookingStorage bStore = BookingStorageFactory.getStorage();
 
