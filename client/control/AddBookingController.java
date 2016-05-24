@@ -184,7 +184,12 @@ public class AddBookingController implements Observer{
 
   ActionListener simulateListener = new ActionListener(){
     public void actionPerformed(ActionEvent e){
-      
+      try{
+      paymentHandler.paymentCheck();
+      }
+      catch(StorageException se){
+        log.put(se.getMessage());
+      }
     }
   };
 

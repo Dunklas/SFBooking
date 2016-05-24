@@ -57,7 +57,7 @@ public class MainController{
   MainWindow mainWindow = new MainWindow();
 
   JPanel mainHolderPanel = new JPanel();
-  JFrame mainFrame = new JFrame("SF Ärendehantering");
+  JFrame mainFrame = new JFrame("SF Booking");
   CardLayout mainLayout = new CardLayout();
 
 
