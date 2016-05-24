@@ -15,6 +15,8 @@ public interface BookingStorage extends ObservableStorage{
 
    Booking get(int id) throws StorageException;
 
+   Booking getLatest() throws StorageException;
+   
    ArrayList<Booking> get(Customer c) throws StorageException;
 
    ArrayList<Booking> get(FishingSafari fs) throws StorageException;
