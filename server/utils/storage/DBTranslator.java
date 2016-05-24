@@ -25,7 +25,7 @@ public class DBTranslator{
                         rs.getInt("active"));
           sdList.add(sd);
         }
-        Log.put("Successfully fetched SafariDestination-list from DB");
+        //Log.put("Successfully fetched SafariDestination-list from DB");
     }
     catch(SQLException se){
       throw new StorageException(se);
@@ -47,7 +47,7 @@ public class DBTranslator{
                         rs.getInt("active"));
           
         }
-        Log.put("Successfully fetched SafariDestination from DB");
+        //Log.put("Successfully fetched SafariDestination from DB");
       }
       catch(SQLException se){
         throw new StorageException(se);
@@ -72,7 +72,7 @@ public class DBTranslator{
     tempBook.setBooked(rs.getDate("booked"));
     bookArrayList.add(tempBook);
       }
-      Log.put("Successfully managed to fetch Booking-list from the DB");
+      //Log.put("Successfully managed to fetch Booking-list from the DB");
   }
   catch(SQLException se){
     throw new StorageException(se);
@@ -93,7 +93,7 @@ public class DBTranslator{
     tempBook.setPrice(rs.getDouble("price"));
     tempBook.setBooked(rs.getDate("booked"));
       }
-      Log.put("Successfully managed to fetch Booking from the DB");
+      //Log.put("Successfully managed to fetch Booking from the DB");
   }
   catch(SQLException se){
     throw new StorageException(se);
@@ -117,7 +117,7 @@ public class DBTranslator{
                fs.setId(rs.getInt("SAFARI_ID"));
                fsList.add(fs);
            }
-     Log.put("Successfuly fetched FishingSafari-list from the DB");   
+     //Log.put("Successfuly fetched FishingSafari-list from the DB");   
 }
 catch(SQLException se){
   throw new StorageException(se);
@@ -140,7 +140,7 @@ catch(SQLException se){
                                       rs.getInt("STATUS"));
                fs.setId(rs.getInt("SAFARI_ID"));
         }
-    Log.put("Successfully fetched FishingSafari from the DB");
+    //Log.put("Successfully fetched FishingSafari from the DB");
      }
      catch(SQLException se){
       throw new StorageException(se);
@@ -161,7 +161,7 @@ catch(SQLException se){
 
       c.setId(rs.getInt("CUSTOMER_ID"));
   }
-  Log.put("Sucessfully fetched a Customer object from the DB");
+  //Log.put("Sucessfully fetched a Customer object from the DB");
 }
 catch(SQLException se){
   throw new StorageException(se);
