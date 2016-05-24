@@ -84,7 +84,6 @@ public class SafariDestinationStorageDB extends Observable implements SafariDest
 																																										   ,sd.getGuide()
 																																										   ,sd.getLocation()
 																																										   ,sd.getStatus());
-			System.out.println(sql);
 			
 														 
 				DBHelper.getInstance().update(sql);
@@ -97,7 +96,6 @@ public class SafariDestinationStorageDB extends Observable implements SafariDest
 						,sd.getGuide() 
 					 	,sd.getStatus()
 						,sd.getLocation());
-				System.out.println(sql);
 				DBHelper.getInstance().update(sql);
 
 

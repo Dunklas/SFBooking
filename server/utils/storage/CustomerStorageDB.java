@@ -30,7 +30,6 @@ ArrayList<Observer> observerList = new ArrayList<Observer>();
 					toDB.getEmail(), 
 					toDB.getTelephone(), 
 					dateNow);
-	     System.out.println(sql);
 	     DBHelper.getInstance().update(sql);
 	} else {
 	    Date reg = toDB.getRegistered();
@@ -42,7 +41,6 @@ ArrayList<Observer> observerList = new ArrayList<Observer>();
 				       toDB.getTelephone(), 
 				       regDate, 
 				       toDB.getId());
-	    System.out.println(sql);
 	    DBHelper.getInstance().update(sql);    
 	
 	}

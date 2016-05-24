@@ -76,7 +76,6 @@ ArrayList<Observer> observerList = new ArrayList<Observer>();
 					  new Integer(toDb.getFishingSafari().getId()),
 					  new Integer(toDb.getCustomer().getId()),
 					  new Integer(toDb.getNrParticipants()));
-	    System.out.println(sql);
 	}
 	else {
 	    sql = "UPDATE booking SET booking_status = ?, price = ?, safari = ?, customer = ?, booked = ?, nr_participants = ? WHERE booking_id = ?";
