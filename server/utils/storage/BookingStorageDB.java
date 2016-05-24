@@ -8,11 +8,6 @@ import java.sql.*;
 import server.utils.logs.Log;
 
 public class BookingStorageDB extends Observable implements BookingStorage {
-/*
-VI BEHÖVER INTE JÄMFÖRA ATTRIBUT!
-KOLLA OM OBJEKT FINNS OCH SKRIV IN RESTEN AV SKITEN
-Testa att uppdatera en bokning också...
-*/
 
 ArrayList<Observer> observerList = new ArrayList<Observer>();
 
@@ -55,6 +50,13 @@ ArrayList<Observer> observerList = new ArrayList<Observer>();
     public Booking get(int id) throws StorageException {
 
 	String sql = String.format("SELECT * FROM booking WHERE booking_id = %d", id);
+	ResultSet rs = DBHelper.getInstance().query(sql);
+
+	return DBTranslator.toBooking(rs);
+    }
+
+    public Booking getLatest() throws StorageException {
+	String sql = "SELECT * FROM booking WHERE booking_id=(select max(booking_id) FROM booking)";
 	ResultSet rs = DBHelper.getInstance().query(sql);
 
 	return DBTranslator.toBooking(rs);

@@ -26,6 +26,7 @@ public class BookingHandler {
 				if (b.getBookingStatus() == 1) {
 					b.setBookingStatus(2);
 					bStore.put(b);
+					sendFinalConfirmation(b); // Send final confirmation if fishingsafari is feasible
 				}
 			}
 		}
