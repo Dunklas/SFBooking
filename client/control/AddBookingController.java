@@ -6,6 +6,7 @@ import server.customer.model.Customer;
 import server.planning.model.FishingSafari;
 import server.planning.handler.PlanningHandler;
 import server.planning.model.SafariDestination;
+import server.payment.handler.PaymentHandler;
 import server.utils.storage.CustomerStorage;
 import server.utils.storage.CustomerStorageFactory;
 import server.utils.storage.BookingStorage;
@@ -39,6 +40,7 @@ public class AddBookingController implements Observer{
   SafariDestinationStorage destinationStorage;
 
   PlanningHandler planningHandler = new PlanningHandler();
+  PaymentHandler paymentHandler = new PaymentHandler();
 
   Customer customer;
   FishingSafari safari;
@@ -109,6 +111,9 @@ public class AddBookingController implements Observer{
 
    JButton selectButton = (JButton) addMap.get("selectButton");
    selectButton.addActionListener(selectListener);
+
+   JButton simulateButton = (JButton) addMap.get("simulateButton");
+   simulateButton.addActionListener(simulateListener);
   }
 
   /**
@@ -174,6 +179,12 @@ public class AddBookingController implements Observer{
 
       }
 
+    }
+  };
+
+  ActionListener simulateListener = new ActionListener(){
+    public void actionPerformed(ActionEvent e){
+      
     }
   };
 
