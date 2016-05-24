@@ -98,7 +98,7 @@ public class FishingSafariController implements Observer{
     else if(obs instanceof SafariDestinationStorage){
       System.out.println("TEST");
       ArrayList<SafariDestination> updatedSafariDestinationList = (ArrayList<SafariDestination>) obj;
-      destinationPicker.removeItemListener(destinationListener);
+      destinationPicker.removeItemListener(destinationListener);  // removes listener to perform update
       bottomView.updateDestinationPicker(updatedSafariDestinationList);
       destinationPicker.addItemListener(destinationListener);
     }

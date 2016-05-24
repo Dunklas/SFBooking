@@ -32,10 +32,7 @@ public class FishingSafariBottomView extends JPanel {
 	private JTextArea commentTextArea;
 	private JButton saveFishingSafariButton;
 	private JTextArea equipmentReq;
-	private JList<String> gearAvailableList;
-	private JButton addGearToRentButton;
-	private JButton removeGearToRentButton;
-	private JList<String> addedGearToRentList;
+	
 
 
 	DefaultListModel<String> equipmentListModel = new DefaultListModel<String>();
@@ -60,7 +57,7 @@ public class FishingSafariBottomView extends JPanel {
 		leftFormPanel.add(startTimePanel);
 		startTimePanel.setLayout(new BoxLayout(startTimePanel, BoxLayout.X_AXIS));
 		
-		JLabel startTimeLabel = new JLabel("Starttid");
+		JLabel startTimeLabel = new JLabel("Startdatum");
 		startTimePanel.add(startTimeLabel);
 		
 		Component horizontalStrut_1 = Box.createHorizontalStrut(20);
@@ -82,7 +79,7 @@ public class FishingSafariBottomView extends JPanel {
 		leftFormPanel.add(endTimePanel);
 		endTimePanel.setLayout(new BoxLayout(endTimePanel, BoxLayout.X_AXIS));
 		
-		JLabel endTimeLabel = new JLabel("Sluttid");
+		JLabel endTimeLabel = new JLabel("Slutdatum");
 		endTimePanel.add(endTimeLabel);
 		
 		Component horizontalStrut = Box.createHorizontalStrut(25);
@@ -146,16 +143,9 @@ public class FishingSafariBottomView extends JPanel {
 		commentPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
 		leftFormPanel.add(commentPanel);
 		commentPanel.setLayout(new BoxLayout(commentPanel, BoxLayout.Y_AXIS));
+		Component verticalStrut_comment = Box.createVerticalStrut(50);
+		commentPanel.add(verticalStrut_comment);
 		
-		JLabel commentLabel = new JLabel("Kommentar");
-		commentPanel.add(commentLabel);
-		
-		commentTextArea = new JTextArea();
-		compArray.add(commentTextArea);
-		commentTextArea.setName("commentArea");
-		commentTextArea.setMaximumSize(new Dimension(400, 100));
-		commentTextArea.setAlignmentX(Component.LEFT_ALIGNMENT);
-		commentPanel.add(commentTextArea);
 		
 		saveFishingSafariButton = new JButton("Spara");
 		compArray.add(saveFishingSafariButton);
@@ -186,58 +176,7 @@ public class FishingSafariBottomView extends JPanel {
 		gearReqPanel.add(equipmentReq);
 		compArray.add(equipmentReq);
 		
-		Component verticalStrut_4 = Box.createVerticalStrut(30);
-		verticalStrut_4.setMaximumSize(new Dimension(30, 30));
-		rightFormPanel.add(verticalStrut_4);
 		
-		JLabel gearToRentLabel = new JLabel("Utrustning att hyra ut:");
-		gearToRentLabel.setHorizontalAlignment(SwingConstants.LEFT);
-		rightFormPanel.add(gearToRentLabel);
-		
-		JPanel gearToRentPanel = new JPanel();
-		gearToRentPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
-		gearToRentLabel.setLabelFor(gearToRentPanel);
-		gearToRentPanel.setMaximumSize(new Dimension(550, 100));
-		rightFormPanel.add(gearToRentPanel);
-		gearToRentPanel.setLayout(new BoxLayout(gearToRentPanel, BoxLayout.X_AXIS));
-		
-		JScrollPane gearAvailableScrollPane = new JScrollPane();
-		gearAvailableScrollPane.setPreferredSize(new Dimension(185, 100));
-		gearAvailableScrollPane.setMaximumSize(new Dimension(150, 100));
-		gearAvailableScrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-		gearToRentPanel.add(gearAvailableScrollPane);
-		
-		gearAvailableList = new JList<String>();
-		compArray.add(gearAvailableList);
-		gearAvailableList.setName("availableGear");
-		gearAvailableList.setAlignmentX(Component.LEFT_ALIGNMENT);
-		gearAvailableScrollPane.setViewportView(gearAvailableList);
-		
-		JPanel gearToRentButtonPanel = new JPanel();
-		gearToRentPanel.add(gearToRentButtonPanel);
-		gearToRentButtonPanel.setLayout(new BoxLayout(gearToRentButtonPanel, BoxLayout.Y_AXIS));
-		
-		addGearToRentButton = new JButton("L\u00E4gg till >>");
-		compArray.add(addGearToRentButton);
-		addGearToRentButton.setName("addGear");
-		gearToRentButtonPanel.add(addGearToRentButton);
-		
-		removeGearToRentButton = new JButton("<< Ta bort");
-		compArray.add(removeGearToRentButton);
-		removeGearToRentButton.setName("removeGear");
-		removeGearToRentButton.setMaximumSize(new Dimension(88, 28));
-		gearToRentButtonPanel.add(removeGearToRentButton);
-		
-		JScrollPane addedGearToRentScrollPane = new JScrollPane();
-		addedGearToRentScrollPane.setPreferredSize(new Dimension(125, 100));
-		addedGearToRentScrollPane.setMaximumSize(new Dimension(150, 100));
-		addedGearToRentScrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-		gearToRentPanel.add(addedGearToRentScrollPane);
-		
-		addedGearToRentList = new JList<String>();
-		compArray.add(addedGearToRentList);
-		addedGearToRentList.setName("addedGear");
-		addedGearToRentScrollPane.setViewportView(addedGearToRentList);
 
 		initCompMap();
 	}
@@ -282,7 +221,6 @@ return selectedItem;
 		setEnabled("startTime",true);
 		setEnabled("endTime",true);
 		destinationPicker.setSelectedIndex(1);
-		commentTextArea.setText("");
 		equipmentReq.setText("");
 	}
 

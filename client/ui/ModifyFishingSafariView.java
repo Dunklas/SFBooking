@@ -101,7 +101,7 @@ public class ModifyFishingSafariView extends JPanel {
 		Component verticalStrut_3 = Box.createVerticalStrut(5);
 		modifyButtonPanel.add(verticalStrut_3);
 		
-		JButton selectButton = new JButton("Select");
+		JButton selectButton = new JButton("V\u00E4lj");
 		modifyButtonPanel.add(selectButton);
 		selectButton.setName("selectButton");
 		compArray.add(selectButton);

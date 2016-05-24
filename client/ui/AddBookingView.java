@@ -49,7 +49,6 @@ public class AddBookingView extends JPanel {
   private JComboBox<SafariDestination> destinationPicker;
   private JComboBox<Integer> participantsPicker;
   private JList<FishingSafari> fishingSafariList;
-  private JTextArea commentTextArea;
   private JTextArea equipmentReqTextArea;
 
   
@@ -226,35 +225,9 @@ setMaximumSize(new Dimension(1000, 1000));
       fishingSafariPanel.add(fsMiddlePanel);
       fsMiddlePanel.setLayout(new BoxLayout(fsMiddlePanel, BoxLayout.Y_AXIS));
       
-      JLabel lblStarttid = new JLabel("Starttid");
-      lblStarttid.setAlignmentX(0.2f);
-      fsMiddlePanel.add(lblStarttid);
       
-      startTime = new JTextField();
-      startTime.setName("startTime");
-      compArray.add(startTime);
-      startTime.setAlignmentX(0.1f);
-      startTime.setMaximumSize(new Dimension(200, 25));
-      fsMiddlePanel.add(startTime);
-      startTime.setColumns(10);
       
-      Component verticalStrut_5 = Box.createVerticalStrut(20);
-      fsMiddlePanel.add(verticalStrut_5);
       
-      JLabel lblSluttid = new JLabel("Sluttid");
-      lblSluttid.setAlignmentX(0.2f);
-      fsMiddlePanel.add(lblSluttid);
-      
-      endTime = new JTextField();
-      endTime.setName("endTime");
-      compArray.add(endTime);
-      endTime.setMaximumSize(new Dimension(200, 25));
-      endTime.setAlignmentX(0.1f);
-      fsMiddlePanel.add(endTime);
-      endTime.setColumns(10);
-      
-      Component verticalStrut_6 = Box.createVerticalStrut(20);
-      fsMiddlePanel.add(verticalStrut_6);
       
       JLabel lblUtrustningskrav = new JLabel("Utrustningskrav");
       lblUtrustningskrav.setAlignmentX(0.2f);
@@ -271,16 +244,7 @@ setMaximumSize(new Dimension(1000, 1000));
       fishingSafariPanel.add(fsRightPanel);
       fsRightPanel.setLayout(new BoxLayout(fsRightPanel, BoxLayout.Y_AXIS));
       
-      JLabel lblKommentar = new JLabel("Kommentar");
-      lblKommentar.setAlignmentX(0.2f);
-      fsRightPanel.add(lblKommentar);
       
-      commentTextArea = new JTextArea();
-      commentTextArea.setName("commentTextArea");
-      compArray.add(commentTextArea);
-      commentTextArea.setMaximumSize(new Dimension(200, 100));
-      commentTextArea.setAlignmentX(0.1f);
-      fsRightPanel.add(commentTextArea);
       
       JPanel centerMainPanel = new JPanel();
       GridBagConstraints gbc_centerMainPanel = new GridBagConstraints();
@@ -548,9 +512,6 @@ setMaximumSize(new Dimension(1000, 1000));
       startDate.setText("");
       endDate.setText("");
       destination.setText("");
-      startTime.setText("");
-      endTime.setText("");
-      commentTextArea.setText("");
       equipmentReqTextArea.setText("");
       safari = null;
   }
