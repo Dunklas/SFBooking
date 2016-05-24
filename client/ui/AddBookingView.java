@@ -33,6 +33,7 @@ import server.planning.model.FishingSafari;
 import server.planning.model.SafariDestination;
 import server.customer.model.Customer;
 
+
 public class AddBookingView extends JPanel {
 	/**
   * Components
@@ -465,6 +466,12 @@ setMaximumSize(new Dimension(1000, 1000));
       backButton.setName("backButton");
       compArray.add(backButton);
       buttonPanel.add(backButton);
+
+      JButton simulateButton = new JButton("Simulera betalning");
+      simulateButton.setName("simulateButton");
+      compArray.add(simulateButton);
+      buttonPanel.add(simulateButton);
+
 
     initCompMap();
    
