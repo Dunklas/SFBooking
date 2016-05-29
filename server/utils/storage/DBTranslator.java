@@ -73,7 +73,8 @@ public class DBTranslator{
     bookArrayList.add(tempBook);
       }
       //Log.put("Successfully managed to fetch Booking-list from the DB");
-  }
+      rs.close();
+    }
   catch(SQLException se){
     throw new StorageException(se);
   }
@@ -93,6 +94,7 @@ public class DBTranslator{
     tempBook.setPrice(rs.getDouble("price"));
     tempBook.setBooked(rs.getDate("booked"));
       }
+      rs.close();
       //Log.put("Successfully managed to fetch Booking from the DB");
   }
   catch(SQLException se){
@@ -117,7 +119,8 @@ public class DBTranslator{
                fs.setId(rs.getInt("SAFARI_ID"));
                fsList.add(fs);
            }
-     //Log.put("Successfuly fetched FishingSafari-list from the DB");   
+     //Log.put("Successfuly fetched FishingSafari-list from the DB");
+     rs.close();   
 }
 catch(SQLException se){
   throw new StorageException(se);
@@ -141,6 +144,7 @@ catch(SQLException se){
                fs.setId(rs.getInt("SAFARI_ID"));
         }
     //Log.put("Successfully fetched FishingSafari from the DB");
+    rs.close();
      }
      catch(SQLException se){
       throw new StorageException(se);
