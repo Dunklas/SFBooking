@@ -20,7 +20,7 @@ public class BookingHandler {
 			if (fs.getStatus() == 0) {
 				fs.setStatus(1);
 				fStore.put(fs);
-				Log.put("Fishingsafari " + fs.getId() + " has changed status to: Feasible")
+				Log.put("Fishingsafari " + fs.getId() + " has changed status to: Feasible");
 			}
 
 			for(Booking b : bookingList){
@@ -41,7 +41,7 @@ public class BookingHandler {
 		if(totalPaid == maxSpots){
 			fs.setStatus(2);
 			fStore.put(fs);
-			Log.put("Fishingsafari " + fs.getId() + " has changed status to: Final")
+			Log.put("Fishingsafari " + fs.getId() + " has changed status to: Final");
 		} else if(totalPaid > maxSpots){
 			Log.put(String.format("FishingSafari overbooked. ID = %d",fs.getId()));
 		}

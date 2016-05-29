@@ -40,6 +40,7 @@ public class AddBookingController implements Observer{
   SafariDestinationStorage destinationStorage;
 
   PlanningHandler planningHandler = new PlanningHandler();
+  BookingHandler bookingHandler = new BookingHandler();
   PaymentHandler paymentHandler = new PaymentHandler();
 
   Customer customer;
@@ -97,9 +98,6 @@ public class AddBookingController implements Observer{
    JButton cancelButton = (JButton) addMap.get("cancelButton");
    cancelButton.addActionListener(cancelListener);
 
-   JButton backButton = (JButton) addMap.get("backButton");
-   backButton.addActionListener(backListener);
-
    JButton rentButton = (JButton) addMap.get("rentButton");
    rentButton.addActionListener(equipmentListener);
    JButton regretButton = (JButton) addMap.get("regretButton");
@@ -122,7 +120,8 @@ public class AddBookingController implements Observer{
 
   ActionListener saveListener = new ActionListener(){
     public void actionPerformed(ActionEvent e){
-      safari = addView.getSelectedFishingSafari();
+	
+	safari = addView.getSelectedFishingSafari();
       int nrParticipants = addView.getParticipants();
 
       if(addView.getCustomer()==null){
@@ -137,6 +136,8 @@ public class AddBookingController implements Observer{
       customerStorage.put(customer); // has to fetch this customer before inserting new booking below
       booking = new Booking(safari,customerStorage.get(customer.getEmail()),nrParticipants);
       bookingStorage.put(booking);
+      booking = bookingStorage.getLatest();
+      bookingHandler.sendPreliminaryConfirmation(booking);
       addView.clearSelection();
       safari = null;
       customer = null;
@@ -163,11 +164,7 @@ public class AddBookingController implements Observer{
     }
   };
 
-  ActionListener backListener = new ActionListener(){
-    public void actionPerformed(ActionEvent e){
 
-    }
-  };
 
   ActionListener equipmentListener = new ActionListener(){
     public void actionPerformed(ActionEvent e){
@@ -186,6 +183,9 @@ public class AddBookingController implements Observer{
     public void actionPerformed(ActionEvent e){
       try{
       paymentHandler.paymentCheck();
+      FishingSafari toBeChecked = bookingStorage.getLatest().getFishingSafari();
+      bookingHandler.feasabilityCheck(toBeChecked);
+      bookingHandler.finalCheck(toBeChecked);
       }
       catch(StorageException se){
         log.put(se.getMessage());
@@ -206,6 +206,9 @@ public class AddBookingController implements Observer{
     catch(StorageException se){
       se.printStackTrace();
     }
+    catch(NullPointerException npe){
+	//Just for show
+ }
   }
   };
 

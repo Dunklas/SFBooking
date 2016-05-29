@@ -43,7 +43,7 @@ public class PaymentHandler implements PaymentAdapter {
 			    if (tempBooking.getBookingStatus() == 0) { //Only change bookings with status "Preliminary"
 				    tempBooking.setBookingStatus(1);
 				    bStore.put(tempBooking);
-				    Log.put("Booking " + bookingId + " has gotten status: Paid")
+				    Log.put("Booking " + bookingId + " has gotten status: Paid");
 			    }
 		    }
 
