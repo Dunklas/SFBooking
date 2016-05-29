@@ -44,8 +44,6 @@ ArrayList<Observer> observerList = new ArrayList<Observer>();
 	    DBHelper.getInstance().update(sql);    
 	
 	}
-	  Log.put("Suceccsfully wrote to DB");
-	
     }
 
 
