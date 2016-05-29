@@ -38,7 +38,7 @@ public class PaymentHandler implements PaymentAdapter {
 		for (Integer bookingId : paymentDataList) {
 		    Booking tempBooking = bStore.get(bookingId);
 		    if (tempBooking == null) {
-			    Log.put("Booking " + bookingId + " not found. Could not parse payment information.");
+			    //Log.put("Booking " + bookingId + " not found. Could not parse payment information.");
 		    } else {
 			    if (tempBooking.getBookingStatus() == 0) { //Only change bookings with status "Preliminary"
 				    tempBooking.setBookingStatus(1);

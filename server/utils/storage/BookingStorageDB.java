@@ -88,7 +88,6 @@ ArrayList<Observer> observerList = new ArrayList<Observer>();
 					  new Integer(toDb.getNrParticipants()),
 					  new Integer(toDb.getBookingID()));
 	}
-
     }
 
     public void addObserver(Observer observer){
