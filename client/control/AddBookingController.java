@@ -120,7 +120,8 @@ public class AddBookingController implements Observer{
 
   ActionListener saveListener = new ActionListener(){
     public void actionPerformed(ActionEvent e){
-      safari = addView.getSelectedFishingSafari();
+	
+	safari = addView.getSelectedFishingSafari();
       int nrParticipants = addView.getParticipants();
 
       if(addView.getCustomer()==null){
@@ -205,6 +206,9 @@ public class AddBookingController implements Observer{
     catch(StorageException se){
       se.printStackTrace();
     }
+    catch(NullPointerException npe){
+	//Just for show
+ }
   }
   };
 

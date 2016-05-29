@@ -124,7 +124,7 @@ public class MainWindow extends JPanel {
 	private JLabel putImage(String filepath){
 		JLabel picLabel = null;
 		try{
-			BufferedImage picture = ImageIO.read(new File("c:/users/christoffer/skola/tig059_sup/githubrep/sfbooking/client/ui/Smaland.png"));
+			BufferedImage picture = ImageIO.read(new File(filepath));
 			picLabel = new JLabel(new ImageIcon(picture));
 		}
 		catch(IOException e){
