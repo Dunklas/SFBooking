@@ -26,6 +26,7 @@ public class DBTranslator{
           sdList.add(sd);
         }
         //Log.put("Successfully fetched SafariDestination-list from DB");
+	rs.close();
     }
     catch(SQLException se){
       throw new StorageException(se);
@@ -48,6 +49,7 @@ public class DBTranslator{
           
         }
         //Log.put("Successfully fetched SafariDestination from DB");
+	rs.close();
       }
       catch(SQLException se){
         throw new StorageException(se);
@@ -94,8 +96,8 @@ public class DBTranslator{
     tempBook.setPrice(rs.getDouble("price"));
     tempBook.setBooked(rs.getDate("booked"));
       }
-      rs.close();
       //Log.put("Successfully managed to fetch Booking from the DB");
+      rs.close();
   }
   catch(SQLException se){
     throw new StorageException(se);
@@ -166,6 +168,7 @@ catch(SQLException se){
       c.setId(rs.getInt("CUSTOMER_ID"));
   }
   //Log.put("Sucessfully fetched a Customer object from the DB");
+  rs.close();
 }
 catch(SQLException se){
   throw new StorageException(se);
