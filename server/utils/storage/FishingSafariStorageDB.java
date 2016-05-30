@@ -34,7 +34,7 @@ ArrayList<FishingSafari> updateList = new ArrayList<FishingSafari>();
 		}
     updateList = getList();
     notifyObservers();
-    DBHelper.getInstance().clean();
+    
  
 	}
 
@@ -56,7 +56,7 @@ ArrayList<FishingSafari> updateList = new ArrayList<FishingSafari>();
 			String sql = String.format("SELECT * FROM fishingsafari WHERE status BETWEEN %d AND %d", start, end);
 			ResultSet rs = DBHelper.getInstance().query(sql);
 			ArrayList<FishingSafari> fList = DBTranslator.toFishingSafariList(rs);
-			DBHelper.getInstance().clean();
+			
 			return fList;
 		}
 	}
@@ -66,7 +66,7 @@ ArrayList<FishingSafari> updateList = new ArrayList<FishingSafari>();
 		String sql = String.format("SELECT * FROM fishingsafari WHERE safari_id = %d", id);
 		ResultSet rs = DBHelper.getInstance().query(sql);
 		FishingSafari fs = DBTranslator.toFishingSafari(rs);
-		DBHelper.getInstance().clean();
+		
 		return fs;
 
 
@@ -80,7 +80,7 @@ ArrayList<FishingSafari> updateList = new ArrayList<FishingSafari>();
 
     ResultSet rs = DBHelper.getInstance().query(sql);
     ArrayList<FishingSafari> fList = DBTranslator.toFishingSafariList(rs);
-    DBHelper.getInstance().clean();
+    
 
     return fList;
   }
@@ -89,7 +89,7 @@ ArrayList<FishingSafari> updateList = new ArrayList<FishingSafari>();
 	public ArrayList<FishingSafari> getList() throws StorageException{
 	    ResultSet rs = DBHelper.getInstance().query("SELECT * FROM fishingsafari");
 	    ArrayList<FishingSafari> fList = DBTranslator.toFishingSafariList(rs);
-	    DBHelper.getInstance().clean();
+	    
 	    return fList;
 	}
 
