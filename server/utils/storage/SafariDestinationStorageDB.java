@@ -64,7 +64,7 @@ public class SafariDestinationStorageDB extends Observable implements SafariDest
 			String sql = String.format("SELECT * FROM safaridestination WHERE location= '%s'",location);
 			rs = DBHelper.getInstance().query(sql);
 			SafariDestination destination = DBTranslator.toSafariDestination(rs);
-			DBHelper.getInstance().clean();
+			//Should clean.. quick fix
 			return destination;
 
 		}

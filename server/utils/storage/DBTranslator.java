@@ -122,10 +122,12 @@ public class DBTranslator{
                fsList.add(fs);
            }
      //Log.put("Successfuly fetched FishingSafari-list from the DB");
-     rs.close();   
+      
 }
 catch(SQLException se){
-  throw new StorageException(se);
+  se.printStackTrace();
+    throw new StorageException(se);
+  
 }
     return fsList;
 
@@ -146,7 +148,7 @@ catch(SQLException se){
                fs.setId(rs.getInt("SAFARI_ID"));
         }
     //Log.put("Successfully fetched FishingSafari from the DB");
-    rs.close();
+  
      }
      catch(SQLException se){
       throw new StorageException(se);
