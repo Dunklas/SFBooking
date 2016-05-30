@@ -3,6 +3,7 @@ package server.utils.storage;
 import java.sql.*;
 import java.util.Date;
 import java.util.ArrayList;
+import server.utils.logs.Log;
 
 class DBHelper {
 
@@ -35,6 +36,7 @@ class DBHelper {
     public static void closeConnection() throws StorageException {
 	    try {
 		c.close();
+		Log.put("DB successfully closed");
 	    } catch (SQLException ex) {
 		    throw new StorageException(ex);
 	    }
