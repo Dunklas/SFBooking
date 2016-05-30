@@ -42,7 +42,7 @@ class DBHelper {
 	    }
     }
 
-    static DBHelper getInstance() {
+    public static DBHelper getInstance() { // Just changed to public to be able to close a connection from the main JFrame while closing. Last minute quick fix...
 	if (instance == null) {
 	    instance = new DBHelper();
 	}
