@@ -43,7 +43,7 @@ ArrayList<FishingSafari> updateList = new ArrayList<FishingSafari>();
 	    String sql = String.format("SELECT * FROM fishingsafari WHERE status = %d", status);
 	    ResultSet rs = DBHelper.getInstance().query(sql);
 	    ArrayList<FishingSafari> fList = DBTranslator.toFishingSafariList(rs);
-	    DBHelper.getInstance().clean();
+	    
       
 	    return fList;
 	}
