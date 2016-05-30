@@ -31,6 +31,7 @@ ArrayList<Observer> observerList = new ArrayList<Observer>();
 					toDB.getTelephone(), 
 					dateNow);
 	     DBHelper.getInstance().update(sql);
+	     DBHelper.getInstance().clean();
 	} else {
 	    Date reg = toDB.getRegistered();
 	    String regDate = formatter.format(reg);
@@ -41,7 +42,8 @@ ArrayList<Observer> observerList = new ArrayList<Observer>();
 				       toDB.getTelephone(), 
 				       regDate, 
 				       toDB.getId());
-	    DBHelper.getInstance().update(sql);    
+	    DBHelper.getInstance().update(sql);
+	    DBHelper.getInstance().clean();    
 	
 	}
     }
@@ -50,15 +52,17 @@ ArrayList<Observer> observerList = new ArrayList<Observer>();
     public Customer get(String email) throws StorageException{
 	String sql = String.format("SELECT * FROM customer where EMAIL = '%s'", email);
 	ResultSet rs = DBHelper.getInstance().query(sql);
-
-	return DBTranslator.toCustomer(rs);
+	Customer c = DBTranslator.toCustomer(rs);
+	DBHelper.getInstance().clean();
+	return c;
     }
 
     public Customer get(int id) throws StorageException{
 	String sql = String.format("SELECT * FROM customer where CUSTOMER_ID = %d", id);
 	ResultSet rs = DBHelper.getInstance().query(sql);
-	
-	return DBTranslator.toCustomer(rs);
+	Customer c = DBTranslator.toCustomer(rs);	
+	DBHelper.getInstance().clean();
+	return c;
     }
 
     

@@ -2,11 +2,13 @@ package server.utils.storage;
 
 import java.sql.*;
 import java.util.Date;
+import java.util.ArrayList;
 
 class DBHelper {
 
     private static DBHelper instance;
     private static Connection c;
+    private static ArrayList<Statement> stmtList;
 
     private static String hostname = "db.student.chalmers.se";
     private static String servicename = "kingu.ita.chalmers.se";
@@ -18,6 +20,8 @@ class DBHelper {
     private DBHelper() {
 	PATH = "jdbc:oracle:thin:@//" + hostname + ":1521/" + servicename;
 	openConnection();
+
+	stmtList = new ArrayList<>();
     }
 
     private static void openConnection() {
@@ -41,8 +45,8 @@ class DBHelper {
     ResultSet query(String sql) throws StorageException {
        try{
 	    Statement stmt = c.createStatement();
+	    stmtList.add(stmt);
 	    ResultSet rs = stmt.executeQuery(sql);
-	    stmt.close();
 	    return rs;
        }
        catch(SQLException se){
@@ -53,8 +57,8 @@ class DBHelper {
     int update(String sql) throws StorageException {
 	    try{
 		    Statement stmt = c.createStatement();
+		    stmtList.add(stmt);
 		    int updateAmount = stmt.executeUpdate(sql);
-		    stmt.close();
 		    return updateAmount;
     }
     catch(SQLException se){
@@ -81,10 +85,21 @@ class DBHelper {
 		}
 	    }
 	    int updateAmount = stmt.executeUpdate();
-	    stmt.close();
+	    stmtList.add(stmt);
 	    return updateAmount;
 	} catch(SQLException ex) {
 	    throw  new StorageException(ex);
 	}
+    }
+
+    void clean() throws StorageException {
+	    for (Statement s : stmtList) {
+		    try {
+			    s.close();
+		    } catch (SQLException ex) {
+			    throw new StorageException(ex);
+		    }
+	    }
+	    stmtList.clear();
     }
 }
