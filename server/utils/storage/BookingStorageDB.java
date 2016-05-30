@@ -16,24 +16,27 @@ ArrayList<Observer> observerList = new ArrayList<Observer>();
 	
 	String sql = String.format("SELECT * FROM booking WHERE safari = %d", fs.getId());
 	ResultSet rs = DBHelper.getInstance().query(sql);
-
-	return DBTranslator.toBookingList(rs);
+	ArrayList<Booking> bookingList = DBTranslator.toBookingList(rs);
+	DBHelper.getInstance().clean();
+	return bookingList;
     }
 
     public ArrayList<Booking> get(Customer c) throws StorageException {
 
 	String sql = String.format("SELECT * FROM booking WHERE customer = %d", c.getId());
 	ResultSet rs = DBHelper.getInstance().query(sql);
-
-	return DBTranslator.toBookingList(rs);
+	ArrayList<Booking> bookingList = DBTranslator.toBookingList(rs);
+	DBHelper.getInstance().clean();
+	return bookingList;
     }
 
     public ArrayList<Booking> getByStatus(int status) throws StorageException {
 
 	String sql = String.format("SELECT * FROM booking WHERE booking_status = %d", status);
 	ResultSet rs = DBHelper.getInstance().query(sql);
-	
-	return DBTranslator.toBookingList(rs);
+	ArrayList<Booking> bookingList = DBTranslator.toBookingList(rs);
+	DBHelper.getInstance().clean();
+	return bookingList;
     }
 
     public ArrayList<Booking> getByStatus(int start, int end) throws StorageException {
@@ -43,7 +46,9 @@ ArrayList<Observer> observerList = new ArrayList<Observer>();
 	} else {
 		String sql = String.format("SELECT * FROM booking WHERE booking_status BETWEEN %d AND %d", start, end);
 		ResultSet rs = DBHelper.getInstance().query(sql);
-		return DBTranslator.toBookingList(rs);
+		ArrayList<Booking> bookingList = DBTranslator.toBookingList(rs);
+		DBHelper.getInstance().clean();
+		return bookingList;
 	}
     }
 
@@ -51,15 +56,17 @@ ArrayList<Observer> observerList = new ArrayList<Observer>();
 
 	String sql = String.format("SELECT * FROM booking WHERE booking_id = %d", id);
 	ResultSet rs = DBHelper.getInstance().query(sql);
-
-	return DBTranslator.toBooking(rs);
+	Booking tempBooking = DBTranslator.toBooking(rs);
+	DBHelper.getInstance().clean();
+	return tempBooking;
     }
 
     public Booking getLatest() throws StorageException {
 	String sql = "SELECT * FROM booking WHERE booking_id=(select max(booking_id) FROM booking)";
 	ResultSet rs = DBHelper.getInstance().query(sql);
-
-	return DBTranslator.toBooking(rs);
+	Booking tempBooking = DBTranslator.toBooking(rs);
+	DBHelper.getInstance().clean();
+	return tempBooking;
     }
 
     public void put(Booking booking) throws StorageException {
@@ -76,6 +83,7 @@ ArrayList<Observer> observerList = new ArrayList<Observer>();
 					  new Integer(toDb.getFishingSafari().getId()),
 					  new Integer(toDb.getCustomer().getId()),
 					  new Integer(toDb.getNrParticipants()));
+	    DBHelper.getInstance().clean();
 	}
 	else {
 	    sql = "UPDATE booking SET booking_status = ?, price = ?, safari = ?, customer = ?, booked = ?, nr_participants = ? WHERE booking_id = ?";
@@ -87,6 +95,7 @@ ArrayList<Observer> observerList = new ArrayList<Observer>();
 					  toDb.getBooked(),
 					  new Integer(toDb.getNrParticipants()),
 					  new Integer(toDb.getBookingID()));
+	    DBHelper.getInstance().clean();
 	}
     }
 
