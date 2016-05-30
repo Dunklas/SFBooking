@@ -17,7 +17,7 @@ ArrayList<Observer> observerList = new ArrayList<Observer>();
 	String sql = String.format("SELECT * FROM booking WHERE safari = %d", fs.getId());
 	ResultSet rs = DBHelper.getInstance().query(sql);
 	ArrayList<Booking> bookingList = DBTranslator.toBookingList(rs);
-	DBHelper.getInstance().clean();
+       
 	return bookingList;
     }
 
@@ -26,7 +26,7 @@ ArrayList<Observer> observerList = new ArrayList<Observer>();
 	String sql = String.format("SELECT * FROM booking WHERE customer = %d", c.getId());
 	ResultSet rs = DBHelper.getInstance().query(sql);
 	ArrayList<Booking> bookingList = DBTranslator.toBookingList(rs);
-	DBHelper.getInstance().clean();
+
 	return bookingList;
     }
 
@@ -35,7 +35,7 @@ ArrayList<Observer> observerList = new ArrayList<Observer>();
 	String sql = String.format("SELECT * FROM booking WHERE booking_status = %d", status);
 	ResultSet rs = DBHelper.getInstance().query(sql);
 	ArrayList<Booking> bookingList = DBTranslator.toBookingList(rs);
-	DBHelper.getInstance().clean();
+
 	return bookingList;
     }
 
@@ -47,7 +47,7 @@ ArrayList<Observer> observerList = new ArrayList<Observer>();
 		String sql = String.format("SELECT * FROM booking WHERE booking_status BETWEEN %d AND %d", start, end);
 		ResultSet rs = DBHelper.getInstance().query(sql);
 		ArrayList<Booking> bookingList = DBTranslator.toBookingList(rs);
-		DBHelper.getInstance().clean();
+
 		return bookingList;
 	}
     }
@@ -57,7 +57,7 @@ ArrayList<Observer> observerList = new ArrayList<Observer>();
 	String sql = String.format("SELECT * FROM booking WHERE booking_id = %d", id);
 	ResultSet rs = DBHelper.getInstance().query(sql);
 	Booking tempBooking = DBTranslator.toBooking(rs);
-	DBHelper.getInstance().clean();
+
 	return tempBooking;
     }
 
@@ -65,7 +65,7 @@ ArrayList<Observer> observerList = new ArrayList<Observer>();
 	String sql = "SELECT * FROM booking WHERE booking_id=(select max(booking_id) FROM booking)";
 	ResultSet rs = DBHelper.getInstance().query(sql);
 	Booking tempBooking = DBTranslator.toBooking(rs);
-	DBHelper.getInstance().clean();
+
 	return tempBooking;
     }
 
@@ -83,7 +83,7 @@ ArrayList<Observer> observerList = new ArrayList<Observer>();
 					  new Integer(toDb.getFishingSafari().getId()),
 					  new Integer(toDb.getCustomer().getId()),
 					  new Integer(toDb.getNrParticipants()));
-	    DBHelper.getInstance().clean();
+
 	}
 	else {
 	    sql = "UPDATE booking SET booking_status = ?, price = ?, safari = ?, customer = ?, booked = ?, nr_participants = ? WHERE booking_id = ?";
@@ -95,7 +95,7 @@ ArrayList<Observer> observerList = new ArrayList<Observer>();
 					  toDb.getBooked(),
 					  new Integer(toDb.getNrParticipants()),
 					  new Integer(toDb.getBookingID()));
-	    DBHelper.getInstance().clean();
+
 	}
     }
 
