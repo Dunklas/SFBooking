@@ -43,7 +43,7 @@ public class SafariDestinationStorageDB extends Observable implements SafariDest
 			rs = DBHelper.getInstance().query("SELECT * FROM safaridestination");
 			ArrayList<SafariDestination> destinationList = DBTranslator.toSafariDestinationList(rs);
 
-			DBHelper.getInstance().clean();			
+						
 			return destinationList; 
 		}
 		
@@ -53,7 +53,7 @@ public class SafariDestinationStorageDB extends Observable implements SafariDest
 			String sql = String.format("SELECT * safaridestination WHERE active=%d",status);
 			rs = DBHelper.getInstance().query(sql);
 			ArrayList<SafariDestination> destinationList = DBTranslator.toSafariDestinationList(rs);
-			DBHelper.getInstance().clean();
+			
 			
 			return destinationList;
 		}
@@ -105,7 +105,7 @@ public class SafariDestinationStorageDB extends Observable implements SafariDest
 				}
 				array = getList();
 				notifyObservers();
-				DBHelper.getInstance().clean();
+				
 
 		
 		}
