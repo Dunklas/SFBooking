@@ -136,7 +136,7 @@ public class MainController{
     handleDestinationButton.addActionListener(navigationListener);
     }
 
-    WindowListener windowListener = new WindowListener(WindowAdapter wa){
+    WindowAdapter windowListener = new WindowAdapter(){
       public void windowClosing(WindowEvent we){
         DBHelper.getInstance().closeConnection();
       }
