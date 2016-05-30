@@ -41,7 +41,9 @@ class DBHelper {
     ResultSet query(String sql) throws StorageException {
        try{
 	    Statement stmt = c.createStatement();
-	    return stmt.executeQuery(sql);
+	    ResultSet rs = stmt.executeQuery(sql);
+	    stmt.close();
+	    return rs;
        }
        catch(SQLException se){
         throw new StorageException(se);
@@ -50,8 +52,10 @@ class DBHelper {
 
     int update(String sql) throws StorageException {
 	    try{
-      Statement stmt = c.createStatement();
-	    return stmt.executeUpdate(sql);
+		    Statement stmt = c.createStatement();
+		    int updateAmount = stmt.executeUpdate(sql);
+		    stmt.close();
+		    return updateAmount;
     }
     catch(SQLException se){
       throw new StorageException(se);
@@ -76,7 +80,9 @@ class DBHelper {
 		    stmt.setDouble(i+1, (Double)args[i]);
 		}
 	    }
-	    return stmt.executeUpdate();
+	    int updateAmount = stmt.executeUpdate();
+	    stmt.close();
+	    return updateAmount;
 	} catch(SQLException ex) {
 	    throw  new StorageException(ex);
 	}
