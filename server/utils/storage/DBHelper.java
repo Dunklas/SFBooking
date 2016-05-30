@@ -32,6 +32,14 @@ class DBHelper {
 	}
     }
 
+    public static void closeConnection() throws StorageException {
+	    try {
+		c.close();
+	    } catch (SQLException ex) {
+		    throw new StorageException(ex);
+	    }
+    }
+
     static DBHelper getInstance() {
 	if (instance == null) {
 	    instance = new DBHelper();
