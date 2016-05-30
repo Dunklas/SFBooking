@@ -12,6 +12,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.awt.Dimension;
 import java.awt.CardLayout;
 
@@ -99,6 +101,7 @@ public class MainController{
       mainHolderPanel.add(fishingSafariSplit,"fishingSafariWindow");
       mainHolderPanel.add(addBookingView,"addBookingWindow");
       mainFrame.add(mainHolderPanel);
+      mainFrame.addWindowListener(windowListener);
 
   }
 
@@ -132,6 +135,12 @@ public class MainController{
     JButton handleDestinationButton = (JButton) mainWindow.getCompMap().get("handleDestinationButton");
     handleDestinationButton.addActionListener(navigationListener);
     }
+
+    WindowAdapter windowListener = new WindowAdapter(){
+      public void windowClosing(WindowEvent we){
+        DBHelper.getInstance().closeConnection();
+      }
+    };
 
     
   
