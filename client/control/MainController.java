@@ -138,7 +138,11 @@ public class MainController{
 
     WindowAdapter windowListener = new WindowAdapter(){
       public void windowClosing(WindowEvent we){
+	  try{
         DBHelper.getInstance().closeConnection();
+	  } catch (StorageException SE){
+
+	  }
       }
     };
 

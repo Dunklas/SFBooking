@@ -5,7 +5,7 @@ import java.util.Date;
 import java.util.ArrayList;
 import server.utils.logs.Log;
 
-class DBHelper {
+public class DBHelper {
 
     private static DBHelper instance;
     private static Connection c;
